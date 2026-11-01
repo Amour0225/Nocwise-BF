@@ -499,21 +499,58 @@
   <!-- ========================================================================= -->
   <!-- MODAL : REWARDED VIDEO AD (5 PAR JOUR MAX = 600 PTS = 30%)                -->
   <!-- ========================================================================= -->
-  <div id="videoModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 text-center shadow-2xl relative">
-      <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-3 text-2xl animate-pulse">
-        ▶️
+  <div id="videoModal" class="hidden fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-slate-900 text-white rounded-3xl border border-slate-800 max-w-md w-full p-4 sm:p-5 text-center shadow-2xl relative overflow-hidden">
+      <!-- Header Badge -->
+      <div class="flex items-center justify-between mb-3 text-xs border-b border-slate-800 pb-2.5">
+        <div class="flex items-center gap-1.5 text-amber-400 font-extrabold">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+          <span>ANNONCE VIDÉO SPONSORISÉE</span>
+        </div>
+        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-black font-mono text-[10px]">+120 PTS REWARD</span>
       </div>
-      <h3 class="text-base font-bold text-slate-900 mb-1">Clip Publicitaire Partenaire</h3>
-      <p class="text-xs text-slate-500 mb-4">Gagnez +120 points tout en générant des revenus publicitaires pour Nocwise BF.</p>
-      
-      <div class="w-full bg-slate-100 rounded-full h-3 mb-2 overflow-hidden border border-slate-200">
-        <div id="videoProgressBar" class="bg-gradient-to-r from-amber-400 to-emerald-500 h-full w-0 transition-all duration-100"></div>
-      </div>
-      <div id="videoTimerText" class="text-xs font-mono text-slate-700 font-bold mb-4">Temps restant : 5s</div>
 
-      <button id="btnClaimVideoReward" disabled class="w-full py-3 bg-slate-100 text-slate-400 font-bold text-xs rounded-xl cursor-not-allowed transition">
-        Veuillez patienter...
+      <!-- Real Video Player Container -->
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-inner border border-slate-800 mb-3 group">
+        <video id="rewardedVideoElement" class="w-full h-full object-cover" playsinline preload="auto">
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+          Votre navigateur ne supporte pas la vidéo HTML5.
+        </video>
+        <!-- Overlay if video needs click to play on mobile -->
+        <div id="videoPlayOverlay" class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center cursor-pointer transition hover:bg-black/40">
+          <div class="w-14 h-14 rounded-full bg-amber-500 text-black flex items-center justify-center text-2xl font-black shadow-lg shadow-amber-500/30 transform group-hover:scale-110 transition">
+            ▶
+          </div>
+          <span class="text-xs font-bold text-white mt-2 drop-shadow">Lancer la vidéo sponsorisée</span>
+        </div>
+        <!-- Time badge on top-right of video -->
+        <div class="absolute top-2 right-2 bg-black/70 backdrop-blur px-2.5 py-1 rounded-lg text-white font-mono text-[11px] font-extrabold border border-white/10">
+          ⏱️ <span id="videoTimerSec">15</span>s
+        </div>
+      </div>
+
+      <!-- Video Progress Bar -->
+      <div class="w-full bg-slate-800 rounded-full h-2.5 mb-2 overflow-hidden border border-slate-700">
+        <div id="videoProgressBar" class="bg-gradient-to-r from-amber-400 via-orange-500 to-emerald-400 h-full w-0 transition-all duration-100"></div>
+      </div>
+      
+      <div class="flex items-center justify-between text-[11px] text-slate-400 font-mono mb-3">
+        <span>Visionnez l'annonce en entier</span>
+        <span id="videoTimerText" class="text-amber-400 font-bold">15 secondes restantes</span>
+      </div>
+
+      <!-- Sponsor Action Link / Direct Link Button -->
+      <div class="mb-3">
+        <a id="videoSponsorLink" href="#" target="_blank" class="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-xl transition font-medium">
+          <span>🌐</span>
+          <span>Visiter le sponsor & Booster le gain</span>
+          <span class="text-[10px] text-amber-400">↗</span>
+        </a>
+      </div>
+
+      <!-- Claim Reward Button -->
+      <button id="btnClaimVideoReward" disabled class="w-full py-3 bg-slate-800 text-slate-500 font-bold text-xs rounded-xl cursor-not-allowed transition">
+        Regardez la vidéo pour débloquer (+120 PTS)...
       </button>
     </div>
   </div>
@@ -810,6 +847,9 @@
         <button id="tabAdmSettings" class="py-2 px-3 text-slate-500 hover:text-slate-800">
           <i class="fa-solid fa-sliders mr-1"></i> Paramètres
         </button>
+        <button id="tabAdmCloudSync" class="py-2 px-3 text-emerald-700 font-extrabold hover:text-emerald-900 bg-emerald-50/80 rounded-t-xl">
+          <i class="fa-solid fa-earth-africa mr-1"></i> Diffusion Mondiale 🌍
+        </button>
       </div>
 
       <div class="p-5 overflow-y-auto space-y-4 text-xs flex-1">
@@ -956,6 +996,58 @@
           </form>
         </div>
 
+        <!-- 5. DIFFUSION MONDIALE DES PRODUITS (POUR QUE TOUT LE MONDE VOIE) -->
+        <div id="viewAdmCloudSync" class="hidden space-y-4">
+          <div class="p-4 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl border border-emerald-200">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-2xl">🌍</span>
+              <div>
+                <h4 class="font-extrabold text-sm text-emerald-950">Visibilité Mondiale de vos Articles</h4>
+                <p class="text-[11px] text-emerald-700 font-medium">Faites en sorte que chaque ajout de produit soit visible par tous les clients sur Terre</p>
+              </div>
+            </div>
+
+            <!-- Option 1 : Export GitHub 1-Clic -->
+            <div class="p-3.5 bg-white rounded-xl border border-emerald-300 shadow-sm mb-3">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-black text-xs text-slate-900 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  <span>Méthode 1 : Export 1-Clic GitHub (100% Gratuit, Garanti & Sans Serveur)</span>
+                </span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">RECOMMANDÉ</span>
+              </div>
+              <p class="text-[11px] text-slate-600 mb-3 leading-relaxed">
+                Cliquez ci-dessous pour télécharger votre fichier <code>index.html</code> déjà pré-rempli avec tous vos nouveaux articles et photos. Glissez-le sur GitHub (<code>Amour0225/Nocwise-BF</code>) : en 30 secondes, <strong>le monde entier voit vos produits !</strong>
+              </p>
+              <button type="button" id="btnExportHtmlForWorld" class="w-full py-3 bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-black text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition transform active:scale-95 cursor-pointer">
+                <span class="text-base">🚀</span>
+                <span>Télécharger mon index.html à jour pour GitHub</span>
+              </button>
+            </div>
+
+            <!-- Option 2 : Cloud Database Realtime Sync -->
+            <div class="p-3.5 bg-white rounded-xl border border-slate-200">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-black text-xs text-slate-900 flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                  <span>Méthode 2 : Synchronisation Cloud Instantanée (Base de données en ligne)</span>
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-600 mb-2.5 leading-relaxed">
+                Si vous possédez une base de données gratuite (Firebase Realtime Database ou JSONBin), collez votre lien ci-dessous. Dès que vous ajoutez un article, il est envoyé instantanément dans le cloud et tous les visiteurs le voient sans rien toucher !
+              </p>
+              <div class="space-y-2">
+                <input type="url" id="inpCloudSyncUrl" placeholder="https://votre-projet.firebaseio.com/products.json" class="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-mono">
+                <button type="button" id="btnPushToCloudManual" class="w-full py-2.5 bg-slate-900 hover:bg-black text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer">
+                  <span>☁️</span>
+                  <span>Synchroniser Maintenant vers le Cloud</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -1058,6 +1150,10 @@
       applyUI();
       updateCartBadge();
       ensureInitialCouponBatches();
+      if (state.cloudSyncUrl && document.getElementById('inpCloudSyncUrl')) {
+        document.getElementById('inpCloudSyncUrl').value = state.cloudSyncUrl;
+      }
+      syncProductsFromCloud();
     }
 
     function saveState() {
@@ -1427,7 +1523,8 @@
       saveState();
       renderProducts();
       renderAdminCatalog();
-      showToast('Article supprimé de la boutique', '🗑️');
+      pushProductsToCloud();
+      showToast('Article supprimé ! Pensez à republier dans « Diffusion Mondiale 🌍 ».', '🗑️');
     }
 
     function openProductModal(p) {
@@ -1804,7 +1901,8 @@ ${itemsStr}` +
       currentUploadedImageDataUrl = '';
       document.getElementById('adminMasterModal').classList.add('hidden');
       renderProducts();
-      showToast('Nouvel article mis en vente dans Nocwise BF !', '✅');
+      pushProductsToCloud();
+      showToast('Article ajouté ! Ouvrez l\'onglet « Diffusion Mondiale 🌍 » pour exporter vers GitHub.', '✅');
     });
 
     function renderAdminCatalog() {
@@ -1839,7 +1937,8 @@ ${itemsStr}` +
       { btn: document.getElementById('tabAdmAddProduct'), view: document.getElementById('viewAdmAddProduct') },
       { btn: document.getElementById('tabAdmGenerator'), view: document.getElementById('viewAdmGenerator') },
       { btn: document.getElementById('tabAdmManageProducts'), view: document.getElementById('viewAdmManageProducts') },
-      { btn: document.getElementById('tabAdmSettings'), view: document.getElementById('viewAdmSettings') }
+      { btn: document.getElementById('tabAdmSettings'), view: document.getElementById('viewAdmSettings') },
+      { btn: document.getElementById('tabAdmCloudSync'), view: document.getElementById('viewAdmCloudSync') }
     ];
     admTabs.forEach(t => {
       t.btn.addEventListener('click', () => {
@@ -1864,6 +1963,81 @@ ${itemsStr}` +
       document.getElementById('adminMasterModal').classList.add('hidden');
       showToast('Paramètres propriétaire enregistrés !', '💾');
     });
+
+    // =========================================================================
+    // DIFFUSION MONDIALE : EXPORT GITHUB 1-CLIC & SYNCHRONISATION CLOUD
+    // =========================================================================
+    function exportUpdatedHtmlForWorld() {
+      let htmlDoc = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const cleanJson = JSON.stringify(state.products, null, 2);
+      htmlDoc = htmlDoc.replace(/const defaultProducts = \[\s\S]*?\];/m, `const defaultProducts = ${cleanJson};`);
+
+      const blob = new Blob([htmlDoc], { type: 'text/html;charset=utf-8' });
+      const dlUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = dlUrl;
+      a.download = 'index.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(dlUrl);
+
+      showToast('Fichier index.html à jour téléchargé ! Glissez-le sur GitHub pour diffuser vos articles au monde entier 🌍.', '🚀');
+    }
+
+    async function syncProductsFromCloud() {
+      const url = state.cloudSyncUrl || (document.getElementById('inpCloudSyncUrl') ? document.getElementById('inpCloudSyncUrl').value.trim() : '');
+      if (!url) return;
+      try {
+        const res = await fetch(url);
+        if (res.ok) {
+          const cloudData = await res.json();
+          if (Array.isArray(cloudData) && cloudData.length > 0) {
+            state.products = cloudData;
+            renderProducts();
+            renderAdminProductsList();
+            console.log('Catalogue synchronisé mondialement depuis le Cloud !');
+          }
+        }
+      } catch(e) {
+        console.log('Mode local actif');
+      }
+    }
+
+    async function pushProductsToCloud() {
+      const url = state.cloudSyncUrl || (document.getElementById('inpCloudSyncUrl') ? document.getElementById('inpCloudSyncUrl').value.trim() : '');
+      if (!url) return;
+      try {
+        showToast('Publication en cours vers le cloud mondial...', '⏳');
+        const res = await fetch(url, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(state.products)
+        });
+        if (res.ok) {
+          showToast('Articles publiés en direct pour tous les visiteurs du monde 🌍 !', '✅');
+        }
+      } catch(e) {
+        console.error('Erreur cloud:', e);
+      }
+    }
+
+    const btnExp = document.getElementById('btnExportHtmlForWorld');
+    if (btnExp) btnExp.addEventListener('click', exportUpdatedHtmlForWorld);
+
+    const btnPushCloud = document.getElementById('btnPushToCloudManual');
+    if (btnPushCloud) {
+      btnPushCloud.addEventListener('click', async () => {
+        const url = document.getElementById('inpCloudSyncUrl').value.trim();
+        if (!url) {
+          showToast('Veuillez renseigner votre lien de base de données cloud !', '⚠️');
+          return;
+        }
+        state.cloudSyncUrl = url;
+        saveState();
+        await pushProductsToCloud();
+      });
+    }
 
     // Environment Switcher
     const secStore = document.getElementById('section-store');
@@ -2244,48 +2418,85 @@ ${itemsStr}` +
       showToast('Demande envoyée ! Le code vous sera délivré après confirmation.', '💳');
     });
 
-    // 5. VIDÉOS PUBLICITAIRES RÉMUNÉRÉES (5 MAX PAR JOUR = 600 PTS)
+    // 5. VIDÉOS PUBLICITAIRES RÉMUNÉRÉES AVEC LECTEUR RÉEL (5 MAX PAR JOUR = 600 PTS)
+    let videoTimerInterval = null;
+
     function launchAdVideo() {
       if (state.dailyVideosWatched >= 5) {
         showToast('Quota journalier atteint (5/5). Revenez demain pour de nouveaux points !', '⛔');
         return;
       }
 
-      document.getElementById('videoModal').classList.remove('hidden');
-      document.getElementById('videoProgressBar').style.width = '0%';
-      let sec = 5;
-      document.getElementById('videoTimerText').textContent = `Temps restant : ${sec}s`;
+      const modal = document.getElementById('videoModal');
+      const vid = document.getElementById('rewardedVideoElement');
+      const overlay = document.getElementById('videoPlayOverlay');
       const claimBtn = document.getElementById('btnClaimVideoReward');
-      claimBtn.disabled = true;
-      claimBtn.className = 'w-full py-3 bg-slate-100 text-slate-400 font-bold text-xs rounded-xl cursor-not-allowed';
-      claimBtn.textContent = 'Visionnage en cours...';
+      const pBar = document.getElementById('videoProgressBar');
+      const timerSec = document.getElementById('videoTimerSec');
+      const timerText = document.getElementById('videoTimerText');
 
-      let w = 0;
-      const timer = setInterval(() => {
-        w += 2;
-        document.getElementById('videoProgressBar').style.width = w + '%';
-        if (w % 20 === 0 && sec > 0) {
-          sec--;
-          document.getElementById('videoTimerText').textContent = `Temps restant : ${sec}s`;
+      modal.classList.remove('hidden');
+      pBar.style.width = '0%';
+      let totalSeconds = 15;
+      let elapsed = 0;
+      timerSec.textContent = totalSeconds;
+      timerText.textContent = totalSeconds + ' secondes restantes';
+      claimBtn.disabled = true;
+      claimBtn.className = 'w-full py-3 bg-slate-800 text-slate-500 font-bold text-xs rounded-xl cursor-not-allowed';
+      claimBtn.textContent = 'Regardez la vidéo (15s) pour débloquer (+120 PTS)...';
+
+      // Start playing real video
+      try {
+        vid.currentTime = 0;
+        const playProm = vid.play();
+        if (playProm !== undefined) {
+          playProm.then(() => {
+            overlay.classList.add('hidden');
+          }).catch(() => {
+            overlay.classList.remove('hidden');
+          });
         }
-        if (w >= 100) {
-          clearInterval(timer);
+      } catch (e) {
+        overlay.classList.remove('hidden');
+      }
+
+      overlay.onclick = () => {
+        vid.play();
+        overlay.classList.add('hidden');
+      };
+
+      if (videoTimerInterval) clearInterval(videoTimerInterval);
+
+      videoTimerInterval = setInterval(() => {
+        elapsed++;
+        const remaining = Math.max(0, totalSeconds - elapsed);
+        const pct = Math.min(100, Math.round((elapsed / totalSeconds) * 100));
+        pBar.style.width = pct + '%';
+        timerSec.textContent = remaining;
+        timerText.textContent = remaining + ' secondes restantes';
+
+        if (elapsed >= totalSeconds) {
+          clearInterval(videoTimerInterval);
           claimBtn.disabled = false;
-          claimBtn.className = 'w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-xl shadow cursor-pointer';
+          claimBtn.className = 'w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-black text-xs rounded-xl shadow-lg cursor-pointer transform hover:scale-[1.01] transition';
           claimBtn.textContent = 'Réclamer mes +120 Points ✓';
+          timerText.textContent = 'Vidéo terminée ! Réclamez vos points.';
         }
-      }, 70);
+      }, 1000);
     }
 
     document.getElementById('btnWatchRewardedAdAction').addEventListener('click', launchAdVideo);
 
     document.getElementById('btnClaimVideoReward').addEventListener('click', () => {
+      const vid = document.getElementById('rewardedVideoElement');
+      try { vid.pause(); } catch (e) {}
+      if (videoTimerInterval) clearInterval(videoTimerInterval);
       document.getElementById('videoModal').classList.add('hidden');
       state.points += 120;
       state.dailyVideosWatched++;
       saveState();
       applyUI();
-      showToast(`Bravo ! +120 Points ajoutés (${state.dailyVideosWatched}/5 vidéos aujourd'hui)`, '📺');
+      showToast("Bravo ! +120 Points ajoutés (" + state.dailyVideosWatched + "/5 vidéos aujourd'hui)", '📺');
     });
 
     // Search events
