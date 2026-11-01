@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nocwise BF - Boutique Officielle & Livraison Burkina</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    :root {
+      --primary-color: #059669;
+      --primary-dark: #047857;
+      --primary-light: #ecfdf5;
+      --accent-color: #f59e0b;
+    }
+    .theme-emerald {
+      --primary-color: #059669;
+      --primary-dark: #047857;
+      --primary-light: #ecfdf5;
+      --accent-color: #f59e0b;
+    }
+    .theme-blue {
+      --primary-color: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent-color: #f59e0b;
+    }
+    .theme-purple {
+      --primary-color: #7c3aed;
+      --primary-dark: #6d28d9;
+      --primary-light: #f5f3ff;
+      --accent-color: #10b981;
+    }
+    .theme-darkgold {
+      --primary-color: #0f172a;
+      --primary-dark: #020617;
+      --primary-light: #f8fafc;
+      --accent-color: #d97706;
+    }
+    .theme-coral {
+      --primary-color: #e11d48;
+      --primary-dark: #be123c;
+      --primary-light: #fff1f2;
+      --accent-color: #f59e0b;
+    }
+    .bg-theme-primary { background-color: var(--primary-color) !important; }
+    .bg-theme-primary:hover { background-color: var(--primary-dark) !important; }
+    .text-theme-primary { color: var(--primary-color) !important; }
+    .border-theme-primary { border-color: var(--primary-color) !important; }
+    .bg-theme-light { background-color: var(--primary-light) !important; }
+
+    .pulse-glow {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-ring 1.8s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+  </style>
+</head>
+<body id="app-body" class="theme-emerald bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white pb-24 md:pb-8">
+
+  <!-- TOP PROMO BANNER -->
+  <div id="top-banner" class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white text-center py-2 px-3 text-xs font-bold shadow-sm flex items-center justify-center space-x-2">
+    <span class="animate-pulse">🔥</span>
+    <span id="banner-text">NOCWISE BF • LIVRAISON À DOMICILE PARTOUT À OUAGA • PAIEMENT APRÈS TEST À LA LIVRAISON</span>
+    <span class="animate-pulse">🔥</span>
+  </div>
+
+  <!-- MAIN NAVIGATION -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center space-x-2.5">
+        <div class="w-10 h-10 rounded-2xl bg-theme-primary text-amber-300 flex items-center justify-center font-black text-xl shadow-md border-2 border-emerald-400">
+          <i class="fa-solid fa-moon text-lg"></i>
+        </div>
+        <div>
+          <h1 id="brand-name" class="font-black text-lg text-slate-900 tracking-tight leading-none">Nocwise BF</h1>
+          <p id="brand-tagline" class="text-[10px] text-theme-primary font-extrabold uppercase tracking-wider mt-0.5">Le Choix Malin pour votre Confort • BF 🇧🇫</p>
+        </div>
+      </div>
+
+      <!-- Quick Actions (Cart & Admin Access) -->
+      <div class="flex items-center space-x-2">
+        <!-- Direct Customer WhatsApp Help Button -->
+        <a id="btn-header-whatsapp" href="https://wa.me/22670000000" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold rounded-xl border border-emerald-200 flex items-center space-x-1 transition">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span class="hidden md:inline">Besoin d'aide ?</span>
+        </a>
+
+        <!-- Cart Trigger Button -->
+        <button id="btn-open-cart" class="relative px-3.5 py-2 bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold rounded-xl shadow-sm flex items-center space-x-1.5 transition">
+          <i class="fa-solid fa-cart-shopping text-amber-400"></i>
+          <span class="hidden sm:inline">Mon Panier</span>
+          <span id="cart-badge" class="w-5 h-5 bg-red-600 text-white text-[10px] font-black rounded-full flex items-center justify-center shadow">0</span>
+        </button>
+
+        <!-- Owner Admin Button (Sécurisé par code PIN) -->
+        <button id="btn-toggle-admin" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl border border-slate-300 flex items-center space-x-1.5 transition" title="Espace Propriétaire (Sécurisé par code PIN)">
+          <i class="fa-solid fa-lock text-emerald-600 text-xs"></i>
+          <span class="hidden sm:inline">Gérer ma Boutique</span>
+        </button>
+
+        <button id="btn-open-add-product" class="px-3.5 py-1.5 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 text-emerald-950 text-xs font-black rounded-xl shadow-sm flex items-center space-x-1.5 transition">
+          <i class="fa-solid fa-plus text-xs"></i>
+          <span>Ajouter Produit</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="bg-slate-50 border-t border-slate-200/80 px-4 py-2.5">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5">
+        
+        <!-- Smart Fuzzy Search Input -->
+        <div class="relative w-full sm:w-80">
+          <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+          <input type="text" id="product-search" placeholder="Rechercher (ex: ventilateur, diffuseur, mixeur...)" class="w-full pl-8 pr-8 py-2 bg-white border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none font-medium">
+          <button id="btn-clear-search" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500 text-xs hidden">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Category Niche Pills -->
+        <div id="category-pills" class="flex overflow-x-auto space-x-1.5 w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
+          <button data-cat="all" class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-theme-primary text-white shadow-sm transition">
+            Tous les Rayons
+          </button>
+          <button data-cat="Solaire & Confort" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
+            ⚡ Solaire & Énergie
+          </button>
+          <button data-cat="Cuisine & Maison" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
+            🍳 Cuisine & Maison
+          </button>
+          <button data-cat="Ambiance & Parfum" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
+            🌸 Ambiance & Soirée
+          </button>
+          <button data-cat="Accessoires & Auto" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
+            🛵 Moto & Auto
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- STOREFRONT HERO & CONTENT -->
+  <main class="max-w-6xl mx-auto px-4 py-6 w-full flex-1 space-y-6">
+
+    <!-- HERO PROMO SLIDER -->
+    <div id="hero-banner" class="bg-gradient-to-r from-emerald-800 to-teal-900 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-lg border border-emerald-600/40">
+      <div class="relative z-10 max-w-lg space-y-2">
+        <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">Boutique Officielle Nocwise BF</span>
+        <h2 class="text-xl sm:text-3xl font-black leading-tight">Commandez en ligne, testez et payez cash à la livraison !</h2>
+        <p class="text-xs sm:text-sm text-emerald-100">Des articles de confort et tendances rigoureusement sélectionnés. Zéro paiement d'avance : vous réglez au livreur à votre porte.</p>
+        <div class="pt-2 flex flex-wrap gap-2 text-[11px] font-bold">
+          <span class="bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/20"><i class="fa-solid fa-truck-fast mr-1 text-amber-300"></i> Livraison Ouaga 24h</span>
+          <span class="bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/20"><i class="fa-solid fa-tag mr-1 text-emerald-300"></i> Codes Promo acceptés</span>
+          <span class="bg-white/10 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-white/20"><i class="fa-solid fa-hand-holding-dollar mr-1 text-amber-300"></i> Cash ou Mobile Money</span>
+        </div>
+      </div>
+      <div class="absolute -right-8 -bottom-8 opacity-15 text-white text-9xl pointer-events-none">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+    </div>
+
+    <!-- PRODUCTS SECTION TITLE & COUNT -->
+    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+      <div>
+        <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center space-x-2">
+          <span>Articles en Stock</span>
+          <span id="product-count-badge" class="bg-theme-light text-theme-primary text-xs px-2.5 py-0.5 rounded-full font-bold">0 article</span>
+        </h3>
+        <p id="search-feedback" class="text-xs text-slate-500">Parcourez nos rayons ou utilisez la recherche intelligente</p>
+      </div>
+      
+      <div class="text-xs text-slate-400 font-semibold hidden sm:block">
+        <i class="fa-solid fa-location-dot text-red-500 mr-1"></i> Stock disponible à Ouagadougou
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID (LES CASES DE LA BOUTIQUE RÉELLE) -->
+    <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+      <!-- Dynamically populated product cards -->
+    </div>
+
+    <!-- EMPTY SEARCH STATE -->
+    <div id="empty-search-state" class="hidden p-12 text-center space-y-3 bg-white rounded-3xl border border-slate-200">
+      <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <h4 class="text-sm font-bold text-slate-800">Aucun produit trouvé</h4>
+      <p class="text-xs text-slate-500 max-w-sm mx-auto">Même avec des fautes d'orthographe, aucun article ne correspond à votre recherche. Essayez de sélectionner un autre rayon !</p>
+      <button id="btn-reset-filters" class="px-4 py-2 bg-theme-primary text-white rounded-xl text-xs font-bold shadow transition">
+        Réinitialiser la recherche
+      </button>
+    </div>
+
+  </main>
+
+  <!-- FLOATING WHATSAPP HELP BUTTON FOR CUSTOMERS -->
+  <a id="floating-whatsapp-btn" href="https://wa.me/22670000000" target="_blank" rel="noopener noreferrer" class="fixed bottom-20 left-4 bg-emerald-600 hover:bg-emerald-700 text-white w-12 h-12 rounded-full shadow-2xl flex items-center justify-center text-2xl transition-all duration-300 z-30 transform hover:scale-110 pulse-glow" title="Discuter directement sur WhatsApp avec la boutique">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- FLOATING CART BAR ON MOBILE -->
+  <div id="mobile-cart-bar" class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-3 z-30 shadow-2xl md:hidden flex items-center justify-between">
+    <div>
+      <span class="text-[10px] text-slate-400 uppercase font-bold block">Votre Panier</span>
+      <span id="mobile-cart-total" class="text-base font-black text-emerald-700">0 FCFA</span>
+    </div>
+    <button id="btn-mobile-open-cart" class="px-5 py-2.5 bg-slate-900 hover:bg-black text-white font-extrabold text-xs rounded-xl shadow-lg flex items-center space-x-2 transition">
+      <i class="fa-solid fa-cart-shopping text-amber-400"></i>
+      <span>Voir Panier (<span id="mobile-cart-count">0</span>)</span>
+    </button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-10">
+    <div class="max-w-6xl mx-auto px-4 space-y-4 text-center sm:text-left sm:flex sm:justify-between sm:items-center">
+      <div>
+        <h4 id="footer-brand" class="text-white font-bold text-sm">Nocwise BF</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">Le Choix Malin pour votre Confort • Ouagadougou, Burkina Faso</p>
+      </div>
+      <div class="flex flex-wrap justify-center sm:justify-end gap-3 text-xs font-semibold text-slate-300">
+        <span><i class="fa-solid fa-shield-check text-emerald-400 mr-1"></i> Paiement à la livraison</span>
+        <span><i class="fa-solid fa-truck text-emerald-400 mr-1"></i> Livraison Express</span>
+        <button id="btn-footer-admin" class="text-slate-500 hover:text-slate-300 transition underline text-[11px]">
+          <i class="fa-solid fa-lock mr-0.5"></i> Espace Gérant
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: FICHE DÉTAILLÉE DU PRODUIT & COMMANDE EXPRESS CLIENT -->
+  <!-- ========================================================================= -->
+  <div id="product-detail-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh]">
+      
+      <!-- Modal Header -->
+      <div class="bg-slate-900 text-white px-5 py-3.5 flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-400 flex items-center space-x-1.5">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Commande Sécurisée avec Paiement à la Livraison</span>
+        </span>
+        <button id="btn-close-detail-modal" class="text-slate-400 hover:text-white transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-4 text-xs">
+        
+        <!-- Image & Title -->
+        <div class="flex space-x-3 items-center border-b border-slate-100 pb-3">
+          <div class="w-24 h-24 rounded-2xl bg-slate-50 border border-slate-200 overflow-hidden flex-shrink-0 flex items-center justify-center p-1">
+            <img id="detail-modal-img" src="" alt="Produit" class="max-h-full max-w-full object-contain">
+          </div>
+          <div class="space-y-1">
+            <span id="detail-modal-cat" class="text-[10px] bg-theme-light text-theme-primary px-2.5 py-0.5 rounded-full font-bold uppercase">Rayon</span>
+            <span id="detail-modal-delivery-badge" class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold inline-block ml-1">Livraison Gratuite</span>
+            <h3 id="detail-modal-title" class="font-black text-slate-900 text-sm leading-snug">Nom du Produit</h3>
+            <div class="flex items-baseline space-x-2">
+              <span id="detail-modal-promo-price" class="text-lg font-black text-theme-primary">0 FCFA</span>
+              <span id="detail-modal-old-price" class="text-xs text-slate-400 line-through">0 FCFA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200/80 space-y-1">
+          <p class="font-bold text-slate-800 text-[11px] flex items-center space-x-1.5">
+            <i class="fa-solid fa-circle-check text-emerald-600"></i>
+            <span>Points forts du produit :</span>
+          </p>
+          <p id="detail-modal-desc" class="text-slate-600 leading-relaxed"></p>
+        </div>
+
+        <!-- Deux Choix d'Actions : Ajouter au Panier OU Commander Tout de Suite -->
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <button id="btn-add-to-cart-from-modal" class="py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-2xl transition flex items-center justify-center space-x-1.5 border border-slate-300">
+            <i class="fa-solid fa-cart-plus text-theme-primary"></i>
+            <span>Ajouter au Panier</span>
+          </button>
+          <button id="btn-scroll-to-express-form" class="py-3 bg-theme-primary hover:bg-emerald-700 text-white font-black rounded-2xl shadow-md transition flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-bolt text-amber-300"></i>
+            <span>Commander Direct</span>
+          </button>
+        </div>
+
+        <!-- FORMULAIRE EXPRESS DIRECT -->
+        <form id="express-order-form" class="space-y-3 pt-2 border-t border-slate-200">
+          <p class="font-black text-slate-900 text-xs">Formulaire de Commande Express 1 Clic :</p>
+          
+          <div class="p-3 bg-theme-light rounded-2xl border border-emerald-200 space-y-2">
+            <label class="block font-bold text-slate-800 text-[11px]">Choisissez votre Formule :</label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-emerald-300 cursor-pointer">
+                <div class="flex items-center space-x-2">
+                  <input type="radio" name="order_qty" value="1" checked class="text-emerald-600 focus:ring-emerald-500">
+                  <span class="font-bold text-slate-800">1 Pièce</span>
+                </div>
+                <span id="form-single-price" class="font-black text-emerald-700 text-xs">0 F</span>
+              </label>
+
+              <label class="flex items-center justify-between p-2.5 bg-white rounded-xl border border-slate-200 cursor-pointer hover:border-emerald-300">
+                <div class="flex items-center space-x-2">
+                  <input type="radio" name="order_qty" value="2" class="text-emerald-600 focus:ring-emerald-500">
+                  <span class="font-bold text-slate-800">Pack Duo (2)</span>
+                </div>
+                <span id="form-duo-price" class="font-black text-slate-900 text-xs">0 F</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Votre Nom & Prénom *</label>
+            <input type="text" id="order-cust-name" required placeholder="Ex: M. Ouedraogo Jean" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none font-medium">
+          </div>
+
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Numéro de Téléphone (WhatsApp / Appel) *</label>
+            <input type="tel" id="order-cust-phone" required placeholder="Ex: 70 12 34 56 ou 76 00 11 22" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none font-medium">
+          </div>
+
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Quartier exact à Ouagadougou *</label>
+            <input type="text" id="order-cust-city" required placeholder="Ex: Cissin, près de la pharmacie" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:outline-none font-medium">
+          </div>
+
+          <!-- Coupon input in express order -->
+          <div class="flex space-x-2">
+            <input type="text" id="order-coupon-code" placeholder="Code Promo (ex: NOCWISE10)" class="uppercase flex-1 p-2 bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs focus:outline-none">
+            <button type="button" id="btn-apply-express-coupon" class="px-3 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-slate-700 transition">
+              Appliquer
+            </button>
+          </div>
+          <div id="express-coupon-feedback" class="text-[11px] font-bold hidden"></div>
+
+          <div class="p-2.5 bg-slate-100 rounded-xl text-slate-600 text-[11px] flex items-center justify-between">
+            <span>Frais de livraison :</span>
+            <span id="express-delivery-cost" class="font-bold text-slate-800">Gratuit</span>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white rounded-2xl font-black text-xs shadow-lg transition flex items-center justify-center space-x-2 pulse-glow">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>CONFIRMER LA COMMANDE SUR WHATSAPP</span>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: PANIER MULTI-ARTICLES (CART MODAL) -->
+  <!-- ========================================================================= -->
+  <div id="cart-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh]">
+      
+      <!-- Header -->
+      <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
+        <h3 class="text-sm font-extrabold flex items-center space-x-2">
+          <i class="fa-solid fa-cart-shopping text-amber-400"></i>
+          <span>Mon Panier d'Achats</span>
+        </h3>
+        <button id="btn-close-cart-modal" class="text-slate-400 hover:text-white transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Cart content -->
+      <div class="p-5 overflow-y-auto space-y-4 text-xs flex-1">
+        
+        <div id="cart-items-list" class="space-y-3 divide-y divide-slate-100">
+          <!-- Dynamically populated cart items -->
+        </div>
+
+        <div id="empty-cart-view" class="hidden text-center py-10 space-y-2">
+          <i class="fa-solid fa-cart-arrow-down text-4xl text-slate-300"></i>
+          <p class="font-bold text-slate-700">Votre panier est vide</p>
+          <p class="text-[11px] text-slate-400">Ajoutez des articles depuis la boutique pour commander plusieurs produits en une seule livraison !</p>
+        </div>
+
+        <!-- Coupon code section -->
+        <div id="cart-coupon-section" class="p-3 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-2">
+          <label class="block font-bold text-slate-700 text-[11px]">Vous avez un Code Promo / Coupon ?</label>
+          <div class="flex space-x-2">
+            <input type="text" id="cart-coupon-input" placeholder="Ex: NOCWISE10 ou OUAGA2000" class="uppercase flex-1 p-2.5 bg-white border border-slate-200 rounded-xl font-bold text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+            <button type="button" id="btn-apply-cart-coupon" class="px-4 py-2.5 bg-slate-900 text-white font-bold rounded-xl text-xs hover:bg-slate-800 transition">
+              Activer
+            </button>
+          </div>
+          <div id="cart-coupon-feedback" class="text-[11px] font-bold hidden"></div>
+        </div>
+
+        <!-- Cart Summary Calculations -->
+        <div id="cart-summary-block" class="bg-slate-100/70 p-4 rounded-2xl space-y-1.5 border border-slate-200">
+          <div class="flex justify-between text-slate-600">
+            <span>Sous-total articles :</span>
+            <span id="cart-subtotal" class="font-bold text-slate-800">0 FCFA</span>
+          </div>
+          <div id="cart-discount-row" class="flex justify-between text-emerald-700 font-bold hidden">
+            <span>Réduction Coupon :</span>
+            <span id="cart-discount-val">-0 FCFA</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>Frais de livraison :</span>
+            <span id="cart-delivery-val" class="font-bold text-slate-800">Gratuit</span>
+          </div>
+          <div class="flex justify-between text-base font-black text-slate-900 pt-2 border-t border-slate-300">
+            <span>TOTAL À PAYER À LA LIVRAISON :</span>
+            <span id="cart-total-val" class="text-emerald-700">0 FCFA</span>
+          </div>
+        </div>
+
+        <!-- Customer coordinates for the cart -->
+        <form id="cart-checkout-form" class="space-y-3 pt-2">
+          <p class="font-black text-slate-900 text-xs">Vos Informations de Livraison :</p>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Nom et Prénom *</label>
+            <input type="text" id="cart-cust-name" required placeholder="Ex: Mme Sawadogo" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 font-medium">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Téléphone Client (WhatsApp / Appel) *</label>
+            <input type="tel" id="cart-cust-phone" required placeholder="Ex: 70 00 11 22" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 font-medium">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Quartier exact à Ouagadougou *</label>
+            <input type="text" id="cart-cust-city" required placeholder="Ex: Ouaga 2000, près de la pharmacie" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 font-medium">
+          </div>
+
+          <button type="submit" class="w-full py-4 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white rounded-2xl font-black text-xs shadow-xl transition flex items-center justify-center space-x-2 pulse-glow">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>COMMANDER TOUT LE PANIER SUR WHATSAPP</span>
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: SÉCURITÉ PIN PROPRIÉTAIRE (ACCÈS RÉSERVÉ) -->
+  <!-- ========================================================================= -->
+  <div id="pin-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-xs w-full p-6 text-center space-y-4">
+      <div class="w-14 h-14 bg-slate-900 text-amber-400 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <div>
+        <h4 class="font-black text-slate-900 text-sm">Espace Gérant Nocwise BF</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">Entrez votre code secret pour ajouter des produits, modifier les prix et gérer la boutique.</p>
+      </div>
+
+      <form id="pin-form" class="space-y-3">
+        <input type="password" id="input-admin-pin" maxlength="8" placeholder="Code secret (Défaut: 1234)" class="w-full p-3 bg-slate-100 border border-slate-200 rounded-xl text-center text-lg tracking-widest font-black focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+        <p id="pin-error-msg" class="text-xs text-red-600 font-bold hidden">Code incorrect. Réessayez !</p>
+        <div class="flex space-x-2">
+          <button type="button" id="btn-close-pin-modal" class="flex-1 py-2.5 border border-slate-200 rounded-xl text-slate-600 font-bold text-xs hover:bg-slate-50">
+            Annuler
+          </button>
+          <button type="submit" class="flex-1 py-2.5 bg-slate-900 text-white rounded-xl font-black text-xs hover:bg-black transition">
+            Déverrouiller
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: GESTIONNAIRE COMPLET PROPRIÉTAIRE (ACCÈS PROPRIÉTAIRE DÉVERROUILLÉ) -->
+  <!-- ========================================================================= -->
+  <div id="admin-panel-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-xl w-full overflow-hidden flex flex-col max-h-[92vh]">
+      
+      <!-- Header -->
+      <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <h3 class="text-sm font-extrabold">Espace Propriétaire • Nocwise BF</h3>
+        </div>
+        <button id="btn-close-admin-panel" class="text-slate-400 hover:text-white transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Navigation tabs inside admin -->
+      <div class="flex border-b border-slate-200 bg-slate-50 px-4 pt-2 space-x-2 text-xs font-bold">
+        <button id="tab-adm-add" class="py-2 px-3 border-b-2 border-emerald-600 text-emerald-800">
+          <i class="fa-solid fa-plus-circle mr-1"></i> Ajouter Article
+        </button>
+        <button id="tab-adm-coupons" class="py-2 px-3 text-slate-500 hover:text-slate-800">
+          <i class="fa-solid fa-ticket mr-1"></i> Coupons & Réductions
+        </button>
+        <button id="tab-adm-theme" class="py-2 px-3 text-slate-500 hover:text-slate-800">
+          <i class="fa-solid fa-palette mr-1"></i> Thème & Couleurs
+        </button>
+        <button id="tab-adm-settings" class="py-2 px-3 text-slate-500 hover:text-slate-800">
+          <i class="fa-solid fa-sliders mr-1"></i> Paramètres
+        </button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="p-5 overflow-y-auto space-y-4 text-xs flex-1">
+        
+        <!-- SECTION 1: AJOUTER PRODUIT -->
+        <div id="view-adm-add" class="space-y-3.5">
+          <form id="add-product-form" class="space-y-3">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Nom du Produit *</label>
+              <input type="text" id="new-prod-title" required placeholder="Ex: Ventilateur Solaire Rechargeable 16 Pouces" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold focus:ring-2 focus:ring-emerald-500">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Rayon / Catégorie *</label>
+                <select id="new-prod-cat" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold">
+                  <option value="Solaire & Confort">⚡ Solaire & Énergie</option>
+                  <option value="Cuisine & Maison">🍳 Cuisine & Maison</option>
+                  <option value="Ambiance & Parfum">🌸 Ambiance & Soirée</option>
+                  <option value="Accessoires & Auto">🛵 Moto & Auto</option>
+                  <option value="Autre">📦 Autre Équipement</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Image (Lien URL ou choix) *</label>
+                <input type="url" id="new-prod-img" required placeholder="https://..." class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+              </div>
+            </div>
+
+            <!-- TARIFICATION MANUELLE -->
+            <div class="p-3 bg-amber-50/70 rounded-2xl border border-amber-200 space-y-2">
+              <span class="font-bold text-amber-950 block text-[11px]"><i class="fa-solid fa-coins mr-1 text-amber-600"></i>Tarifs & Marges :</span>
+              <div class="grid grid-cols-3 gap-2">
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-600 mb-1">Prix Grossiste (F)</label>
+                  <input type="number" id="new-prod-cost" required min="0" step="500" placeholder="18000" class="w-full p-2 bg-white border border-slate-200 rounded-lg font-bold">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-600 mb-1">Prix Barré Client (F)</label>
+                  <input type="number" id="new-prod-old-price" required min="0" step="500" placeholder="38000" class="w-full p-2 bg-white border border-slate-200 rounded-lg font-bold">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-600 mb-1">Prix Promo Vente (F)</label>
+                  <input type="number" id="new-prod-promo-price" required min="0" step="500" placeholder="25000" class="w-full p-2 bg-white border border-slate-200 rounded-lg font-black text-emerald-700">
+                </div>
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-600 mb-1">Prix Pack de 2 Pièces (FCFA)</label>
+                <input type="number" id="new-prod-pack2-price" required min="0" step="500" placeholder="45000" class="w-full p-2 bg-white border border-slate-200 rounded-lg font-bold">
+              </div>
+            </div>
+
+            <!-- GESTION LIVRAISON GRATUITE VS PAYANTE AVEC SAISIE MANUELLE -->
+            <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+              <label class="block font-bold text-slate-800 text-[11px]">Option de Livraison pour ce produit :</label>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="flex items-center space-x-2 p-2 bg-white rounded-xl border border-slate-200 cursor-pointer">
+                  <input type="radio" name="new_delivery_type" value="free" checked class="text-emerald-600">
+                  <span class="font-bold text-slate-800">Livraison Gratuite</span>
+                </label>
+                <label class="flex items-center space-x-2 p-2 bg-white rounded-xl border border-slate-200 cursor-pointer">
+                  <input type="radio" name="new_delivery_type" value="paid" class="text-emerald-600">
+                  <span class="font-bold text-slate-800">Livraison Payante</span>
+                </label>
+              </div>
+              <div id="delivery-fee-input-wrapper" class="hidden pt-1">
+                <label class="block text-[10px] font-bold text-slate-600 mb-1">Frais de livraison à faire payer au client (FCFA) :</label>
+                <input type="number" id="new-prod-delivery-fee" min="0" step="500" value="1000" class="w-full p-2 bg-white border border-slate-200 rounded-lg font-bold text-xs">
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Description & Caractéristiques *</label>
+              <textarea id="new-prod-desc" required rows="2" placeholder="Détails du produit..." class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500"></textarea>
+            </div>
+
+            <div class="flex space-x-2">
+              <button type="button" id="btn-cancel-add-modal" class="flex-1 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-600 hover:bg-slate-50">
+                Annuler
+              </button>
+              <button type="submit" class="flex-1 py-2.5 bg-theme-primary text-white font-black rounded-xl shadow transition">
+                Publier dans la Boutique
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- SECTION 2: GESTION DES COUPONS -->
+        <div id="view-adm-coupons" class="hidden space-y-4">
+          <form id="add-coupon-form" class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+            <span class="font-bold text-slate-800 text-[11px] block">Créer un Nouveau Code Promo :</span>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[10px] text-slate-500 font-semibold mb-1">Code Promo (ex: NOCWISE20)</label>
+                <input type="text" id="new-coupon-code" required placeholder="CODE" class="uppercase w-full p-2 bg-white border border-slate-200 rounded-lg font-black text-xs">
+              </div>
+              <div>
+                <label class="block text-[10px] text-slate-500 font-semibold mb-1">Montant Remise (FCFA)</label>
+                <input type="number" id="new-coupon-amount" required step="500" placeholder="2000" class="w-full p-2 bg-white border border-slate-200 rounded-lg font-bold text-xs">
+              </div>
+            </div>
+            <button type="submit" class="w-full py-2 bg-slate-900 text-white rounded-lg font-bold text-xs">
+              Ajouter le Coupon
+            </button>
+          </form>
+
+          <div>
+            <p class="font-bold text-slate-700 mb-2">Coupons Actuellement Actifs :</p>
+            <div id="coupons-list" class="space-y-2">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 3: THÈME & COULEURS -->
+        <div id="view-adm-theme" class="hidden space-y-3">
+          <p class="font-bold text-slate-800">Choisissez la Couleur Principale de votre Boutique :</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <button data-theme="theme-emerald" class="btn-theme-choice p-3 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-left flex items-center space-x-3">
+              <span class="w-6 h-6 rounded-full bg-emerald-600 inline-block shadow"></span>
+              <div>
+                <span class="font-extrabold text-slate-900 block">Émeraude Nocwise (Par défaut)</span>
+                <span class="text-[10px] text-slate-500">Vert frais, rassurant et commercial</span>
+              </div>
+            </button>
+
+            <button data-theme="theme-blue" class="btn-theme-choice p-3 rounded-2xl border border-slate-200 bg-slate-50 text-left flex items-center space-x-3 hover:border-blue-400">
+              <span class="w-6 h-6 rounded-full bg-blue-600 inline-block shadow"></span>
+              <div>
+                <span class="font-extrabold text-slate-900 block">Bleu Saphir</span>
+                <span class="text-[10px] text-slate-500">Moderne, technologique et épuré</span>
+              </div>
+            </button>
+
+            <button data-theme="theme-purple" class="btn-theme-choice p-3 rounded-2xl border border-slate-200 bg-slate-50 text-left flex items-center space-x-3 hover:border-purple-400">
+              <span class="w-6 h-6 rounded-full bg-purple-600 inline-block shadow"></span>
+              <div>
+                <span class="font-extrabold text-slate-900 block">Violet Nuit / Ambiance</span>
+                <span class="text-[10px] text-slate-500">Parfait pour l'esprit nocturne</span>
+              </div>
+            </button>
+
+            <button data-theme="theme-darkgold" class="btn-theme-choice p-3 rounded-2xl border border-slate-200 bg-slate-50 text-left flex items-center space-x-3 hover:border-amber-400">
+              <span class="w-6 h-6 rounded-full bg-slate-900 inline-block shadow border border-amber-400"></span>
+              <div>
+                <span class="font-extrabold text-slate-900 block">Noir & Or Luxe</span>
+                <span class="text-[10px] text-slate-500">Prestige, articles haut de gamme</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- SECTION 4: PARAMÈTRES BOUTIQUE & CODE PIN -->
+        <div id="view-adm-settings" class="hidden space-y-3">
+          <form id="admin-settings-form" class="space-y-3">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Nom Officiel de la Boutique</label>
+              <input type="text" id="set-brand-name" required value="Nocwise BF" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold">
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Votre Numéro WhatsApp pour recevoir les commandes (226XXXXXXXX) *</label>
+              <input type="tel" id="set-wa-phone" required placeholder="22670112233" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold">
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Slogan ou Description</label>
+              <input type="text" id="set-tagline" value="Le Choix Malin pour votre Confort • BF 🇧🇫" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Nouveau Code PIN Propriétaire (4 à 6 chiffres)</label>
+              <input type="password" id="set-admin-pin" placeholder="1234" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold">
+            </div>
+
+            <div class="flex space-x-2">
+              <button type="button" id="btn-cancel-settings-modal" class="flex-1 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-600 hover:bg-slate-50">
+                Annuler
+              </button>
+              <button type="submit" class="flex-1 py-2.5 bg-slate-900 text-white rounded-xl font-bold text-xs hover:bg-black transition">
+                Enregistrer
+              </button>
+            </div>
+          </form>
+
+          <div class="pt-2 border-t border-slate-200 flex justify-between items-center">
+            <span class="text-slate-500 text-[11px]">Sauvegarde de vos produits :</span>
+            <button id="btn-backup-data" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-lg border border-slate-300 text-xs">
+              <i class="fa-solid fa-download mr-1"></i> Exporter mes données
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden" id="add-product-modal"><button id="btn-close-add-modal"></button><button id="btn-close-settings-modal"></button><div id="settings-modal"><form id="settings-form"></form></div></div><div id="settings-modal"><form id="settings-form"></form></div></div>
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl text-xs font-bold flex items-center space-x-2.5 transform translate-y-24 opacity-0 transition-all duration-300 z-50">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
+    <span id="toast-message">Action effectuée</span>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT COMPLET & ROBUSTE -->
+  <!-- ========================================================================= -->
+  <script>
+    const STORAGE_KEY = 'nocwise_bf_app_data_v3';
+
+    // Default Seed Products (all strings escaped)
+    const defaultProducts = [
+      {
+        id: "p-1",
+        title: "Ventilateur Solaire Rechargeable 16\" avec Panneau",
+        category: "Solaire & Confort",
+        oldPrice: 38000,
+        promoPrice: 25000,
+        pack2Price: 45000,
+        costPrice: 19000,
+        deliveryType: "free",
+        deliveryFee: 0,
+        image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+        badge: "-35% PROMO",
+        rating: "4.9",
+        reviewsCount: 142,
+        description: "Batterie Lithium longue durée (8 à 12h d'autonomie). Panneau solaire inclus pour recharge gratuite. Port USB pour charger vos téléphones pendant les coupures."
+      },
+      {
+        id: "p-2",
+        title: "Diffuseur d'Arômes Effet Flamme de Cheminée & Humidificateur",
+        category: "Ambiance & Parfum",
+        oldPrice: 16000,
+        promoPrice: 9500,
+        pack2Price: 17500,
+        costPrice: 3900,
+        deliveryType: "free",
+        deliveryFee: 0,
+        image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+        badge: "TOP TENDANCE",
+        rating: "4.9",
+        reviewsCount: 96,
+        description: "Vapeur éclairée par LED créant l'effet chaleureux d'un feu de bois. Humidifie l'air sec et parfume durablement toute la pièce."
+      },
+      {
+        id: "p-3",
+        title: "Mini-Mixeur Broyeur Inox 2 en 1 Épices & Viande",
+        category: "Cuisine & Maison",
+        oldPrice: 22000,
+        promoPrice: 15000,
+        pack2Price: 27000,
+        costPrice: 8500,
+        deliveryType: "paid",
+        deliveryFee: 1000,
+        image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=800&q=80",
+        badge: "ROBUSTE",
+        rating: "4.8",
+        reviewsCount: 84,
+        description: "Moteur puissant en cuivre pur. Lames tranchantes en acier inoxydable. Broie les piments, soumbala et viandes dures en 15 secondes."
+      },
+      {
+        id: "p-4",
+        title: "Support Téléphone Étanche & Anti-Choc pour Moto",
+        category: "Accessoires & Auto",
+        oldPrice: 12000,
+        promoPrice: 7500,
+        pack2Price: 13500,
+        costPrice: 3000,
+        deliveryType: "free",
+        deliveryFee: 0,
+        image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=800&q=80",
+        badge: "POPULAIRE",
+        rating: "4.9",
+        reviewsCount: 61,
+        description: "Protection totale contre la pluie, la poussière et les vibrations de Ouaga. Écran tactile réactif et fixation solide sur guidon."
+      }
+    ];
+
+    const defaultCoupons = [
+      { code: "NOCWISE10", amount: 1500, desc: "Réduction de Bienvenue" },
+      { code: "OUAGA2000", amount: 2000, desc: "Promo Spéciale Ouaga" },
+      { code: "VIPBF", amount: 3000, desc: "Remise Fidélité Client" }
+    ];
+
+    const defaultSettings = {
+      brandName: "Nocwise BF",
+      tagline: "Le Choix Malin pour votre Confort • BF 🇧🇫",
+      whatsappPhone: "22670000000",
+      bannerText: "NOCWISE BF • LIVRAISON À DOMICILE PARTOUT À OUAGA • PAIEMENT APRÈS TEST À LA LIVRAISON",
+      adminPin: "1234",
+      theme: "theme-emerald"
+    };
+
+    let state = {
+      products: defaultProducts,
+      coupons: defaultCoupons,
+      settings: defaultSettings,
+      cart: [],
+      activeCoupon: null,
+      selectedProduct: null,
+      currentCategory: 'all'
+    };
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          state.products = parsed.products || defaultProducts;
+          state.coupons = parsed.coupons || defaultCoupons;
+          state.settings = parsed.settings || defaultSettings;
+          state.cart = parsed.cart || [];
+        }
+      } catch (e) {
+        state.products = defaultProducts;
+        state.coupons = defaultCoupons;
+        state.settings = defaultSettings;
+        state.cart = [];
+      }
+      applyTheme(state.settings.theme || 'theme-emerald');
+      applySettings();
+      updateCartBadge();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          products: state.products,
+          coupons: state.coupons,
+          settings: state.settings,
+          cart: state.cart
+        }));
+      } catch (e) {
+        console.warn('LocalStorage error:', e);
+      }
+    }
+
+    function formatMoney(amount) {
+      return Number(amount).toLocaleString('fr-FR') + ' FCFA';
+    }
+
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastMsg.textContent = message;
+      if (isError) {
+        toastIcon.className = 'fa-solid fa-triangle-exclamation text-amber-400 text-sm';
+      } else {
+        toastIcon.className = 'fa-solid fa-circle-check text-emerald-400 text-sm';
+      }
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 3000);
+    }
+
+    function applyTheme(themeName) {
+      const body = document.getElementById('app-body');
+      body.className = `${themeName} bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white pb-24 md:pb-8`;
+      state.settings.theme = themeName;
+      
+      // Update UI selection
+      document.querySelectorAll('.btn-theme-choice').forEach(btn => {
+        if (btn.getAttribute('data-theme') === themeName) {
+          btn.className = 'btn-theme-choice p-3 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-left flex items-center space-x-3';
+        } else {
+          btn.className = 'btn-theme-choice p-3 rounded-2xl border border-slate-200 bg-slate-50 text-left flex items-center space-x-3 hover:border-slate-400';
+        }
+      });
+    }
+
+    function applySettings() {
+      document.getElementById('brand-name').textContent = state.settings.brandName;
+      document.getElementById('footer-brand').textContent = state.settings.brandName;
+      document.getElementById('brand-tagline').textContent = state.settings.tagline;
+      document.getElementById('banner-text').textContent = state.settings.bannerText;
+
+      document.getElementById('set-brand-name').value = state.settings.brandName;
+      document.getElementById('set-wa-phone').value = state.settings.whatsappPhone;
+
+      const rawPhone = state.settings.whatsappPhone.replace(/[^0-9]/g, '');
+      const fullPhone = rawPhone.startsWith('226') ? rawPhone : `226${rawPhone}`;
+      document.getElementById('floating-whatsapp-btn').href = `https://wa.me/${fullPhone}?text=Bonjour%20Nocwise%20BF,%20j'ai%20une%20question%20sur%20un%20produit`;
+      document.getElementById('btn-header-whatsapp').href = `https://wa.me/${fullPhone}?text=Bonjour%20Nocwise%20BF,%20j'ai%20une%20question%20sur%20un%20produit`;
+    }
+
+    // =========================================================================
+    // INTELLIGENT FUZZY SEARCH (Tolérance aux fautes d'orthographe)
+    // =========================================================================
+    function cleanString(str) {
+      return str.toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]/g, '');
+    }
+
+    function levenshtein(a, b) {
+      const matrix = [];
+      for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+      for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          if (b.charAt(i - 1) === a.charAt(j - 1)) {
+            matrix[i][j] = matrix[i - 1][j - 1];
+          } else {
+            matrix[i][j] = Math.min(
+              matrix[i - 1][j - 1] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j] + 1
+            );
+          }
+        }
+      }
+      return matrix[b.length][a.length];
+    }
+
+    function fuzzyMatchProduct(query, product) {
+      if (!query) return true;
+      const cleanQ = cleanString(query);
+      if (cleanQ.length === 0) return true;
+
+      const cleanTarget = cleanString(product.title + product.category + product.description);
+      if (cleanTarget.includes(cleanQ)) return true;
+
+      const targetWords = (product.title + ' ' + product.category + ' ' + product.description).split(/\s+/);
+      for (const rawWord of targetWords) {
+        const w = cleanString(rawWord);
+        if (w.length < 3) continue;
+
+        if (w.includes(cleanQ) || cleanQ.includes(w)) return true;
+
+        const maxDist = cleanQ.length <= 4 ? 1 : 2;
+        if (levenshtein(cleanQ, w) <= maxDist) return true;
+      }
+      return false;
+    }
+
+    // =========================================================================
+    // RENDER PRODUCT GRID
+    // =========================================================================
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      const emptyState = document.getElementById('empty-search-state');
+      const searchInput = document.getElementById('product-search');
+      const searchTerm = searchInput.value.trim();
+      const clearBtn = document.getElementById('btn-clear-search');
+
+      clearBtn.classList.toggle('hidden', searchTerm.length === 0);
+
+      grid.innerHTML = '';
+
+      const filtered = state.products.filter(p => {
+        const matchesCat = (state.currentCategory === 'all') || (p.category === state.currentCategory);
+        const matchesSearch = fuzzyMatchProduct(searchTerm, p);
+        return matchesCat && matchesSearch;
+      });
+
+      document.getElementById('product-count-badge').textContent = `${filtered.length} article${filtered.length > 1 ? 's' : ''}`;
+
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      filtered.forEach(prod => {
+        const isFreeDelivery = prod.deliveryType === 'free' || !prod.deliveryFee || prod.deliveryFee === 0;
+        const deliveryBadgeText = isFreeDelivery ? 'Livraison Gratuite' : `Livraison : ${formatMoney(prod.deliveryFee)}`;
+        const deliveryBadgeClass = isFreeDelivery ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800';
+
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1';
+        card.innerHTML = `
+          <div>
+            <!-- Image case -->
+            <div class="relative h-44 sm:h-52 bg-slate-50 p-3 flex items-center justify-center overflow-hidden border-b border-slate-100 cursor-pointer prod-trigger" data-id="${prod.id}">
+              <img src="${prod.image}" alt="${prod.title}" class="max-h-full max-w-full object-contain transition duration-300 hover:scale-105">
+              <span class="absolute top-2.5 left-2.5 bg-red-600 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded-full shadow">
+                ${prod.badge || 'PROMO'}
+              </span>
+              <span class="absolute bottom-2.5 left-2.5 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm ${deliveryBadgeClass}">
+                <i class="fa-solid fa-truck-fast mr-0.5"></i> ${deliveryBadgeText}
+              </span>
+            </div>
+
+            <!-- Content -->
+            <div class="p-3.5 sm:p-4 space-y-1.5">
+              <div class="flex items-center justify-between text-[10px]">
+                <span class="font-extrabold text-theme-primary uppercase tracking-wider bg-theme-light px-2 py-0.5 rounded-md">
+                  ${prod.category}
+                </span>
+                <span class="text-amber-500 font-bold flex items-center">
+                  <i class="fa-solid fa-star mr-0.5"></i> ${prod.rating || '4.9'}
+                </span>
+              </div>
+
+              <h4 class="font-black text-slate-900 text-xs sm:text-sm line-clamp-2 leading-snug cursor-pointer prod-trigger" data-id="${prod.id}">
+                ${prod.title}
+              </h4>
+
+              <div class="pt-1">
+                <span class="text-[10px] text-slate-400 line-through block font-semibold">${formatMoney(prod.oldPrice)}</span>
+                <div class="flex items-baseline space-x-1.5">
+                  <span class="text-base sm:text-lg font-black text-emerald-700">${formatMoney(prod.promoPrice)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons in the card -->
+          <div class="p-3 sm:p-4 pt-0 grid grid-cols-2 gap-1.5">
+            <button data-id="${prod.id}" class="btn-add-cart-card py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs transition flex items-center justify-center space-x-1 border border-slate-200" title="Ajouter au Panier">
+              <i class="fa-solid fa-cart-plus text-theme-primary"></i>
+              <span class="hidden sm:inline">Panier</span>
+            </button>
+            <button data-id="${prod.id}" class="btn-order-card py-2 bg-theme-primary hover:bg-emerald-700 text-white rounded-xl font-bold text-xs shadow-md transition flex items-center justify-center space-x-1 active:scale-95">
+              <i class="fa-solid fa-bolt text-amber-300"></i>
+              <span>Commander</span>
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Bind card interactions
+      document.querySelectorAll('.prod-trigger, .btn-order-card').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = el.getAttribute('data-id');
+          const p = state.products.find(x => x.id === id);
+          if (p) openProductDetail(p);
+        });
+      });
+
+      document.querySelectorAll('.btn-add-cart-card').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = el.getAttribute('data-id');
+          const p = state.products.find(x => x.id === id);
+          if (p) {
+            addToCart(p, 1);
+            showToast(`Ajouté au panier : ${p.title.split(' ')[0]}...`);
+          }
+        });
+      });
+    }
+
+    // =========================================================================
+    // CART LOGIC (PANIER D'ACHATS)
+    // =========================================================================
+    function addToCart(product, quantity = 1) {
+      const existing = state.cart.find(item => item.productId === product.id);
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        state.cart.push({
+          productId: product.id,
+          title: product.title,
+          price: product.promoPrice,
+          image: product.image,
+          deliveryType: product.deliveryType,
+          deliveryFee: product.deliveryFee || 0,
+          quantity: quantity
+        });
+      }
+      saveState();
+      updateCartBadge();
+      renderCartItems();
+    }
+
+    function removeFromCart(productId) {
+      state.cart = state.cart.filter(item => item.productId !== productId);
+      saveState();
+      updateCartBadge();
+      renderCartItems();
+      showToast('Article retiré du panier');
+    }
+
+    function updateCartQty(productId, delta) {
+      const item = state.cart.find(x => x.productId === productId);
+      if (!item) return;
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        removeFromCart(productId);
+        return;
+      }
+      saveState();
+      updateCartBadge();
+      renderCartItems();
+    }
+
+    function updateCartBadge() {
+      const totalCount = state.cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cart-badge').textContent = totalCount;
+      document.getElementById('mobile-cart-count').textContent = totalCount;
+
+      const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      document.getElementById('mobile-cart-total').textContent = formatMoney(subtotal);
+    }
+
+    function renderCartItems() {
+      const list = document.getElementById('cart-items-list');
+      const emptyView = document.getElementById('empty-cart-view');
+      const summaryBlock = document.getElementById('cart-summary-block');
+      const couponSection = document.getElementById('cart-coupon-section');
+      const checkoutForm = document.getElementById('cart-checkout-form');
+
+      list.innerHTML = '';
+
+      if (state.cart.length === 0) {
+        emptyView.classList.remove('hidden');
+        summaryBlock.classList.add('hidden');
+        couponSection.classList.add('hidden');
+        checkoutForm.classList.add('hidden');
+        return;
+      }
+
+      emptyView.classList.add('hidden');
+      summaryBlock.classList.remove('hidden');
+      couponSection.classList.remove('hidden');
+      checkoutForm.classList.remove('hidden');
+
+      let subtotal = 0;
+      let maxDeliveryFee = 0;
+
+      state.cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        if (item.deliveryType === 'paid' && item.deliveryFee > maxDeliveryFee) {
+          maxDeliveryFee = item.deliveryFee;
+        }
+
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between py-2.5';
+        div.innerHTML = `
+          <div class="flex items-center space-x-2.5 flex-1 pr-2">
+            <img src="${item.image}" alt="${item.title}" class="w-12 h-12 rounded-xl object-contain bg-slate-50 border border-slate-200 p-0.5">
+            <div>
+              <h5 class="font-bold text-slate-800 text-xs line-clamp-1">${item.title}</h5>
+              <span class="text-emerald-700 font-extrabold text-[11px]">${formatMoney(item.price)}</span>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <div class="flex items-center border border-slate-200 rounded-lg bg-slate-50">
+              <button data-id="${item.productId}" class="btn-qty-minus px-2 py-0.5 text-slate-600 hover:text-slate-900 font-bold">-</button>
+              <span class="px-2 text-xs font-black text-slate-800">${item.quantity}</span>
+              <button data-id="${item.productId}" class="btn-qty-plus px-2 py-0.5 text-slate-600 hover:text-slate-900 font-bold">+</button>
+            </div>
+            <button data-id="${item.productId}" class="btn-remove-item text-slate-300 hover:text-red-500 p-1" title="Supprimer">
+              <i class="fa-solid fa-trash-can text-xs"></i>
+            </button>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+
+      // Bind quantity changes
+      document.querySelectorAll('.btn-qty-minus').forEach(btn => {
+        btn.addEventListener('click', () => updateCartQty(btn.getAttribute('data-id'), -1));
+      });
+      document.querySelectorAll('.btn-qty-plus').forEach(btn => {
+        btn.addEventListener('click', () => updateCartQty(btn.getAttribute('data-id'), 1));
+      });
+      document.querySelectorAll('.btn-remove-item').forEach(btn => {
+        btn.addEventListener('click', () => removeFromCart(btn.getAttribute('data-id')));
+      });
+
+      // Compute discounts & totals
+      let discount = 0;
+      if (state.activeCoupon) {
+        discount = state.activeCoupon.amount;
+        if (discount > subtotal) discount = subtotal;
+        document.getElementById('cart-discount-row').classList.remove('hidden');
+        document.getElementById('cart-discount-val').textContent = `-${formatMoney(discount)}`;
+      } else {
+        document.getElementById('cart-discount-row').classList.add('hidden');
+      }
+
+      const totalToPay = (subtotal - discount) + maxDeliveryFee;
+
+      document.getElementById('cart-subtotal').textContent = formatMoney(subtotal);
+      document.getElementById('cart-delivery-val').textContent = maxDeliveryFee > 0 ? formatMoney(maxDeliveryFee) : 'Gratuit';
+      document.getElementById('cart-total-val').textContent = formatMoney(totalToPay);
+    }
+
+    // Apply Coupon
+    function applyCouponCode(code, isCart = true) {
+      const cleanCode = code.trim().toUpperCase();
+      const coupon = state.coupons.find(c => c.code.toUpperCase() === cleanCode);
+      const feedbackEl = document.getElementById(isCart ? 'cart-coupon-feedback' : 'express-coupon-feedback');
+
+      feedbackEl.classList.remove('hidden');
+
+      if (!coupon) {
+        feedbackEl.className = 'text-[11px] font-bold text-red-600';
+        feedbackEl.textContent = '❌ Code promo invalide ou expiré';
+        state.activeCoupon = null;
+        if (isCart) renderCartItems();
+        return;
+      }
+
+      state.activeCoupon = coupon;
+      feedbackEl.className = 'text-[11px] font-bold text-emerald-700';
+      feedbackEl.textContent = `✅ Code promo ${coupon.code} activé : -${formatMoney(coupon.amount)} de réduction !`;
+      
+      if (isCart) {
+        renderCartItems();
+      }
+      showToast(`Coupon appliqué : -${formatMoney(coupon.amount)}`);
+    }
+
+    document.getElementById('btn-apply-cart-coupon').addEventListener('click', () => {
+      const code = document.getElementById('cart-coupon-input').value;
+      applyCouponCode(code, true);
+    });
+
+    document.getElementById('btn-apply-express-coupon').addEventListener('click', () => {
+      const code = document.getElementById('order-coupon-code').value;
+      applyCouponCode(code, false);
+    });
+
+    // =========================================================================
+    // MODAL HANDLERS
+    // =========================================================================
+    function openProductDetail(product) {
+      state.selectedProduct = product;
+      document.getElementById('detail-modal-img').src = product.image;
+      document.getElementById('detail-modal-cat').textContent = product.category;
+      document.getElementById('detail-modal-title').textContent = product.title;
+      document.getElementById('detail-modal-promo-price').textContent = formatMoney(product.promoPrice);
+      document.getElementById('detail-modal-old-price').textContent = formatMoney(product.oldPrice);
+      document.getElementById('detail-modal-desc').textContent = product.description;
+
+      const isFreeDelivery = product.deliveryType === 'free' || !product.deliveryFee || product.deliveryFee === 0;
+      const delBadge = document.getElementById('detail-modal-delivery-badge');
+      delBadge.textContent = isFreeDelivery ? 'Livraison Gratuite' : `Frais Livraison : ${formatMoney(product.deliveryFee)}`;
+      delBadge.className = isFreeDelivery ? 'text-[10px] bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-bold inline-block ml-1' : 'text-[10px] bg-blue-100 text-blue-800 px-2.5 py-0.5 rounded-full font-bold inline-block ml-1';
+
+      document.getElementById('form-single-price').textContent = formatMoney(product.promoPrice);
+      document.getElementById('form-duo-price').textContent = formatMoney(product.pack2Price || (product.promoPrice * 1.8));
+
+      document.getElementById('express-delivery-cost').textContent = isFreeDelivery ? 'Gratuit' : formatMoney(product.deliveryFee);
+
+      document.getElementById('product-detail-modal').classList.remove('hidden');
+    }
+
+    document.getElementById('btn-close-detail-modal').addEventListener('click', () => {
+      document.getElementById('product-detail-modal').classList.add('hidden');
+    });
+
+    document.getElementById('btn-add-to-cart-from-modal').addEventListener('click', () => {
+      if (state.selectedProduct) {
+        addToCart(state.selectedProduct, 1);
+        document.getElementById('product-detail-modal').classList.add('hidden');
+        showToast('Article ajouté à votre panier !');
+      }
+    });
+
+    document.getElementById('btn-scroll-to-express-form').addEventListener('click', () => {
+      document.getElementById('express-order-form').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Cart Modal Opening / Closing
+    const cartModal = document.getElementById('cart-modal');
+    function openCartModal() {
+      renderCartItems();
+      cartModal.classList.remove('hidden');
+    }
+    function closeCartModal() {
+      cartModal.classList.add('hidden');
+    }
+    document.getElementById('btn-open-cart').addEventListener('click', openCartModal);
+    document.getElementById('btn-mobile-open-cart').addEventListener('click', openCartModal);
+    document.getElementById('btn-close-cart-modal').addEventListener('click', closeCartModal);
+
+    // =========================================================================
+    // EXPRESS ORDER FORM (Client commande un seul produit en direct)
+    // =========================================================================
+    document.getElementById('express-order-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!state.selectedProduct) return;
+
+      const p = state.selectedProduct;
+      const name = document.getElementById('order-cust-name').value.trim();
+      const phone = document.getElementById('order-cust-phone').value.trim();
+      const city = document.getElementById('order-cust-city').value.trim();
+      const qtyChoice = document.querySelector('input[name="order_qty"]:checked').value;
+      const isDuo = qtyChoice === '2';
+      const orderQty = isDuo ? 'Pack Duo (2 Exemplaires)' : '1 Exemplaire';
+      
+      let basePrice = isDuo ? (p.pack2Price || (p.promoPrice * 1.8)) : p.promoPrice;
+      let deliveryFee = p.deliveryType === 'paid' ? (p.deliveryFee || 1000) : 0;
+      let discount = state.activeCoupon ? state.activeCoupon.amount : 0;
+      let totalToPay = (basePrice - discount) + deliveryFee;
+      if (totalToPay < 0) totalToPay = 0;
+
+      const waText = encodeURIComponent(
+        `*NOUVELLE COMMANDE DIRECTE - ${state.settings.brandName}*
+` +
+        `--------------------------------
+` +
+        `📦 *Article :* ${p.title}
+` +
+        `🔢 *Formule :* ${orderQty}
+` +
+        `💵 *Prix Article :* ${formatMoney(basePrice)}
+` +
+        (discount > 0 ? `🎟️ *Coupon Déduit :* -${formatMoney(discount)} (${state.activeCoupon.code})
+` : '') +
+        `🛵 *Frais de Livraison :* ${deliveryFee > 0 ? formatMoney(deliveryFee) : 'Gratuit'}
+` +
+        `💰 *TOTAL À ENCAISSER :* ${formatMoney(totalToPay)}
+` +
+        `--------------------------------
+` +
+        `👤 *Client :* ${name}
+` +
+        `📞 *Téléphone :* ${phone}
+` +
+        `📍 *Destination :* ${city}
+` +
+        `🛡️ *Règlement :* Paiement Cash ou Mobile Money à la Livraison
+` +
+        `--------------------------------
+` +
+        `Commande expresse validée !`
+      );
+
+      const rawPhone = state.settings.whatsappPhone.replace(/[^0-9]/g, '');
+      const fullPhone = rawPhone.startsWith('226') ? rawPhone : `226${rawPhone}`;
+      const waUrl = `https://wa.me/${fullPhone}?text=${waText}`;
+
+      document.getElementById('product-detail-modal').classList.add('hidden');
+      document.getElementById('express-order-form').reset();
+      showToast('Redirection vers WhatsApp pour validation...');
+      window.open(waUrl, '_blank');
+    });
+
+    // =========================================================================
+    // CART CHECKOUT FORM (Client commande tout son panier)
+    // =========================================================================
+    document.getElementById('cart-checkout-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (state.cart.length === 0) return;
+
+      const name = document.getElementById('cart-cust-name').value.trim();
+      const phone = document.getElementById('cart-cust-phone').value.trim();
+      const city = document.getElementById('cart-cust-city').value.trim();
+
+      let itemsListStr = '';
+      let subtotal = 0;
+      let maxDeliveryFee = 0;
+
+      state.cart.forEach((it, idx) => {
+        const itemTot = it.price * it.quantity;
+        subtotal += itemTot;
+        if (it.deliveryType === 'paid' && it.deliveryFee > maxDeliveryFee) {
+          maxDeliveryFee = it.deliveryFee;
+        }
+        itemsListStr += `${idx + 1}. ${it.title} (x${it.quantity}) - ${formatMoney(itemTot)}
+`;
+      });
+
+      let discount = state.activeCoupon ? state.activeCoupon.amount : 0;
+      let totalToPay = (subtotal - discount) + maxDeliveryFee;
+      if (totalToPay < 0) totalToPay = 0;
+
+      const waText = encodeURIComponent(
+        `*NOUVELLE COMMANDE PANIER MULTI-ARTICLES - ${state.settings.brandName}*
+` +
+        `--------------------------------
+` +
+        `🛒 *ARTICLES COMMANDÉS :*
+` +
+        `${itemsListStr}` +
+        `--------------------------------
+` +
+        `💵 *Sous-total :* ${formatMoney(subtotal)}
+` +
+        (discount > 0 ? `🎟️ *Remise Coupon :* -${formatMoney(discount)} (${state.activeCoupon.code})
+` : '') +
+        `🛵 *Livraison :* ${maxDeliveryFee > 0 ? formatMoney(maxDeliveryFee) : 'Gratuit'}
+` +
+        `💰 *TOTAL À ENCAISSER :* ${formatMoney(totalToPay)}
+` +
+        `--------------------------------
+` +
+        `👤 *Client :* ${name}
+` +
+        `📞 *Téléphone :* ${phone}
+` +
+        `📍 *Destination :* ${city}
+` +
+        `🛡️ *Mode :* Paiement Cash ou Mobile Money à la Livraison
+` +
+        `--------------------------------
+` +
+        `Merci de confirmer la prise en charge de ma commande !`
+      );
+
+      const rawPhone = state.settings.whatsappPhone.replace(/[^0-9]/g, '');
+      const fullPhone = rawPhone.startsWith('226') ? rawPhone : `226${rawPhone}`;
+      const waUrl = `https://wa.me/${fullPhone}?text=${waText}`;
+
+      // Clear cart
+      state.cart = [];
+      saveState();
+      updateCartBadge();
+      closeCartModal();
+      showToast('Commande envoyée sur WhatsApp !');
+      window.open(waUrl, '_blank');
+    });
+
+    // =========================================================================
+    // ADMIN SECURITY PIN & PANEL
+    // =========================================================================
+    const pinModal = document.getElementById('pin-modal');
+    const adminPanelModal = document.getElementById('admin-panel-modal');
+
+    function openPinModal() {
+      document.getElementById('input-admin-pin').value = '';
+      document.getElementById('pin-error-msg').classList.add('hidden');
+      pinModal.classList.remove('hidden');
+      document.getElementById('input-admin-pin').focus();
+    }
+
+    document.getElementById('btn-toggle-admin').addEventListener('click', openPinModal);
+    document.getElementById('btn-open-add-product').addEventListener('click', openPinModal);
+    document.getElementById('btn-footer-admin').addEventListener('click', openPinModal);
+    document.getElementById('btn-close-pin-modal').addEventListener('click', () => pinModal.classList.add('hidden'));
+
+    document.getElementById('pin-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const entered = document.getElementById('input-admin-pin').value.trim();
+      const currentPin = state.settings.adminPin || '1234';
+
+      if (entered === currentPin) {
+        pinModal.classList.add('hidden');
+        openAdminPanel();
+        showToast('Espace Propriétaire Déverrouillé');
+      } else {
+        document.getElementById('pin-error-msg').classList.remove('hidden');
+      }
+    });
+
+    function openAdminPanel() {
+      adminPanelModal.classList.remove('hidden');
+      renderCouponsList();
+    }
+    document.getElementById('btn-close-admin-panel').addEventListener('click', () => {
+      adminPanelModal.classList.add('hidden');
+    });
+
+    // Admin Tabs Switcher
+    const admTabs = [
+      { btn: document.getElementById('tab-adm-add'), view: document.getElementById('view-adm-add') },
+      { btn: document.getElementById('tab-adm-coupons'), view: document.getElementById('view-adm-coupons') },
+      { btn: document.getElementById('tab-adm-theme'), view: document.getElementById('view-adm-theme') },
+      { btn: document.getElementById('tab-adm-settings'), view: document.getElementById('view-adm-settings') }
+    ];
+
+    admTabs.forEach(tab => {
+      tab.btn.addEventListener('click', () => {
+        admTabs.forEach(t => {
+          t.btn.className = 'py-2 px-3 text-slate-500 hover:text-slate-800';
+          t.view.classList.add('hidden');
+        });
+        tab.btn.className = 'py-2 px-3 border-b-2 border-emerald-600 text-emerald-800 font-black';
+        tab.view.classList.remove('hidden');
+      });
+    });
+
+    // Toggle manual delivery fee input in add product
+    document.querySelectorAll('input[name="new_delivery_type"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const wrapper = document.getElementById('delivery-fee-input-wrapper');
+        wrapper.classList.toggle('hidden', e.target.value === 'free');
+      });
+    });
+
+    // Add Product Submit (Exclusive to owner)
+    document.getElementById('add-product-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const deliveryType = document.querySelector('input[name="new_delivery_type"]:checked').value;
+      const deliveryFee = deliveryType === 'paid' ? (Number(document.getElementById('new-prod-delivery-fee').value) || 1000) : 0;
+      const promoPrice = Number(document.getElementById('new-prod-promo-price').value);
+      const pack2Price = Number(document.getElementById('new-prod-pack2-price').value) || (promoPrice * 1.8);
+
+      const newP = {
+        id: 'p-' + (state.products.length + 1) + '-' + Date.now().toString().slice(-4),
+        title: document.getElementById('new-prod-title').value.trim(),
+        category: document.getElementById('new-prod-cat').value,
+        costPrice: Number(document.getElementById('new-prod-cost').value) || 0,
+        oldPrice: Number(document.getElementById('new-prod-old-price').value),
+        promoPrice: promoPrice,
+        pack2Price: pack2Price,
+        deliveryType: deliveryType,
+        deliveryFee: deliveryFee,
+        image: document.getElementById('new-prod-img').value.trim(),
+        badge: 'NOUVEAU',
+        rating: '5.0',
+        reviewsCount: 1,
+        description: document.getElementById('new-prod-desc').value.trim()
+      };
+
+      state.products.unshift(newP);
+      saveState();
+      adminPanelModal.classList.add('hidden');
+      document.getElementById('add-product-form').reset();
+      renderProducts();
+      showToast('Nouvel article mis en vente avec succès !');
+    });
+
+    document.getElementById('btn-cancel-add-modal').addEventListener('click', () => {
+      adminPanelModal.classList.add('hidden');
+    });
+
+    // Theme selector
+    document.querySelectorAll('.btn-theme-choice').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const t = btn.getAttribute('data-theme');
+        applyTheme(t);
+        saveState();
+        showToast('Nouvelle couleur de boutique appliquée !');
+      });
+    });
+
+    // Coupon management in admin
+    function renderCouponsList() {
+      const container = document.getElementById('coupons-list');
+      container.innerHTML = '';
+
+      state.coupons.forEach(c => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs';
+        row.innerHTML = `
+          <div>
+            <span class="font-black text-slate-800 bg-amber-100 px-2 py-0.5 rounded text-[11px]">${c.code}</span>
+            <span class="text-slate-500 ml-2">-${formatMoney(c.amount)}</span>
+          </div>
+          <button data-code="${c.code}" class="btn-del-coupon text-slate-300 hover:text-red-500 p-1">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        `;
+        container.appendChild(row);
+      });
+
+      document.querySelectorAll('.btn-del-coupon').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const code = btn.getAttribute('data-code');
+          state.coupons = state.coupons.filter(x => x.code !== code);
+          saveState();
+          renderCouponsList();
+          showToast('Coupon supprimé');
+        });
+      });
+    }
+
+    document.getElementById('add-coupon-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const code = document.getElementById('new-coupon-code').value.trim().toUpperCase();
+      const amount = Number(document.getElementById('new-coupon-amount').value);
+
+      if (state.coupons.some(c => c.code === code)) {
+        showToast('Ce code promo existe déjà', true);
+        return;
+      }
+
+      state.coupons.push({ code, amount, desc: 'Remise Boutique' });
+      saveState();
+      document.getElementById('add-coupon-form').reset();
+      renderCouponsList();
+      showToast(`Coupon ${code} créé avec succès !`);
+    });
+
+    // Save Admin settings (Pin, phone, etc.)
+    document.getElementById('admin-settings-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      state.settings.brandName = document.getElementById('set-brand-name').value.trim();
+      state.settings.whatsappPhone = document.getElementById('set-wa-phone').value.trim();
+      const newPin = document.getElementById('set-admin-pin').value.trim();
+      if (newPin.length >= 4) {
+        state.settings.adminPin = newPin;
+      }
+
+      saveState();
+      applySettings();
+      adminPanelModal.classList.add('hidden');
+      showToast('Paramètres propriétaire mis à jour !');
+    });
+
+    document.getElementById('btn-cancel-settings-modal').addEventListener('click', () => {
+      adminPanelModal.classList.add('hidden');
+    });
+
+    // Backup export
+    document.getElementById('btn-backup-data').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `nocwise_bf_backup_${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Sauvegarde téléchargée avec succès');
+    });
+
+    // Filters and category pills
+    document.querySelectorAll('.cat-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-pill').forEach(b => {
+          b.className = 'cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition';
+        });
+        btn.className = 'cat-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-theme-primary text-white shadow-sm transition';
+        state.currentCategory = btn.getAttribute('data-cat');
+        renderProducts();
+      });
+    });
+
+    // Search events
+    const searchInput = document.getElementById('product-search');
+    searchInput.addEventListener('input', renderProducts);
+    document.getElementById('btn-clear-search').addEventListener('click', () => {
+      searchInput.value = '';
+      renderProducts();
+      searchInput.focus();
+    });
+    document.getElementById('btn-reset-filters').addEventListener('click', () => {
+      searchInput.value = '';
+      state.currentCategory = 'all';
+      document.querySelectorAll('.cat-pill').forEach(b => {
+        b.className = 'cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition';
+      });
+      document.querySelector('.cat-pill[data-cat="all"]').className = 'cat-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-theme-primary text-white shadow-sm transition';
+      renderProducts();
+    });
+
+    
+    const bCloseAdd = document.getElementById('btn-close-add-modal');
+    if (bCloseAdd) bCloseAdd.addEventListener('click', () => { adminPanelModal.classList.add('hidden'); });
+    const bCloseSet = document.getElementById('btn-close-settings-modal');
+    if (bCloseSet) bCloseSet.addEventListener('click', () => { adminPanelModal.classList.add('hidden'); });
+
+    // Init App
+    loadState();
+    renderProducts();
+  </script>
+</body>
+</html>
