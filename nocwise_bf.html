@@ -1,0 +1,2320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nocwise BF - Boutique & Espace Jeux Récompenses</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .pulse-glow {
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-ring 1.8s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    @keyframes live-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .live-dot-anim { animation: live-dot 1.5s infinite ease-in-out; }
+
+    @keyframes fly-plane {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-4px) rotate(2deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+    .plane-bob { animation: fly-plane 1.2s infinite ease-in-out; }
+  </style>
+</head>
+<body id="app-body" class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white pb-24 md:pb-8">
+
+  <!-- TOP PROMO BANNER -->
+  <div class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white text-center py-2 px-3 text-xs font-bold shadow-sm">
+    <div class="max-w-6xl mx-auto w-full flex items-center justify-between flex-wrap gap-2 text-[11px]">
+      <div class="flex items-center space-x-2">
+        <span class="animate-pulse">🔥</span>
+        <span id="banner-text">NOCWISE BF • LIVRAISON À DOMICILE PARTOUT À OUAGA • PAIEMENT APRÈS TEST</span>
+        <span class="animate-pulse">🔥</span>
+      </div>
+
+      <!-- Quick loyalty points bar -->
+      <div class="flex items-center space-x-2 font-mono">
+        <div class="bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 rounded-lg flex items-center space-x-1.5">
+          <span class="text-amber-300">🪙</span>
+          <span class="text-slate-300 text-[10px] uppercase font-bold">Points Jeu :</span>
+          <span id="topPointsDisplay" class="text-amber-300 font-black">1 200 PTS</span>
+        </div>
+        <button id="btnQuickRedeemHeader" class="px-2 py-0.5 bg-amber-400 hover:bg-amber-300 text-emerald-950 rounded-lg text-[10px] font-black uppercase transition shadow">
+          Convertir en Bon
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPONSORED ADSENSE / NETWORK BANNER (Monétisation réelle) -->
+  <div class="max-w-6xl mx-auto w-full px-4 pt-2">
+    <div class="bg-white border border-slate-200 rounded-2xl p-2 text-center text-[10px] text-slate-500 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-1.5">
+      <span class="text-slate-700 font-bold uppercase tracking-wider flex items-center gap-1.5">
+        <i class="fa-solid fa-rectangle-ad text-amber-500"></i> Espace Publicitaire Partenaire
+      </span>
+      <span class="text-slate-600 font-medium">🎯 Jouez à la Roue & au Crash, regardez vos 5 vidéos du jour et obtenez vos bons d'achat !</span>
+      <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono text-[9px] font-bold">Monetag / Adsterra / AdSense Ready</span>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION (100% CLEAN - ZÉRO CADENAS NI TRACE ADMIN VISIBLE POUR LES CLIENTS) -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo (Sert de déclencheur secret sécurisé si cliqué 3 fois de suite) -->
+      <div id="secretAdminTriggerLogo" class="flex items-center space-x-2.5 cursor-pointer select-none" title="Nocwise BF">
+        <div class="w-10 h-10 rounded-2xl bg-emerald-600 text-amber-300 flex items-center justify-center font-black text-xl shadow-md border-2 border-emerald-500 transition transform hover:scale-105 active:scale-95">
+          <i class="fa-solid fa-moon text-lg"></i>
+        </div>
+        <div>
+          <h1 id="brand-name" class="font-black text-lg text-slate-900 tracking-tight leading-none">Nocwise BF</h1>
+          <p id="brand-tagline" class="text-[10px] text-emerald-700 font-extrabold uppercase tracking-wider mt-0.5">Le Choix Malin pour votre Confort • BF 🇧🇫</p>
+        </div>
+      </div>
+
+      <!-- ENVIRONMENT SWITCHER (BOUTIQUE vs JEUX) -->
+      <div class="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-300 shadow-inner">
+        <button id="nav-btn-store" class="nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md">
+          <i class="fa-solid fa-shop"></i>
+          <span>Boutique</span>
+        </button>
+        <button id="nav-btn-games" class="nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 text-slate-600 hover:text-slate-900">
+          <i class="fa-solid fa-gamepad text-amber-500"></i>
+          <span>Jeux (Roue & Crash)</span>
+          <span class="w-2 h-2 rounded-full bg-red-500 live-dot-anim"></span>
+        </button>
+      </div>
+
+      <!-- Quick Customer Actions (Cart & Direct WhatsApp Help) -->
+      <div class="flex items-center space-x-2">
+        <a id="btn-header-whatsapp" href="https://wa.me/22670000000" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold rounded-xl border border-emerald-200 flex items-center space-x-1.5 transition">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span class="hidden sm:inline">Discuter avec nous</span>
+        </a>
+
+        <!-- Cart Button -->
+        <button id="btn-open-cart" class="relative px-3.5 py-2 bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold rounded-xl shadow-sm flex items-center space-x-1.5 transition">
+          <i class="fa-solid fa-cart-shopping text-amber-400"></i>
+          <span class="hidden sm:inline">Mon Panier</span>
+          <span id="cart-badge" class="w-5 h-5 bg-red-600 text-white text-[10px] font-black rounded-full flex items-center justify-center shadow">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 text-xs sm:text-sm animate-bounce">
+    <span id="toastIcon" class="text-emerald-400 text-base">✨</span>
+    <span id="toastMessage" class="font-semibold">Action effectuée</span>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 1. SECTION BOUTIQUE NOCWISE BF                                            -->
+  <!-- ========================================================================= -->
+  <section id="section-store" class="max-w-6xl mx-auto px-4 py-6 w-full flex-1 space-y-6">
+
+    <!-- Search & Category Bar -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Smart Fuzzy Search Input -->
+      <div class="relative w-full sm:w-80">
+        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+        <input type="text" id="product-search" placeholder="Rechercher un article (même avec fautes)..." class="w-full pl-8 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none font-medium">
+        <button id="btn-clear-search" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500 text-xs hidden">
+          <i class="fa-solid fa-circle-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div id="category-pills" class="flex overflow-x-auto space-x-1.5 w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
+        <button data-cat="all" class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-emerald-700 text-white shadow-sm transition">
+          Tous les Rayons
+        </button>
+        <button data-cat="Solaire & Énergie" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
+          ⚡ Solaire & Énergie
+        </button>
+        <button data-cat="Cuisine & Maison" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
+          🍳 Cuisine & Maison
+        </button>
+        <button data-cat="Ambiance & Déco" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
+          🌸 Ambiance & Soirée
+        </button>
+        <button data-cat="Auto & Moto" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
+          🛵 Auto & Moto
+        </button>
+      </div>
+    </div>
+
+    <!-- Product Header -->
+    <div class="flex items-center justify-between pb-1 border-b border-slate-200">
+      <div>
+        <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center space-x-2">
+          <span>Articles en Vitrine</span>
+          <span id="product-count-badge" class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-0.5 rounded-full font-bold">0 article</span>
+        </h3>
+        <p class="text-xs text-slate-500">Paiement après test et vérification devant votre porte à Ouagadougou</p>
+      </div>
+      <div class="text-xs text-slate-400 font-semibold hidden sm:flex items-center gap-1">
+        <i class="fa-solid fa-shield-check text-emerald-600"></i> Transactions 100% Sécurisées
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID (Cases réelles) -->
+    <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+      <!-- Populated via JS -->
+    </div>
+
+    <!-- Empty search notice -->
+    <div id="empty-search-state" class="hidden p-12 text-center space-y-3 bg-white rounded-3xl border border-slate-200">
+      <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <h4 class="text-sm font-bold text-slate-800">Aucun produit trouvé</h4>
+      <p class="text-xs text-slate-500 max-w-sm mx-auto">Vérifiez la saisie ou changez de rayon pour afficher d'autres articles.</p>
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 2. SECTION JEUX : LA ROUE & LE CRASH (2 JEUX EXCLUSIFS CALIBRÉS)          -->
+  <!-- ========================================================================= -->
+  <section id="section-games" class="hidden max-w-6xl mx-auto px-4 py-6 w-full flex-1 space-y-6">
+    
+    <!-- Games Hero & 5-Videos-per-day Quota -->
+    <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-xl border border-emerald-600/40">
+      <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">Loisirs & Fidélité Nocwise BF</span>
+          <h2 class="text-2xl sm:text-3xl font-black mt-1">Gagnez vos Bons d'Achat en Jouant !</h2>
+          <p class="text-xs sm:text-sm text-emerald-100 max-w-xl">
+            Cumulez des points sur la Roue ou le Crash et convertissez-les en <strong class="text-amber-300">Bons de Réduction de 200 F à 5 000 FCFA</strong> utilisables sur la boutique.
+          </p>
+        </div>
+
+        <!-- Daily Video Quota Widget (5 vidéos = 600 pts = 30%) -->
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl text-right min-w-[200px]">
+          <div class="text-[10px] text-amber-300 uppercase font-bold">Vidéos Partenaires Quotidiennes</div>
+          <div class="text-base font-black text-white font-mono mt-0.5" id="videoQuotaDisplay">
+            5 / 5 Disponibles
+          </div>
+          <button id="btnWatchRewardedAdAction" class="mt-2 w-full py-1.5 bg-amber-400 hover:bg-amber-300 text-emerald-950 font-black rounded-xl text-xs transition shadow flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-play text-[10px]"></i>
+            <span>Regarder (+120 PTS)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 Games Switcher (Roue vs Crash) + Passerelle Bons -->
+    <div class="flex items-center space-x-2 overflow-x-auto pb-1 text-xs font-bold scrollbar-none">
+      <button id="btnTabWheel" class="game-selector-tab px-4 py-2 rounded-xl bg-amber-500 text-black font-extrabold transition flex items-center space-x-1.5 shadow">
+        <span>🎡</span> <span>Roue de la Fortune (x32)</span>
+      </button>
+      <button id="btnTabCrash" class="game-selector-tab px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-200 transition flex items-center space-x-1.5 border border-slate-300">
+        <span>🚀</span> <span>Crash Live 24/7 (Vol Continu)</span>
+        <span class="w-2 h-2 rounded-full bg-red-500 live-dot-anim"></span>
+      </button>
+      <button id="btnTabVouchers" class="game-selector-tab px-4 py-2 rounded-xl bg-emerald-700 text-white font-black transition flex items-center space-x-1.5 shadow">
+        <span>🎟️</span> <span>Convertir mes Points en Bons</span>
+      </button>
+      <button id="btnTabBuyVouchers" class="game-selector-tab px-4 py-2 rounded-xl bg-white text-emerald-800 hover:bg-slate-200 transition flex items-center space-x-1.5 border border-emerald-300">
+        <span>💳</span> <span>Acheter des Bons (Mobile Money)</span>
+      </button>
+    </div>
+
+    <!-- 1. JEU : LA ROUE DE LA FORTUNE -->
+    <div id="gameViewWheel" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+      <div class="lg:col-span-8 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col items-center justify-center min-h-[420px] relative overflow-hidden">
+        <div class="flex items-center justify-between w-full pb-3 border-b border-slate-100 text-xs">
+          <span class="text-emerald-700 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            <span>🎡</span> Roue Multiplicateurs Équitable (Taux de Succès > 50%)
+          </span>
+          <span class="text-slate-400 font-mono text-[11px]">Mise : 150 Points</span>
+        </div>
+
+        <div class="relative my-4 flex items-center justify-center">
+          <div class="absolute -top-3 z-20 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[20px] border-t-amber-500 drop-shadow-md"></div>
+          <canvas id="wheelCanvas" width="340" height="340" class="rounded-full shadow-xl border-4 border-slate-800 bg-slate-900"></canvas>
+          <div class="absolute z-10 w-14 h-14 rounded-full bg-gradient-to-tr from-amber-400 to-amber-300 border-2 border-slate-900 shadow-xl flex items-center justify-center text-xs font-black text-black">
+            NOCWISE
+          </div>
+        </div>
+
+        <div id="wheelStatusMessage" class="text-xs font-semibold text-slate-600 text-center mt-1">
+          Faites tourner la roue pour tenter de décrocher le x32 ou les multiplicateurs de points !
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-4 shadow-sm space-y-4">
+        <h4 class="text-xs font-bold uppercase text-slate-400 tracking-wider">Commandes du Tour</h4>
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+          <div class="text-[10px] text-slate-500 uppercase font-bold">Mise Fixe</div>
+          <div class="text-2xl font-black text-slate-800 font-mono mt-0.5">150 Points</div>
+        </div>
+
+        <button id="btnSpinWheelAction" class="w-full py-4 rounded-2xl font-extrabold text-sm tracking-wide uppercase transition bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 shadow-lg shadow-amber-400/20 active:scale-95 cursor-pointer">
+          🎡 TOURNER LA ROUE (150 PTS)
+        </button>
+
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-xs space-y-1.5 font-mono">
+          <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Paliers Équitables :</div>
+          <div class="flex justify-between text-red-500 font-semibold"><span>2x Segments x0</span> <span>Perdu</span></div>
+          <div class="flex justify-between text-slate-600"><span>3x Segments x1</span> <span>Remboursé (150 P)</span></div>
+          <div class="flex justify-between text-emerald-700 font-bold"><span>4x Segments x2</span> <span>Gain (+300 P)</span></div>
+          <div class="flex justify-between text-emerald-700 font-bold"><span>2x Segments x4</span> <span>Gain (+600 P)</span></div>
+          <div class="flex justify-between text-amber-600 font-black"><span>1x Segment x32</span> <span>JACKPOT (+4 800 P)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. JEU : LE CRASH 24/7 EN DIRECT CONTINU -->
+    <div id="gameViewCrash" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+      <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-xl flex flex-col justify-between min-h-[420px] relative overflow-hidden text-white">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800 z-20 text-xs">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500 live-dot-anim"></span>
+            <span class="font-bold uppercase text-[11px]">Vol Continu 24/7 en Temps Réel</span>
+          </div>
+          <div id="crashHistoryBadges" class="flex items-center space-x-1.5 overflow-x-auto text-[10px] font-mono font-bold">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <div class="my-auto py-10 text-center relative z-10 flex flex-col items-center justify-center">
+          <div id="crashCountdownBox" class="flex flex-col items-center">
+            <div class="text-xs uppercase font-bold text-slate-400 tracking-wider mb-2">Prochain décollage dans</div>
+            <div id="crashCountdownSec" class="text-5xl font-black text-amber-400 font-mono tracking-tight mb-3">5s</div>
+            <div class="w-48 bg-slate-800 rounded-full h-2 overflow-hidden border border-slate-700">
+              <div id="crashCountdownBar" class="bg-gradient-to-r from-amber-500 to-emerald-500 h-full w-full transition-all duration-100"></div>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-2">Placez votre mise avant la fin du décompte !</p>
+          </div>
+
+          <div id="crashFlightBox" class="hidden flex flex-col items-center">
+            <div class="text-6xl mb-3 plane-bob">✈️</div>
+            <div id="crashMultiplierText" class="text-6xl sm:text-7xl font-black text-amber-400 font-mono tracking-tight">1.00x</div>
+            <div class="text-xs font-semibold text-emerald-400 mt-2">L'avion vole en direct...</div>
+          </div>
+
+          <div id="crashExplodedBox" class="hidden flex flex-col items-center">
+            <div class="text-6xl mb-2 animate-bounce">💥</div>
+            <div id="crashFinalMultiplierText" class="text-5xl font-black text-red-500 font-mono tracking-tight">CRASHÉ À 2.45x</div>
+            <p class="text-xs text-slate-400 mt-1">Préparation du vol suivant...</p>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-800 pt-2 flex items-center justify-between text-[11px] text-slate-400 font-mono z-10">
+          <span>Vol officiel synchronisé en continu</span>
+          <span id="crashPlayerBadge" class="text-slate-400 font-bold">Spectateur (Pas de mise)</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-4 shadow-sm space-y-4">
+        <h4 class="text-xs font-bold uppercase text-slate-400 tracking-wider">Commandes de Vol</h4>
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+          <div class="text-[10px] text-slate-500 uppercase font-bold">Mise Tournoi</div>
+          <div class="text-2xl font-black text-slate-800 font-mono mt-0.5">200 Points</div>
+        </div>
+
+        <button id="btnCrashBetAction" class="w-full py-4 rounded-2xl font-extrabold text-sm tracking-wide uppercase transition bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 text-white shadow-lg active:scale-95 cursor-pointer">
+          🟢 PLACER LE PARI (200 PTS)
+        </button>
+
+        <button id="btnCrashCashoutAction" class="hidden w-full py-4 rounded-2xl font-extrabold text-sm tracking-wide uppercase transition bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 text-black shadow-lg active:scale-95 cursor-pointer animate-pulse">
+          💰 SAUTER ET ENCAISSER
+        </button>
+
+        <div id="crashSpectateBanner" class="hidden w-full py-3.5 rounded-2xl text-center bg-slate-100 text-slate-500 font-bold text-xs border border-slate-200">
+          👀 Vol en cours... Vous observez le vol
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PASSERELLE BONS DE RÉDUCTION (200 F à 5 000 FCFA) -->
+    <div id="gameViewVouchers" class="hidden space-y-5">
+      <div class="bg-gradient-to-r from-emerald-800 to-teal-800 rounded-3xl p-5 sm:p-6 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg">
+        <div>
+          <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full">Convertisseur Réel Nocwise BF</span>
+          <h3 class="text-xl font-black mt-1">Échangez vos Points contre de Vrais Bons d'Achat</h3>
+          <p class="text-xs text-emerald-100">Chaque bon débloqué est un vrai code coupon déductible immédiatement lors de votre commande !</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/20 text-center">
+          <span class="text-[10px] text-amber-300 font-bold uppercase block">Votre Solde Actuel</span>
+          <span id="exchangeBalanceDisplay" class="text-xl font-black text-white font-mono">1 200 PTS</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- 200 F -->
+        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">BON 200 FCFA</span>
+              <span class="text-xs font-mono font-bold text-slate-600">200 PTS</span>
+            </div>
+            <h4 class="font-bold text-slate-800 text-sm mt-1">Coupon Découverte</h4>
+            <p class="text-xs text-slate-500 mt-0.5 mb-3">Déductible immédiatement sur toute commande.</p>
+          </div>
+          <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-800 font-bold rounded-xl text-xs transition" data-amount="200" data-pts="200">
+            Obtenir pour 200 PTS
+          </button>
+        </div>
+
+        <!-- 500 F -->
+        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">BON 500 FCFA</span>
+              <span class="text-xs font-mono font-bold text-slate-600">500 PTS</span>
+            </div>
+            <h4 class="font-bold text-slate-800 text-sm mt-1">Coupon Privilège</h4>
+            <p class="text-xs text-slate-500 mt-0.5 mb-3">Idéal pour les accessoires et diffuseurs.</p>
+          </div>
+          <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-800 font-bold rounded-xl text-xs transition" data-amount="500" data-pts="500">
+            Obtenir pour 500 PTS
+          </button>
+        </div>
+
+        <!-- 1000 F -->
+        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">BON 1 000 FCFA</span>
+              <span class="text-xs font-mono font-bold text-slate-600">1 000 PTS</span>
+            </div>
+            <h4 class="font-bold text-slate-800 text-sm mt-1">Frais de Port Offerts</h4>
+            <p class="text-xs text-slate-500 mt-0.5 mb-3">Compense les frais de livraison à domicile.</p>
+          </div>
+          <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-800 font-bold rounded-xl text-xs transition" data-amount="1000" data-pts="1000">
+            Obtenir pour 1 000 PTS
+          </button>
+        </div>
+
+        <!-- 2000 F (OBJECTIF MAJEUR CALIBRÉ À +50% SUCCÈS) -->
+        <div class="bg-white border-2 border-amber-400 p-4 rounded-3xl shadow-md flex flex-col justify-between relative overflow-hidden">
+          <span class="absolute top-2 right-2 bg-amber-400 text-emerald-950 text-[9px] font-black uppercase px-2 py-0.5 rounded-full">
+            ⭐ OBJECTIF CLÉ (+50% RÉUSSITE)
+          </span>
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded">BON 2 000 FCFA</span>
+              <span class="text-xs font-mono font-bold text-amber-700">2 000 PTS</span>
+            </div>
+            <h4 class="font-bold text-slate-900 text-sm mt-1">Super Bon de Réduction VIP</h4>
+            <p class="text-xs text-slate-600 mt-0.5 mb-3">L'objectif principal calibré pour être atteint par la majorité des joueurs réguliers !</p>
+          </div>
+          <button class="btn-redeem-voucher w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow" data-amount="2000" data-pts="2000">
+            Obtenir pour 2 000 PTS (Recommandé)
+          </button>
+        </div>
+
+        <!-- 5000 F (RARE JACKPOT) -->
+        <div class="bg-white border border-purple-300 p-4 rounded-3xl shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-black text-purple-700 bg-purple-50 px-2 py-0.5 rounded">JACKPOT 5 000 FCFA</span>
+              <span class="text-xs font-mono font-bold text-purple-700">5 000 PTS</span>
+            </div>
+            <h4 class="font-bold text-slate-800 text-sm mt-1">Bon Suprême Légendaire</h4>
+            <p class="text-xs text-slate-500 mt-0.5 mb-3">Réduction rare réservée aux gagnants du x32 à la Roue !</p>
+          </div>
+          <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-purple-600 hover:text-white text-purple-800 font-bold rounded-xl text-xs transition" data-amount="5000" data-pts="5000">
+            Obtenir pour 5 000 PTS (Rare)
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Coupons List -->
+      <div class="bg-white border border-slate-200 p-5 rounded-3xl shadow-sm space-y-3">
+        <h4 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+          <span>🎟️</span> Vos Bons Débloqués Disponibles
+        </h4>
+        <div id="userVouchersVault" class="space-y-2">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. ACHAT DE BONS VIA MOBILE MONEY (Orange, Moov, Wave, Sank Money) -->
+    <div id="gameViewBuyVouchers" class="hidden space-y-5">
+      <div class="bg-gradient-to-r from-amber-500 to-amber-600 rounded-3xl p-5 sm:p-6 text-black shadow-md">
+        <span class="bg-black text-white text-[10px] font-black uppercase px-2 py-0.5 rounded-full">Achat de Bons Réduction</span>
+        <h3 class="text-xl font-black mt-1">Achetez vos Bons moins cher avec Mobile Money</h3>
+        <p class="text-xs text-black/80 font-medium">Bénéficiez immédiatement d'une valeur supérieure dans votre panier Nocwise BF en réglant via Moov, Orange, Wave ou Sank Money.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between space-y-3">
+          <div>
+            <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded">Économisez 500 F</span>
+            <h4 class="text-base font-black text-slate-900 mt-1">Bon de 2 000 FCFA</h4>
+            <p class="text-xs text-slate-500">Payez seulement 1 500 FCFA via Mobile Money pour obtenir un bon de 2 000 FCFA.</p>
+          </div>
+          <button class="btn-buy-mm-action w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow" data-val="2000" data-cost="1500">
+            Acheter à 1 500 FCFA
+          </button>
+        </div>
+
+        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between space-y-3">
+          <div>
+            <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded">Économisez 1 200 F</span>
+            <h4 class="text-base font-black text-slate-900 mt-1">Bon de 5 000 FCFA</h4>
+            <p class="text-xs text-slate-500">Payez seulement 3 800 FCFA via Mobile Money pour obtenir un bon de 5 000 FCFA.</p>
+          </div>
+          <button class="btn-buy-mm-action w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow" data-val="5000" data-cost="3800">
+            Acheter à 3 800 FCFA
+          </button>
+        </div>
+
+        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between space-y-3">
+          <div>
+            <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded">Économisez 2 500 F</span>
+            <h4 class="text-base font-black text-slate-900 mt-1">Bon de 10 000 FCFA</h4>
+            <p class="text-xs text-slate-500">Payez seulement 7 500 FCFA via Mobile Money pour débloquer un bon de 10 000 FCFA.</p>
+          </div>
+          <button class="btn-buy-mm-action w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow" data-val="10000" data-cost="7500">
+            Acheter à 7 500 FCFA
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL : REWARDED VIDEO AD (5 PAR JOUR MAX = 600 PTS = 30%)                -->
+  <!-- ========================================================================= -->
+  <div id="videoModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 text-center shadow-2xl relative">
+      <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-3 text-2xl animate-pulse">
+        ▶️
+      </div>
+      <h3 class="text-base font-bold text-slate-900 mb-1">Clip Publicitaire Partenaire</h3>
+      <p class="text-xs text-slate-500 mb-4">Gagnez +120 points tout en générant des revenus publicitaires pour Nocwise BF.</p>
+      
+      <div class="w-full bg-slate-100 rounded-full h-3 mb-2 overflow-hidden border border-slate-200">
+        <div id="videoProgressBar" class="bg-gradient-to-r from-amber-400 to-emerald-500 h-full w-0 transition-all duration-100"></div>
+      </div>
+      <div id="videoTimerText" class="text-xs font-mono text-slate-700 font-bold mb-4">Temps restant : 5s</div>
+
+      <button id="btnClaimVideoReward" disabled class="w-full py-3 bg-slate-100 text-slate-400 font-bold text-xs rounded-xl cursor-not-allowed transition">
+        Veuillez patienter...
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL : ACHAT DE BON VIA MOBILE MONEY                                     -->
+  <!-- ========================================================================= -->
+  <div id="mobileMoneyModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-5 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+        <h4 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+          <span>💳</span> Paiement Mobile Money Direct
+        </h4>
+        <button id="btnCloseMmModal" class="text-slate-400 hover:text-slate-600 text-lg font-bold">&times;</button>
+      </div>
+
+      <div class="space-y-3 text-xs mb-4">
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200">
+          <div class="text-[10px] text-slate-400 uppercase font-bold">Bon sélectionné :</div>
+          <div id="mmVoucherName" class="text-base font-black text-slate-900">Bon de 2 000 FCFA</div>
+          <div id="mmVoucherPrice" class="text-xs text-emerald-700 font-mono font-bold mt-0.5">Montant à régler : 1 500 FCFA</div>
+        </div>
+
+        <div>
+          <label class="block text-slate-600 mb-1 font-bold">Sélectionnez votre moyen de paiement :</label>
+          <div class="grid grid-cols-2 gap-2 text-center font-bold text-[11px]">
+            <label class="p-2 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:border-orange-500">
+              <input type="radio" name="mm_provider" value="Orange Money" checked class="mr-1"> Orange Money
+            </label>
+            <label class="p-2 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:border-blue-500">
+              <input type="radio" name="mm_provider" value="Moov Money" class="mr-1"> Moov Money
+            </label>
+            <label class="p-2 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:border-cyan-500">
+              <input type="radio" name="mm_provider" value="Wave" class="mr-1"> Wave
+            </label>
+            <label class="p-2 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:border-red-500">
+              <input type="radio" name="mm_provider" value="Sank Money" class="mr-1"> Sank Money
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-600 mb-1 font-bold">Votre Numéro de Téléphone :</label>
+          <input type="tel" id="mmSenderPhone" placeholder="Ex: 70 00 11 22" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-800 font-mono focus:border-emerald-500 focus:outline-none">
+        </div>
+      </div>
+
+      <button id="btnConfirmBuyVoucherMM" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black rounded-xl text-xs uppercase tracking-wider transition shadow-md">
+        Confirmer le transfert et recevoir le code
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL : PANIER MULTI-ARTICLES (AVEC OPTION CODE PROMO DÉDUCTIBLE)         -->
+  <!-- ========================================================================= -->
+  <div id="cartModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
+      <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
+        <h3 class="text-sm font-extrabold flex items-center space-x-2">
+          <i class="fa-solid fa-cart-shopping text-amber-400"></i>
+          <span>Mon Panier Nocwise BF</span>
+        </h3>
+        <button id="btnCloseCartModal" class="text-slate-400 hover:text-white text-lg">&times;</button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-4 text-xs flex-1">
+        <div id="cartItemsList" class="space-y-3 divide-y divide-slate-100">
+          <!-- Populated by JS -->
+        </div>
+
+        <div id="emptyCartView" class="hidden text-center py-8 space-y-2">
+          <i class="fa-solid fa-cart-arrow-down text-4xl text-slate-300"></i>
+          <p class="font-bold text-slate-500">Votre panier est vide</p>
+        </div>
+
+        <!-- ZONE CODE PROMO / BON DÉDUCTION BIEN VISIBLE DANS LE PANIER -->
+        <div id="cartCouponSection" class="p-3.5 bg-emerald-50/70 rounded-2xl border border-emerald-200 space-y-2">
+          <label class="block font-bold text-emerald-950 text-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-tag text-emerald-700"></i>
+            <span>Vous avez un Code Promo ou un Bon de Réduction ?</span>
+          </label>
+          <div class="flex space-x-2">
+            <input type="text" id="cartCouponInput" placeholder="Tapez votre code (ex: NW2000-J01-...)" class="uppercase flex-1 p-2.5 bg-white border border-emerald-300 rounded-xl font-mono font-bold text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            <button type="button" id="btnApplyCartCoupon" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl text-xs transition shadow">
+              Appliquer
+            </button>
+          </div>
+          <div id="cartCouponFeedback" class="text-[11px] font-bold hidden"></div>
+        </div>
+
+        <!-- Summary -->
+        <div id="cartSummaryBlock" class="bg-slate-100 p-4 rounded-2xl space-y-1.5 border border-slate-200 font-mono">
+          <div class="flex justify-between text-slate-600">
+            <span>Sous-total articles :</span>
+            <span id="cartSubtotalVal" class="font-bold text-slate-800">0 FCFA</span>
+          </div>
+          <div id="cartDiscountRow" class="flex justify-between text-emerald-700 font-bold hidden">
+            <span>Bon de réduction déduit :</span>
+            <span id="cartDiscountVal">-0 FCFA</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>Frais de livraison à domicile :</span>
+            <span id="cartDeliveryVal" class="font-bold text-slate-800">Gratuit</span>
+          </div>
+          <div class="flex justify-between text-base font-black text-slate-900 pt-2 border-t border-slate-300">
+            <span>TOTAL À LA LIVRAISON :</span>
+            <span id="cartTotalVal" class="text-emerald-700">0 FCFA</span>
+          </div>
+        </div>
+
+        <!-- Formulaire avec Clé de Sécurité 2FA Client Anti-Fraude -->
+        <form id="cartCheckoutForm" class="space-y-3 pt-1">
+          <p class="font-bold text-slate-800 text-xs">Vos Informations de Livraison à Ouaga :</p>
+          <input type="text" id="cartCustName" required placeholder="Votre Nom complet" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+          <input type="tel" id="cartCustPhone" required placeholder="Numéro WhatsApp (ex: 70 12 34 56)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+          <input type="text" id="cartCustCity" required placeholder="Quartier exact à Ouagadougou (avec repère)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+
+          <!-- 2FA Sécurité Client : Clé de vérification automatique -->
+          <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-[11px]">
+            <span class="text-slate-600 font-medium"><i class="fa-solid fa-shield-check text-emerald-600 mr-1"></i> Clé Sécurité Commande :</span>
+            <span id="cartClientSecurityToken" class="font-mono font-black text-slate-800 bg-white px-2 py-0.5 rounded border border-slate-300">SEC-9481</span>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg transition flex items-center justify-center space-x-2 pulse-glow">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>COMMANDER TOUT LE PANIER SUR WHATSAPP</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL : FICHE PRODUIT & COMMANDE EXPRESS (AVEC OPTION CODE PROMO)         -->
+  <!-- ========================================================================= -->
+  <div id="productDetailModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
+      <div class="bg-slate-900 text-white px-5 py-3.5 flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-shield-halved"></i> Paiement après vérification à la porte
+        </span>
+        <button id="btnCloseDetailModal" class="text-slate-400 hover:text-white text-lg">&times;</button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-4 text-xs">
+        <div class="flex space-x-3 items-center border-b border-slate-100 pb-3">
+          <div class="w-24 h-24 rounded-2xl bg-slate-50 border border-slate-200 overflow-hidden flex-shrink-0 flex items-center justify-center p-1">
+            <img id="detailModalImg" src="" alt="Produit" class="max-h-full max-w-full object-contain">
+          </div>
+          <div class="space-y-1">
+            <span id="detailModalCat" class="text-[10px] bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded font-bold uppercase">Solaire</span>
+            <span id="detailModalDeliveryBadge" class="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold inline-block ml-1">Livraison Gratuite</span>
+            <h3 id="detailModalTitle" class="font-black text-slate-900 text-sm leading-snug">Titre du Produit</h3>
+            <div class="flex items-baseline space-x-2">
+              <span id="detailModalPromoPrice" class="text-lg font-black text-emerald-700 font-mono">0 FCFA</span>
+              <span id="detailModalOldPrice" class="text-xs text-slate-400 line-through font-mono">0 FCFA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-slate-600 leading-relaxed" id="detailModalDesc">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <button id="btnAddToCartFromModal" class="py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-2xl transition flex items-center justify-center space-x-1.5 border border-slate-300">
+            <i class="fa-solid fa-cart-plus text-emerald-700"></i>
+            <span>Ajouter au Panier</span>
+          </button>
+          <button id="btnScrollToExpressForm" class="py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-2xl shadow-md transition flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-bolt text-amber-300"></i>
+            <span>Commander Direct</span>
+          </button>
+        </div>
+
+        <form id="expressOrderForm" class="space-y-3 pt-3 border-t border-slate-100">
+          <p class="font-black text-slate-900 text-xs">Commande Express Directe :</p>
+          
+          <!-- OPTION CODE PROMO BIEN VISIBLE LORS DE LA COMMANDE EXPRESS -->
+          <div class="p-3 bg-emerald-50/70 rounded-2xl border border-emerald-200 space-y-2">
+            <label class="block font-bold text-emerald-950 text-[11px] flex items-center gap-1.5">
+              <i class="fa-solid fa-tag text-emerald-700"></i>
+              <span>Appliquer un Code Promo ou Bon de Réduction :</span>
+            </label>
+            <div class="flex space-x-2">
+              <input type="text" id="expressCouponInput" placeholder="Ex: NW2000-J01-..." class="uppercase flex-1 p-2 bg-white border border-emerald-300 rounded-xl font-mono font-bold text-slate-900 text-xs focus:outline-none">
+              <button type="button" id="btnApplyExpressCoupon" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-xs transition">
+                Appliquer
+              </button>
+            </div>
+            <div id="expressCouponFeedback" class="text-[11px] font-bold hidden"></div>
+          </div>
+
+          <!-- Total recap -->
+          <div class="p-2.5 bg-slate-100 rounded-xl font-mono text-[11px] space-y-1">
+            <div class="flex justify-between text-slate-600">
+              <span>Prix Article :</span>
+              <span id="expressBasePriceVal" class="font-bold text-slate-800">0 FCFA</span>
+            </div>
+            <div id="expressDiscountRow" class="flex justify-between text-emerald-700 font-bold hidden">
+              <span>Bon Déduit :</span>
+              <span id="expressDiscountVal">-0 FCFA</span>
+            </div>
+            <div class="flex justify-between text-slate-600">
+              <span>Frais Livraison :</span>
+              <span id="expressDeliveryFeeVal" class="font-bold text-slate-800">Gratuit</span>
+            </div>
+            <div class="flex justify-between font-black text-xs text-slate-900 pt-1 border-t border-slate-200">
+              <span>TOTAL NET À PAYER :</span>
+              <span id="expressFinalTotalVal" class="text-emerald-700">0 FCFA</span>
+            </div>
+          </div>
+
+          <input type="text" id="expressCustName" required placeholder="Votre Nom et Prénom" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+          <input type="tel" id="expressCustPhone" required placeholder="Numéro WhatsApp (ex: 70 12 34 56)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+          <input type="text" id="expressCustCity" required placeholder="Quartier exact à Ouagadougou (avec repère)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+
+          <!-- 2FA Sécurité Client -->
+          <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-[11px]">
+            <span class="text-slate-600 font-medium"><i class="fa-solid fa-shield-check text-emerald-600 mr-1"></i> Clé Sécurité Client :</span>
+            <span id="expressClientSecurityToken" class="font-mono font-black text-slate-800 bg-white px-2 py-0.5 rounded border border-slate-300">SEC-5120</span>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg transition flex items-center justify-center space-x-2 pulse-glow">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>COMMANDER SUR WHATSAPP</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL : SÉCURITÉ 2FA PROPRIÉTAIRE (DOUBLE FACTEUR ULTRA-SOLIDE)           -->
+  <!-- ========================================================================= -->
+  <div id="adminPinModal" class="hidden fixed inset-0 bg-slate-900/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 text-center space-y-4 shadow-2xl">
+      <div class="w-14 h-14 bg-slate-900 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow">
+        <i class="fa-solid fa-fingerprint"></i>
+      </div>
+      <div>
+        <h4 class="font-black text-slate-900 text-sm">Authentification Double Facteur (2FA)</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">Espace confidentiel réservé au créateur de Nocwise BF.</p>
+      </div>
+
+      <form id="adminPinForm" class="space-y-3">
+        <div>
+          <label class="block text-left text-[10px] font-bold text-slate-600 mb-1">1er Facteur : Mot de Passe Maître</label>
+          <input type="password" id="adminPinInput" maxlength="32" placeholder="Mot de passe créateur" class="w-full p-2.5 bg-slate-100 border border-slate-200 rounded-xl text-center text-xs font-mono text-slate-900 focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div>
+          <label class="block text-left text-[10px] font-bold text-slate-600 mb-1">2ᵉ Facteur : Clé Dynamique 2FA</label>
+          <div class="flex space-x-2 items-center">
+            <input type="text" id="admin2faInput" maxlength="6" placeholder="Clé 6 chiffres" class="flex-1 p-2.5 bg-slate-100 border border-slate-200 rounded-xl text-center text-sm font-mono font-black text-slate-900 focus:outline-none">
+            <span id="current2faKeyDisplay" class="bg-slate-900 text-emerald-400 font-mono font-black text-xs px-2.5 py-2.5 rounded-xl border border-slate-700" title="Votre clé 2FA de session">948210</span>
+          </div>
+          <span class="text-[9px] text-slate-400 block text-left mt-0.5">Tapez la clé de session 2FA affichée à droite.</span>
+        </div>
+
+        <p id="pinErrorMsg" class="text-xs text-red-600 font-bold hidden">Identifiants incorrects. Accès refusé !</p>
+        
+        <div class="flex space-x-2 pt-1">
+          <button type="button" id="btnCancelPin" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs rounded-xl">Annuler</button>
+          <button type="submit" class="flex-1 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl">Connexion 2FA</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL : ESPACE CONFIDENTIEL DU CRÉATEUR & GÉNÉRATEUR DE 10 CODES UNIQUES  -->
+  <!-- ========================================================================= -->
+  <div id="adminMasterModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-2xl w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
+      <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
+        <h3 class="text-sm font-extrabold flex items-center space-x-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 live-dot-anim"></span>
+          <span>Espace Confidentiel du Créateur • Nocwise BF</span>
+        </h3>
+        <button id="btnCloseAdminMaster" class="text-slate-400 hover:text-white text-lg">&times;</button>
+      </div>
+
+      <div class="flex border-b border-slate-200 bg-slate-50 px-4 pt-2 space-x-2 text-xs font-bold">
+        <button id="tabAdmAddProduct" class="py-2 px-3 border-b-2 border-emerald-600 text-emerald-800">
+          <i class="fa-solid fa-plus-circle mr-1"></i> Ajouter Article (Photo)
+        </button>
+        <button id="tabAdmGenerator" class="py-2 px-3 text-slate-500 hover:text-slate-800">
+          <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Générateur 10 Bons Uniques
+        </button>
+        <button id="tabAdmManageProducts" class="py-2 px-3 text-slate-500 hover:text-slate-800">
+          <i class="fa-solid fa-trash-can mr-1"></i> Supprimer Articles
+        </button>
+        <button id="tabAdmSettings" class="py-2 px-3 text-slate-500 hover:text-slate-800">
+          <i class="fa-solid fa-sliders mr-1"></i> Paramètres
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-4 text-xs flex-1">
+        
+        <!-- 1. AJOUT DE PRODUIT AVEC IMPORT D'IMAGE LOCAL OU URL -->
+        <div id="viewAdmAddProduct" class="space-y-3.5">
+          <form id="newProductForm" class="space-y-3">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Nom du Produit *</label>
+              <input type="text" id="inpProdTitle" required placeholder="Ex: Diffuseur d'Arômes Flamme de Cheminée" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold focus:border-emerald-500 focus:outline-none">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Rayon / Catégorie *</label>
+                <select id="inpProdCat" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold">
+                  <option value="Solaire & Énergie">⚡ Solaire & Énergie</option>
+                  <option value="Cuisine & Maison">🍳 Cuisine & Maison</option>
+                  <option value="Ambiance & Déco">🌸 Ambiance & Soirée</option>
+                  <option value="Auto & Moto">🛵 Auto & Moto</option>
+                  <option value="Autre">📦 Autre Équipement</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Livraison :</label>
+                <select id="inpProdDeliveryType" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold">
+                  <option value="free">Livraison Gratuite</option>
+                  <option value="paid">Livraison Payante (Saisir frais)</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="customDeliveryFeeWrapper" class="hidden">
+              <label class="block font-semibold text-slate-700 mb-1">Frais de livraison à faire payer (FCFA) :</label>
+              <input type="number" id="inpProdDeliveryFee" min="0" step="500" value="1000" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold">
+            </div>
+
+            <!-- NOUVELLE INTERFACE D'IMPORTATION D'IMAGES -->
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2.5">
+              <span class="font-bold text-emerald-800 block text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-camera text-emerald-600"></i> Photo de l'article (Importer un fichier de votre appareil ou coller un lien)
+              </span>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="p-3 bg-white rounded-xl border border-dashed border-slate-300 text-center">
+                  <label class="block text-slate-700 text-[10px] font-bold mb-1">📁 Importer photo (Téléphone ou PC) :</label>
+                  <input type="file" id="inpProdFileInput" accept="image/*" class="text-[10px] text-slate-500 w-full file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:bg-emerald-700 file:text-white hover:file:bg-emerald-800 cursor-pointer">
+                </div>
+
+                <div class="p-3 bg-white rounded-xl border border-slate-200">
+                  <label class="block text-slate-700 text-[10px] font-bold mb-1">🔗 Ou coller un lien URL :</label>
+                  <input type="url" id="inpProdUrlInput" placeholder="https://..." class="w-full p-1.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs">
+                </div>
+              </div>
+
+              <!-- Preview -->
+              <div id="imagePreviewContainer" class="hidden flex items-center space-x-3 p-2 bg-emerald-50 rounded-xl border border-emerald-200">
+                <img id="imagePreviewImg" src="" alt="Aperçu" class="w-12 h-12 rounded-lg object-contain bg-white border border-slate-200">
+                <span class="text-xs text-emerald-800 font-bold">Photo prête à être publiée !</span>
+              </div>
+            </div>
+
+            <!-- PRIX MANUELS -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Prix Normal Barré (FCFA) *</label>
+                <input type="number" id="inpProdOldPrice" required step="500" placeholder="16000" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold">
+              </div>
+              <div>
+                <label class="block font-semibold text-slate-700 mb-1">Prix Promo Vente (FCFA) *</label>
+                <input type="number" id="inpProdPromoPrice" required step="500" placeholder="9500" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-emerald-700 font-black">
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Description / Points forts *</label>
+              <textarea id="inpProdDesc" required rows="2" placeholder="Description de l'article..." class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:border-emerald-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl shadow transition">
+              Publier l'Article dans Nocwise BF
+            </button>
+          </form>
+        </div>
+
+        <!-- 2. NOUVEAU GÉNÉRATEUR DE 10 CODES UNIQUES PAR PALIER DE PRIX (USAGE UNIQUE & JOURNALIER) -->
+        <div id="viewAdmGenerator" class="hidden space-y-4">
+          <div class="p-3.5 bg-amber-50 rounded-2xl border border-amber-200 text-amber-950 space-y-1">
+            <span class="font-extrabold text-xs flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i> Générateur de 10 Bons à Usage Unique</span>
+            <p class="text-[11px] text-amber-900 leading-relaxed">
+              Lorsqu'un client paie par Mobile Money pour acheter un bon, copiez un code ci-dessous et envoyez-lui sur WhatsApp. Dès qu'il l'utilise sur la boutique, le code est marqué <strong>UTILISÉ</strong> et personne d'autre ne peut s'en servir !
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label class="font-bold text-slate-700">Sélectionnez la valeur du bon :</label>
+            <select id="selectVoucherGenTier" class="p-2 bg-slate-50 border border-slate-200 rounded-xl font-black text-xs text-emerald-800">
+              <option value="200">Bon de 200 FCFA</option>
+              <option value="500">Bon de 500 FCFA</option>
+              <option value="1000">Bon de 1 000 FCFA</option>
+              <option value="2000" selected>Bon de 2 000 FCFA (Standard)</option>
+              <option value="5000">Bon de 5 000 FCFA (Jackpot)</option>
+            </select>
+          </div>
+
+          <button id="btnGenerate10Batch" class="w-full py-2.5 bg-slate-900 hover:bg-black text-white font-black rounded-xl text-xs transition shadow flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-arrows-rotate text-amber-400"></i>
+            <span>Générer un Nouveau Lot de 10 Bons du Jour</span>
+          </button>
+
+          <div id="generatedCodesList" class="space-y-1.5 divide-y divide-slate-100 max-h-72 overflow-y-auto">
+            <!-- Dynamically populated with 10 codes and copy buttons -->
+          </div>
+        </div>
+
+        <!-- 3. SUPPRESSION FACILE DES PRODUITS PAR L'ADMIN -->
+        <div id="viewAdmManageProducts" class="hidden space-y-3">
+          <p class="font-bold text-slate-700">Supprimez facilement les articles que vous ne vendez plus :</p>
+          <div id="adminProductCatalogList" class="space-y-2">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- 4. PARAMÈTRES BOUTIQUE & CODE SECRET -->
+        <div id="viewAdmSettings" class="hidden space-y-3">
+          <form id="adminConfigForm" class="space-y-3">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Nom de la Boutique</label>
+              <input type="text" id="inpConfigBrandName" required value="Nocwise BF" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold">
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Numéro WhatsApp pour les Commandes (226XXXXXXXX)</label>
+              <input type="tel" id="inpConfigPhone" required placeholder="22670000000" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold">
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">Code Secret Propriétaire (Lettres, chiffres, @, # acceptés)</label>
+              <input type="text" id="inpConfigAdminPin" value="4493@wise#" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-mono font-bold">
+            </div>
+
+            <button type="submit" class="w-full py-2.5 bg-slate-900 text-white font-bold rounded-xl hover:bg-black transition">
+              Enregistrer les Paramètres
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC COMPLET -->
+  <script>
+    const STORAGE_KEY = 'nocwise_refined_v3_secure';
+
+    const defaultProducts = [
+      {
+        id: "p-1",
+        title: "Ventilateur Solaire Rechargeable 16\" avec Panneau",
+        category: "Solaire & Énergie",
+        oldPrice: 38000,
+        promoPrice: 25000,
+        deliveryType: "free",
+        deliveryFee: 0,
+        image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+        badge: "-35% PROMO",
+        rating: "4.9",
+        description: "Batterie Lithium longue durée (8 à 12h d'autonomie). Panneau solaire inclus pour recharge gratuite. Port USB pour charger vos téléphones pendant les coupures."
+      },
+      {
+        id: "p-2",
+        title: "Diffuseur d'Arômes Effet Flamme de Cheminée & Humidificateur",
+        category: "Ambiance & Déco",
+        oldPrice: 16000,
+        promoPrice: 9500,
+        deliveryType: "free",
+        deliveryFee: 0,
+        image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+        badge: "TOP TENDANCE",
+        rating: "4.9",
+        description: "Vapeur éclairée par LED créant l'effet chaleureux d'un feu de bois. Humidifie l'air sec de l'harmattan et parfume durablement toute la pièce."
+      },
+      {
+        id: "p-3",
+        title: "Mini-Mixeur Broyeur Inox 2 en 1 Épices & Viande",
+        category: "Cuisine & Maison",
+        oldPrice: 22000,
+        promoPrice: 15000,
+        deliveryType: "paid",
+        deliveryFee: 1000,
+        image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=800&q=80",
+        badge: "ROBUSTE",
+        rating: "4.8",
+        description: "Moteur puissant en cuivre pur. Lames tranchantes en acier inoxydable. Broie les piments, soumbala et viandes dures en 15 secondes."
+      },
+      {
+        id: "p-4",
+        title: "Support Téléphone Étanche & Anti-Choc pour Moto",
+        category: "Auto & Moto",
+        oldPrice: 12000,
+        promoPrice: 7500,
+        deliveryType: "free",
+        deliveryFee: 0,
+        image: "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=800&q=80",
+        badge: "POPULAIRE",
+        rating: "4.9",
+        description: "Protection totale contre la pluie, la poussière et les vibrations de Ouaga. Écran tactile réactif et fixation solide sur guidon."
+      }
+    ];
+
+    let state = {
+      products: defaultProducts,
+      points: 1200,
+      userVouchers: [],
+      generatedOneTimeCoupons: [], // Generated single-use vouchers
+      activeCoupon: null,
+      cart: [],
+      selectedProduct: null,
+      currentCategory: 'all',
+      brandName: 'Nocwise BF',
+      whatsappPhone: '22670000000',
+      adminPin: '4493@wise#',
+      dailyVideosWatched: 0,
+      dailyVideoDate: new Date().toISOString().split('T')[0]
+    };
+
+    let session2FAKey = '948210';
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          state = { ...state, ...JSON.parse(raw) };
+        }
+      } catch(e) {}
+
+      const today = new Date().toISOString().split('T')[0];
+      if (state.dailyVideoDate !== today) {
+        state.dailyVideoDate = today;
+        state.dailyVideosWatched = 0;
+      }
+
+      // Generate dynamic 2FA session code
+      session2FAKey = String(Math.floor(100000 + Math.random() * 900000));
+      document.getElementById('current2faKeyDisplay').textContent = session2FAKey;
+
+      applyUI();
+      updateCartBadge();
+      ensureInitialCouponBatches();
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch(e) {}
+    }
+
+    function formatMoney(amount) {
+      return Number(amount).toLocaleString('fr-FR') + ' FCFA';
+    }
+
+    function showToast(msg, icon = '✨') {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastIcon').textContent = icon;
+      document.getElementById('toastMessage').textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => { toast.classList.add('hidden'); }, 3500);
+    }
+
+    function applyUI() {
+      document.getElementById('topPointsDisplay').textContent = state.points.toLocaleString('fr-FR') + ' PTS';
+      document.getElementById('exchangeBalanceDisplay').textContent = state.points.toLocaleString('fr-FR') + ' PTS';
+      
+      const left = Math.max(0, 5 - state.dailyVideosWatched);
+      document.getElementById('videoQuotaDisplay').textContent = `${left} / 5 Disponibles`;
+
+      const cleanPhone = state.whatsappPhone.replace(/[^0-9]/g, '');
+      const fullPhone = cleanPhone.startsWith('226') ? cleanPhone : `226${cleanPhone}`;
+      document.getElementById('btn-header-whatsapp').href = `https://wa.me/${fullPhone}?text=Bonjour%20Nocwise%20BF,%20j'ai%20une%20question`;
+    }
+
+    // =========================================================================
+    // DÉCLENCHEUR SECRET DU CRÉATEUR (TRIPLE CLIC SUR LE LOGO OU HASH #admin)
+    // =========================================================================
+    let logoClickCount = 0;
+    let logoClickTimer = null;
+
+    document.getElementById('secretAdminTriggerLogo').addEventListener('click', () => {
+      logoClickCount++;
+      clearTimeout(logoClickTimer);
+      logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 900);
+
+      if (logoClickCount >= 3) {
+        logoClickCount = 0;
+        openAdminAuthModal();
+      }
+    });
+
+    // Support secret URL hash #admin
+    if (window.location.hash === '#admin') {
+      setTimeout(openAdminAuthModal, 500);
+    }
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#admin') openAdminAuthModal();
+    });
+
+    // Keyboard shortcut Ctrl+Shift+A
+    window.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        openAdminAuthModal();
+      }
+    });
+
+    function openAdminAuthModal() {
+      session2FAKey = String(Math.floor(100000 + Math.random() * 900000));
+      document.getElementById('current2faKeyDisplay').textContent = session2FAKey;
+      document.getElementById('adminPinInput').value = '';
+      document.getElementById('admin2faInput').value = '';
+      document.getElementById('pinErrorMsg').classList.add('hidden');
+      document.getElementById('adminPinModal').classList.remove('hidden');
+    }
+
+    document.getElementById('btnCancelPin').addEventListener('click', () => {
+      document.getElementById('adminPinModal').classList.add('hidden');
+    });
+
+    document.getElementById('adminPinForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const enteredPass = document.getElementById('adminPinInput').value.trim();
+      const entered2FA = document.getElementById('admin2faInput').value.trim();
+
+      if (enteredPass === state.adminPin && entered2FA === session2FAKey) {
+        document.getElementById('adminPinModal').classList.add('hidden');
+        renderAdminCatalog();
+        renderGeneratedCodes();
+        document.getElementById('adminMasterModal').classList.remove('hidden');
+        showToast('Espace Propriétaire 2FA Déverrouillé avec Succès', '🛡️');
+      } else {
+        document.getElementById('pinErrorMsg').classList.remove('hidden');
+      }
+    });
+
+    document.getElementById('btnCloseAdminMaster').addEventListener('click', () => {
+      document.getElementById('adminMasterModal').classList.add('hidden');
+    });
+
+    // =========================================================================
+    // GÉNÉRATEUR DE 10 CODES UNIQUES PAR PALIER (USAGE UNIQUE ET JOURNALIER)
+    // =========================================================================
+    function ensureInitialCouponBatches() {
+      if (!state.generatedOneTimeCoupons || state.generatedOneTimeCoupons.length === 0) {
+        generateBatchOf10(2000);
+      }
+    }
+
+    function generateBatchOf10(amount) {
+      const today = new Date().toISOString().split('T')[0];
+      const todayShort = today.replace(/-/g, '').slice(4); // e.g. 1101
+      
+      for (let i = 1; i <= 10; i++) {
+        const randPart = Math.floor(1000 + Math.random() * 9000);
+        const code = `NW${amount}-J${todayShort}-${randPart}`;
+        state.generatedOneTimeCoupons.unshift({
+          code: code,
+          amount: amount,
+          dateCreated: today,
+          used: false,
+          usedAt: null
+        });
+      }
+      saveState();
+    }
+
+    function renderGeneratedCodes() {
+      const selectedTier = parseInt(document.getElementById('selectVoucherGenTier').value, 10);
+      const listContainer = document.getElementById('generatedCodesList');
+      listContainer.innerHTML = '';
+
+      const tierCodes = state.generatedOneTimeCoupons.filter(c => c.amount === selectedTier).slice(0, 20);
+
+      if (tierCodes.length === 0) {
+        listContainer.innerHTML = '<p class="text-xs text-slate-400 italic py-2">Aucun code généré pour ce palier. Cliquez sur le bouton noir ci-dessus pour générer vos 10 codes du jour !</p>';
+        return;
+      }
+
+      tierCodes.forEach(item => {
+        const row = document.createElement('div');
+        row.className = `flex items-center justify-between p-2 rounded-xl text-xs ${item.used ? 'bg-slate-100 opacity-60' : 'bg-emerald-50/70 border border-emerald-200'}`;
+        row.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <span class="font-mono font-black ${item.used ? 'line-through text-slate-400' : 'text-slate-900'}">${item.code}</span>
+            <span class="text-[10px] font-bold ${item.used ? 'bg-slate-300 text-slate-700' : 'bg-emerald-600 text-white'} px-1.5 py-0.2 rounded">
+              ${item.used ? 'DÉJÀ UTILISÉ' : 'DISPONIBLE'}
+            </span>
+          </div>
+          <div>
+            ${!item.used ? `
+              <button data-code="${item.code}" class="btn-copy-one-time-code px-2 py-1 bg-slate-900 hover:bg-black text-amber-300 rounded-lg text-[10px] font-bold transition flex items-center gap-1">
+                <i class="fa-solid fa-copy"></i> Copier
+              </button>
+            ` : `<span class="text-[10px] text-slate-400 italic">Utilisé le ${item.usedAt || 'J-1'}</span>`}
+          </div>
+        `;
+        listContainer.appendChild(row);
+      });
+
+      document.querySelectorAll('.btn-copy-one-time-code').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const code = btn.getAttribute('data-code');
+          navigator.clipboard.writeText(code).then(() => {
+            showToast(`Code ${code} copié ! Prêt à être envoyé au client sur WhatsApp.`, '📋');
+          }).catch(() => {
+            showToast(`Code : ${code}`, '📋');
+          });
+        });
+      });
+    }
+
+    document.getElementById('selectVoucherGenTier').addEventListener('change', renderGeneratedCodes);
+    document.getElementById('btnGenerate10Batch').addEventListener('click', () => {
+      const tier = parseInt(document.getElementById('selectVoucherGenTier').value, 10);
+      generateBatchOf10(tier);
+      renderGeneratedCodes();
+      showToast(`10 nouveaux codes de ${formatMoney(tier)} générés pour aujourd'hui !`, '✨');
+    });
+
+    // =========================================================================
+    // VÉRIFICATION ET APPLICATION DES CODES PROMO (USAGE UNIQUE STRICT)
+    // =========================================================================
+    function checkAndApplyCoupon(codeStr, isCart = true) {
+      const cleanCode = (codeStr || '').trim().toUpperCase();
+      const feedback = document.getElementById(isCart ? 'cartCouponFeedback' : 'expressCouponFeedback');
+      feedback.classList.remove('hidden');
+
+      // 1. Search in One-Time Generated Coupons (from creator generator)
+      const oneTimeMatch = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
+      if (oneTimeMatch) {
+        if (oneTimeMatch.used) {
+          feedback.className = 'text-[11px] font-bold text-red-600';
+          feedback.textContent = "❌ Ce bon de réduction a DÉJÀ ÉTÉ UTILISÉ et n'est plus valable !";
+          return null;
+        }
+        feedback.className = 'text-[11px] font-bold text-emerald-700';
+        feedback.textContent = `✅ Bon Nocwise de ${formatMoney(oneTimeMatch.amount)} validé avec succès !`;
+        return { code: oneTimeMatch.code, amount: oneTimeMatch.amount, isOneTime: true };
+      }
+
+      // 2. Search in user game earned vouchers
+      const earnedMatch = state.userVouchers.find(v => v.code.toUpperCase() === cleanCode);
+      if (earnedMatch) {
+        feedback.className = 'text-[11px] font-bold text-emerald-700';
+        feedback.textContent = `✅ Bon de fidélité jeu de ${formatMoney(earnedMatch.amount)} validé !`;
+        return { code: earnedMatch.code, amount: earnedMatch.amount, isOneTime: false };
+      }
+
+      feedback.className = 'text-[11px] font-bold text-red-600';
+      feedback.textContent = '❌ Code promo ou bon de réduction invalide !';
+      return null;
+    }
+
+    function markCouponAsUsed(codeStr) {
+      const cleanCode = (codeStr || '').trim().toUpperCase();
+      const match = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
+      if (match) {
+        match.used = true;
+        match.usedAt = new Date().toLocaleDateString('fr-FR') + ' à ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5);
+        saveState();
+      }
+      state.userVouchers = state.userVouchers.filter(v => v.code.toUpperCase() !== cleanCode);
+      saveState();
+    }
+
+    // =========================================================================
+    // FUZZY SEARCH (Tolérance aux fautes d'orthographe)
+    // =========================================================================
+    function cleanStr(s) {
+      return (s || '').toLowerCase()
+        .normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .replace(/[^a-z0-9]/g, '');
+    }
+
+    function levenshtein(a, b) {
+      const m = [];
+      for (let i = 0; i <= b.length; i++) m[i] = [i];
+      for (let j = 0; j <= a.length; j++) m[0][j] = j;
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          if (b.charAt(i - 1) === a.charAt(j - 1)) m[i][j] = m[i - 1][j - 1];
+          else m[i][j] = Math.min(m[i - 1][j - 1] + 1, m[i][j - 1] + 1, m[i - 1][j] + 1);
+        }
+      }
+      return m[b.length][a.length];
+    }
+
+    function fuzzyMatch(query, prod) {
+      if (!query) return true;
+      const cleanQ = cleanStr(query);
+      if (!cleanQ) return true;
+      const target = cleanStr(prod.title + ' ' + prod.category + ' ' + prod.description);
+      if (target.includes(cleanQ)) return true;
+
+      const words = (prod.title + ' ' + prod.category).split(/\s+/);
+      for (const w of words) {
+        const cw = cleanStr(w);
+        if (cw.length < 3) continue;
+        if (cw.includes(cleanQ) || cleanQ.includes(cw)) return true;
+        const maxDist = cleanQ.length <= 4 ? 1 : 2;
+        if (levenshtein(cleanQ, cw) <= maxDist) return true;
+      }
+      return false;
+    }
+
+    // Render Store Products
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      const emptyState = document.getElementById('empty-search-state');
+      const searchInput = document.getElementById('product-search');
+      const q = searchInput.value.trim();
+      document.getElementById('btn-clear-search').classList.toggle('hidden', q.length === 0);
+
+      grid.innerHTML = '';
+      const filtered = state.products.filter(p => {
+        const matchCat = (state.currentCategory === 'all') || (p.category === state.currentCategory);
+        const matchQ = fuzzyMatch(q, p);
+        return matchCat && matchQ;
+      });
+
+      document.getElementById('product-count-badge').textContent = `${filtered.length} article${filtered.length > 1 ? 's' : ''}`;
+
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      filtered.forEach(p => {
+        const isFree = p.deliveryType === 'free' || !p.deliveryFee;
+        const delText = isFree ? 'Livraison Gratuite' : `Livraison : ${formatMoney(p.deliveryFee)}`;
+        const delClass = isFree ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800';
+
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1';
+        card.innerHTML = `
+          <div>
+            <div class="relative h-44 sm:h-52 bg-slate-50 p-3 flex items-center justify-center overflow-hidden border-b border-slate-100 cursor-pointer prod-trigger" data-id="${p.id}">
+              <img src="${p.image}" alt="${p.title}" class="max-h-full max-w-full object-contain transition duration-300 hover:scale-105">
+              <span class="absolute top-2.5 left-2.5 bg-red-600 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded-full shadow">
+                ${p.badge || 'PROMO'}
+              </span>
+              <span class="absolute bottom-2.5 left-2.5 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm ${delClass}">
+                <i class="fa-solid fa-truck-fast mr-0.5"></i> ${delText}
+              </span>
+            </div>
+
+            <div class="p-3.5 sm:p-4 space-y-1.5">
+              <div class="flex items-center justify-between text-[10px]">
+                <span class="font-extrabold text-emerald-800 uppercase tracking-wider bg-emerald-50 px-2 py-0.5 rounded-md">
+                  ${p.category}
+                </span>
+                <span class="text-amber-500 font-bold flex items-center">
+                  <i class="fa-solid fa-star mr-0.5"></i> ${p.rating || '4.9'}
+                </span>
+              </div>
+
+              <h4 class="font-black text-slate-900 text-xs sm:text-sm line-clamp-2 leading-snug cursor-pointer prod-trigger" data-id="${p.id}">
+                ${p.title}
+              </h4>
+
+              <div class="pt-1">
+                <span class="text-[10px] text-slate-400 line-through block font-semibold">${formatMoney(p.oldPrice)}</span>
+                <span class="text-base sm:text-lg font-black text-emerald-700">${formatMoney(p.promoPrice)}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 sm:p-4 pt-0 grid grid-cols-2 gap-1.5">
+            <button data-id="${p.id}" class="btn-add-cart-card py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs transition flex items-center justify-center space-x-1 border border-slate-200">
+              <i class="fa-solid fa-cart-plus text-emerald-700"></i>
+              <span>Panier</span>
+            </button>
+            <button data-id="${p.id}" class="btn-order-card py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-xs shadow-md transition flex items-center justify-center space-x-1 active:scale-95">
+              <span>Commander</span>
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      document.querySelectorAll('.prod-trigger, .btn-order-card').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = el.getAttribute('data-id');
+          const p = state.products.find(x => x.id === id);
+          if (p) openProductModal(p);
+        });
+      });
+
+      document.querySelectorAll('.btn-add-cart-card').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const p = state.products.find(x => x.id === b.getAttribute('data-id'));
+          if (p) {
+            addToCart(p);
+            showToast(`Ajouté au panier : ${p.title.split(' ')[0]}...`, '🛒');
+          }
+        });
+      });
+    }
+
+    function deleteProduct(id) {
+      if (state.products.length <= 1) {
+        showToast('Conservez au moins un article dans la boutique', '⚠️');
+        return;
+      }
+      state.products = state.products.filter(p => p.id !== id);
+      saveState();
+      renderProducts();
+      renderAdminCatalog();
+      showToast('Article supprimé de la boutique', '🗑️');
+    }
+
+    function openProductModal(p) {
+      state.selectedProduct = p;
+      document.getElementById('detailModalImg').src = p.image;
+      document.getElementById('detailModalCat').textContent = p.category;
+      document.getElementById('detailModalTitle').textContent = p.title;
+      document.getElementById('detailModalPromoPrice').textContent = formatMoney(p.promoPrice);
+      document.getElementById('detailModalOldPrice').textContent = formatMoney(p.oldPrice);
+      document.getElementById('detailModalDesc').textContent = p.description;
+
+      const isFree = p.deliveryType === 'free' || !p.deliveryFee;
+      const b = document.getElementById('detailModalDeliveryBadge');
+      b.textContent = isFree ? 'Livraison Gratuite' : `Frais Livraison : ${formatMoney(p.deliveryFee)}`;
+      b.className = isFree ? 'text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold inline-block ml-1' : 'text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold inline-block ml-1';
+
+      // Reset coupon calculation for express
+      expressCurrentDiscount = 0;
+      expressCurrentCouponCode = '';
+      document.getElementById('expressCouponInput').value = '';
+      document.getElementById('expressCouponFeedback').classList.add('hidden');
+      updateExpressFinancials();
+
+      // Generate random 2FA client token
+      document.getElementById('expressClientSecurityToken').textContent = 'SEC-' + Math.floor(1000 + Math.random() * 9000);
+
+      document.getElementById('productDetailModal').classList.remove('hidden');
+    }
+
+    let expressCurrentDiscount = 0;
+    let expressCurrentCouponCode = '';
+
+    function updateExpressFinancials() {
+      if (!state.selectedProduct) return;
+      const p = state.selectedProduct;
+      const delivery = p.deliveryType === 'paid' ? (p.deliveryFee || 1000) : 0;
+      const finalTot = Math.max(0, p.promoPrice - expressCurrentDiscount) + delivery;
+
+      document.getElementById('expressBasePriceVal').textContent = formatMoney(p.promoPrice);
+      document.getElementById('expressDeliveryFeeVal').textContent = delivery > 0 ? formatMoney(delivery) : 'Gratuit';
+      document.getElementById('expressFinalTotalVal').textContent = formatMoney(finalTot);
+
+      const discountRow = document.getElementById('expressDiscountRow');
+      if (expressCurrentDiscount > 0) {
+        discountRow.classList.remove('hidden');
+        document.getElementById('expressDiscountVal').textContent = `-${formatMoney(expressCurrentDiscount)}`;
+      } else {
+        discountRow.classList.add('hidden');
+      }
+    }
+
+    document.getElementById('btnApplyExpressCoupon').addEventListener('click', () => {
+      const code = document.getElementById('expressCouponInput').value;
+      const valid = checkAndApplyCoupon(code, false);
+      if (valid) {
+        expressCurrentDiscount = valid.amount;
+        expressCurrentCouponCode = valid.code;
+        updateExpressFinancials();
+        showToast(`Bon appliqué : -${formatMoney(valid.amount)}`, '🎟️');
+      } else {
+        expressCurrentDiscount = 0;
+        expressCurrentCouponCode = '';
+        updateExpressFinancials();
+      }
+    });
+
+    document.getElementById('btnCloseDetailModal').addEventListener('click', () => {
+      document.getElementById('productDetailModal').classList.add('hidden');
+    });
+
+    document.getElementById('btnAddToCartFromModal').addEventListener('click', () => {
+      if (state.selectedProduct) {
+        addToCart(state.selectedProduct);
+        document.getElementById('productDetailModal').classList.add('hidden');
+        showToast('Article ajouté à votre panier !', '🛒');
+      }
+    });
+
+    document.getElementById('btnScrollToExpressForm').addEventListener('click', () => {
+      document.getElementById('expressOrderForm').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Cart logic
+    function addToCart(product, quantity = 1) {
+      const existing = state.cart.find(it => it.productId === product.id);
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        state.cart.push({
+          productId: product.id,
+          title: product.title,
+          price: product.promoPrice,
+          image: product.image,
+          deliveryType: product.deliveryType,
+          deliveryFee: product.deliveryFee || 0,
+          quantity: quantity
+        });
+      }
+      saveState();
+      updateCartBadge();
+    }
+
+    function updateCartBadge() {
+      const count = state.cart.reduce((s, it) => s + it.quantity, 0);
+      document.getElementById('cart-badge').textContent = count;
+    }
+
+    function renderCartModal() {
+      const list = document.getElementById('cartItemsList');
+      const emptyView = document.getElementById('emptyCartView');
+      const summaryBlock = document.getElementById('cartSummaryBlock');
+      const couponSec = document.getElementById('cartCouponSection');
+      const form = document.getElementById('cartCheckoutForm');
+
+      list.innerHTML = '';
+      if (state.cart.length === 0) {
+        emptyView.classList.remove('hidden');
+        summaryBlock.classList.add('hidden');
+        couponSec.classList.add('hidden');
+        form.classList.add('hidden');
+        return;
+      }
+
+      emptyView.classList.add('hidden');
+      summaryBlock.classList.remove('hidden');
+      couponSec.classList.remove('hidden');
+      form.classList.remove('hidden');
+
+      let subtotal = 0;
+      let maxDel = 0;
+
+      state.cart.forEach(item => {
+        const itemTot = item.price * item.quantity;
+        subtotal += itemTot;
+        if (item.deliveryType === 'paid' && item.deliveryFee > maxDel) maxDel = item.deliveryFee;
+
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between py-2.5';
+        row.innerHTML = `
+          <div class="flex items-center space-x-2.5 flex-1 pr-2">
+            <img src="${item.image}" alt="${item.title}" class="w-12 h-12 rounded-xl object-contain bg-slate-50 border border-slate-200 p-0.5">
+            <div>
+              <h5 class="font-bold text-slate-800 text-xs line-clamp-1">${item.title}</h5>
+              <span class="text-emerald-700 font-extrabold text-[11px]">${formatMoney(item.price)}</span>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="font-bold text-xs">x${item.quantity}</span>
+            <button data-id="${item.productId}" class="btn-del-cart text-slate-300 hover:text-red-500 p-1">
+              <i class="fa-solid fa-trash-can text-xs"></i>
+            </button>
+          </div>
+        `;
+        list.appendChild(row);
+      });
+
+      document.querySelectorAll('.btn-del-cart').forEach(b => {
+        b.addEventListener('click', () => {
+          const id = b.getAttribute('data-id');
+          state.cart = state.cart.filter(x => x.productId !== id);
+          saveState();
+          updateCartBadge();
+          renderCartModal();
+        });
+      });
+
+      let discount = state.activeCoupon ? state.activeCoupon.amount : 0;
+      if (discount > subtotal) discount = subtotal;
+
+      if (discount > 0) {
+        document.getElementById('cartDiscountRow').classList.remove('hidden');
+        document.getElementById('cartDiscountVal').textContent = `-${formatMoney(discount)}`;
+      } else {
+        document.getElementById('cartDiscountRow').classList.add('hidden');
+      }
+
+      const total = (subtotal - discount) + maxDel;
+      document.getElementById('cartSubtotalVal').textContent = formatMoney(subtotal);
+      document.getElementById('cartDeliveryVal').textContent = maxDel > 0 ? formatMoney(maxDel) : 'Gratuit';
+      document.getElementById('cartTotalVal').textContent = formatMoney(total);
+
+      // Random 2FA Token for Cart
+      document.getElementById('cartClientSecurityToken').textContent = 'SEC-' + Math.floor(1000 + Math.random() * 9000);
+    }
+
+    document.getElementById('btn-open-cart').addEventListener('click', () => {
+      renderCartModal();
+      document.getElementById('cartModal').classList.remove('hidden');
+    });
+    document.getElementById('btnCloseCartModal').addEventListener('click', () => {
+      document.getElementById('cartModal').classList.add('hidden');
+    });
+
+    document.getElementById('btnApplyCartCoupon').addEventListener('click', () => {
+      const code = document.getElementById('cartCouponInput').value;
+      const valid = checkAndApplyCoupon(code, true);
+      if (valid) {
+        state.activeCoupon = valid;
+        renderCartModal();
+        showToast(`Bon appliqué : -${formatMoney(valid.amount)}`, '🎟️');
+      } else {
+        state.activeCoupon = null;
+        renderCartModal();
+      }
+    });
+
+    // Orders submit
+    document.getElementById('expressOrderForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!state.selectedProduct) return;
+      const p = state.selectedProduct;
+      const name = document.getElementById('expressCustName').value.trim();
+      const phone = document.getElementById('expressCustPhone').value.trim();
+      const city = document.getElementById('expressCustCity').value.trim();
+      const secToken = document.getElementById('expressClientSecurityToken').textContent;
+      const deliveryFee = p.deliveryType === 'paid' ? (p.deliveryFee || 1000) : 0;
+      const total = Math.max(0, p.promoPrice - expressCurrentDiscount) + deliveryFee;
+
+      const waMsg = encodeURIComponent(
+        `*NOUVELLE COMMANDE DIRECTE - ${state.brandName}*
+` +
+        `--------------------------------
+` +
+        `📦 *Article :* ${p.title}
+` +
+        `💵 *Prix :* ${formatMoney(p.promoPrice)}
+` +
+        (expressCurrentDiscount > 0 ? `🎟️ *Bon Déduit :* -${formatMoney(expressCurrentDiscount)} (${expressCurrentCouponCode})
+` : '') +
+        `🛵 *Livraison :* ${deliveryFee > 0 ? formatMoney(deliveryFee) : 'Gratuit'}
+` +
+        `💰 *TOTAL À LA LIVRAISON :* ${formatMoney(total)}
+` +
+        `--------------------------------
+` +
+        `👤 *Client :* ${name} | Tél : ${phone}
+` +
+        `📍 *Lieu :* ${city}
+` +
+        `🛡️ *Clé Vérif 2FA :* ${secToken}
+` +
+        `🛡️ *Règlement :* Paiement Cash ou Mobile Money à la Livraison`
+      );
+
+      // Burn coupon as used
+      if (expressCurrentCouponCode) markCouponAsUsed(expressCurrentCouponCode);
+
+      const raw = state.whatsappPhone.replace(/[^0-9]/g, '');
+      const full = raw.startsWith('226') ? raw : `226${raw}`;
+      document.getElementById('productDetailModal').classList.add('hidden');
+      document.getElementById('expressOrderForm').reset();
+      window.open(`https://wa.me/${full}?text=${waMsg}`, '_blank');
+    });
+
+    document.getElementById('cartCheckoutForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (state.cart.length === 0) return;
+      const name = document.getElementById('cartCustName').value.trim();
+      const phone = document.getElementById('cartCustPhone').value.trim();
+      const city = document.getElementById('cartCustCity').value.trim();
+      const secToken = document.getElementById('cartClientSecurityToken').textContent;
+
+      let itemsStr = '';
+      let subtotal = 0;
+      let maxDel = 0;
+      state.cart.forEach((it, idx) => {
+        const tot = it.price * it.quantity;
+        subtotal += tot;
+        if (it.deliveryType === 'paid' && it.deliveryFee > maxDel) maxDel = it.deliveryFee;
+        itemsStr += `${idx + 1}. ${it.title} (x${it.quantity}) : ${formatMoney(tot)}
+`;
+      });
+
+      const discount = state.activeCoupon ? state.activeCoupon.amount : 0;
+      const usedCode = state.activeCoupon ? state.activeCoupon.code : '';
+      const total = Math.max(0, subtotal - discount) + maxDel;
+
+      const waMsg = encodeURIComponent(
+        `*NOUVELLE COMMANDE PANIER - ${state.brandName}*
+` +
+        `--------------------------------
+` +
+        `🛒 *ARTICLES :*
+${itemsStr}` +
+        `--------------------------------
+` +
+        `💵 *Sous-total :* ${formatMoney(subtotal)}
+` +
+        (discount > 0 ? `🎟️ *Bon Déduit :* -${formatMoney(discount)} (${usedCode})
+` : '') +
+        `🛵 *Livraison :* ${maxDel > 0 ? formatMoney(maxDel) : 'Gratuit'}
+` +
+        `💰 *TOTAL À LA LIVRAISON :* ${formatMoney(total)}
+` +
+        `--------------------------------
+` +
+        `👤 *Client :* ${name} | Tél : ${phone}
+` +
+        `📍 *Destination :* ${city}
+` +
+        `🛡️ *Clé Vérif 2FA :* ${secToken}`
+      );
+
+      // Burn coupon as used
+      if (usedCode) markCouponAsUsed(usedCode);
+
+      const raw = state.whatsappPhone.replace(/[^0-9]/g, '');
+      const full = raw.startsWith('226') ? raw : `226${raw}`;
+      state.cart = [];
+      state.activeCoupon = null;
+      saveState();
+      updateCartBadge();
+      document.getElementById('cartModal').classList.add('hidden');
+      window.open(`https://wa.me/${full}?text=${waMsg}`, '_blank');
+    });
+
+    // =========================================================================
+    // NOUVELLE GESTION DES IMAGES LOCALES & SUPPRESSION ADMIN
+    // =========================================================================
+    let currentUploadedImageDataUrl = '';
+
+    document.getElementById('inpProdFileInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          currentUploadedImageDataUrl = event.target.result;
+          document.getElementById('imagePreviewImg').src = currentUploadedImageDataUrl;
+          document.getElementById('imagePreviewContainer').classList.remove('hidden');
+          document.getElementById('inpProdUrlInput').value = '';
+          showToast('Image locale chargée avec succès !', '📸');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('inpProdUrlInput').addEventListener('input', (e) => {
+      const url = e.target.value.trim();
+      if (url) {
+        currentUploadedImageDataUrl = url;
+        document.getElementById('imagePreviewImg').src = url;
+        document.getElementById('imagePreviewContainer').classList.remove('hidden');
+      }
+    });
+
+    document.getElementById('inpProdDeliveryType').addEventListener('change', (e) => {
+      document.getElementById('customDeliveryFeeWrapper').classList.toggle('hidden', e.target.value === 'free');
+    });
+
+    document.getElementById('newProductForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const finalImage = currentUploadedImageDataUrl || document.getElementById('inpProdUrlInput').value.trim() || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80';
+      const isPaid = document.getElementById('inpProdDeliveryType').value === 'paid';
+      const fee = isPaid ? (Number(document.getElementById('inpProdDeliveryFee').value) || 1000) : 0;
+
+      const newP = {
+        id: 'p-' + Date.now(),
+        title: document.getElementById('inpProdTitle').value.trim(),
+        category: document.getElementById('inpProdCat').value,
+        oldPrice: Number(document.getElementById('inpProdOldPrice').value),
+        promoPrice: Number(document.getElementById('inpProdPromoPrice').value),
+        deliveryType: isPaid ? 'paid' : 'free',
+        deliveryFee: fee,
+        image: finalImage,
+        badge: 'NOUVEAU',
+        rating: '5.0',
+        description: document.getElementById('inpProdDesc').value.trim()
+      };
+
+      state.products.unshift(newP);
+      saveState();
+      document.getElementById('newProductForm').reset();
+      document.getElementById('imagePreviewContainer').classList.add('hidden');
+      currentUploadedImageDataUrl = '';
+      document.getElementById('adminMasterModal').classList.add('hidden');
+      renderProducts();
+      showToast('Nouvel article mis en vente dans Nocwise BF !', '✅');
+    });
+
+    function renderAdminCatalog() {
+      const container = document.getElementById('adminProductCatalogList');
+      container.innerHTML = '';
+      state.products.forEach(p => {
+        const row = document.createElement('div');
+        row.className = 'flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-xl';
+        row.innerHTML = `
+          <div class="flex items-center space-x-2.5">
+            <img src="${p.image}" class="w-10 h-10 object-contain rounded bg-white p-0.5 border border-slate-200">
+            <div>
+              <p class="font-bold text-slate-800 text-xs line-clamp-1">${p.title}</p>
+              <span class="text-emerald-700 font-mono text-[11px] font-bold">${formatMoney(p.promoPrice)}</span>
+            </div>
+          </div>
+          <button data-id="${p.id}" class="btn-admin-del text-red-600 hover:text-white hover:bg-red-600 px-3 py-1 bg-red-50 rounded-lg text-xs font-bold border border-red-200 transition">
+            Supprimer
+          </button>
+        `;
+        container.appendChild(row);
+      });
+
+      document.querySelectorAll('.btn-admin-del').forEach(b => {
+        b.addEventListener('click', () => {
+          deleteProduct(b.getAttribute('data-id'));
+        });
+      });
+    }
+
+    const admTabs = [
+      { btn: document.getElementById('tabAdmAddProduct'), view: document.getElementById('viewAdmAddProduct') },
+      { btn: document.getElementById('tabAdmGenerator'), view: document.getElementById('viewAdmGenerator') },
+      { btn: document.getElementById('tabAdmManageProducts'), view: document.getElementById('viewAdmManageProducts') },
+      { btn: document.getElementById('tabAdmSettings'), view: document.getElementById('viewAdmSettings') }
+    ];
+    admTabs.forEach(t => {
+      t.btn.addEventListener('click', () => {
+        admTabs.forEach(x => {
+          x.btn.className = 'py-2 px-3 text-slate-500 hover:text-slate-800';
+          x.view.classList.add('hidden');
+        });
+        t.btn.className = 'py-2 px-3 border-b-2 border-emerald-600 text-emerald-800 font-bold';
+        t.view.classList.remove('hidden');
+        if (t.view.id === 'viewAdmGenerator') renderGeneratedCodes();
+      });
+    });
+
+    document.getElementById('adminConfigForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      state.brandName = document.getElementById('inpConfigBrandName').value.trim();
+      state.whatsappPhone = document.getElementById('inpConfigPhone').value.trim();
+      const newPin = document.getElementById('inpConfigAdminPin').value.trim();
+      if (newPin) state.adminPin = newPin;
+      saveState();
+      applyUI();
+      document.getElementById('adminMasterModal').classList.add('hidden');
+      showToast('Paramètres propriétaire enregistrés !', '💾');
+    });
+
+    // Environment Switcher
+    const secStore = document.getElementById('section-store');
+    const secGames = document.getElementById('section-games');
+    const navBtnStore = document.getElementById('nav-btn-store');
+    const navBtnGames = document.getElementById('nav-btn-games');
+
+    function switchEnvironment(toGames) {
+      if (toGames) {
+        secStore.classList.add('hidden');
+        secGames.classList.remove('hidden');
+        navBtnStore.className = 'nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 text-slate-600 hover:text-slate-900';
+        navBtnGames.className = 'nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md';
+      } else {
+        secGames.classList.add('hidden');
+        secStore.classList.remove('hidden');
+        navBtnGames.className = 'nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 text-slate-600 hover:text-slate-900';
+        navBtnStore.className = 'nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md';
+      }
+    }
+
+    navBtnStore.addEventListener('click', () => switchEnvironment(false));
+    navBtnGames.addEventListener('click', () => switchEnvironment(true));
+    document.getElementById('btnQuickRedeemHeader').addEventListener('click', () => {
+      switchEnvironment(true);
+      document.getElementById('btnTabVouchers').click();
+    });
+
+    // Games Tabs (2 JEUX SEULEMENT : ROUE & CRASH)
+    const gameTabs = [
+      { btn: document.getElementById('btnTabWheel'), view: document.getElementById('gameViewWheel') },
+      { btn: document.getElementById('btnTabCrash'), view: document.getElementById('gameViewCrash') },
+      { btn: document.getElementById('btnTabVouchers'), view: document.getElementById('gameViewVouchers') },
+      { btn: document.getElementById('btnTabBuyVouchers'), view: document.getElementById('gameViewBuyVouchers') }
+    ];
+
+    gameTabs.forEach(t => {
+      t.btn.addEventListener('click', () => {
+        gameTabs.forEach(x => {
+          x.btn.className = 'game-selector-tab px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-200 transition flex items-center space-x-1.5 border border-slate-300';
+          x.view.classList.add('hidden');
+        });
+        t.btn.className = 'game-selector-tab px-4 py-2 rounded-xl bg-amber-500 text-black font-extrabold transition flex items-center space-x-1.5 shadow';
+        t.view.classList.remove('hidden');
+        if (t.view.id === 'gameViewVouchers') renderUserVouchersVault();
+      });
+    });
+
+    // 1. ROUE DE LA FORTUNE CALIBRÉE (+50% SUCCÈS)
+    const wheelCanvas = document.getElementById('wheelCanvas');
+    const WHEEL_SEGMENTS = [
+      { label: 'x2', mult: 2, color: '#059669', textClr: '#ffffff' },
+      { label: 'x1', mult: 1, color: '#334155', textClr: '#ffffff' },
+      { label: 'x4', mult: 4, color: '#0d9488', textClr: '#ffffff' },
+      { label: 'x0', mult: 0, color: '#b91c1c', textClr: '#ffffff' },
+      { label: 'x2', mult: 2, color: '#059669', textClr: '#ffffff' },
+      { label: 'x1', mult: 1, color: '#475569', textClr: '#ffffff' },
+      { label: 'x4', mult: 4, color: '#0d9488', textClr: '#ffffff' },
+      { label: 'x2', mult: 2, color: '#059669', textClr: '#ffffff' },
+      { label: 'x0', mult: 0, color: '#991b1b', textClr: '#ffffff' },
+      { label: 'x1', mult: 1, color: '#334155', textClr: '#ffffff' },
+      { label: 'x2', mult: 2, color: '#059669', textClr: '#ffffff' },
+      { label: 'x32', mult: 32, color: '#f59e0b', textClr: '#000000' }
+    ];
+
+    let wheelCurrentAngle = 0;
+    let isWheelSpinning = false;
+
+    function drawWheel() {
+      if (!wheelCanvas) return;
+      const ctx = wheelCanvas.getContext('2d');
+      const numSegments = WHEEL_SEGMENTS.length;
+      const arc = (2 * Math.PI) / numSegments;
+      const radius = wheelCanvas.width / 2;
+
+      ctx.clearRect(0, 0, wheelCanvas.width, wheelCanvas.height);
+      ctx.save();
+      ctx.translate(radius, radius);
+      ctx.rotate(wheelCurrentAngle);
+
+      for (let i = 0; i < numSegments; i++) {
+        const angle = i * arc;
+        const seg = WHEEL_SEGMENTS[i];
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.arc(0, 0, radius - 6, angle, angle + arc);
+        ctx.fillStyle = seg.color;
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#070b14';
+        ctx.stroke();
+
+        ctx.save();
+        ctx.rotate(angle + arc / 2);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = seg.textClr;
+        ctx.font = 'bold 16px Inter, sans-serif';
+        ctx.fillText(seg.label, radius - 22, 6);
+        ctx.restore();
+      }
+      ctx.restore();
+    }
+
+    document.getElementById('btnSpinWheelAction').addEventListener('click', () => {
+      if (isWheelSpinning) return;
+      if (state.points < 150) {
+        showToast('Points insuffisants (150 requis). Regardez une vidéo !', '⚠️');
+        return;
+      }
+
+      state.points -= 150;
+      saveState();
+      applyUI();
+
+      isWheelSpinning = true;
+      const btn = document.getElementById('btnSpinWheelAction');
+      btn.disabled = true;
+
+      const rand = Math.random();
+      let winIdx = 0;
+      if (rand < 0.15) winIdx = 3; // x0
+      else if (rand < 0.35) winIdx = 1; // x1
+      else if (rand < 0.65) winIdx = 0; // x2
+      else if (rand < 0.90) winIdx = 2; // x4
+      else winIdx = 11; // x32
+
+      const numSegments = WHEEL_SEGMENTS.length;
+      const arc = (2 * Math.PI) / numSegments;
+      const targetAngleAtPointer = (3 * Math.PI) / 2 - (winIdx * arc + arc / 2);
+      const extraSpins = 5 * (2 * Math.PI);
+      const totalRotation = extraSpins + (targetAngleAtPointer - (wheelCurrentAngle % (2 * Math.PI)));
+
+      const startAngle = wheelCurrentAngle;
+      const finalAngle = startAngle + totalRotation;
+      const duration = 3500;
+      const startTime = performance.now();
+
+      function animateWheel(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(1, elapsed / duration);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        wheelCurrentAngle = startAngle + (finalAngle - startAngle) * easeOut;
+        drawWheel();
+
+        if (progress < 1) {
+          requestAnimationFrame(animateWheel);
+        } else {
+          isWheelSpinning = false;
+          btn.disabled = false;
+          const winningSeg = WHEEL_SEGMENTS[winIdx];
+          const wonPts = Math.floor(150 * winningSeg.mult);
+
+          if (winningSeg.mult === 0) {
+            showToast('Pas de chance ! 0 point gagné.', '💀');
+          } else {
+            state.points += wonPts;
+            saveState();
+            applyUI();
+            showToast(`Gagné ! Multiplicateur ${winningSeg.label} (+${wonPts} PTS) !`, '🎉');
+          }
+        }
+      }
+      requestAnimationFrame(animateWheel);
+    });
+
+    // 2. CRASH CONTINU 24/7 EN TEMPS RÉEL
+    let crashMult = 1.00;
+    let crashTarget = 1.00;
+    let crashHistory = [1.85, 2.40, 1.15, 3.80, 5.20];
+    let userHasBetCrash = false;
+    let userHasCashedOutCrash = false;
+
+    function updateCrashBadges() {
+      const c = document.getElementById('crashHistoryBadges');
+      c.innerHTML = '';
+      crashHistory.slice(-5).forEach(v => {
+        const b = document.createElement('span');
+        b.className = `px-2 py-0.5 rounded ${v >= 3 ? 'bg-amber-500/20 text-amber-400' : 'bg-emerald-500/20 text-emerald-400'}`;
+        b.textContent = v.toFixed(2) + 'x';
+        c.appendChild(b);
+      });
+    }
+
+    function runCrashCycle() {
+      document.getElementById('crashCountdownBox').classList.remove('hidden');
+      document.getElementById('crashFlightBox').classList.add('hidden');
+      document.getElementById('crashExplodedBox').classList.add('hidden');
+      document.getElementById('btnCrashBetAction').classList.remove('hidden');
+      document.getElementById('btnCrashCashoutAction').classList.add('hidden');
+      document.getElementById('crashSpectateBanner').classList.add('hidden');
+
+      let cd = 5;
+      document.getElementById('crashCountdownSec').textContent = cd + 's';
+      const cdTimer = setInterval(() => {
+        cd--;
+        document.getElementById('crashCountdownSec').textContent = cd + 's';
+        if (cd <= 0) {
+          clearInterval(cdTimer);
+          startCrashFlight();
+        }
+      }, 1000);
+    }
+
+    function startCrashFlight() {
+      document.getElementById('crashCountdownBox').classList.add('hidden');
+      document.getElementById('crashFlightBox').classList.remove('hidden');
+      crashMult = 1.00;
+      crashTarget = 1.1 + Math.random() * 3.5;
+
+      document.getElementById('btnCrashBetAction').classList.add('hidden');
+      if (userHasBetCrash && !userHasCashedOutCrash) {
+        document.getElementById('btnCrashCashoutAction').classList.remove('hidden');
+      } else {
+        document.getElementById('crashSpectateBanner').classList.remove('hidden');
+      }
+
+      const flight = setInterval(() => {
+        crashMult += 0.03 * (1 + crashMult * 0.05);
+        document.getElementById('crashMultiplierText').textContent = crashMult.toFixed(2) + 'x';
+        if (userHasBetCrash && !userHasCashedOutCrash) {
+          document.getElementById('btnCrashCashoutAction').textContent = `💰 SAUTER : +${Math.floor(200 * crashMult)} PTS`;
+        }
+
+        if (crashMult >= crashTarget) {
+          clearInterval(flight);
+          document.getElementById('crashFlightBox').classList.add('hidden');
+          document.getElementById('crashExplodedBox').classList.remove('hidden');
+          document.getElementById('crashFinalMultiplierText').textContent = `CRASHÉ À ${crashTarget.toFixed(2)}x`;
+          crashHistory.push(crashTarget);
+          updateCrashBadges();
+
+          if (userHasBetCrash && !userHasCashedOutCrash) {
+            showToast(`Crash à ${crashTarget.toFixed(2)}x ! 200 PTS perdus.`, '💥');
+          }
+          userHasBetCrash = false;
+          userHasCashedOutCrash = false;
+          setTimeout(runCrashCycle, 3000);
+        }
+      }, 70);
+    }
+
+    document.getElementById('btnCrashBetAction').addEventListener('click', () => {
+      if (state.points < 200) {
+        showToast('Points insuffisants (200 requis) !', '⚠️');
+        return;
+      }
+      state.points -= 200;
+      saveState();
+      applyUI();
+      userHasBetCrash = true;
+      userHasCashedOutCrash = false;
+      document.getElementById('crashPlayerBadge').textContent = 'Pari 200 PTS en vol ✓';
+      document.getElementById('crashPlayerBadge').className = 'text-emerald-400 font-bold';
+      showToast('Pari de 200 PTS placé pour ce vol !', '✈️');
+    });
+
+    document.getElementById('btnCrashCashoutAction').addEventListener('click', () => {
+      if (!userHasBetCrash || userHasCashedOutCrash) return;
+      userHasCashedOutCrash = true;
+      const win = Math.floor(200 * crashMult);
+      state.points += win;
+      saveState();
+      applyUI();
+      document.getElementById('btnCrashCashoutAction').classList.add('hidden');
+      document.getElementById('crashSpectateBanner').classList.remove('hidden');
+      document.getElementById('crashSpectateBanner').textContent = `Gagné +${win} PTS ! L'avion continue...`;
+      showToast(`Bravo ! Retiré à ${crashMult.toFixed(2)}x (+${win} PTS) !`, '💰');
+    });
+
+    // 3. CONVERSION EN BONS DE RÉDUCTION
+    document.querySelectorAll('.btn-redeem-voucher').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const amt = parseInt(btn.getAttribute('data-amount'), 10);
+        const cost = parseInt(btn.getAttribute('data-pts'), 10);
+
+        if (state.points < cost) {
+          showToast(`Points insuffisants (${cost} PTS requis). Continuez à jouer !`, '⚠️');
+          return;
+        }
+
+        state.points -= cost;
+        const code = `NOCWISE-${amt}-${Math.floor(1000 + Math.random() * 9000)}`;
+        const voucher = {
+          code: code,
+          amount: amt,
+          date: new Date().toLocaleDateString('fr-FR')
+        };
+        state.userVouchers.unshift(voucher);
+        saveState();
+        applyUI();
+        renderUserVouchersVault();
+        showToast(`Félicitations ! Bon de ${formatMoney(amt)} débloqué (${code}) !`, '🎟️');
+      });
+    });
+
+    function renderUserVouchersVault() {
+      const v = document.getElementById('userVouchersVault');
+      v.innerHTML = '';
+      if (state.userVouchers.length === 0) {
+        v.innerHTML = '<p class="text-xs text-slate-400 italic">Aucun bon débloqué pour le moment. Jouez pour convertir vos points !</p>';
+        return;
+      }
+
+      state.userVouchers.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-emerald-300';
+        card.innerHTML = `
+          <div>
+            <span class="font-mono font-black text-amber-700 text-xs sm:text-sm tracking-wider bg-amber-100 px-2 py-0.5 rounded border border-amber-300">${item.code}</span>
+            <span class="text-emerald-800 font-bold ml-2">Valeur : ${formatMoney(item.amount)}</span>
+          </div>
+          <button data-code="${item.code}" class="btn-use-voucher-shop px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition">
+            Utiliser en Boutique
+          </button>
+        `;
+        v.appendChild(card);
+      });
+
+      document.querySelectorAll('.btn-use-voucher-shop').forEach(b => {
+        b.addEventListener('click', () => {
+          const c = b.getAttribute('data-code');
+          switchEnvironment(false);
+          document.getElementById('btn-open-cart').click();
+          document.getElementById('cartCouponInput').value = c;
+          document.getElementById('btnApplyCartCoupon').click();
+          showToast(`Bon ${c} injecté directement dans votre panier !`, '🛍️');
+        });
+      });
+    }
+
+    // 4. ACHAT DE BONS VIA MOBILE MONEY
+    let currentVoucherToBuy = null;
+    document.querySelectorAll('.btn-buy-mm-action').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const val = btn.getAttribute('data-val');
+        const cost = btn.getAttribute('data-cost');
+        currentVoucherToBuy = { val, cost };
+        document.getElementById('mmVoucherName').textContent = `Bon d'achat de ${formatMoney(val)}`;
+        document.getElementById('mmVoucherPrice').textContent = `Montant à régler : ${formatMoney(cost)}`;
+        document.getElementById('mobileMoneyModal').classList.remove('hidden');
+      });
+    });
+
+    document.getElementById('btnCloseMmModal').addEventListener('click', () => {
+      document.getElementById('mobileMoneyModal').classList.add('hidden');
+    });
+
+    document.getElementById('btnConfirmBuyVoucherMM').addEventListener('click', () => {
+      const phone = document.getElementById('mmSenderPhone').value.trim();
+      const provider = document.querySelector('input[name="mm_provider"]:checked').value;
+      if (!phone || phone.length < 8) {
+        showToast('Veuillez saisir votre numéro de téléphone Mobile Money', '⚠️');
+        return;
+      }
+
+      const waMsg = encodeURIComponent(
+        `*ACHAT DE BON DE RÉDUCTION - ${state.brandName}*
+` +
+        `--------------------------------
+` +
+        `🎟️ *Bon demandé :* ${formatMoney(currentVoucherToBuy.val)}
+` +
+        `💵 *Montant à payer :* ${formatMoney(currentVoucherToBuy.cost)}
+` +
+        `📱 *Opérateur :* ${provider}
+` +
+        `📞 *Numéro Client :* ${phone}
+` +
+        `--------------------------------
+` +
+        `Merci de m'envoyer les coordonnées de dépôt pour finaliser la transaction !`
+      );
+
+      const raw = state.whatsappPhone.replace(/[^0-9]/g, '');
+      const full = raw.startsWith('226') ? raw : `226${raw}`;
+      document.getElementById('mobileMoneyModal').classList.add('hidden');
+      window.open(`https://wa.me/${full}?text=${waMsg}`, '_blank');
+      showToast('Demande envoyée ! Le code vous sera délivré après confirmation.', '💳');
+    });
+
+    // 5. VIDÉOS PUBLICITAIRES RÉMUNÉRÉES (5 MAX PAR JOUR = 600 PTS)
+    function launchAdVideo() {
+      if (state.dailyVideosWatched >= 5) {
+        showToast('Quota journalier atteint (5/5). Revenez demain pour de nouveaux points !', '⛔');
+        return;
+      }
+
+      document.getElementById('videoModal').classList.remove('hidden');
+      document.getElementById('videoProgressBar').style.width = '0%';
+      let sec = 5;
+      document.getElementById('videoTimerText').textContent = `Temps restant : ${sec}s`;
+      const claimBtn = document.getElementById('btnClaimVideoReward');
+      claimBtn.disabled = true;
+      claimBtn.className = 'w-full py-3 bg-slate-100 text-slate-400 font-bold text-xs rounded-xl cursor-not-allowed';
+      claimBtn.textContent = 'Visionnage en cours...';
+
+      let w = 0;
+      const timer = setInterval(() => {
+        w += 2;
+        document.getElementById('videoProgressBar').style.width = w + '%';
+        if (w % 20 === 0 && sec > 0) {
+          sec--;
+          document.getElementById('videoTimerText').textContent = `Temps restant : ${sec}s`;
+        }
+        if (w >= 100) {
+          clearInterval(timer);
+          claimBtn.disabled = false;
+          claimBtn.className = 'w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-xl shadow cursor-pointer';
+          claimBtn.textContent = 'Réclamer mes +120 Points ✓';
+        }
+      }, 70);
+    }
+
+    document.getElementById('btnWatchRewardedAdAction').addEventListener('click', launchAdVideo);
+
+    document.getElementById('btnClaimVideoReward').addEventListener('click', () => {
+      document.getElementById('videoModal').classList.add('hidden');
+      state.points += 120;
+      state.dailyVideosWatched++;
+      saveState();
+      applyUI();
+      showToast(`Bravo ! +120 Points ajoutés (${state.dailyVideosWatched}/5 vidéos aujourd'hui)`, '📺');
+    });
+
+    // Search events
+    const storeSearch = document.getElementById('product-search');
+    storeSearch.addEventListener('input', renderProducts);
+    document.getElementById('btn-clear-search').addEventListener('click', () => {
+      storeSearch.value = '';
+      renderProducts();
+      storeSearch.focus();
+    });
+
+    // Category pills
+    document.querySelectorAll('.cat-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-pill').forEach(b => {
+          b.className = 'cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition';
+        });
+        btn.className = 'cat-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-emerald-700 text-white shadow-sm transition';
+        state.currentCategory = btn.getAttribute('data-cat');
+        renderProducts();
+      });
+    });
+
+    // Initial load
+    window.onload = () => {
+      loadState();
+      renderProducts();
+      drawWheel();
+      updateCrashBadges();
+      runCrashCycle();
+    };
+  </script>
+</body>
+</html>
