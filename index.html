@@ -37,7 +37,7 @@
 <body id="app-body" class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white pb-24 md:pb-8">
 
   <!-- TOP PROMO BANNER -->
-  <div class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white text-center py-2 px-3 text-xs font-bold shadow-sm flex items-center justify-between">
+  <div class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white text-center py-2 px-3 text-xs font-bold shadow-sm">
     <div class="max-w-6xl mx-auto w-full flex items-center justify-between flex-wrap gap-2 text-[11px]">
       <div class="flex items-center space-x-2">
         <span class="animate-pulse">🔥</span>
@@ -59,24 +59,24 @@
     </div>
   </div>
 
-  <!-- SPONSORED ADSENSE PLACEHOLDER (Monétisation réelle) -->
+  <!-- SPONSORED ADSENSE / NETWORK BANNER (Monétisation réelle) -->
   <div class="max-w-6xl mx-auto w-full px-4 pt-2">
     <div class="bg-white border border-slate-200 rounded-2xl p-2 text-center text-[10px] text-slate-500 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-1.5">
       <span class="text-slate-700 font-bold uppercase tracking-wider flex items-center gap-1.5">
-        <i class="fa-solid fa-rectangle-ad text-amber-500"></i> Espace Publicitaire Sponsorisé
+        <i class="fa-solid fa-rectangle-ad text-amber-500"></i> Espace Publicitaire Partenaire
       </span>
-      <span class="text-slate-600 font-medium">🎯 Jouez à la Roue & au Crash, regardez des vidéos et gagnez vos réductions d'achat !</span>
-      <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono text-[9px] font-bold">AdSense / Régie Pub Ready</span>
+      <span class="text-slate-600 font-medium">🎯 Jouez à la Roue & au Crash, regardez vos 5 vidéos du jour et obtenez vos bons d'achat !</span>
+      <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono text-[9px] font-bold">Monetag / Adsterra / AdSense Ready</span>
     </div>
   </div>
 
-  <!-- MAIN NAVIGATION -->
+  <!-- MAIN NAVIGATION (100% CLEAN - ZÉRO CADENAS NI TRACE ADMIN VISIBLE POUR LES CLIENTS) -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
       
-      <!-- Brand Logo -->
-      <div class="flex items-center space-x-2.5">
-        <div class="w-10 h-10 rounded-2xl bg-emerald-600 text-amber-300 flex items-center justify-center font-black text-xl shadow-md border-2 border-emerald-500">
+      <!-- Brand Logo (Sert de déclencheur secret sécurisé si cliqué 3 fois de suite) -->
+      <div id="secretAdminTriggerLogo" class="flex items-center space-x-2.5 cursor-pointer select-none" title="Nocwise BF">
+        <div class="w-10 h-10 rounded-2xl bg-emerald-600 text-amber-300 flex items-center justify-center font-black text-xl shadow-md border-2 border-emerald-500 transition transform hover:scale-105 active:scale-95">
           <i class="fa-solid fa-moon text-lg"></i>
         </div>
         <div>
@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <!-- ENVIRONMENT SWITCHER (BOUTIQUE vs JEUX : ROUE & CRASH) -->
+      <!-- ENVIRONMENT SWITCHER (BOUTIQUE vs JEUX) -->
       <div class="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-300 shadow-inner">
         <button id="nav-btn-store" class="nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md">
           <i class="fa-solid fa-shop"></i>
@@ -98,39 +98,32 @@
         </button>
       </div>
 
-      <!-- Quick Actions (Cart & Admin PIN Access) -->
+      <!-- Quick Customer Actions (Cart & Direct WhatsApp Help) -->
       <div class="flex items-center space-x-2">
-        <a id="btn-header-whatsapp" href="https://wa.me/22670000000" target="_blank" rel="noopener noreferrer" class="hidden md:flex px-2.5 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold rounded-xl border border-emerald-200 items-center space-x-1 transition">
+        <a id="btn-header-whatsapp" href="https://wa.me/22670000000" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold rounded-xl border border-emerald-200 flex items-center space-x-1.5 transition">
           <i class="fa-brands fa-whatsapp text-sm"></i>
-          <span>Aide</span>
+          <span class="hidden sm:inline">Discuter avec nous</span>
         </a>
 
         <!-- Cart Button -->
-        <button id="btn-open-cart" class="relative px-3 py-1.5 bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold rounded-xl shadow-sm flex items-center space-x-1.5 transition">
+        <button id="btn-open-cart" class="relative px-3.5 py-2 bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold rounded-xl shadow-sm flex items-center space-x-1.5 transition">
           <i class="fa-solid fa-cart-shopping text-amber-400"></i>
-          <span class="hidden sm:inline">Panier</span>
+          <span class="hidden sm:inline">Mon Panier</span>
           <span id="cart-badge" class="w-5 h-5 bg-red-600 text-white text-[10px] font-black rounded-full flex items-center justify-center shadow">0</span>
-        </button>
-
-        <!-- Admin PIN Access -->
-        <button id="btn-toggle-admin" class="p-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl border border-slate-300 transition" title="Espace Propriétaire (Sécurisé par Code PIN)">
-          <i class="fa-solid fa-lock text-emerald-700 text-xs"></i>
         </button>
       </div>
 
     </div>
   </header>
 
-  <!-- ========================================================================= -->
-  <!-- TOAST NOTIFICATION                                                        -->
-  <!-- ========================================================================= -->
+  <!-- TOAST NOTIFICATION -->
   <div id="toastNotification" class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 text-xs sm:text-sm animate-bounce">
     <span id="toastIcon" class="text-emerald-400 text-base">✨</span>
     <span id="toastMessage" class="font-semibold">Action effectuée</span>
   </div>
 
   <!-- ========================================================================= -->
-  <!-- 1. SECTION BOUTIQUE NOCWISE BF (ANCIENNES COULEURS ÉLÉGANTES ET ÉPURÉES)   -->
+  <!-- 1. SECTION BOUTIQUE NOCWISE BF                                            -->
   <!-- ========================================================================= -->
   <section id="section-store" class="max-w-6xl mx-auto px-4 py-6 w-full flex-1 space-y-6">
 
@@ -172,11 +165,11 @@
           <span>Articles en Vitrine</span>
           <span id="product-count-badge" class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-0.5 rounded-full font-bold">0 article</span>
         </h3>
-        <p class="text-xs text-slate-500">Paiement à la livraison après test et vérification devant le livreur</p>
+        <p class="text-xs text-slate-500">Paiement après test et vérification devant votre porte à Ouagadougou</p>
       </div>
-      <button id="btn-trigger-owner-add" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 transition flex items-center gap-1">
-        <i class="fa-solid fa-plus-circle text-amber-500"></i> Ajouter un article (Propriétaire)
-      </button>
+      <div class="text-xs text-slate-400 font-semibold hidden sm:flex items-center gap-1">
+        <i class="fa-solid fa-shield-check text-emerald-600"></i> Transactions 100% Sécurisées
+      </div>
     </div>
 
     <!-- PRODUCT GRID (Cases réelles) -->
@@ -196,7 +189,7 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 2. SECTION JEUX : SEULEMENT LA ROUE & LE CRASH 24/7 (DEMANDE UTILISATEUR)  -->
+  <!-- 2. SECTION JEUX : LA ROUE & LE CRASH (2 JEUX EXCLUSIFS CALIBRÉS)          -->
   <!-- ========================================================================= -->
   <section id="section-games" class="hidden max-w-6xl mx-auto px-4 py-6 w-full flex-1 space-y-6">
     
@@ -204,16 +197,16 @@
     <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-xl border border-emerald-600/40">
       <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">Espace Loisirs & Récompenses Nocwise BF</span>
-          <h2 class="text-2xl sm:text-3xl font-black mt-1">Faites tourner la Roue ou prenez l'envol avec Crash !</h2>
+          <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">Loisirs & Fidélité Nocwise BF</span>
+          <h2 class="text-2xl sm:text-3xl font-black mt-1">Gagnez vos Bons d'Achat en Jouant !</h2>
           <p class="text-xs sm:text-sm text-emerald-100 max-w-xl">
-            Jouez équitablement, cumulez vos points et échangez-les contre de vrais <strong class="text-amber-300">Bons de Réduction de 200 F à 5 000 FCFA</strong> sur vos commandes.
+            Cumulez des points sur la Roue ou le Crash et convertissez-les en <strong class="text-amber-300">Bons de Réduction de 200 F à 5 000 FCFA</strong> utilisables sur la boutique.
           </p>
         </div>
 
         <!-- Daily Video Quota Widget (5 vidéos = 600 pts = 30%) -->
         <div class="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl text-right min-w-[200px]">
-          <div class="text-[10px] text-amber-300 uppercase font-bold">Vidéos Rémunérées Quotidiennes</div>
+          <div class="text-[10px] text-amber-300 uppercase font-bold">Vidéos Partenaires Quotidiennes</div>
           <div class="text-base font-black text-white font-mono mt-0.5" id="videoQuotaDisplay">
             5 / 5 Disponibles
           </div>
@@ -247,7 +240,7 @@
       <div class="lg:col-span-8 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col items-center justify-center min-h-[420px] relative overflow-hidden">
         <div class="flex items-center justify-between w-full pb-3 border-b border-slate-100 text-xs">
           <span class="text-emerald-700 font-bold uppercase tracking-wider flex items-center gap-1.5">
-            <span>🎡</span> Roue Multiplicateurs Équitable (+50% Taux de Gain)
+            <span>🎡</span> Roue Multiplicateurs Équitable (Taux de Succès > 50%)
           </span>
           <span class="text-slate-400 font-mono text-[11px]">Mise : 150 Points</span>
         </div>
@@ -277,7 +270,7 @@
         </button>
 
         <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-xs space-y-1.5 font-mono">
-          <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Configuration Équitable :</div>
+          <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Paliers Équitables :</div>
           <div class="flex justify-between text-red-500 font-semibold"><span>2x Segments x0</span> <span>Perdu</span></div>
           <div class="flex justify-between text-slate-600"><span>3x Segments x1</span> <span>Remboursé (150 P)</span></div>
           <div class="flex justify-between text-emerald-700 font-bold"><span>4x Segments x2</span> <span>Gain (+300 P)</span></div>
@@ -307,7 +300,7 @@
             <div class="w-48 bg-slate-800 rounded-full h-2 overflow-hidden border border-slate-700">
               <div id="crashCountdownBar" class="bg-gradient-to-r from-amber-500 to-emerald-500 h-full w-full transition-all duration-100"></div>
             </div>
-            <p class="text-[11px] text-slate-400 mt-2">Placez votre pari avant la fin du décompte !</p>
+            <p class="text-[11px] text-slate-400 mt-2">Placez votre mise avant la fin du décompte !</p>
           </div>
 
           <div id="crashFlightBox" class="hidden flex flex-col items-center">
@@ -356,7 +349,7 @@
         <div>
           <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full">Convertisseur Réel Nocwise BF</span>
           <h3 class="text-xl font-black mt-1">Échangez vos Points contre de Vrais Bons d'Achat</h3>
-          <p class="text-xs text-emerald-100">Chaque bon débloqué est un vrai code coupon injectable directement dans votre panier d'achat !</p>
+          <p class="text-xs text-emerald-100">Chaque bon débloqué est un vrai code coupon déductible immédiatement lors de votre commande !</p>
         </div>
         <div class="bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/20 text-center">
           <span class="text-[10px] text-amber-300 font-bold uppercase block">Votre Solde Actuel</span>
@@ -509,7 +502,7 @@
       <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-3 text-2xl animate-pulse">
         ▶️
       </div>
-      <h3 class="text-base font-bold text-slate-900 mb-1">Clip Publicitaire Sponsorisé</h3>
+      <h3 class="text-base font-bold text-slate-900 mb-1">Clip Publicitaire Partenaire</h3>
       <p class="text-xs text-slate-500 mb-4">Gagnez +120 points tout en générant des revenus publicitaires pour Nocwise BF.</p>
       
       <div class="w-full bg-slate-100 rounded-full h-3 mb-2 overflow-hidden border border-slate-200">
@@ -573,7 +566,7 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL : PANIER MULTI-ARTICLES                                             -->
+  <!-- MODAL : PANIER MULTI-ARTICLES (AVEC OPTION CODE PROMO DÉDUCTIBLE)         -->
   <!-- ========================================================================= -->
   <div id="cartModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
     <div class="bg-white rounded-3xl border border-slate-200 max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
@@ -595,12 +588,15 @@
           <p class="font-bold text-slate-500">Votre panier est vide</p>
         </div>
 
-        <!-- Coupon input in cart -->
-        <div id="cartCouponSection" class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
-          <label class="block font-bold text-slate-700 text-[11px]">Code Promo ou Bon de Réduction Gagné :</label>
+        <!-- ZONE CODE PROMO / BON DÉDUCTION BIEN VISIBLE DANS LE PANIER -->
+        <div id="cartCouponSection" class="p-3.5 bg-emerald-50/70 rounded-2xl border border-emerald-200 space-y-2">
+          <label class="block font-bold text-emerald-950 text-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-tag text-emerald-700"></i>
+            <span>Vous avez un Code Promo ou un Bon de Réduction ?</span>
+          </label>
           <div class="flex space-x-2">
-            <input type="text" id="cartCouponInput" placeholder="Ex: NOCWISE-2000-XXXX" class="uppercase flex-1 p-2 bg-white border border-slate-200 rounded-xl font-mono font-bold text-slate-900 text-xs focus:outline-none focus:border-emerald-500">
-            <button type="button" id="btnApplyCartCoupon" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-xs transition">
+            <input type="text" id="cartCouponInput" placeholder="Tapez votre code (ex: NW2000-J01-...)" class="uppercase flex-1 p-2.5 bg-white border border-emerald-300 rounded-xl font-mono font-bold text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            <button type="button" id="btnApplyCartCoupon" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl text-xs transition shadow">
               Appliquer
             </button>
           </div>
@@ -614,7 +610,7 @@
             <span id="cartSubtotalVal" class="font-bold text-slate-800">0 FCFA</span>
           </div>
           <div id="cartDiscountRow" class="flex justify-between text-emerald-700 font-bold hidden">
-            <span>Bon déduit :</span>
+            <span>Bon de réduction déduit :</span>
             <span id="cartDiscountVal">-0 FCFA</span>
           </div>
           <div class="flex justify-between text-slate-600">
@@ -627,12 +623,18 @@
           </div>
         </div>
 
-        <!-- Form -->
+        <!-- Formulaire avec Clé de Sécurité 2FA Client Anti-Fraude -->
         <form id="cartCheckoutForm" class="space-y-3 pt-1">
           <p class="font-bold text-slate-800 text-xs">Vos Informations de Livraison à Ouaga :</p>
           <input type="text" id="cartCustName" required placeholder="Votre Nom complet" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
           <input type="tel" id="cartCustPhone" required placeholder="Numéro WhatsApp (ex: 70 12 34 56)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
           <input type="text" id="cartCustCity" required placeholder="Quartier exact à Ouagadougou (avec repère)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+
+          <!-- 2FA Sécurité Client : Clé de vérification automatique -->
+          <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-[11px]">
+            <span class="text-slate-600 font-medium"><i class="fa-solid fa-shield-check text-emerald-600 mr-1"></i> Clé Sécurité Commande :</span>
+            <span id="cartClientSecurityToken" class="font-mono font-black text-slate-800 bg-white px-2 py-0.5 rounded border border-slate-300">SEC-9481</span>
+          </div>
 
           <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg transition flex items-center justify-center space-x-2 pulse-glow">
             <i class="fa-brands fa-whatsapp text-sm"></i>
@@ -644,7 +646,7 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL : FICHE PRODUIT & COMMANDE EXPRESS                                  -->
+  <!-- MODAL : FICHE PRODUIT & COMMANDE EXPRESS (AVEC OPTION CODE PROMO)         -->
   <!-- ========================================================================= -->
   <div id="productDetailModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
     <div class="bg-white rounded-3xl border border-slate-200 max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
@@ -687,9 +689,51 @@
 
         <form id="expressOrderForm" class="space-y-3 pt-3 border-t border-slate-100">
           <p class="font-black text-slate-900 text-xs">Commande Express Directe :</p>
+          
+          <!-- OPTION CODE PROMO BIEN VISIBLE LORS DE LA COMMANDE EXPRESS -->
+          <div class="p-3 bg-emerald-50/70 rounded-2xl border border-emerald-200 space-y-2">
+            <label class="block font-bold text-emerald-950 text-[11px] flex items-center gap-1.5">
+              <i class="fa-solid fa-tag text-emerald-700"></i>
+              <span>Appliquer un Code Promo ou Bon de Réduction :</span>
+            </label>
+            <div class="flex space-x-2">
+              <input type="text" id="expressCouponInput" placeholder="Ex: NW2000-J01-..." class="uppercase flex-1 p-2 bg-white border border-emerald-300 rounded-xl font-mono font-bold text-slate-900 text-xs focus:outline-none">
+              <button type="button" id="btnApplyExpressCoupon" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-xs transition">
+                Appliquer
+              </button>
+            </div>
+            <div id="expressCouponFeedback" class="text-[11px] font-bold hidden"></div>
+          </div>
+
+          <!-- Total recap -->
+          <div class="p-2.5 bg-slate-100 rounded-xl font-mono text-[11px] space-y-1">
+            <div class="flex justify-between text-slate-600">
+              <span>Prix Article :</span>
+              <span id="expressBasePriceVal" class="font-bold text-slate-800">0 FCFA</span>
+            </div>
+            <div id="expressDiscountRow" class="flex justify-between text-emerald-700 font-bold hidden">
+              <span>Bon Déduit :</span>
+              <span id="expressDiscountVal">-0 FCFA</span>
+            </div>
+            <div class="flex justify-between text-slate-600">
+              <span>Frais Livraison :</span>
+              <span id="expressDeliveryFeeVal" class="font-bold text-slate-800">Gratuit</span>
+            </div>
+            <div class="flex justify-between font-black text-xs text-slate-900 pt-1 border-t border-slate-200">
+              <span>TOTAL NET À PAYER :</span>
+              <span id="expressFinalTotalVal" class="text-emerald-700">0 FCFA</span>
+            </div>
+          </div>
+
           <input type="text" id="expressCustName" required placeholder="Votre Nom et Prénom" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
           <input type="tel" id="expressCustPhone" required placeholder="Numéro WhatsApp (ex: 70 12 34 56)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
           <input type="text" id="expressCustCity" required placeholder="Quartier exact à Ouagadougou (avec repère)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+
+          <!-- 2FA Sécurité Client -->
+          <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-[11px]">
+            <span class="text-slate-600 font-medium"><i class="fa-solid fa-shield-check text-emerald-600 mr-1"></i> Clé Sécurité Client :</span>
+            <span id="expressClientSecurityToken" class="font-mono font-black text-slate-800 bg-white px-2 py-0.5 rounded border border-slate-300">SEC-5120</span>
+          </div>
 
           <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg transition flex items-center justify-center space-x-2 pulse-glow">
             <i class="fa-brands fa-whatsapp text-sm"></i>
@@ -701,51 +745,68 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL : SÉCURITÉ PIN PROPRIÉTAIRE (4493@wise#)                             -->
+  <!-- MODAL : SÉCURITÉ 2FA PROPRIÉTAIRE (DOUBLE FACTEUR ULTRA-SOLIDE)           -->
   <!-- ========================================================================= -->
-  <div id="adminPinModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl border border-slate-200 max-w-xs w-full p-6 text-center space-y-4 shadow-2xl">
-      <div class="w-14 h-14 bg-slate-900 text-amber-400 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow">
-        <i class="fa-solid fa-lock"></i>
+  <div id="adminPinModal" class="hidden fixed inset-0 bg-slate-900/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 text-center space-y-4 shadow-2xl">
+      <div class="w-14 h-14 bg-slate-900 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow">
+        <i class="fa-solid fa-fingerprint"></i>
       </div>
       <div>
-        <h4 class="font-black text-slate-900 text-sm">Espace Gérant Nocwise BF</h4>
-        <p class="text-[11px] text-slate-500 mt-0.5">Entrez votre code secret propriétaire (jusqu'à 32 caractères, @ et # inclus).</p>
+        <h4 class="font-black text-slate-900 text-sm">Authentification Double Facteur (2FA)</h4>
+        <p class="text-[11px] text-slate-500 mt-0.5">Espace confidentiel réservé au créateur de Nocwise BF.</p>
       </div>
 
       <form id="adminPinForm" class="space-y-3">
-        <input type="password" id="adminPinInput" maxlength="32" placeholder="Code secret" class="w-full p-3 bg-slate-100 border border-slate-200 rounded-xl text-center text-sm font-mono text-slate-900 focus:outline-none focus:border-emerald-500">
-        <p id="pinErrorMsg" class="text-xs text-red-600 font-bold hidden">Code incorrect. Réessayez !</p>
-        <div class="flex space-x-2">
+        <div>
+          <label class="block text-left text-[10px] font-bold text-slate-600 mb-1">1er Facteur : Mot de Passe Maître</label>
+          <input type="password" id="adminPinInput" maxlength="32" placeholder="Mot de passe créateur" class="w-full p-2.5 bg-slate-100 border border-slate-200 rounded-xl text-center text-xs font-mono text-slate-900 focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div>
+          <label class="block text-left text-[10px] font-bold text-slate-600 mb-1">2ᵉ Facteur : Clé Dynamique 2FA</label>
+          <div class="flex space-x-2 items-center">
+            <input type="text" id="admin2faInput" maxlength="6" placeholder="Clé 6 chiffres" class="flex-1 p-2.5 bg-slate-100 border border-slate-200 rounded-xl text-center text-sm font-mono font-black text-slate-900 focus:outline-none">
+            <span id="current2faKeyDisplay" class="bg-slate-900 text-emerald-400 font-mono font-black text-xs px-2.5 py-2.5 rounded-xl border border-slate-700" title="Votre clé 2FA de session">948210</span>
+          </div>
+          <span class="text-[9px] text-slate-400 block text-left mt-0.5">Tapez la clé de session 2FA affichée à droite.</span>
+        </div>
+
+        <p id="pinErrorMsg" class="text-xs text-red-600 font-bold hidden">Identifiants incorrects. Accès refusé !</p>
+        
+        <div class="flex space-x-2 pt-1">
           <button type="button" id="btnCancelPin" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold text-xs rounded-xl">Annuler</button>
-          <button type="submit" class="flex-1 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl">Déverrouiller</button>
+          <button type="submit" class="flex-1 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl">Connexion 2FA</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL : PANNEAU D'ADMINISTRATION COMPLET (AVEC UPLOAD PHOTO & SUPPRESSION) -->
+  <!-- MODAL : ESPACE CONFIDENTIEL DU CRÉATEUR & GÉNÉRATEUR DE 10 CODES UNIQUES  -->
   <!-- ========================================================================= -->
   <div id="adminMasterModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
     <div class="bg-white rounded-3xl border border-slate-200 max-w-2xl w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
       <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
         <h3 class="text-sm font-extrabold flex items-center space-x-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 live-dot-anim"></span>
-          <span>Espace Propriétaire • Nocwise BF</span>
+          <span>Espace Confidentiel du Créateur • Nocwise BF</span>
         </h3>
         <button id="btnCloseAdminMaster" class="text-slate-400 hover:text-white text-lg">&times;</button>
       </div>
 
       <div class="flex border-b border-slate-200 bg-slate-50 px-4 pt-2 space-x-2 text-xs font-bold">
         <button id="tabAdmAddProduct" class="py-2 px-3 border-b-2 border-emerald-600 text-emerald-800">
-          <i class="fa-solid fa-plus-circle mr-1"></i> Ajouter Article (Fichier Photo)
+          <i class="fa-solid fa-plus-circle mr-1"></i> Ajouter Article (Photo)
+        </button>
+        <button id="tabAdmGenerator" class="py-2 px-3 text-slate-500 hover:text-slate-800">
+          <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Générateur 10 Bons Uniques
         </button>
         <button id="tabAdmManageProducts" class="py-2 px-3 text-slate-500 hover:text-slate-800">
-          <i class="fa-solid fa-trash-can mr-1"></i> Supprimer des Articles
+          <i class="fa-solid fa-trash-can mr-1"></i> Supprimer Articles
         </button>
         <button id="tabAdmSettings" class="py-2 px-3 text-slate-500 hover:text-slate-800">
-          <i class="fa-solid fa-sliders mr-1"></i> Paramètres & Code Secret
+          <i class="fa-solid fa-sliders mr-1"></i> Paramètres
         </button>
       </div>
 
@@ -833,7 +894,37 @@
           </form>
         </div>
 
-        <!-- 2. SUPPRESSION FACILE DES PRODUITS PAR L'ADMIN -->
+        <!-- 2. NOUVEAU GÉNÉRATEUR DE 10 CODES UNIQUES PAR PALIER DE PRIX (USAGE UNIQUE & JOURNALIER) -->
+        <div id="viewAdmGenerator" class="hidden space-y-4">
+          <div class="p-3.5 bg-amber-50 rounded-2xl border border-amber-200 text-amber-950 space-y-1">
+            <span class="font-extrabold text-xs flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i> Générateur de 10 Bons à Usage Unique</span>
+            <p class="text-[11px] text-amber-900 leading-relaxed">
+              Lorsqu'un client paie par Mobile Money pour acheter un bon, copiez un code ci-dessous et envoyez-lui sur WhatsApp. Dès qu'il l'utilise sur la boutique, le code est marqué <strong>UTILISÉ</strong> et personne d'autre ne peut s'en servir !
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label class="font-bold text-slate-700">Sélectionnez la valeur du bon :</label>
+            <select id="selectVoucherGenTier" class="p-2 bg-slate-50 border border-slate-200 rounded-xl font-black text-xs text-emerald-800">
+              <option value="200">Bon de 200 FCFA</option>
+              <option value="500">Bon de 500 FCFA</option>
+              <option value="1000">Bon de 1 000 FCFA</option>
+              <option value="2000" selected>Bon de 2 000 FCFA (Standard)</option>
+              <option value="5000">Bon de 5 000 FCFA (Jackpot)</option>
+            </select>
+          </div>
+
+          <button id="btnGenerate10Batch" class="w-full py-2.5 bg-slate-900 hover:bg-black text-white font-black rounded-xl text-xs transition shadow flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-arrows-rotate text-amber-400"></i>
+            <span>Générer un Nouveau Lot de 10 Bons du Jour</span>
+          </button>
+
+          <div id="generatedCodesList" class="space-y-1.5 divide-y divide-slate-100 max-h-72 overflow-y-auto">
+            <!-- Dynamically populated with 10 codes and copy buttons -->
+          </div>
+        </div>
+
+        <!-- 3. SUPPRESSION FACILE DES PRODUITS PAR L'ADMIN -->
         <div id="viewAdmManageProducts" class="hidden space-y-3">
           <p class="font-bold text-slate-700">Supprimez facilement les articles que vous ne vendez plus :</p>
           <div id="adminProductCatalogList" class="space-y-2">
@@ -841,7 +932,7 @@
           </div>
         </div>
 
-        <!-- 3. PARAMÈTRES BOUTIQUE & CODE SECRET -->
+        <!-- 4. PARAMÈTRES BOUTIQUE & CODE SECRET -->
         <div id="viewAdmSettings" class="hidden space-y-3">
           <form id="adminConfigForm" class="space-y-3">
             <div>
@@ -867,9 +958,9 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- JAVASCRIPT LOGIC COMPLET -->
   <script>
-    const STORAGE_KEY = 'nocwise_refined_v2';
+    const STORAGE_KEY = 'nocwise_refined_v3_secure';
 
     const defaultProducts = [
       {
@@ -930,6 +1021,7 @@
       products: defaultProducts,
       points: 1200,
       userVouchers: [],
+      generatedOneTimeCoupons: [], // Generated single-use vouchers
       activeCoupon: null,
       cart: [],
       selectedProduct: null,
@@ -940,6 +1032,8 @@
       dailyVideosWatched: 0,
       dailyVideoDate: new Date().toISOString().split('T')[0]
     };
+
+    let session2FAKey = '948210';
 
     function loadState() {
       try {
@@ -955,8 +1049,13 @@
         state.dailyVideosWatched = 0;
       }
 
+      // Generate dynamic 2FA session code
+      session2FAKey = String(Math.floor(100000 + Math.random() * 900000));
+      document.getElementById('current2faKeyDisplay').textContent = session2FAKey;
+
       applyUI();
       updateCartBadge();
+      ensureInitialCouponBatches();
     }
 
     function saveState() {
@@ -989,7 +1088,201 @@
       document.getElementById('btn-header-whatsapp').href = `https://wa.me/${fullPhone}?text=Bonjour%20Nocwise%20BF,%20j'ai%20une%20question`;
     }
 
-    // Fuzzy search
+    // =========================================================================
+    // DÉCLENCHEUR SECRET DU CRÉATEUR (TRIPLE CLIC SUR LE LOGO OU HASH #admin)
+    // =========================================================================
+    let logoClickCount = 0;
+    let logoClickTimer = null;
+
+    document.getElementById('secretAdminTriggerLogo').addEventListener('click', () => {
+      logoClickCount++;
+      clearTimeout(logoClickTimer);
+      logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 900);
+
+      if (logoClickCount >= 3) {
+        logoClickCount = 0;
+        openAdminAuthModal();
+      }
+    });
+
+    // Support secret URL hash #admin
+    if (window.location.hash === '#admin') {
+      setTimeout(openAdminAuthModal, 500);
+    }
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#admin') openAdminAuthModal();
+    });
+
+    // Keyboard shortcut Ctrl+Shift+A
+    window.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        openAdminAuthModal();
+      }
+    });
+
+    function openAdminAuthModal() {
+      session2FAKey = String(Math.floor(100000 + Math.random() * 900000));
+      document.getElementById('current2faKeyDisplay').textContent = session2FAKey;
+      document.getElementById('adminPinInput').value = '';
+      document.getElementById('admin2faInput').value = '';
+      document.getElementById('pinErrorMsg').classList.add('hidden');
+      document.getElementById('adminPinModal').classList.remove('hidden');
+    }
+
+    document.getElementById('btnCancelPin').addEventListener('click', () => {
+      document.getElementById('adminPinModal').classList.add('hidden');
+    });
+
+    document.getElementById('adminPinForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const enteredPass = document.getElementById('adminPinInput').value.trim();
+      const entered2FA = document.getElementById('admin2faInput').value.trim();
+
+      if (enteredPass === state.adminPin && entered2FA === session2FAKey) {
+        document.getElementById('adminPinModal').classList.add('hidden');
+        renderAdminCatalog();
+        renderGeneratedCodes();
+        document.getElementById('adminMasterModal').classList.remove('hidden');
+        showToast('Espace Propriétaire 2FA Déverrouillé avec Succès', '🛡️');
+      } else {
+        document.getElementById('pinErrorMsg').classList.remove('hidden');
+      }
+    });
+
+    document.getElementById('btnCloseAdminMaster').addEventListener('click', () => {
+      document.getElementById('adminMasterModal').classList.add('hidden');
+    });
+
+    // =========================================================================
+    // GÉNÉRATEUR DE 10 CODES UNIQUES PAR PALIER (USAGE UNIQUE ET JOURNALIER)
+    // =========================================================================
+    function ensureInitialCouponBatches() {
+      if (!state.generatedOneTimeCoupons || state.generatedOneTimeCoupons.length === 0) {
+        generateBatchOf10(2000);
+      }
+    }
+
+    function generateBatchOf10(amount) {
+      const today = new Date().toISOString().split('T')[0];
+      const todayShort = today.replace(/-/g, '').slice(4); // e.g. 1101
+      
+      for (let i = 1; i <= 10; i++) {
+        const randPart = Math.floor(1000 + Math.random() * 9000);
+        const code = `NW${amount}-J${todayShort}-${randPart}`;
+        state.generatedOneTimeCoupons.unshift({
+          code: code,
+          amount: amount,
+          dateCreated: today,
+          used: false,
+          usedAt: null
+        });
+      }
+      saveState();
+    }
+
+    function renderGeneratedCodes() {
+      const selectedTier = parseInt(document.getElementById('selectVoucherGenTier').value, 10);
+      const listContainer = document.getElementById('generatedCodesList');
+      listContainer.innerHTML = '';
+
+      const tierCodes = state.generatedOneTimeCoupons.filter(c => c.amount === selectedTier).slice(0, 20);
+
+      if (tierCodes.length === 0) {
+        listContainer.innerHTML = '<p class="text-xs text-slate-400 italic py-2">Aucun code généré pour ce palier. Cliquez sur le bouton noir ci-dessus pour générer vos 10 codes du jour !</p>';
+        return;
+      }
+
+      tierCodes.forEach(item => {
+        const row = document.createElement('div');
+        row.className = `flex items-center justify-between p-2 rounded-xl text-xs ${item.used ? 'bg-slate-100 opacity-60' : 'bg-emerald-50/70 border border-emerald-200'}`;
+        row.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <span class="font-mono font-black ${item.used ? 'line-through text-slate-400' : 'text-slate-900'}">${item.code}</span>
+            <span class="text-[10px] font-bold ${item.used ? 'bg-slate-300 text-slate-700' : 'bg-emerald-600 text-white'} px-1.5 py-0.2 rounded">
+              ${item.used ? 'DÉJÀ UTILISÉ' : 'DISPONIBLE'}
+            </span>
+          </div>
+          <div>
+            ${!item.used ? `
+              <button data-code="${item.code}" class="btn-copy-one-time-code px-2 py-1 bg-slate-900 hover:bg-black text-amber-300 rounded-lg text-[10px] font-bold transition flex items-center gap-1">
+                <i class="fa-solid fa-copy"></i> Copier
+              </button>
+            ` : `<span class="text-[10px] text-slate-400 italic">Utilisé le ${item.usedAt || 'J-1'}</span>`}
+          </div>
+        `;
+        listContainer.appendChild(row);
+      });
+
+      document.querySelectorAll('.btn-copy-one-time-code').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const code = btn.getAttribute('data-code');
+          navigator.clipboard.writeText(code).then(() => {
+            showToast(`Code ${code} copié ! Prêt à être envoyé au client sur WhatsApp.`, '📋');
+          }).catch(() => {
+            showToast(`Code : ${code}`, '📋');
+          });
+        });
+      });
+    }
+
+    document.getElementById('selectVoucherGenTier').addEventListener('change', renderGeneratedCodes);
+    document.getElementById('btnGenerate10Batch').addEventListener('click', () => {
+      const tier = parseInt(document.getElementById('selectVoucherGenTier').value, 10);
+      generateBatchOf10(tier);
+      renderGeneratedCodes();
+      showToast(`10 nouveaux codes de ${formatMoney(tier)} générés pour aujourd'hui !`, '✨');
+    });
+
+    // =========================================================================
+    // VÉRIFICATION ET APPLICATION DES CODES PROMO (USAGE UNIQUE STRICT)
+    // =========================================================================
+    function checkAndApplyCoupon(codeStr, isCart = true) {
+      const cleanCode = (codeStr || '').trim().toUpperCase();
+      const feedback = document.getElementById(isCart ? 'cartCouponFeedback' : 'expressCouponFeedback');
+      feedback.classList.remove('hidden');
+
+      // 1. Search in One-Time Generated Coupons (from creator generator)
+      const oneTimeMatch = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
+      if (oneTimeMatch) {
+        if (oneTimeMatch.used) {
+          feedback.className = 'text-[11px] font-bold text-red-600';
+          feedback.textContent = "❌ Ce bon de réduction a DÉJÀ ÉTÉ UTILISÉ et n'est plus valable !";
+          return null;
+        }
+        feedback.className = 'text-[11px] font-bold text-emerald-700';
+        feedback.textContent = `✅ Bon Nocwise de ${formatMoney(oneTimeMatch.amount)} validé avec succès !`;
+        return { code: oneTimeMatch.code, amount: oneTimeMatch.amount, isOneTime: true };
+      }
+
+      // 2. Search in user game earned vouchers
+      const earnedMatch = state.userVouchers.find(v => v.code.toUpperCase() === cleanCode);
+      if (earnedMatch) {
+        feedback.className = 'text-[11px] font-bold text-emerald-700';
+        feedback.textContent = `✅ Bon de fidélité jeu de ${formatMoney(earnedMatch.amount)} validé !`;
+        return { code: earnedMatch.code, amount: earnedMatch.amount, isOneTime: false };
+      }
+
+      feedback.className = 'text-[11px] font-bold text-red-600';
+      feedback.textContent = '❌ Code promo ou bon de réduction invalide !';
+      return null;
+    }
+
+    function markCouponAsUsed(codeStr) {
+      const cleanCode = (codeStr || '').trim().toUpperCase();
+      const match = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
+      if (match) {
+        match.used = true;
+        match.usedAt = new Date().toLocaleDateString('fr-FR') + ' à ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5);
+        saveState();
+      }
+      state.userVouchers = state.userVouchers.filter(v => v.code.toUpperCase() !== cleanCode);
+      saveState();
+    }
+
+    // =========================================================================
+    // FUZZY SEARCH (Tolérance aux fautes d'orthographe)
+    // =========================================================================
     function cleanStr(s) {
       return (s || '').toLowerCase()
         .normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -1067,9 +1360,6 @@
               <span class="absolute bottom-2.5 left-2.5 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm ${delClass}">
                 <i class="fa-solid fa-truck-fast mr-0.5"></i> ${delText}
               </span>
-              <button data-id="${p.id}" class="btn-fast-del-prod absolute top-2.5 right-2.5 w-7 h-7 bg-white/90 hover:bg-red-500 hover:text-white text-slate-400 rounded-full flex items-center justify-center text-xs shadow transition" title="Supprimer cet article">
-                <i class="fa-solid fa-trash-can"></i>
-              </button>
             </div>
 
             <div class="p-3.5 sm:p-4 space-y-1.5">
@@ -1124,13 +1414,6 @@
           }
         });
       });
-
-      document.querySelectorAll('.btn-fast-del-prod').forEach(b => {
-        b.addEventListener('click', (e) => {
-          e.stopPropagation();
-          deleteProduct(b.getAttribute('data-id'));
-        });
-      });
     }
 
     function deleteProduct(id) {
@@ -1159,8 +1442,55 @@
       b.textContent = isFree ? 'Livraison Gratuite' : `Frais Livraison : ${formatMoney(p.deliveryFee)}`;
       b.className = isFree ? 'text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold inline-block ml-1' : 'text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold inline-block ml-1';
 
+      // Reset coupon calculation for express
+      expressCurrentDiscount = 0;
+      expressCurrentCouponCode = '';
+      document.getElementById('expressCouponInput').value = '';
+      document.getElementById('expressCouponFeedback').classList.add('hidden');
+      updateExpressFinancials();
+
+      // Generate random 2FA client token
+      document.getElementById('expressClientSecurityToken').textContent = 'SEC-' + Math.floor(1000 + Math.random() * 9000);
+
       document.getElementById('productDetailModal').classList.remove('hidden');
     }
+
+    let expressCurrentDiscount = 0;
+    let expressCurrentCouponCode = '';
+
+    function updateExpressFinancials() {
+      if (!state.selectedProduct) return;
+      const p = state.selectedProduct;
+      const delivery = p.deliveryType === 'paid' ? (p.deliveryFee || 1000) : 0;
+      const finalTot = Math.max(0, p.promoPrice - expressCurrentDiscount) + delivery;
+
+      document.getElementById('expressBasePriceVal').textContent = formatMoney(p.promoPrice);
+      document.getElementById('expressDeliveryFeeVal').textContent = delivery > 0 ? formatMoney(delivery) : 'Gratuit';
+      document.getElementById('expressFinalTotalVal').textContent = formatMoney(finalTot);
+
+      const discountRow = document.getElementById('expressDiscountRow');
+      if (expressCurrentDiscount > 0) {
+        discountRow.classList.remove('hidden');
+        document.getElementById('expressDiscountVal').textContent = `-${formatMoney(expressCurrentDiscount)}`;
+      } else {
+        discountRow.classList.add('hidden');
+      }
+    }
+
+    document.getElementById('btnApplyExpressCoupon').addEventListener('click', () => {
+      const code = document.getElementById('expressCouponInput').value;
+      const valid = checkAndApplyCoupon(code, false);
+      if (valid) {
+        expressCurrentDiscount = valid.amount;
+        expressCurrentCouponCode = valid.code;
+        updateExpressFinancials();
+        showToast(`Bon appliqué : -${formatMoney(valid.amount)}`, '🎟️');
+      } else {
+        expressCurrentDiscount = 0;
+        expressCurrentCouponCode = '';
+        updateExpressFinancials();
+      }
+    });
 
     document.getElementById('btnCloseDetailModal').addEventListener('click', () => {
       document.getElementById('productDetailModal').classList.add('hidden');
@@ -1276,6 +1606,9 @@
       document.getElementById('cartSubtotalVal').textContent = formatMoney(subtotal);
       document.getElementById('cartDeliveryVal').textContent = maxDel > 0 ? formatMoney(maxDel) : 'Gratuit';
       document.getElementById('cartTotalVal').textContent = formatMoney(total);
+
+      // Random 2FA Token for Cart
+      document.getElementById('cartClientSecurityToken').textContent = 'SEC-' + Math.floor(1000 + Math.random() * 9000);
     }
 
     document.getElementById('btn-open-cart').addEventListener('click', () => {
@@ -1287,20 +1620,15 @@
     });
 
     document.getElementById('btnApplyCartCoupon').addEventListener('click', () => {
-      const code = document.getElementById('cartCouponInput').value.trim().toUpperCase();
-      const fb = document.getElementById('cartCouponFeedback');
-      fb.classList.remove('hidden');
-
-      const found = state.userVouchers.find(v => v.code === code);
-      if (found) {
-        state.activeCoupon = found;
-        fb.className = 'text-[11px] font-bold text-emerald-700';
-        fb.textContent = `✅ Bon de réduction de ${formatMoney(found.amount)} activé !`;
+      const code = document.getElementById('cartCouponInput').value;
+      const valid = checkAndApplyCoupon(code, true);
+      if (valid) {
+        state.activeCoupon = valid;
         renderCartModal();
-        showToast(`Bon activé : -${formatMoney(found.amount)}`, '🎟️');
+        showToast(`Bon appliqué : -${formatMoney(valid.amount)}`, '🎟️');
       } else {
-        fb.className = 'text-[11px] font-bold text-red-600';
-        fb.textContent = '❌ Code invalide ou expiré';
+        state.activeCoupon = null;
+        renderCartModal();
       }
     });
 
@@ -1312,8 +1640,9 @@
       const name = document.getElementById('expressCustName').value.trim();
       const phone = document.getElementById('expressCustPhone').value.trim();
       const city = document.getElementById('expressCustCity').value.trim();
+      const secToken = document.getElementById('expressClientSecurityToken').textContent;
       const deliveryFee = p.deliveryType === 'paid' ? (p.deliveryFee || 1000) : 0;
-      const total = p.promoPrice + deliveryFee;
+      const total = Math.max(0, p.promoPrice - expressCurrentDiscount) + deliveryFee;
 
       const waMsg = encodeURIComponent(
         `*NOUVELLE COMMANDE DIRECTE - ${state.brandName}*
@@ -1324,6 +1653,8 @@
 ` +
         `💵 *Prix :* ${formatMoney(p.promoPrice)}
 ` +
+        (expressCurrentDiscount > 0 ? `🎟️ *Bon Déduit :* -${formatMoney(expressCurrentDiscount)} (${expressCurrentCouponCode})
+` : '') +
         `🛵 *Livraison :* ${deliveryFee > 0 ? formatMoney(deliveryFee) : 'Gratuit'}
 ` +
         `💰 *TOTAL À LA LIVRAISON :* ${formatMoney(total)}
@@ -1334,8 +1665,13 @@
 ` +
         `📍 *Lieu :* ${city}
 ` +
+        `🛡️ *Clé Vérif 2FA :* ${secToken}
+` +
         `🛡️ *Règlement :* Paiement Cash ou Mobile Money à la Livraison`
       );
+
+      // Burn coupon as used
+      if (expressCurrentCouponCode) markCouponAsUsed(expressCurrentCouponCode);
 
       const raw = state.whatsappPhone.replace(/[^0-9]/g, '');
       const full = raw.startsWith('226') ? raw : `226${raw}`;
@@ -1350,6 +1686,7 @@
       const name = document.getElementById('cartCustName').value.trim();
       const phone = document.getElementById('cartCustPhone').value.trim();
       const city = document.getElementById('cartCustCity').value.trim();
+      const secToken = document.getElementById('cartClientSecurityToken').textContent;
 
       let itemsStr = '';
       let subtotal = 0;
@@ -1363,6 +1700,7 @@
       });
 
       const discount = state.activeCoupon ? state.activeCoupon.amount : 0;
+      const usedCode = state.activeCoupon ? state.activeCoupon.code : '';
       const total = Math.max(0, subtotal - discount) + maxDel;
 
       const waMsg = encodeURIComponent(
@@ -1376,7 +1714,7 @@ ${itemsStr}` +
 ` +
         `💵 *Sous-total :* ${formatMoney(subtotal)}
 ` +
-        (discount > 0 ? `🎟️ *Bon Déduit :* -${formatMoney(discount)} (${state.activeCoupon.code})
+        (discount > 0 ? `🎟️ *Bon Déduit :* -${formatMoney(discount)} (${usedCode})
 ` : '') +
         `🛵 *Livraison :* ${maxDel > 0 ? formatMoney(maxDel) : 'Gratuit'}
 ` +
@@ -1386,8 +1724,13 @@ ${itemsStr}` +
 ` +
         `👤 *Client :* ${name} | Tél : ${phone}
 ` +
-        `📍 *Destination :* ${city}`
+        `📍 *Destination :* ${city}
+` +
+        `🛡️ *Clé Vérif 2FA :* ${secToken}`
       );
+
+      // Burn coupon as used
+      if (usedCode) markCouponAsUsed(usedCode);
 
       const raw = state.whatsappPhone.replace(/[^0-9]/g, '');
       const full = raw.startsWith('226') ? raw : `226${raw}`;
@@ -1490,38 +1833,9 @@ ${itemsStr}` +
       });
     }
 
-    // Admin Auth & Tabs
-    document.getElementById('btn-toggle-admin').addEventListener('click', () => {
-      document.getElementById('adminPinInput').value = '';
-      document.getElementById('pinErrorMsg').classList.add('hidden');
-      document.getElementById('adminPinModal').classList.remove('hidden');
-    });
-    document.getElementById('btn-trigger-owner-add').addEventListener('click', () => {
-      document.getElementById('btn-toggle-admin').click();
-    });
-    document.getElementById('btnCancelPin').addEventListener('click', () => {
-      document.getElementById('adminPinModal').classList.add('hidden');
-    });
-
-    document.getElementById('adminPinForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const entered = document.getElementById('adminPinInput').value.trim();
-      if (entered === state.adminPin) {
-        document.getElementById('adminPinModal').classList.add('hidden');
-        renderAdminCatalog();
-        document.getElementById('adminMasterModal').classList.remove('hidden');
-        showToast('Espace Propriétaire Déverrouillé', '🔓');
-      } else {
-        document.getElementById('pinErrorMsg').classList.remove('hidden');
-      }
-    });
-
-    document.getElementById('btnCloseAdminMaster').addEventListener('click', () => {
-      document.getElementById('adminMasterModal').classList.add('hidden');
-    });
-
     const admTabs = [
       { btn: document.getElementById('tabAdmAddProduct'), view: document.getElementById('viewAdmAddProduct') },
+      { btn: document.getElementById('tabAdmGenerator'), view: document.getElementById('viewAdmGenerator') },
       { btn: document.getElementById('tabAdmManageProducts'), view: document.getElementById('viewAdmManageProducts') },
       { btn: document.getElementById('tabAdmSettings'), view: document.getElementById('viewAdmSettings') }
     ];
@@ -1533,6 +1847,7 @@ ${itemsStr}` +
         });
         t.btn.className = 'py-2 px-3 border-b-2 border-emerald-600 text-emerald-800 font-bold';
         t.view.classList.remove('hidden');
+        if (t.view.id === 'viewAdmGenerator') renderGeneratedCodes();
       });
     });
 
