@@ -7,8 +7,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Adsterra Monetization Script -->
-  <script data-cfasync="false" src="https://bicea.org/14/07d64570b65c58184e0ff0248bdfdd6d"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
     body {
@@ -28,6 +26,7 @@
       50% { opacity: 0.4; transform: scale(0.85); }
     }
     .live-dot-anim { animation: live-dot 1.5s infinite ease-in-out; }
+
     @keyframes fly-plane {
       0% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-4px) rotate(2deg); }
@@ -43,10 +42,11 @@
     <div class="max-w-6xl mx-auto w-full flex items-center justify-between flex-wrap gap-2 text-[11px]">
       <div class="flex items-center space-x-2">
         <span class="animate-pulse">🔥</span>
-        <span id="banner-text">NOCWISE BF • EXPLOREZ, JOUEZ, ÉCONOMISEZ • LIVRAISON À OUAGA & PAIEMENT SUR PLACE</span>
+        <span id="banner-text">NOCWISE BF • EXPLOREZ, JOUEZ, ÉCONOMISEZ • LIVRAISON RAPIDE & PAIEMENT SUR PLACE</span>
         <span class="animate-pulse">🔥</span>
       </div>
 
+      <!-- Quick loyalty points bar -->
       <div class="flex items-center space-x-2 font-mono">
         <div class="bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 rounded-lg flex items-center space-x-1.5">
           <span class="text-amber-300">🪙</span>
@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <!-- SPONSORED BANNER -->
+  <!-- SPONSORED ADSENSE / NETWORK BANNER (Monétisation réelle) -->
   <div class="max-w-6xl mx-auto w-full px-4 pt-2">
     <div class="bg-white border border-slate-200 rounded-2xl p-2 text-center text-[10px] text-slate-500 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-1.5">
       <span class="text-slate-700 font-bold uppercase tracking-wider flex items-center gap-1.5">
@@ -71,11 +71,11 @@
     </div>
   </div>
 
-  <!-- MAIN NAVIGATION -->
+  <!-- MAIN NAVIGATION (100% CLEAN - ZÉRO CADENAS NI TRACE ADMIN VISIBLE POUR LES CLIENTS) -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
       
-      <!-- Brand Logo (Triple-clic secret pour ouvrir l'espace créateur) -->
+      <!-- Brand Logo (Sert de déclencheur secret sécurisé si cliqué 3 fois de suite) -->
       <div id="secretAdminTriggerLogo" class="flex items-center space-x-2.5 cursor-pointer select-none" title="Nocwise BF">
         <div class="w-10 h-10 rounded-2xl bg-emerald-600 text-amber-300 flex items-center justify-center font-black text-xl shadow-md border-2 border-emerald-500 transition transform hover:scale-105 active:scale-95">
           <i class="fa-solid fa-moon text-lg"></i>
@@ -86,7 +86,7 @@
         </div>
       </div>
 
-      <!-- Environment Switcher -->
+      <!-- ENVIRONMENT SWITCHER (BOUTIQUE vs JEUX) -->
       <div class="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-300 shadow-inner">
         <button id="nav-btn-store" class="nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md">
           <i class="fa-solid fa-shop"></i>
@@ -99,13 +99,14 @@
         </button>
       </div>
 
-      <!-- Quick Actions -->
+      <!-- Quick Customer Actions (Cart & Direct WhatsApp Help) -->
       <div class="flex items-center space-x-2">
-        <a id="btn-header-whatsapp" href="https://wa.me/22652627240" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold rounded-xl border border-emerald-200 flex items-center space-x-1.5 transition">
+        <a id="btn-header-whatsapp" href="https://wa.me/22670000000" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold rounded-xl border border-emerald-200 flex items-center space-x-1.5 transition">
           <i class="fa-brands fa-whatsapp text-sm"></i>
           <span class="hidden sm:inline">Discuter avec nous</span>
         </a>
 
+        <!-- Cart Button -->
         <button id="btn-open-cart" class="relative px-3.5 py-2 bg-slate-900 text-white hover:bg-slate-800 text-xs font-bold rounded-xl shadow-sm flex items-center space-x-1.5 transition">
           <i class="fa-solid fa-cart-shopping text-amber-400"></i>
           <span class="hidden sm:inline">Mon Panier</span>
@@ -117,38 +118,37 @@
   </header>
 
   <!-- TOAST NOTIFICATION -->
-  <div id="toastNotification" class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 text-xs sm:text-sm">
+  <div id="toastNotification" class="hidden fixed bottom-5 right-5 z-50 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 text-xs sm:text-sm animate-bounce">
     <span id="toastIcon" class="text-emerald-400 text-base">✨</span>
     <span id="toastMessage" class="font-semibold">Action effectuée</span>
   </div>
 
   <!-- ========================================================================= -->
-  <!-- 1. SECTION BOUTIQUE                                                       -->
+  <!-- 1. SECTION BOUTIQUE NOCWISE BF                                            -->
   <!-- ========================================================================= -->
   <section id="section-store" class="max-w-6xl mx-auto px-4 py-6 w-full flex-1 space-y-6">
 
     <!-- Search & Category Bar -->
     <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+      <!-- Smart Fuzzy Search Input -->
       <div class="relative w-full sm:w-80">
         <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-        <input type="text" id="product-search" placeholder="Rechercher un article..." class="w-full pl-8 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none font-medium">
+        <input type="text" id="product-search" placeholder="Rechercher un article (même avec fautes)..." class="w-full pl-8 pr-8 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none font-medium">
         <button id="btn-clear-search" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500 text-xs hidden">
           <i class="fa-solid fa-circle-xmark"></i>
         </button>
       </div>
 
+      <!-- Category Filter Pills -->
       <div id="category-pills" class="flex overflow-x-auto space-x-1.5 w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none">
         <button data-cat="all" class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-emerald-700 text-white shadow-sm transition">
           Tous les Rayons
         </button>
-        <button data-cat="Beauté & Soins" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
-          🧴 Beauté & Soins
+        <button data-cat="Solaire & Énergie" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
+          ⚡ Solaire & Énergie
         </button>
         <button data-cat="Cuisine & Maison" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
           🍳 Cuisine & Maison
-        </button>
-        <button data-cat="Solaire & Énergie" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
-          ⚡ Solaire & Énergie
         </button>
         <button data-cat="Ambiance & Déco" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 hover:bg-slate-200 border border-slate-200 transition">
           🌸 Ambiance & Soirée
@@ -174,40 +174,45 @@
       </div>
     </div>
 
-    <!-- PRODUCT GRID -->
-    <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5"></div>
+    <!-- PRODUCT GRID (Cases réelles) -->
+    <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+      <!-- Populated via JS -->
+    </div>
 
+    <!-- Empty search notice -->
     <div id="empty-search-state" class="hidden p-12 text-center space-y-3 bg-white rounded-3xl border border-slate-200">
       <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl">
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
       <h4 class="text-sm font-bold text-slate-800">Aucun produit trouvé</h4>
-      <p class="text-xs text-slate-500 max-w-sm mx-auto">Vérifiez la saisie ou changez de rayon.</p>
+      <p class="text-xs text-slate-500 max-w-sm mx-auto">Vérifiez la saisie ou changez de rayon pour afficher d'autres articles.</p>
     </div>
 
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 2. SECTION JEUX                                                           -->
+  <!-- 2. SECTION JEUX : LA ROUE & LE CRASH (2 JEUX EXCLUSIFS CALIBRÉS)          -->
   <!-- ========================================================================= -->
   <section id="section-games" class="hidden max-w-6xl mx-auto px-4 py-6 w-full flex-1 space-y-6">
     
+    <!-- Games Hero & 5-Videos-per-day Quota -->
     <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-xl border border-emerald-600/40">
       <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">Loisirs & Fidélité Nocwise BF</span>
           <h2 class="text-2xl sm:text-3xl font-black mt-1">Entrez dans l'Espace Jeu et Gagnez vos Bons d'Achat !</h2>
           <p class="text-xs sm:text-sm text-emerald-100 max-w-xl">
-            Cumulez des points sur la Roue ou le Crash et convertissez-les en <strong class="text-amber-300">Bons de Réduction de 200 F à 5 000 FCFA</strong>.
+            Cumulez des points sur la Roue ou le Crash et convertissez-les en <strong class="text-amber-300">Bons de Réduction de 200 F à 5 000 FCFA</strong> utilisables sur la boutique.
           </p>
         </div>
 
+        <!-- Daily Video Quota Widget (5 vidéos = 600 pts = 30%) -->
         <div class="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl text-right min-w-[200px]">
           <div class="text-[10px] text-amber-300 uppercase font-bold">Vidéos Partenaires Quotidiennes</div>
           <div class="text-base font-black text-white font-mono mt-0.5" id="videoQuotaDisplay">
             5 / 5 Disponibles
           </div>
-          <button id="btnWatchRewardedAdAction" class="mt-2 w-full py-1.5 bg-amber-400 hover:bg-amber-300 text-emerald-950 font-black rounded-xl text-xs transition shadow flex items-center justify-center space-x-1.5 cursor-pointer">
+          <button id="btnWatchRewardedAdAction" class="mt-2 w-full py-1.5 bg-amber-400 hover:bg-amber-300 text-emerald-950 font-black rounded-xl text-xs transition shadow flex items-center justify-center space-x-1.5">
             <i class="fa-solid fa-play text-[10px]"></i>
             <span>Regarder (+120 PTS)</span>
           </button>
@@ -215,7 +220,7 @@
       </div>
     </div>
 
-    <!-- Games Switcher -->
+    <!-- 2 Games Switcher (Roue vs Crash) + Passerelle Bons -->
     <div class="flex items-center space-x-2 overflow-x-auto pb-1 text-xs font-bold scrollbar-none">
       <button id="btnTabWheel" class="game-selector-tab px-4 py-2 rounded-xl bg-amber-500 text-black font-extrabold transition flex items-center space-x-1.5 shadow">
         <span>🎡</span> <span>Roue de la Fortune (x32)</span>
@@ -232,7 +237,7 @@
       </button>
     </div>
 
-    <!-- 1. JEU : LA ROUE -->
+    <!-- 1. JEU : LA ROUE DE LA FORTUNE -->
     <div id="gameViewWheel" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
       <div class="lg:col-span-8 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col items-center justify-center min-h-[420px] relative overflow-hidden">
         <div class="flex items-center justify-between w-full pb-3 border-b border-slate-100 text-xs">
@@ -251,7 +256,7 @@
         </div>
 
         <div id="wheelStatusMessage" class="text-xs font-semibold text-slate-600 text-center mt-1">
-          Tournez la roue et décrochez le multiplicateur x32 !
+          Tournez la roue de la fortune et décrochez le multiplicateur x32 !
         </div>
       </div>
 
@@ -277,7 +282,7 @@
       </div>
     </div>
 
-    <!-- 2. JEU : LE CRASH -->
+    <!-- 2. JEU : LE CRASH 24/7 EN DIRECT CONTINU -->
     <div id="gameViewCrash" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
       <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-xl flex flex-col justify-between min-h-[420px] relative overflow-hidden text-white">
         <div class="flex items-center justify-between pb-3 border-b border-slate-800 z-20 text-xs">
@@ -285,7 +290,9 @@
             <span class="w-2.5 h-2.5 rounded-full bg-red-500 live-dot-anim"></span>
             <span class="font-bold uppercase text-[11px]">Crash Live en Direct • Suivez le Vol Continu</span>
           </div>
-          <div id="crashHistoryBadges" class="flex items-center space-x-1.5 overflow-x-auto text-[10px] font-mono font-bold"></div>
+          <div id="crashHistoryBadges" class="flex items-center space-x-1.5 overflow-x-auto text-[10px] font-mono font-bold">
+            <!-- Dynamically populated -->
+          </div>
         </div>
 
         <div class="my-auto py-10 text-center relative z-10 flex flex-col items-center justify-center">
@@ -338,13 +345,13 @@
       </div>
     </div>
 
-    <!-- 3. PASSERELLE BONS DE RÉDUCTION -->
+    <!-- 3. PASSERELLE BONS DE RÉDUCTION (200 F à 5 000 FCFA) -->
     <div id="gameViewVouchers" class="hidden space-y-5">
       <div class="bg-gradient-to-r from-emerald-800 to-teal-800 rounded-3xl p-5 sm:p-6 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg">
         <div>
           <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full">Convertisseur Réel Nocwise BF</span>
           <h3 class="text-xl font-black mt-1">Échangez vos Points contre de Vrais Bons d'Achat</h3>
-          <p class="text-xs text-emerald-100">Chaque bon débloqué est un vrai code coupon déductible immédiatement !</p>
+          <p class="text-xs text-emerald-100">Chaque bon débloqué est un vrai code coupon déductible immédiatement lors de votre commande !</p>
         </div>
         <div class="bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/20 text-center">
           <span class="text-[10px] text-amber-300 font-bold uppercase block">Votre Solde Actuel</span>
@@ -361,7 +368,7 @@
               <span class="text-xs font-mono font-bold text-slate-600">200 PTS</span>
             </div>
             <h4 class="font-bold text-slate-800 text-sm mt-1">Coupon Découverte</h4>
-            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Déductible dès 1 500 FCFA d'achat.</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full mb-3">⚡ Panier min : 1 500 FCFA</span>
+            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Déductible dès 2 000 FCFA d'achat.</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full mb-3">⚡ Panier min : 2 000 FCFA</span>
           </div>
           <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-800 font-bold rounded-xl text-xs transition" data-amount="200" data-pts="200">
             Obtenir pour 200 PTS
@@ -376,7 +383,7 @@
               <span class="text-xs font-mono font-bold text-slate-600">500 PTS</span>
             </div>
             <h4 class="font-bold text-slate-800 text-sm mt-1">Coupon Privilège</h4>
-            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Idéal pour les petits achats.</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full mb-3">⚡ Panier min : 3 000 FCFA</span>
+            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Idéal pour les accessoires et diffuseurs.</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full mb-3">⚡ Panier min : 5 000 FCFA</span>
           </div>
           <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-800 font-bold rounded-xl text-xs transition" data-amount="500" data-pts="500">
             Obtenir pour 500 PTS
@@ -391,32 +398,32 @@
               <span class="text-xs font-mono font-bold text-slate-600">1 000 PTS</span>
             </div>
             <h4 class="font-bold text-slate-800 text-sm mt-1">Frais de Port Offerts</h4>
-            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Compense les frais de livraison.</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full mb-3">⚡ Panier min : 5 000 FCFA</span>
+            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Compense les frais de livraison à domicile.</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full mb-3">⚡ Panier min : 10 000 FCFA</span>
           </div>
           <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-800 font-bold rounded-xl text-xs transition" data-amount="1000" data-pts="1000">
             Obtenir pour 1 000 PTS
           </button>
         </div>
 
-        <!-- 2000 F -->
+        <!-- 2000 F (OBJECTIF MAJEUR CALIBRÉ À +50% SUCCÈS) -->
         <div class="bg-white border-2 border-amber-400 p-4 rounded-3xl shadow-md flex flex-col justify-between relative overflow-hidden">
           <span class="absolute top-2 right-2 bg-amber-400 text-emerald-950 text-[9px] font-black uppercase px-2 py-0.5 rounded-full">
-            ⭐ OBJECTIF CLÉ
+            ⭐ OBJECTIF CLÉ (+50% RÉUSSITE)
           </span>
           <div>
             <div class="flex justify-between items-center mb-1">
               <span class="text-xs font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded">BON 2 000 FCFA</span>
               <span class="text-xs font-mono font-bold text-amber-700">2 000 PTS</span>
             </div>
-            <h4 class="font-bold text-slate-900 text-sm mt-1">Super Bon VIP</h4>
-            <p class="text-xs text-slate-600 mt-0.5 mb-1.5">Compatible avec tous les articles de la boutique !</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-300 px-2 py-0.5 rounded-full mb-3">⭐ Panier min : 8 000 FCFA</span>
+            <h4 class="font-bold text-slate-900 text-sm mt-1">Super Bon de Réduction VIP</h4>
+            <p class="text-xs text-slate-600 mt-0.5 mb-1.5">L'objectif principal calibré pour être atteint par la majorité des joueurs réguliers !</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-300 px-2 py-0.5 rounded-full mb-3">⭐ Panier min : 18 000 FCFA</span>
           </div>
           <button class="btn-redeem-voucher w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow" data-amount="2000" data-pts="2000">
             Obtenir pour 2 000 PTS (Recommandé)
           </button>
         </div>
 
-        <!-- 5000 F -->
+        <!-- 5000 F (RARE JACKPOT) -->
         <div class="bg-white border border-purple-300 p-4 rounded-3xl shadow-sm flex flex-col justify-between">
           <div>
             <div class="flex justify-between items-center mb-1">
@@ -424,7 +431,7 @@
               <span class="text-xs font-mono font-bold text-purple-700">5 000 PTS</span>
             </div>
             <h4 class="font-bold text-slate-800 text-sm mt-1">Bon Suprême Légendaire</h4>
-            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Réduction rare réservée aux gagnants du x32 !</p><span class="inline-block text-[10px] font-bold bg-purple-50 text-purple-800 border border-purple-200 px-2 py-0.5 rounded-full mb-3">👑 Panier min : 18 000 FCFA</span>
+            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Réduction rare réservée aux gagnants du x32 à la Roue !</p><span class="inline-block text-[10px] font-bold bg-purple-50 text-purple-800 border border-purple-200 px-2 py-0.5 rounded-full mb-3">👑 Panier min : 40 000 FCFA</span>
           </div>
           <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-purple-600 hover:text-white text-purple-800 font-bold rounded-xl text-xs transition" data-amount="5000" data-pts="5000">
             Obtenir pour 5 000 PTS (Rare)
@@ -432,15 +439,18 @@
         </div>
       </div>
 
+      <!-- Active Coupons List -->
       <div class="bg-white border border-slate-200 p-5 rounded-3xl shadow-sm space-y-3">
         <h4 class="text-sm font-bold text-slate-900 flex items-center gap-2">
           <span>🎟️</span> Vos Bons Débloqués Disponibles
         </h4>
-        <div id="userVouchersVault" class="space-y-2"></div>
+        <div id="userVouchersVault" class="space-y-2">
+          <!-- Populated by JS -->
+        </div>
       </div>
     </div>
 
-    <!-- 4. ACHAT DE BONS VIA MOBILE MONEY -->
+    <!-- 4. ACHAT DE BONS VIA MOBILE MONEY (Orange, Moov, Wave, Sank Money) -->
     <div id="gameViewBuyVouchers" class="hidden space-y-5">
       <div class="bg-gradient-to-r from-amber-500 to-amber-600 rounded-3xl p-5 sm:p-6 text-black shadow-md">
         <span class="bg-black text-white text-[10px] font-black uppercase px-2 py-0.5 rounded-full">Achat de Bons Réduction</span>
@@ -487,83 +497,30 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- MODAL : LECTEUR VIDÉO HD RÉMUNÉRÉ (+120 PTS)                              -->
+  <!-- MODAL : REWARDED VIDEO AD (5 PAR JOUR MAX = 600 PTS = 30%)                -->
   <!-- ========================================================================= -->
-  <div id="videoModal" class="hidden fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-slate-900 text-white rounded-3xl border border-slate-800 max-w-md w-full p-4 sm:p-5 text-center shadow-2xl relative overflow-hidden">
-      <div class="flex items-center justify-between mb-3 text-xs border-b border-slate-800 pb-2.5">
-        <div class="flex items-center gap-1.5 text-amber-400 font-extrabold">
-          <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-          <span>ANNONCE VIDÉO SPONSORISÉE</span>
-        </div>
-        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-black font-mono text-[10px]">+120 PTS REWARD</span>
+  <div id="videoModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 text-center shadow-2xl relative">
+      <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-3 text-2xl animate-pulse">
+        ▶️
       </div>
-
-      <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black shadow-inner border border-slate-800 mb-3 group">
-        <video id="rewardedVideoElement" class="w-full h-full object-cover" playsinline muted preload="auto" poster="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80">
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-          Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <div id="videoPlayOverlay" class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center cursor-pointer transition hover:bg-black/40">
-          <div class="w-14 h-14 rounded-full bg-amber-500 text-black flex items-center justify-center text-2xl font-black shadow-lg shadow-amber-500/30">
-            ▶
-          </div>
-          <span class="text-xs font-bold text-white mt-2 drop-shadow">Lancer la vidéo sponsorisée</span>
-        </div>
-        <button id="btnToggleVideoSound" type="button" class="absolute bottom-2 left-2 bg-black/70 hover:bg-black text-white px-2.5 py-1 rounded-lg text-[10px] font-bold border border-white/20 flex items-center gap-1 z-10 transition">
-          <span id="soundVolIcon">🔇</span>
-          <span id="soundVolText">Activer le Son</span>
-        </button>
-        <div class="absolute top-2 right-2 bg-black/70 backdrop-blur px-2.5 py-1 rounded-lg text-white font-mono text-[11px] font-extrabold border border-white/10">
-          ⏱️ <span id="videoTimerSec">15</span>s
-        </div>
-      </div>
-
-      <div class="w-full bg-slate-800 rounded-full h-2.5 mb-2 overflow-hidden border border-slate-700">
-        <div id="videoProgressBar" class="bg-gradient-to-r from-amber-400 via-orange-500 to-emerald-400 h-full w-0 transition-all duration-100"></div>
-      </div>
+      <h3 class="text-base font-bold text-slate-900 mb-1">Clip Publicitaire Partenaire</h3>
+      <p class="text-xs text-slate-500 mb-4">Gagnez +120 points tout en générant des revenus publicitaires pour Nocwise BF.</p>
       
-      <div class="flex items-center justify-between text-[11px] text-slate-400 font-mono mb-3">
-        <span>Visionnez l'annonce en entier</span>
-        <span id="videoTimerText" class="text-amber-400 font-bold">15 secondes restantes</span>
+      <div class="w-full bg-slate-100 rounded-full h-3 mb-2 overflow-hidden border border-slate-200">
+        <div id="videoProgressBar" class="bg-gradient-to-r from-amber-400 to-emerald-500 h-full w-0 transition-all duration-100"></div>
       </div>
+      <div id="videoTimerText" class="text-xs font-mono text-slate-700 font-bold mb-4">Temps restant : 5s</div>
 
-      <button id="btnClaimVideoReward" disabled class="w-full py-3 bg-slate-800 text-slate-500 font-bold text-xs rounded-xl cursor-not-allowed transition">
-        Regardez la vidéo (15s) pour débloquer (+120 PTS)...
+      <button id="btnClaimVideoReward" disabled class="w-full py-3 bg-slate-100 text-slate-400 font-bold text-xs rounded-xl cursor-not-allowed transition">
+        Veuillez patienter...
       </button>
     </div>
   </div>
 
-  <!-- MODAL : CONFIRMATION DE COMMANDE & LIEN WHATSAPP (ANTI-BLOCAGE POPUP) -->
-  <div id="orderSuccessModal" class="hidden fixed inset-0 bg-slate-900/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 text-center shadow-2xl space-y-4">
-      <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow-inner">
-        <i class="fa-solid fa-circle-check"></i>
-      </div>
-      <div>
-        <h4 class="font-black text-slate-900 text-base">Commande Validée avec Succès !</h4>
-        <p class="text-xs text-slate-500 mt-1">Vos articles sont réservés. Cliquez ci-dessous pour transmettre votre commande à notre livreur sur WhatsApp :</p>
-      </div>
-
-      <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-left text-xs font-mono space-y-1">
-        <div class="text-slate-500 text-[10px]">TOTAL NET À LA LIVRAISON :</div>
-        <div id="modalSuccessTotal" class="text-base font-black text-emerald-700">0 FCFA</div>
-        <div id="modalSuccessToken" class="text-[10px] text-slate-400 pt-1 border-t border-slate-200">Clé Sécurité : SEC-0000</div>
-      </div>
-
-      <a id="btnModalSuccessWhatsApp" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-black text-xs uppercase tracking-wider shadow-lg flex items-center justify-center gap-2 pulse-glow transition">
-        <i class="fa-brands fa-whatsapp text-lg"></i>
-        <span>Envoyer sur WhatsApp</span>
-      </a>
-
-      <button id="btnCloseSuccessModal" type="button" class="w-full py-2 text-slate-400 hover:text-slate-600 text-xs font-bold">
-        Fermer
-      </button>
-    </div>
-  </div>
-
-  <!-- MODAL : ACHAT DE BON VIA MOBILE MONEY -->
+  <!-- ========================================================================= -->
+  <!-- MODAL : ACHAT DE BON VIA MOBILE MONEY                                     -->
+  <!-- ========================================================================= -->
   <div id="mobileMoneyModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-5 shadow-2xl">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
@@ -611,7 +568,9 @@
     </div>
   </div>
 
-  <!-- MODAL : PANIER MULTI-ARTICLES -->
+  <!-- ========================================================================= -->
+  <!-- MODAL : PANIER MULTI-ARTICLES (AVEC OPTION CODE PROMO DÉDUCTIBLE)         -->
+  <!-- ========================================================================= -->
   <div id="cartModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
     <div class="bg-white rounded-3xl border border-slate-200 max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
       <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
@@ -623,21 +582,23 @@
       </div>
 
       <div class="p-5 overflow-y-auto space-y-4 text-xs flex-1">
-        <div id="cartItemsList" class="space-y-3 divide-y divide-slate-100"></div>
+        <div id="cartItemsList" class="space-y-3 divide-y divide-slate-100">
+          <!-- Populated by JS -->
+        </div>
 
         <div id="emptyCartView" class="hidden text-center py-8 space-y-2">
           <i class="fa-solid fa-cart-arrow-down text-4xl text-slate-300"></i>
           <p class="font-bold text-slate-500">Votre panier est vide</p>
         </div>
 
-        <!-- ZONE CODE PROMO -->
+        <!-- ZONE CODE PROMO / BON DÉDUCTION BIEN VISIBLE DANS LE PANIER -->
         <div id="cartCouponSection" class="p-3.5 bg-emerald-50/70 rounded-2xl border border-emerald-200 space-y-2">
           <label class="block font-bold text-emerald-950 text-xs flex items-center gap-1.5">
             <i class="fa-solid fa-tag text-emerald-700"></i>
             <span>Vous avez un Code Promo ou un Bon de Réduction ?</span>
           </label>
           <div class="flex space-x-2">
-            <input type="text" id="cartCouponInput" placeholder="Tapez votre code (ex: NW2000-J...)" class="uppercase flex-1 p-2.5 bg-white border border-emerald-300 rounded-xl font-mono font-bold text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            <input type="text" id="cartCouponInput" placeholder="Tapez votre code (ex: NW2000-J01-...)" class="uppercase flex-1 p-2.5 bg-white border border-emerald-300 rounded-xl font-mono font-bold text-slate-900 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500">
             <button type="button" id="btnApplyCartCoupon" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl text-xs transition shadow">
               Appliquer
             </button>
@@ -665,14 +626,15 @@
           </div>
         </div>
 
-        <!-- Formulaire -->
+        <!-- Formulaire avec Clé de Sécurité 2FA Client Anti-Fraude -->
         <form id="cartCheckoutForm" class="space-y-3 pt-1">
           <p class="font-bold text-slate-800 text-xs">Vos Informations de Livraison à Ouaga :</p>
           <input type="text" id="cartCustName" required placeholder="Votre Nom complet" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
-          <input type="tel" id="cartCustPhone" required placeholder="Numéro WhatsApp (ex: 70 12 34 56 ou 52627240)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+          <input type="tel" id="cartCustPhone" required placeholder="Numéro WhatsApp (ex: 70 12 34 56)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
           <div id="cartPhoneFeedback" class="text-[10px] font-bold mt-1 px-1 hidden"></div>
           <input type="text" id="cartCustCity" required placeholder="Quartier exact à Ouagadougou (avec repère)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
 
+          <!-- 2FA Sécurité Client : Clé de vérification automatique -->
           <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-[11px]">
             <span class="text-slate-600 font-medium"><i class="fa-solid fa-shield-check text-emerald-600 mr-1"></i> Clé Sécurité Commande :</span>
             <span id="cartClientSecurityToken" class="font-mono font-black text-slate-800 bg-white px-2 py-0.5 rounded border border-slate-300">SEC-9481</span>
@@ -687,7 +649,9 @@
     </div>
   </div>
 
-  <!-- MODAL : FICHE PRODUIT & COMMANDE EXPRESS -->
+  <!-- ========================================================================= -->
+  <!-- MODAL : FICHE PRODUIT & COMMANDE EXPRESS (AVEC OPTION CODE PROMO)         -->
+  <!-- ========================================================================= -->
   <div id="productDetailModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
     <div class="bg-white rounded-3xl border border-slate-200 max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
       <div class="bg-slate-900 text-white px-5 py-3.5 flex items-center justify-between">
@@ -713,7 +677,8 @@
           </div>
         </div>
 
-        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-slate-600 leading-relaxed" id="detailModalDesc"></div>
+        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-slate-600 leading-relaxed" id="detailModalDesc">
+        </div>
 
         <div class="grid grid-cols-2 gap-2 pt-1">
           <button id="btnAddToCartFromModal" class="py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-2xl transition flex items-center justify-center space-x-1.5 border border-slate-300">
@@ -729,13 +694,14 @@
         <form id="expressOrderForm" class="space-y-3 pt-3 border-t border-slate-100">
           <p class="font-black text-slate-900 text-xs">Commande Express Directe :</p>
           
+          <!-- OPTION CODE PROMO BIEN VISIBLE LORS DE LA COMMANDE EXPRESS -->
           <div class="p-3 bg-emerald-50/70 rounded-2xl border border-emerald-200 space-y-2">
             <label class="block font-bold text-emerald-950 text-[11px] flex items-center gap-1.5">
               <i class="fa-solid fa-tag text-emerald-700"></i>
               <span>Appliquer un Code Promo ou Bon de Réduction :</span>
             </label>
             <div class="flex space-x-2">
-              <input type="text" id="expressCouponInput" placeholder="Ex: NW2000-J..." class="uppercase flex-1 p-2 bg-white border border-emerald-300 rounded-xl font-mono font-bold text-slate-900 text-xs focus:outline-none">
+              <input type="text" id="expressCouponInput" placeholder="Ex: NW2000-J01-..." class="uppercase flex-1 p-2 bg-white border border-emerald-300 rounded-xl font-mono font-bold text-slate-900 text-xs focus:outline-none">
               <button type="button" id="btnApplyExpressCoupon" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl text-xs transition">
                 Appliquer
               </button>
@@ -743,6 +709,7 @@
             <div id="expressCouponFeedback" class="text-[11px] font-bold hidden"></div>
           </div>
 
+          <!-- Total recap -->
           <div class="p-2.5 bg-slate-100 rounded-xl font-mono text-[11px] space-y-1">
             <div class="flex justify-between text-slate-600">
               <span>Prix Article :</span>
@@ -763,10 +730,11 @@
           </div>
 
           <input type="text" id="expressCustName" required placeholder="Votre Nom et Prénom" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
-          <input type="tel" id="expressCustPhone" required placeholder="Numéro WhatsApp (ex: 70 12 34 56 ou 52627240)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
+          <input type="tel" id="expressCustPhone" required placeholder="Numéro WhatsApp (ex: 70 12 34 56)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
           <div id="expressPhoneFeedback" class="text-[10px] font-bold mt-1 px-1 hidden"></div>
           <input type="text" id="expressCustCity" required placeholder="Quartier exact à Ouagadougou (avec repère)" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-medium focus:outline-none focus:border-emerald-500">
 
+          <!-- 2FA Sécurité Client -->
           <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-[11px]">
             <span class="text-slate-600 font-medium"><i class="fa-solid fa-shield-check text-emerald-600 mr-1"></i> Clé Sécurité Client :</span>
             <span id="expressClientSecurityToken" class="font-mono font-black text-slate-800 bg-white px-2 py-0.5 rounded border border-slate-300">SEC-5120</span>
@@ -781,7 +749,9 @@
     </div>
   </div>
 
-  <!-- MODAL : SÉCURITÉ 2FA PROPRIÉTAIRE -->
+  <!-- ========================================================================= -->
+  <!-- MODAL : SÉCURITÉ 2FA PROPRIÉTAIRE (DOUBLE FACTEUR ULTRA-SOLIDE)           -->
+  <!-- ========================================================================= -->
   <div id="adminPinModal" class="hidden fixed inset-0 bg-slate-900/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 text-center space-y-4 shadow-2xl">
       <div class="w-14 h-14 bg-slate-900 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto text-2xl shadow">
@@ -794,12 +764,12 @@
 
       <form id="adminPinForm" class="space-y-3">
         <div>
-          <label class="block text-left text-[10px] font-bold text-slate-600 mb-1">Mot de Passe Maître</label>
+          <label class="block text-left text-[10px] font-bold text-slate-600 mb-1">1er Facteur : Mot de Passe Maître</label>
           <input type="password" id="adminPinInput" maxlength="32" placeholder="Mot de passe créateur" class="w-full p-2.5 bg-slate-100 border border-slate-200 rounded-xl text-center text-xs font-mono text-slate-900 focus:outline-none focus:border-emerald-500">
         </div>
 
         <div>
-          <label class="block text-left text-[10px] font-bold text-slate-600 mb-1">Clé Dynamique 2FA</label>
+          <label class="block text-left text-[10px] font-bold text-slate-600 mb-1">2ᵉ Facteur : Clé Dynamique 2FA</label>
           <div class="flex space-x-2 items-center">
             <input type="text" id="admin2faInput" maxlength="6" placeholder="Clé 6 chiffres" class="flex-1 p-2.5 bg-slate-100 border border-slate-200 rounded-xl text-center text-sm font-mono font-black text-slate-900 focus:outline-none">
             <span id="current2faKeyDisplay" class="bg-slate-900 text-emerald-400 font-mono font-black text-xs px-2.5 py-2.5 rounded-xl border border-slate-700" title="Votre clé 2FA de session">948210</span>
@@ -817,7 +787,84 @@
     </div>
   </div>
 
-  <!-- MODAL : ESPACE CONFIDENTIEL DU CRÉATEUR -->
+  <!-- ========================================================================= -->
+  <!-- MODAL : MODIFIER UN ARTICLE & CHANGER LES PRIX EN DIRECT SUR LE CLOUD      -->
+  <!-- ========================================================================= -->
+  <div id="adminEditProductModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl border border-slate-200 max-w-lg w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
+      <div class="bg-slate-900 text-white px-5 py-3.5 flex items-center justify-between">
+        <h4 class="text-sm font-extrabold flex items-center gap-2">
+          <i class="fa-solid fa-pen-to-square text-amber-400"></i>
+          <span>Modifier l'Article & les Prix (Cloud en Ligne)</span>
+        </h4>
+        <button id="btnCloseEditProdModal" class="text-slate-400 hover:text-white text-lg">&times;</button>
+      </div>
+
+      <form id="adminEditProductForm" class="p-5 overflow-y-auto space-y-3.5 text-xs flex-1">
+        <input type="hidden" id="editProdId">
+        
+        <div class="flex items-center space-x-3 p-2.5 bg-slate-50 rounded-2xl border border-slate-200">
+          <img id="editProdPreviewImg" src="" alt="Produit" class="w-14 h-14 rounded-xl object-contain bg-white border border-slate-200 p-0.5">
+          <div class="flex-1">
+            <span class="text-[10px] text-emerald-800 font-bold uppercase bg-emerald-50 px-2 py-0.5 rounded" id="editProdBadgeCat">Catégorie</span>
+            <h5 id="editProdCurrentTitle" class="font-bold text-slate-800 text-xs mt-0.5 line-clamp-1">Titre</h5>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Nom du Produit *</label>
+          <input type="text" id="editProdTitle" required class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-900 focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Prix Promo Vente (FCFA) *</label>
+            <input type="number" id="editProdPromoPrice" required step="500" class="w-full p-2.5 bg-emerald-50 border border-emerald-300 rounded-xl font-black text-emerald-800 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Prix Normal Barré (FCFA) *</label>
+            <input type="number" id="editProdOldPrice" required step="500" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 focus:outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Rayon / Catégorie *</label>
+            <select id="editProdCat" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold">
+              <option value="Solaire & Énergie">⚡ Solaire & Énergie</option>
+              <option value="Cuisine & Maison">🍳 Cuisine & Maison</option>
+              <option value="Ambiance & Déco">🌸 Ambiance & Soirée</option>
+              <option value="Auto & Moto">🛵 Auto & Moto</option>
+              <option value="Autre">📦 Autre Équipement</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Badge promo :</label>
+            <input type="text" id="editProdBadge" placeholder="Ex: -35% PROMO" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Description / Points forts :</label>
+          <textarea id="editProdDesc" rows="2" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:border-emerald-500"></textarea>
+        </div>
+
+        <div class="flex space-x-2 pt-2">
+          <button type="button" id="btnCancelEditProd" class="flex-1 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
+            Annuler
+          </button>
+          <button type="submit" class="flex-1 py-3 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl shadow transition flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Mettre à Jour sur Tous les Téléphones</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL : ESPACE CONFIDENTIEL DU CRÉATEUR & GÉNÉRATEUR DE 10 CODES UNIQUES  -->
+  <!-- ========================================================================= -->
   <div id="adminMasterModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
     <div class="bg-white rounded-3xl border border-slate-200 max-w-2xl w-full overflow-hidden flex flex-col max-h-[92vh] shadow-2xl">
       <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
@@ -836,7 +883,7 @@
           <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Générateur 10 Bons Uniques
         </button>
         <button id="tabAdmManageProducts" class="py-2 px-3 text-slate-500 hover:text-slate-800">
-          <i class="fa-solid fa-trash-can mr-1"></i> Supprimer Articles
+          <i class="fa-solid fa-pen-to-square mr-1"></i> Gérer & Modifier Articles (Prix)
         </button>
         <button id="tabAdmOrders" class="py-2 px-3 text-slate-500 hover:text-slate-800">
           <i class="fa-solid fa-receipt mr-1"></i> Commandes Sauvegardées
@@ -848,7 +895,7 @@
 
       <div class="p-5 overflow-y-auto space-y-4 text-xs flex-1">
         
-        <!-- 1. AJOUT DE PRODUIT -->
+        <!-- 1. AJOUT DE PRODUIT AVEC IMPORT D'IMAGE LOCAL OU URL -->
         <div id="viewAdmAddProduct" class="space-y-3.5">
           <form id="newProductForm" class="space-y-3">
             <div>
@@ -882,9 +929,10 @@
               <input type="number" id="inpProdDeliveryFee" min="0" step="500" value="1000" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold">
             </div>
 
+            <!-- NOUVELLE INTERFACE D'IMPORTATION D'IMAGES -->
             <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2.5">
               <span class="font-bold text-emerald-800 block text-xs flex items-center gap-1.5">
-                <i class="fa-solid fa-camera text-emerald-600"></i> Photo de l'article (Fichier ou URL)
+                <i class="fa-solid fa-camera text-emerald-600"></i> Photo de l'article (Importer un fichier de votre appareil ou coller un lien)
               </span>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -899,12 +947,14 @@
                 </div>
               </div>
 
+              <!-- Preview -->
               <div id="imagePreviewContainer" class="hidden flex items-center space-x-3 p-2 bg-emerald-50 rounded-xl border border-emerald-200">
                 <img id="imagePreviewImg" src="" alt="Aperçu" class="w-12 h-12 rounded-lg object-contain bg-white border border-slate-200">
                 <span class="text-xs text-emerald-800 font-bold">Photo prête à être publiée !</span>
               </div>
             </div>
 
+            <!-- PRIX MANUELS -->
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label class="block font-semibold text-slate-700 mb-1">Prix Normal Barré (FCFA) *</label>
@@ -927,13 +977,23 @@
           </form>
         </div>
 
-        <!-- 2. NOUVEAU GÉNÉRATEUR UNIVERSEL DE 10 CODES UNIQUES -->
+        <!-- 2. NOUVEAU GÉNÉRATEUR DE 10 CODES UNIQUES PAR PALIER DE PRIX (USAGE UNIQUE & JOURNALIER) -->
         <div id="viewAdmGenerator" class="hidden space-y-4">
           <div class="p-3.5 bg-amber-50 rounded-2xl border border-amber-200 text-amber-950 space-y-1">
-            <span class="font-extrabold text-xs flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i> Générateur de Bons Universels Nocwise</span>
+            <span class="font-extrabold text-xs flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i> Générateur de 10 Bons à Usage Unique (Partage Universel)</span>
             <p class="text-[11px] text-amber-900 leading-relaxed">
-              Ces codes portent une <strong>clé de sécurité universelle</strong> : dès que vous copiez un code et l'envoyez par WhatsApp, le téléphone de votre client le reconnaît et le valide immédiatement !
+              Lorsqu'un client paie par Mobile Money pour acheter un bon, copiez un code ci-dessous et envoyez-lui sur WhatsApp. Ces codes sont <strong>identiques et synchronisés sur tous vos téléphones</strong>. Dès qu'un client l'utilise sur n'importe quel appareil, il est marqué <strong>UTILISÉ</strong> partout !
             </p>
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] bg-emerald-50 text-emerald-900 border border-emerald-200 px-3 py-2 rounded-xl font-bold">
+            <span class="flex items-center gap-1.5">
+              <i class="fa-solid fa-tower-broadcast text-emerald-600 animate-pulse"></i>
+              <span>Synchronisation Cloud & Formule Universelle Active</span>
+            </span>
+            <button type="button" id="btnSyncCouponsNow" class="text-[10px] bg-emerald-700 hover:bg-emerald-800 text-white px-2.5 py-1 rounded-lg transition shadow flex items-center gap-1">
+              <i class="fa-solid fa-arrows-rotate"></i> Actualiser les Bons
+            </button>
           </div>
 
           <div class="flex items-center justify-between">
@@ -949,31 +1009,34 @@
 
           <button id="btnGenerate10Batch" class="w-full py-2.5 bg-slate-900 hover:bg-black text-white font-black rounded-xl text-xs transition shadow flex items-center justify-center space-x-1.5">
             <i class="fa-solid fa-arrows-rotate text-amber-400"></i>
-            <span>Générer un Nouveau Lot de 10 Bons Universels</span>
+            <span>Générer un Nouveau Lot de 10 Bons du Jour</span>
           </button>
 
-          <div id="generatedCodesList" class="space-y-1.5 divide-y divide-slate-100 max-h-72 overflow-y-auto"></div>
+          <div id="generatedCodesList" class="space-y-1.5 divide-y divide-slate-100 max-h-72 overflow-y-auto">
+            <!-- Dynamically populated with 10 codes and copy buttons -->
+          </div>
         </div>
 
-        <!-- 3. SUPPRESSION DES PRODUITS -->
+        <!-- 3. SUPPRESSION FACILE DES PRODUITS PAR L'ADMIN -->
         <div id="viewAdmManageProducts" class="hidden space-y-3">
-          <p class="font-bold text-slate-700">Supprimez facilement les articles que vous ne vendez plus :</p>
-          <div id="adminProductCatalogList" class="space-y-2"></div>
+          <p class="font-bold text-slate-700">Modifiez les prix et détails en temps réel, ou supprimez les articles :</p>
+          <div id="adminProductCatalogList" class="space-y-2">
+            <!-- Dynamically populated -->
+          </div>
         </div>
 
-        <!-- 5. HISTORIQUE DES COMMANDES -->
+        <!-- 5. HISTORIQUE & SAUVEGARDE DES COMMANDES -->
         <div id="viewAdmOrders" class="hidden space-y-3">
           <div class="flex items-center justify-between pb-1">
-            <h4 class="font-bold text-slate-800 text-xs">Commandes reçues (Sauvegarde de sécurité) :</h4>
-            <div class="flex items-center space-x-2">
-              <button id="btnRefreshOrdersCloud" class="text-[10px] text-emerald-700 hover:underline font-bold"><i class="fa-solid fa-arrows-rotate mr-0.5"></i> Actualiser</button>
-              <button id="btnClearOrdersHistory" class="text-[10px] text-red-600 hover:underline font-bold">Vider</button>
-            </div>
+            <h4 class="font-bold text-slate-800 text-xs">Commandes initiées (Sauvegarde de sécurité anti-perte) :</h4>
+            <button id="btnClearOrdersHistory" class="text-[10px] text-red-600 hover:underline font-bold">Vider l'historique</button>
           </div>
-          <div id="adminOrdersList" class="space-y-2 max-h-80 overflow-y-auto"></div>
+          <div id="adminOrdersList" class="space-y-2 max-h-80 overflow-y-auto">
+            <!-- Dynamically populated -->
+          </div>
         </div>
 
-        <!-- 4. PARAMÈTRES BOUTIQUE & SUPABASE -->
+        <!-- 4. PARAMÈTRES BOUTIQUE & CODE SECRET -->
         <div id="viewAdmSettings" class="hidden space-y-3">
           <form id="adminConfigForm" class="space-y-3">
             <div>
@@ -981,32 +1044,113 @@
               <input type="text" id="inpConfigBrandName" required value="Nocwise BF" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold">
             </div>
             <div>
-              <label class="block font-semibold text-slate-700 mb-1">Numéro WhatsApp Officiel (226XXXXXXXX)</label>
-              <input type="tel" id="inpConfigPhone" required value="22652627240" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold font-mono">
+              <label class="block font-semibold text-slate-700 mb-1">Numéro WhatsApp pour les Commandes (226XXXXXXXX)</label>
+              <input type="tel" id="inpConfigPhone" required placeholder="22670000000" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-bold">
             </div>
             <div>
-              <label class="block font-semibold text-slate-700 mb-1">Code Secret Propriétaire</label>
+              <label class="block font-semibold text-slate-700 mb-1">Code Secret Propriétaire (Lettres, chiffres, @, # acceptés)</label>
               <input type="text" id="inpConfigAdminPin" value="4493@wise#" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-mono font-bold">
             </div>
 
-            <!-- SUPABASE CONFIG -->
+            <!-- CONNEXION CLOUD SUPABASE (BASE DE DONNÉES EN LIGNE TEMPS RÉEL) -->
             <div class="p-3 bg-emerald-50 rounded-2xl border border-emerald-200 space-y-2.5">
               <div class="flex items-center justify-between">
                 <span class="font-extrabold text-xs text-emerald-950 flex items-center gap-1.5">
-                  <i class="fa-solid fa-cloud text-emerald-600"></i> Base de Données Cloud Supabase
+                  <i class="fa-solid fa-cloud text-emerald-600"></i> Base de Données Cloud Supabase (Partage en Ligne)
                 </span>
                 <span id="supabaseStatusBadge" class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">Non configuré</span>
               </div>
+              <p class="text-[10px] text-emerald-900 leading-relaxed">
+                Connectez votre base Supabase gratuite pour que vos articles et commandes soient visibles instantanément par tous vos clients à Ouagadougou.
+              </p>
               <div>
                 <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Project URL (Supabase) :</label>
                 <input type="url" id="inpConfigSupabaseUrl" placeholder="https://xyzcompany.supabase.co" class="w-full p-2 bg-white border border-emerald-300 rounded-xl font-mono text-xs text-slate-800">
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-700 mb-0.5">API Anon Key :</label>
+                <label class="block text-[10px] font-bold text-slate-700 mb-0.5">API Anon Key (Clé publique Supabase) :</label>
                 <input type="password" id="inpConfigSupabaseKey" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." class="w-full p-2 bg-white border border-emerald-300 rounded-xl font-mono text-xs text-slate-800">
               </div>
               <button type="button" id="btnTestSupabaseConn" class="w-full py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition">
                 Tester et Synchroniser avec le Cloud
+              </button>
+            </div>
+
+            <!-- BASE DE DONNÉES CLOUD COMPLÈTE (PRODUITS + PRIX + BONS + COMMANDES) -->
+            <div class="p-3.5 bg-emerald-50/70 rounded-2xl border-2 border-emerald-300 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="font-extrabold text-xs text-emerald-950 flex items-center gap-1.5">
+                  <i class="fa-solid fa-database text-emerald-600"></i> Base de Données Cloud Complète (Produits, Prix, Bons & Commandes)
+                </span>
+                <span class="text-[9px] font-black px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow-sm flex items-center gap-1">
+                  <i class="fa-solid fa-circle-check"></i> Prêt pour Supabase
+                </span>
+              </div>
+              <p class="text-[10px] text-emerald-950 leading-relaxed font-medium">
+                Copiez et exécutez ce script SQL dans l'onglet <strong>SQL Editor</strong> de Supabase. Il configure <strong>toutes vos tables en direct</strong> pour que tout ajout, modification de prix, bon ou commande soit <strong>enregistré et synchronisé en temps réel sur tous les téléphones</strong> :
+              </p>
+              <div class="bg-slate-900 text-emerald-400 p-3 rounded-xl font-mono text-[9px] overflow-x-auto select-all leading-relaxed max-h-48 border border-slate-700">
+-- 1. TABLE DES PRODUITS & PRIX (Visible et modifiable sur tous les appareils)
+CREATE TABLE IF NOT EXISTS products (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  category TEXT DEFAULT 'Autre',
+  oldprice NUMERIC DEFAULT 0,
+  promoprice NUMERIC NOT NULL DEFAULT 0,
+  deliverytype TEXT DEFAULT 'free',
+  deliveryfee NUMERIC DEFAULT 0,
+  image TEXT,
+  badge TEXT DEFAULT 'PROMO',
+  rating TEXT DEFAULT '4.9',
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public products access" ON products;
+CREATE POLICY "Public products access" ON products FOR ALL USING (true) WITH CHECK (true);
+
+-- 2. TABLE DES BONS DE RÉDUCTION & COUPONS
+CREATE TABLE IF NOT EXISTS coupons (
+  id TEXT PRIMARY KEY,
+  code TEXT UNIQUE NOT NULL,
+  amount NUMERIC NOT NULL,
+  date_created TEXT,
+  used BOOLEAN DEFAULT FALSE,
+  used_at TEXT,
+  min_order NUMERIC DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE coupons ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public coupons access" ON coupons;
+CREATE POLICY "Public coupons access" ON coupons FOR ALL USING (true) WITH CHECK (true);
+
+-- 3. TABLE DES COMMANDES (Sauvegarde anti-perte)
+CREATE TABLE IF NOT EXISTS orders (
+  id TEXT PRIMARY KEY,
+  date TEXT,
+  name TEXT,
+  phone TEXT,
+  operator TEXT,
+  city TEXT,
+  items TEXT,
+  total NUMERIC,
+  discount NUMERIC DEFAULT 0,
+  couponCode TEXT,
+  secToken TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public orders access" ON orders;
+CREATE POLICY "Public orders access" ON orders FOR ALL USING (true) WITH CHECK (true);
+
+-- 4. POLITIQUES DE MISE À JOUR (Permet de modifier les prix et valider les bons)
+DROP POLICY IF EXISTS "Public update products" ON products;
+CREATE POLICY "Public update products" ON products FOR UPDATE USING (true) WITH CHECK (true);
+DROP POLICY IF EXISTS "Public update coupons" ON coupons;
+CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CHECK (true);
+              </div>
+              <button type="button" id="btnCopyCouponsSql" class="w-full py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5 active:scale-95">
+                <i class="fa-solid fa-copy"></i> Copier Tout le Script SQL Supabase (Produits + Bons + Commandes)
               </button>
             </div>
 
@@ -1022,41 +1166,16 @@
 
   <!-- JAVASCRIPT LOGIC COMPLET -->
   <script>
-    const STORAGE_KEY = 'nocwise_v6_universal_coupons';
+    const STORAGE_KEY = 'nocwise_refined_v4_secure';
 
-    // Paliers de panier minimum réalistes et accessibles
+    // Minimum order tiers to guarantee merchant profitability
     const MIN_ORDER_TIERS = {
-      200: 1500,
-      500: 3000,
-      1000: 5000,
-      2000: 8000,
-      5000: 18000
+      200: 2000,
+      500: 5000,
+      1000: 10000,
+      2000: 18000,
+      5000: 40000
     };
-
-    // FORMULE UNIVERSELLE DE CRÉATION & VÉRIFICATION DES BONS NOCWISE
-    function generateUniversalCoupon(amount) {
-      const today = new Date().toISOString().split('T')[0];
-      const datePart = today.replace(/-/g, '').slice(4); // ex: 1103
-      const seed = Math.floor(100 + Math.random() * 900); // 3 chiffres
-      const checksum = ((amount * 7 + parseInt(datePart, 10) * 13 + seed * 17) % 89) + 10; // 2 chiffres de sécurité
-      return `NW${amount}-J${datePart}-${seed}${checksum}`;
-    }
-
-    function verifyUniversalCoupon(codeStr) {
-      if (!codeStr) return null;
-      const clean = codeStr.trim().toUpperCase();
-      const match = clean.match(/^NW(200|500|1000|2000|5000)-J(\d{4})-(\d{3})(\d{2})$/);
-      if (!match) return null;
-      const amount = parseInt(match[1], 10);
-      const datePart = parseInt(match[2], 10);
-      const seed = parseInt(match[3], 10);
-      const checksum = parseInt(match[4], 10);
-      const expected = ((amount * 7 + datePart * 13 + seed * 17) % 89) + 10;
-      if (checksum === expected) {
-        return { code: clean, amount: amount, isUniversal: true };
-      }
-      return null;
-    }
 
     const defaultProducts = [
       {
@@ -1070,7 +1189,7 @@
         image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
         badge: "-35% PROMO",
         rating: "4.9",
-        description: "Batterie Lithium longue durée (8 à 12h d'autonomie). Panneau solaire inclus pour recharge gratuite. Port USB pour charger vos téléphones."
+        description: "Batterie Lithium longue durée (8 à 12h d'autonomie). Panneau solaire inclus pour recharge gratuite. Port USB pour charger vos téléphones pendant les coupures."
       },
       {
         id: "p-2",
@@ -1118,14 +1237,13 @@
       points: 1200,
       userVouchers: [],
       generatedOneTimeCoupons: [],
-      usedCoupons: [],
       orders: [],
       activeCoupon: null,
       cart: [],
       selectedProduct: null,
       currentCategory: 'all',
       brandName: 'Nocwise BF',
-      whatsappPhone: '22652627240',
+      whatsappPhone: '22670000000',
       adminPin: '4493@wise#',
       supabaseUrl: 'https://vepkimahkaotcnjzsatg.supabase.co',
       supabaseKey: 'sb_publishable_AszIu6FP-FPAVGDJGVVSnQ_nUm9TOee',
@@ -1142,14 +1260,35 @@
           updateSupabaseStatusBadge(true, 'Connecté au Cloud');
           document.getElementById('cloudSyncIndicator').classList.remove('hidden');
           syncWithCloud();
-          syncOrdersFromCloud();
+          setupCloudRealtimeListeners();
         } catch (e) {
+          console.warn('Erreur init Supabase:', e);
           updateSupabaseStatusBadge(false, 'Erreur de configuration');
           document.getElementById('cloudSyncIndicator').classList.add('hidden');
         }
       } else {
-        updateSupabaseStatusBadge(false, 'Mode local');
+        updateSupabaseStatusBadge(false, 'Mode local (Hors-ligne)');
         document.getElementById('cloudSyncIndicator').classList.add('hidden');
+      }
+    }
+
+    // Écoute en direct des changements (produits, prix, bons) faits sur un autre téléphone
+    function setupCloudRealtimeListeners() {
+      if (!supabaseClient) return;
+      try {
+        supabaseClient
+          .channel('public:db-changes')
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, () => {
+            // Un article ou un prix a changé sur un autre appareil -> mise à jour immédiate
+            syncWithCloud();
+          })
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'coupons' }, () => {
+            // Un bon a été utilisé ou créé sur un autre appareil
+            syncCouponsWithCloud();
+          })
+          .subscribe();
+      } catch (err) {
+        console.warn('Erreur realtime:', err);
       }
     }
 
@@ -1167,6 +1306,8 @@
 
     async function syncWithCloud() {
       if (!supabaseClient) return;
+      
+      // 1. Synchronisation des Produits
       try {
         const { data, error } = await supabaseClient.from('products').select('*').order('created_at', { ascending: false });
         if (!error && data && data.length > 0) {
@@ -1186,30 +1327,83 @@
           saveState();
           renderProducts();
           renderAdminCatalog();
+        } else if (data && data.length === 0) {
+          for (const p of defaultProducts) {
+            const seedPayload = {
+              id: p.id,
+              title: p.title,
+              category: p.category,
+              oldprice: p.oldPrice,
+              promoprice: p.promoPrice,
+              deliverytype: p.deliveryType,
+              deliveryfee: p.deliveryFee,
+              image: p.image,
+              badge: p.badge,
+              rating: p.rating,
+              description: p.description
+            };
+            await supabaseClient.from('products').insert([seedPayload]);
+          }
         }
-      } catch (err) {}
+      } catch (err) {
+        console.warn('Cloud sync products error:', err);
+      }
+
+      // 2. Synchronisation des Bons de réduction sur tous les téléphones
+      await syncCouponsWithCloud();
     }
 
-    async function syncOrdersFromCloud() {
+    async function syncCouponsWithCloud() {
       if (!supabaseClient) return;
       try {
-        const { data, error } = await supabaseClient.from('orders').select('*').order('created_at', { ascending: false });
-        if (!error && data && data.length > 0) {
-          state.orders = data;
-          saveState();
-          renderAdminOrders();
+        const { data: cloudCoupons, error } = await supabaseClient.from('coupons').select('*');
+        if (error) {
+          console.warn('Supabase coupons table non trouvée ou indisponible:', error.message);
+          return;
         }
-      } catch (e) {}
+
+        if (cloudCoupons && cloudCoupons.length > 0) {
+          state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
+          cloudCoupons.forEach(cc => {
+            const clean = (cc.code || '').trim().toUpperCase();
+            if (!clean) return;
+            const existing = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === clean);
+            if (existing) {
+              if (cc.used) {
+                existing.used = true;
+                existing.usedAt = cc.used_at || cc.usedAt || existing.usedAt;
+              }
+            } else {
+              state.generatedOneTimeCoupons.push({
+                code: clean,
+                amount: Number(cc.amount || 0),
+                dateCreated: cc.date_created || cc.datecreated || new Date().toISOString().split('T')[0],
+                used: Boolean(cc.used),
+                usedAt: cc.used_at || cc.usedat || null
+              });
+            }
+          });
+          saveState();
+          renderGeneratedCodes();
+        }
+      } catch (err) {
+        console.warn('Erreur synchronisation cloud coupons:', err);
+      }
     }
 
     let session2FAKey = '948210';
 
+    // Image compression via HTML5 Canvas
     function compressImageFile(file, maxWidth = 800, quality = 0.72) {
       return new Promise((resolve, reject) => {
-        if (!file || !file.type.startsWith('image/')) return reject(new Error('Fichier image invalide.'));
+        if (!file || !file.type.startsWith('image/')) {
+          return reject(new Error('Veuillez sélectionner un fichier image valide.'));
+        }
         const reader = new FileReader();
+        reader.onerror = () => reject(new Error('Erreur de lecture du fichier.'));
         reader.onload = (e) => {
           const img = new Image();
+          img.onerror = () => reject(new Error('Impossible de décoder l\'image.'));
           img.onload = () => {
             let width = img.width;
             let height = img.height;
@@ -1232,37 +1426,55 @@
       });
     }
 
+    // Burkina Faso Phone number validation and operator detection
     function validateBurkinaPhone(raw) {
-      if (!raw || raw.trim().length === 0) {
-        return { valid: false, message: 'Numéro de téléphone requis', operator: null };
-      }
+      if (!raw) return { valid: false, message: 'Numéro obligatoire (8 chiffres)', operator: null };
       let digits = raw.replace(/[^0-9]/g, '');
       if (digits.startsWith('00226')) digits = digits.slice(5);
       else if (digits.startsWith('226')) digits = digits.slice(3);
 
-      if (digits.length < 8) {
-        return { valid: false, operator: null, digits: digits, message: 'Au moins 8 chiffres requis' };
+      if (digits.length !== 8) {
+        return {
+          valid: false,
+          operator: null,
+          digits: digits,
+          message: `8 chiffres requis (actuellement : ${digits.length})`
+        };
       }
 
       const p2 = digits.slice(0, 2);
-      let op = 'Burkina Faso';
-      let color = 'text-emerald-700';
-
       const orange = ['07', '54', '55', '56', '57', '64', '65', '66', '67', '74', '75', '76', '77'];
       const moov = ['01', '02', '03', '50', '51', '52', '53', '60', '61', '62', '63', '70', '71', '72', '73'];
       const telecel = ['05', '58', '68', '69', '78', '79'];
 
-      if (orange.includes(p2)) { op = 'Orange BF'; color = 'text-orange-600'; }
-      else if (moov.includes(p2)) { op = 'Moov Africa'; color = 'text-blue-600'; }
-      else if (telecel.includes(p2)) { op = 'Telecel Faso'; color = 'text-teal-600'; }
+      let operator = 'Inconnu';
+      let color = 'text-slate-600';
+
+      if (orange.includes(p2)) {
+        operator = 'Orange Burkina';
+        color = 'text-orange-600';
+      } else if (moov.includes(p2)) {
+        operator = 'Moov Africa BF';
+        color = 'text-blue-600';
+      } else if (telecel.includes(p2)) {
+        operator = 'Telecel Faso';
+        color = 'text-emerald-700';
+      } else {
+        return {
+          valid: false,
+          operator: null,
+          digits: digits,
+          message: `Préfixe "${p2}" non reconnu au Burkina Faso`
+        };
+      }
 
       return {
         valid: true,
-        operator: op,
+        operator: operator,
         color: color,
         digits: digits,
-        formatted: digits.length === 8 ? `${digits.slice(0, 2)} ${digits.slice(2, 4)} ${digits.slice(4, 6)} ${digits.slice(6, 8)}` : digits,
-        message: `✓ ${op}`
+        formatted: `${digits.slice(0, 2)} ${digits.slice(2, 4)} ${digits.slice(4, 6)} ${digits.slice(6, 8)}`,
+        message: `✓ ${operator} (${digits.slice(0, 2)}...)`
       };
     }
 
@@ -1290,15 +1502,21 @@
         if (raw) {
           state = { ...state, ...JSON.parse(raw) };
         }
-      } catch(e) {}
-
-      state.whatsappPhone = '22652627240';
-      state.usedCoupons = state.usedCoupons || [];
+      } catch(e) {
+        console.warn('LocalStorage access warning', e);
+      }
 
       const today = new Date().toISOString().split('T')[0];
       if (state.dailyVideoDate !== today) {
         state.dailyVideoDate = today;
         state.dailyVideosWatched = 0;
+      }
+
+      if (!state.supabaseUrl || state.supabaseUrl.trim() === '') {
+        state.supabaseUrl = 'https://vepkimahkaotcnjzsatg.supabase.co';
+      }
+      if (!state.supabaseKey || state.supabaseKey.trim() === '') {
+        state.supabaseKey = 'sb_publishable_AszIu6FP-FPAVGDJGVVSnQ_nUm9TOee';
       }
 
       session2FAKey = String(Math.floor(100000 + Math.random() * 900000));
@@ -1310,15 +1528,21 @@
       ensureInitialCouponBatches();
       initSupabase();
 
-      if (document.getElementById('inpConfigPhone')) {
-        document.getElementById('inpConfigPhone').value = state.whatsappPhone;
+      if (document.getElementById('inpConfigSupabaseUrl')) {
+        document.getElementById('inpConfigSupabaseUrl').value = state.supabaseUrl || '';
+      }
+      if (document.getElementById('inpConfigSupabaseKey')) {
+        document.getElementById('inpConfigSupabaseKey').value = state.supabaseKey || '';
       }
     }
 
     function saveState() {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      } catch(e) {}
+      } catch(e) {
+        console.error('LocalStorage quota error', e);
+        showToast('Attention : Mémoire locale saturée ! Supprimez des articles ou réduisez les photos.', '⚠️');
+      }
     }
 
     function formatMoney(amount) {
@@ -1345,7 +1569,7 @@
       document.getElementById('btn-header-whatsapp').href = `https://wa.me/${fullPhone}?text=Bonjour%20Nocwise%20BF,%20j'ai%20une%20question`;
     }
 
-    // Secret Admin Access (Triple clic sur le logo uniquement)
+    // Secret Admin Access (Triple click, #admin, Ctrl+Shift+A)
     let logoClickCount = 0;
     let logoClickTimer = null;
 
@@ -1358,6 +1582,13 @@
         logoClickCount = 0;
         openAdminAuthModal();
       }
+    });
+
+    if (window.location.hash === '#admin') {
+      setTimeout(openAdminAuthModal, 500);
+    }
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#admin') openAdminAuthModal();
     });
 
     window.addEventListener('keydown', (e) => {
@@ -1390,7 +1621,6 @@
         renderAdminCatalog();
         renderGeneratedCodes();
         renderAdminOrders();
-        syncOrdersFromCloud();
         document.getElementById('adminMasterModal').classList.remove('hidden');
         showToast('Espace Propriétaire Déverrouillé avec Succès', '🛡️');
       } else {
@@ -1402,55 +1632,149 @@
       document.getElementById('adminMasterModal').classList.add('hidden');
     });
 
+    // =========================================================================
+    // SYSTÈME UNIVERSEL DE BONS DE RÉDUCTION : DÉTERMINISTE + CLOUD SUPABASE
+    // GARANTIE : MÊMES CODES SUR CHAQUE TÉLÉPHONE & VALIDATION PARTOUT
+    // =========================================================================
+    const MASTER_COUPON_SALT = 'NOCWISE_BF_REDUCTION_MASTER_2026';
+
+    // Hash déterministe FNV-1a 32-bit rapide et universel
+    function fnv1aHash(str) {
+      let h = 2166136261;
+      for (let i = 0; i < str.length; i++) {
+        h = (h ^ str.charCodeAt(i)) * 16777619;
+        h = h >>> 0;
+      }
+      return h;
+    }
+
+    // Génère un code mathématiquement déterministe pour un montant, une date et un index
+    function getDeterministicCouponCode(amount, dateShort, index) {
+      const seedStr = `${MASTER_COUPON_SALT}:${amount}:${dateShort}:${index}`;
+      const h = fnv1aHash(seedStr);
+      const randPart = 1000 + (h % 9000);
+      return `NW${amount}-J${dateShort}-${randPart}`;
+    }
+
+    // Vérifie si un code a été créé selon la formule officielle de la boutique (sur n'importe quel appareil)
+    function verifyAlgorithmicCoupon(codeStr) {
+      if (!codeStr) return null;
+      const clean = codeStr.trim().toUpperCase();
+      const match = clean.match(/^NW(\d+)-J(\d{4})-(\d{4})$/);
+      if (!match) return null;
+      const amount = parseInt(match[1], 10);
+      const dateShort = match[2];
+      if (![200, 500, 1000, 2000, 5000].includes(amount)) return null;
+
+      // Vérifie les index 1 à 100 pour ce montant et cette date
+      for (let i = 1; i <= 100; i++) {
+        const candidate = getDeterministicCouponCode(amount, dateShort, i);
+        if (candidate === clean) {
+          return { amount: amount, dateShort: dateShort, index: i, code: clean };
+        }
+      }
+      return null;
+    }
+
+    // Initialisation : garantit que le lot officiel du jour existe sur l'appareil
     function ensureInitialCouponBatches() {
-      if (!state.generatedOneTimeCoupons || state.generatedOneTimeCoupons.length === 0) {
-        generateBatchOf10(2000);
+      state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
+      const today = new Date().toISOString().split('T')[0];
+      const existingToday = state.generatedOneTimeCoupons.filter(c => c.dateCreated === today);
+      if (existingToday.length === 0) {
+        [2000, 1000, 500, 200, 5000].forEach(tier => {
+          generateBatchOf10(tier, false);
+        });
+        saveState();
       }
     }
 
-    function generateBatchOf10(amount) {
+    // Génération de 10 codes : Mêmes codes sur TOUS les téléphones pour le même jour !
+    function generateBatchOf10(amount, syncCloud = true) {
+      state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
       const today = new Date().toISOString().split('T')[0];
-      for (let i = 1; i <= 10; i++) {
-        const code = generateUniversalCoupon(amount);
-        state.generatedOneTimeCoupons.unshift({
-          code: code,
-          amount: amount,
-          dateCreated: today,
-          used: false,
-          usedAt: null
-        });
+      const todayShort = today.replace(/-/g, '').slice(4);
+
+      // Compte les codes déjà générés aujourd'hui pour ce palier pour continuer la suite
+      const existingForToday = state.generatedOneTimeCoupons.filter(c => c.amount === amount && c.dateCreated === today);
+      const startIndex = existingForToday.length + 1;
+
+      const newBatch = [];
+      for (let i = 0; i < 10; i++) {
+        const idx = startIndex + i;
+        const code = getDeterministicCouponCode(amount, todayShort, idx);
+        let item = state.generatedOneTimeCoupons.find(c => c.code === code);
+        if (!item) {
+          item = {
+            code: code,
+            amount: amount,
+            dateCreated: today,
+            used: false,
+            usedAt: null
+          };
+          state.generatedOneTimeCoupons.unshift(item);
+          newBatch.push(item);
+        }
       }
       saveState();
+
+      // Synchronisation immédiate avec le Cloud Supabase
+      if (syncCloud && supabaseClient && newBatch.length > 0) {
+        const rows = newBatch.map(b => ({
+          id: b.code,
+          code: b.code,
+          amount: b.amount,
+          date_created: b.dateCreated,
+          used: false,
+          used_at: null,
+          min_order: MIN_ORDER_TIERS[b.amount] || (b.amount * 4)
+        }));
+        supabaseClient.from('coupons').upsert(rows, { onConflict: 'code' })
+          .then(({ error }) => {
+            if (error) console.warn('Supabase coupons upload warning:', error);
+          });
+      }
+      return newBatch;
     }
 
     function renderGeneratedCodes() {
       const selectedTier = parseInt(document.getElementById('selectVoucherGenTier').value, 10);
       const listContainer = document.getElementById('generatedCodesList');
+      if (!listContainer) return;
       listContainer.innerHTML = '';
-      const tierCodes = state.generatedOneTimeCoupons.filter(c => c.amount === selectedTier).slice(0, 20);
+
+      state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
+      const today = new Date().toISOString().split('T')[0];
+      const tierCodesToday = state.generatedOneTimeCoupons.filter(c => c.amount === selectedTier && c.dateCreated === today);
+      if (tierCodesToday.length === 0) {
+        generateBatchOf10(selectedTier, true);
+      }
+
+      const tierCodes = state.generatedOneTimeCoupons.filter(c => c.amount === selectedTier).slice(0, 30);
+      const minReq = MIN_ORDER_TIERS[selectedTier] || (selectedTier * 4);
 
       if (tierCodes.length === 0) {
-        listContainer.innerHTML = '<p class="text-xs text-slate-400 italic py-2">Aucun code généré pour ce palier. Cliquez sur le bouton noir ci-dessus !</p>';
+        listContainer.innerHTML = '<p class="text-xs text-slate-400 italic py-2">Aucun code généré pour ce palier. Cliquez sur le bouton pour générer 10 codes du jour !</p>';
         return;
       }
 
       tierCodes.forEach(item => {
-        const isUsed = item.used || (state.usedCoupons && state.usedCoupons.includes(item.code));
         const row = document.createElement('div');
-        row.className = `flex items-center justify-between p-2 rounded-xl text-xs ${isUsed ? 'bg-slate-100 opacity-60' : 'bg-emerald-50/70 border border-emerald-200'}`;
+        row.className = `flex items-center justify-between p-2 rounded-xl text-xs ${item.used ? 'bg-slate-100 opacity-60' : 'bg-emerald-50/70 border border-emerald-200'}`;
         row.innerHTML = `
           <div class="flex items-center space-x-2">
-            <span class="font-mono font-black ${isUsed ? 'line-through text-slate-400' : 'text-slate-900'}">${item.code}</span>
-            <span class="text-[9px] font-bold ${isUsed ? 'bg-slate-300 text-slate-700' : 'bg-emerald-600 text-white'} px-1.5 py-0.2 rounded">
-              ${isUsed ? 'UTILISÉ' : 'VALIDE UNIVERSEL'}
+            <span class="font-mono font-black ${item.used ? 'line-through text-slate-400' : 'text-slate-900'}">${item.code}</span>
+            <span class="text-[9px] font-bold ${item.used ? 'bg-slate-300 text-slate-700' : 'bg-emerald-600 text-white'} px-1.5 py-0.2 rounded">
+              ${item.used ? 'DÉJÀ UTILISÉ' : 'DISPONIBLE'}
             </span>
+            <span class="text-[9px] font-mono text-slate-500 hidden sm:inline">(Panier min : ${formatMoney(minReq)})</span>
           </div>
           <div>
-            ${!isUsed ? `
+            ${!item.used ? `
               <button data-code="${item.code}" class="btn-copy-one-time-code px-2 py-1 bg-slate-900 hover:bg-black text-amber-300 rounded-lg text-[10px] font-bold transition flex items-center gap-1">
                 <i class="fa-solid fa-copy"></i> Copier
               </button>
-            ` : `<span class="text-[10px] text-slate-400 italic">Déjà utilisé</span>`}
+            ` : `<span class="text-[10px] text-slate-400 italic">Utilisé le ${item.usedAt || 'J-1'}</span>`}
           </div>
         `;
         listContainer.appendChild(row);
@@ -1461,6 +1785,8 @@
           const code = btn.getAttribute('data-code');
           navigator.clipboard.writeText(code).then(() => {
             showToast(`Code ${code} copié ! Prêt à être envoyé au client.`, '📋');
+          }).catch(() => {
+            showToast(`Code : ${code}`, '📋');
           });
         });
       });
@@ -1469,51 +1795,185 @@
     document.getElementById('selectVoucherGenTier').addEventListener('change', renderGeneratedCodes);
     document.getElementById('btnGenerate10Batch').addEventListener('click', () => {
       const tier = parseInt(document.getElementById('selectVoucherGenTier').value, 10);
-      generateBatchOf10(tier);
+      generateBatchOf10(tier, true);
       renderGeneratedCodes();
-      showToast(`10 nouveaux bons universels de ${formatMoney(tier)} générés !`, '✨');
+      showToast(`Nouveau lot de 10 bons de ${formatMoney(tier)} synchronisé partout !`, '✨');
     });
 
-    // VÉRIFICATION UNIVERSELLE DES CODES SUR N'IMPORTE QUEL TÉLÉPHONE
-    function checkAndApplyCoupon(codeStr, isCart = true, currentSubtotal = 0) {
+    const btnSyncCouponsNow = document.getElementById('btnSyncCouponsNow');
+    if (btnSyncCouponsNow) {
+      btnSyncCouponsNow.addEventListener('click', async () => {
+        showToast('Synchronisation Cloud des bons en cours...', '⏳');
+        await syncCouponsWithCloud();
+        renderGeneratedCodes();
+        showToast('Bons synchronisés avec succès sur tous vos appareils !', '☁️');
+      });
+    }
+
+    const btnCopyCouponsSql = document.getElementById('btnCopyCouponsSql');
+    if (btnCopyCouponsSql) {
+      btnCopyCouponsSql.addEventListener('click', () => {
+        const sql = `-- =========================================================================
+-- CONFIGURATION COMPLÈTE DE LA BASE DE DONNÉES CLOUD POUR NOCWISE BF
+-- Copiez et collez tout ce script dans Supabase -> SQL Editor -> Run
+-- =========================================================================
+
+-- 1. TABLE DES PRODUITS & PRIX (Visible et modifiable sur tous les appareils)
+CREATE TABLE IF NOT EXISTS products (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  category TEXT DEFAULT 'Autre',
+  oldprice NUMERIC DEFAULT 0,
+  promoprice NUMERIC NOT NULL DEFAULT 0,
+  deliverytype TEXT DEFAULT 'free',
+  deliveryfee NUMERIC DEFAULT 0,
+  image TEXT,
+  badge TEXT DEFAULT 'PROMO',
+  rating TEXT DEFAULT '4.9',
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public products access" ON products;
+CREATE POLICY "Public products access" ON products FOR ALL USING (true) WITH CHECK (true);
+
+-- 2. TABLE DES BONS DE RÉDUCTION & COUPONS (Synchronisation globale)
+CREATE TABLE IF NOT EXISTS coupons (
+  id TEXT PRIMARY KEY,
+  code TEXT UNIQUE NOT NULL,
+  amount NUMERIC NOT NULL,
+  date_created TEXT,
+  used BOOLEAN DEFAULT FALSE,
+  used_at TEXT,
+  min_order NUMERIC DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE coupons ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public coupons access" ON coupons;
+CREATE POLICY "Public coupons access" ON coupons FOR ALL USING (true) WITH CHECK (true);
+
+-- 3. TABLE DES COMMANDES (Sauvegarde anti-perte de toutes les commandes)
+CREATE TABLE IF NOT EXISTS orders (
+  id TEXT PRIMARY KEY,
+  date TEXT,
+  name TEXT,
+  phone TEXT,
+  operator TEXT,
+  city TEXT,
+  items TEXT,
+  total NUMERIC,
+  discount NUMERIC DEFAULT 0,
+  couponCode TEXT,
+  secToken TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public orders access" ON orders;
+CREATE POLICY "Public orders access" ON orders FOR ALL USING (true) WITH CHECK (true);
+
+-- 4. POLITIQUES DE MISE À JOUR (Permet de modifier les prix et valider les bons)
+DROP POLICY IF EXISTS "Public update products" ON products;
+CREATE POLICY "Public update products" ON products FOR UPDATE USING (true) WITH CHECK (true);
+DROP POLICY IF EXISTS "Public update coupons" ON coupons;
+CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CHECK (true);`;
+        navigator.clipboard.writeText(sql).then(() => {
+          showToast('Script SQL Global copié ! Collez-le dans SQL Editor sur Supabase.', '📋');
+        }).catch(() => {
+          showToast('Script prêt à être collé dans Supabase SQL Editor.', '📋');
+        });
+      });
+    }
+
+    // Vérification et application universelle du coupon (reconnue sur TOUS les téléphones)
+    async function checkAndApplyCoupon(codeStr, isCart = true, currentSubtotal = 0) {
       const cleanCode = (codeStr || '').trim().toUpperCase();
       const feedback = document.getElementById(isCart ? 'cartCouponFeedback' : 'expressCouponFeedback');
       feedback.classList.remove('hidden');
 
       if (!cleanCode) {
         feedback.className = 'text-[11px] font-bold text-red-600';
-        feedback.textContent = '❌ Saisissez un code avant d\'appliquer !';
+        feedback.textContent = '❌ Veuillez saisir un code avant d\'appliquer !';
         return null;
       }
 
-      // 1. Vérifier si le code a déjà été utilisé sur cet appareil
-      if (state.usedCoupons && state.usedCoupons.includes(cleanCode)) {
-        feedback.className = 'text-[11px] font-bold text-red-600';
-        feedback.textContent = '❌ Ce bon de réduction a DÉJÀ ÉTÉ UTILISÉ !';
-        return null;
+      // 1. Consultation en temps réel sur Supabase si connecté
+      if (supabaseClient) {
+        try {
+          const { data: cloudRow, error: cloudErr } = await supabaseClient
+            .from('coupons')
+            .select('*')
+            .eq('code', cleanCode)
+            .maybeSingle();
+
+          if (!cloudErr && cloudRow) {
+            state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
+            const existing = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
+            if (existing) {
+              existing.used = Boolean(cloudRow.used);
+              existing.usedAt = cloudRow.used_at || existing.usedAt;
+            } else {
+              state.generatedOneTimeCoupons.unshift({
+                code: cleanCode,
+                amount: Number(cloudRow.amount || 0),
+                dateCreated: cloudRow.date_created || new Date().toISOString().split('T')[0],
+                used: Boolean(cloudRow.used),
+                usedAt: cloudRow.used_at || null
+              });
+            }
+            saveState();
+          }
+        } catch (e) {
+          console.warn('Erreur vérification temps réel Supabase:', e);
+        }
       }
 
-      // 2. Vérification universelle par la signature mathématique Nocwise
-      const universalMatch = verifyUniversalCoupon(cleanCode);
+      // 2. Recherche dans le lot local
+      state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
+      let oneTimeMatch = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
       let matchedAmount = null;
+      let isOneTime = false;
 
-      if (universalMatch) {
-        matchedAmount = universalMatch.amount;
+      if (oneTimeMatch) {
+        if (oneTimeMatch.used) {
+          feedback.className = 'text-[11px] font-bold text-red-600';
+          feedback.textContent = `❌ Ce bon de réduction a DÉJÀ ÉTÉ UTILISÉ${oneTimeMatch.usedAt ? ' (' + oneTimeMatch.usedAt + ')' : ''} et n\'est plus valable !`;
+          return null;
+        }
+        matchedAmount = oneTimeMatch.amount;
+        isOneTime = true;
       } else {
-        // Recherche dans les bons gagnés au jeu par le joueur
+        // 3. Vérification des bons débloqués dans l'espace jeu
         const earnedMatch = state.userVouchers.find(v => v.code.toUpperCase() === cleanCode);
         if (earnedMatch) {
           matchedAmount = earnedMatch.amount;
+          isOneTime = false;
         } else {
-          // Recherche locale classique
-          const localMatch = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
-          if (localMatch) {
-            if (localMatch.used) {
-              feedback.className = 'text-[11px] font-bold text-red-600';
-              feedback.textContent = '❌ Ce bon a déjà été utilisé !';
-              return null;
+          // 4. Formule universelle mathématique (reconnue instantanément sur n'importe quel autre téléphone)
+          const algoValid = verifyAlgorithmicCoupon(cleanCode);
+          if (algoValid) {
+            oneTimeMatch = {
+              code: cleanCode,
+              amount: algoValid.amount,
+              dateCreated: new Date().toISOString().split('T')[0],
+              used: false,
+              usedAt: null
+            };
+            state.generatedOneTimeCoupons.unshift(oneTimeMatch);
+            saveState();
+            matchedAmount = algoValid.amount;
+            isOneTime = true;
+
+            if (supabaseClient) {
+              supabaseClient.from('coupons').upsert([{
+                id: cleanCode,
+                code: cleanCode,
+                amount: algoValid.amount,
+                date_created: oneTimeMatch.dateCreated,
+                used: false,
+                used_at: null,
+                min_order: MIN_ORDER_TIERS[algoValid.amount] || (algoValid.amount * 4)
+              }], { onConflict: 'code' }).catch(err => console.warn(err));
             }
-            matchedAmount = localMatch.amount;
           }
         }
       }
@@ -1524,45 +1984,116 @@
         return null;
       }
 
-      // 3. Vérification du panier minimum réaliste
-      const minRequired = MIN_ORDER_TIERS[matchedAmount] || 1500;
+      // VÉRIFICATION DU PALIER MINIMUM DE COMMANDE
+      const minRequired = MIN_ORDER_TIERS[matchedAmount] || (matchedAmount * 4);
       if (currentSubtotal < minRequired) {
         feedback.className = 'text-[11px] font-bold text-amber-700 bg-amber-50 p-2 rounded-xl border border-amber-200';
-        feedback.textContent = `⚠️ Panier insuffisant : Ce bon nécessite ${formatMoney(minRequired)} d'achats minimum (Montant actuel : ${formatMoney(currentSubtotal)}).`;
+        feedback.textContent = `⚠️ Panier insuffisant : Ce bon de ${formatMoney(matchedAmount)} nécessite un achat minimum de ${formatMoney(minRequired)} (Montant actuel : ${formatMoney(currentSubtotal)}). Complétez vos achats !`;
         return null;
       }
 
       feedback.className = 'text-[11px] font-bold text-emerald-700 bg-emerald-50 p-2 rounded-xl border border-emerald-200';
-      feedback.textContent = `✅ Bon Nocwise de ${formatMoney(matchedAmount)} validé avec succès !`;
-      return { code: cleanCode, amount: matchedAmount };
+      feedback.textContent = `✅ Bon de ${formatMoney(matchedAmount)} validé avec succès ! (Panier minimum de ${formatMoney(minRequired)} atteint)`;
+      return { code: cleanCode, amount: matchedAmount, isOneTime: isOneTime };
     }
 
     function markCouponAsUsed(codeStr) {
       const cleanCode = (codeStr || '').trim().toUpperCase();
-      state.usedCoupons = state.usedCoupons || [];
-      if (!state.usedCoupons.includes(cleanCode)) {
-        state.usedCoupons.push(cleanCode);
-      }
-      const match = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
+      const dateStr = new Date().toLocaleDateString('fr-FR') + ' à ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5);
+
+      state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
+      let match = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
+      let amount = 0;
+
       if (match) {
         match.used = true;
-        match.usedAt = new Date().toLocaleDateString('fr-FR');
+        match.usedAt = dateStr;
+        amount = match.amount;
+      } else {
+        const algo = verifyAlgorithmicCoupon(cleanCode);
+        if (algo) {
+          amount = algo.amount;
+          match = {
+            code: cleanCode,
+            amount: algo.amount,
+            dateCreated: new Date().toISOString().split('T')[0],
+            used: true,
+            usedAt: dateStr
+          };
+          state.generatedOneTimeCoupons.unshift(match);
+        }
       }
+
       state.userVouchers = state.userVouchers.filter(v => v.code.toUpperCase() !== cleanCode);
       saveState();
+
+      // Mise à jour sur Supabase pour que TOUS les téléphones sachent qu'il est utilisé
+      if (supabaseClient) {
+        const payload = {
+          id: cleanCode,
+          code: cleanCode,
+          amount: amount,
+          used: true,
+          used_at: dateStr,
+          date_created: match ? match.dateCreated : new Date().toISOString().split('T')[0],
+          min_order: MIN_ORDER_TIERS[amount] || (amount * 4)
+        };
+        supabaseClient.from('coupons').upsert([payload], { onConflict: 'code' })
+          .then(({ error }) => {
+            if (error) console.warn('Supabase mark coupon error:', error);
+          });
+      }
+    }
+
+    // Fuzzy matching for product search
+    function cleanStr(s) {
+      return (s || '').toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]/g, '');
+    }
+
+    function levenshtein(a, b) {
+      const m = [];
+      for (let i = 0; i <= b.length; i++) m[i] = [i];
+      for (let j = 0; j <= a.length; j++) m[0][j] = j;
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          if (b.charAt(i - 1) === a.charAt(j - 1)) m[i][j] = m[i - 1][j - 1];
+          else m[i][j] = Math.min(m[i - 1][j - 1] + 1, m[i][j - 1] + 1, m[i - 1][j] + 1);
+        }
+      }
+      return m[b.length][a.length];
+    }
+
+    function fuzzyMatch(query, prod) {
+      if (!query) return true;
+      const cleanQ = cleanStr(query);
+      if (!cleanQ) return true;
+      const target = cleanStr(prod.title + ' ' + prod.category + ' ' + prod.description);
+      if (target.includes(cleanQ)) return true;
+
+      const words = (prod.title + ' ' + prod.category).split(/\s+/);
+      for (const w of words) {
+        const cw = cleanStr(w);
+        if (cw.length < 3) continue;
+        if (cw.includes(cleanQ) || cleanQ.includes(cw)) return true;
+        const maxDist = cleanQ.length <= 4 ? 1 : 2;
+        if (levenshtein(cleanQ, cw) <= maxDist) return true;
+      }
+      return false;
     }
 
     function renderProducts() {
       const grid = document.getElementById('products-grid');
       const emptyState = document.getElementById('empty-search-state');
       const searchInput = document.getElementById('product-search');
-      const q = (searchInput.value || '').trim().toLowerCase();
+      const q = searchInput.value.trim();
       document.getElementById('btn-clear-search').classList.toggle('hidden', q.length === 0);
 
       grid.innerHTML = '';
       const filtered = state.products.filter(p => {
         const matchCat = (state.currentCategory === 'all') || (p.category === state.currentCategory);
-        const matchQ = !q || p.title.toLowerCase().includes(q) || p.category.toLowerCase().includes(q);
+        const matchQ = fuzzyMatch(q, p);
         return matchCat && matchQ;
       });
 
@@ -1649,7 +2180,7 @@
 
     async function deleteProduct(id) {
       if (state.products.length <= 1) {
-        showToast('Conservez au moins un article', '⚠️');
+        showToast('Conservez au moins un article dans la boutique', '⚠️');
         return;
       }
       state.products = state.products.filter(p => p.id !== id);
@@ -1658,7 +2189,11 @@
       renderAdminCatalog();
 
       if (supabaseClient) {
-        try { await supabaseClient.from('products').delete().eq('id', id); } catch (e) {}
+        try {
+          await supabaseClient.from('products').delete().eq('id', id);
+        } catch (e) {
+          console.warn('Erreur suppression cloud:', e);
+        }
       }
       showToast('Article supprimé de la boutique', '🗑️');
     }
@@ -1677,7 +2212,7 @@
 
       const isFree = p.deliveryType === 'free' || !p.deliveryFee;
       const b = document.getElementById('detailModalDeliveryBadge');
-      b.textContent = isFree ? 'Livraison Gratuite' : `Frais : ${formatMoney(p.deliveryFee)}`;
+      b.textContent = isFree ? 'Livraison Gratuite' : `Frais Livraison : ${formatMoney(p.deliveryFee)}`;
       b.className = isFree ? 'text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold inline-block ml-1' : 'text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-bold inline-block ml-1';
 
       expressCurrentDiscount = 0;
@@ -1710,10 +2245,10 @@
       }
     }
 
-    document.getElementById('btnApplyExpressCoupon').addEventListener('click', () => {
+    document.getElementById('btnApplyExpressCoupon').addEventListener('click', async () => {
       if (!state.selectedProduct) return;
       const code = document.getElementById('expressCouponInput').value;
-      const valid = checkAndApplyCoupon(code, false, state.selectedProduct.promoPrice);
+      const valid = await checkAndApplyCoupon(code, false, state.selectedProduct.promoPrice);
       if (valid) {
         expressCurrentDiscount = valid.amount;
         expressCurrentCouponCode = valid.code;
@@ -1742,6 +2277,7 @@
       document.getElementById('expressOrderForm').scrollIntoView({ behavior: 'smooth' });
     });
 
+    // Cart Management
     function addToCart(product, quantity = 1) {
       const existing = state.cart.find(it => it.productId === product.id);
       if (existing) {
@@ -1827,14 +2363,15 @@
 
       let discount = 0;
       if (state.activeCoupon) {
-        const minReq = MIN_ORDER_TIERS[state.activeCoupon.amount] || 1500;
+        const minReq = MIN_ORDER_TIERS[state.activeCoupon.amount] || (state.activeCoupon.amount * 4);
         if (subtotal >= minReq) {
           discount = state.activeCoupon.amount;
         } else {
+          // Invalidate coupon if subtotal fell below threshold
           state.activeCoupon = null;
           const fb = document.getElementById('cartCouponFeedback');
           fb.className = 'text-[11px] font-bold text-amber-700 bg-amber-50 p-2 rounded-xl border border-amber-200';
-          fb.textContent = `⚠️ Le bon a été retiré (achat min : ${formatMoney(minReq)}).`;
+          fb.textContent = `⚠️ Le bon a été retiré car le sous-total (${formatMoney(subtotal)}) est inférieur au seuil requis de ${formatMoney(minReq)}.`;
           fb.classList.remove('hidden');
         }
       }
@@ -1850,6 +2387,7 @@
       document.getElementById('cartSubtotalVal').textContent = formatMoney(subtotal);
       document.getElementById('cartDeliveryVal').textContent = maxDel > 0 ? formatMoney(maxDel) : 'Gratuit';
       document.getElementById('cartTotalVal').textContent = formatMoney(total);
+
       document.getElementById('cartClientSecurityToken').textContent = 'SEC-' + Math.floor(1000 + Math.random() * 9000);
     }
 
@@ -1861,10 +2399,10 @@
       document.getElementById('cartModal').classList.add('hidden');
     });
 
-    document.getElementById('btnApplyCartCoupon').addEventListener('click', () => {
+    document.getElementById('btnApplyCartCoupon').addEventListener('click', async () => {
       const code = document.getElementById('cartCouponInput').value;
       const subtotal = state.cart.reduce((s, it) => s + (it.price * it.quantity), 0);
-      const valid = checkAndApplyCoupon(code, true, subtotal);
+      const valid = await checkAndApplyCoupon(code, true, subtotal);
       if (valid) {
         state.activeCoupon = valid;
         renderCartModal();
@@ -1875,37 +2413,7 @@
       }
     });
 
-    // TRANSMISSION DE COMMANDE PAR WHATSAPP & SAUVEGARDE
-    function triggerOrderWhatsApp(waMsg, orderRecord) {
-      state.orders = state.orders || [];
-      state.orders.unshift(orderRecord);
-      saveState();
-
-      if (supabaseClient) {
-        supabaseClient.from('orders').insert([orderRecord]).then(({ error }) => {
-          if (!error) syncOrdersFromCloud();
-        }).catch(() => {});
-      }
-
-      const officialPhone = '22652627240';
-      const waUrl = `https://wa.me/${officialPhone}?text=${waMsg}`;
-
-      document.getElementById('modalSuccessTotal').textContent = formatMoney(orderRecord.total);
-      document.getElementById('modalSuccessToken').textContent = 'Clé Sécurité : ' + orderRecord.secToken;
-      document.getElementById('btnModalSuccessWhatsApp').href = waUrl;
-
-      try {
-        window.open(waUrl, '_blank');
-      } catch (err) {}
-
-      document.getElementById('orderSuccessModal').classList.remove('hidden');
-      showToast('Commande validée !', '🎉');
-    }
-
-    document.getElementById('btnCloseSuccessModal').addEventListener('click', () => {
-      document.getElementById('orderSuccessModal').classList.add('hidden');
-    });
-
+    // Orders submission with Burkina Faso Phone verification & Order Backup
     document.getElementById('expressOrderForm').addEventListener('submit', (e) => {
       e.preventDefault();
       if (!state.selectedProduct) return;
@@ -1915,9 +2423,10 @@
       const city = document.getElementById('expressCustCity').value.trim();
       const secToken = document.getElementById('expressClientSecurityToken').textContent;
 
+      // VALIDATE PHONE
       const phoneValidation = validateBurkinaPhone(rawPhone);
       if (!phoneValidation.valid) {
-        showToast(phoneValidation.message, '⚠️');
+        showToast(`Numéro invalide : ${phoneValidation.message}`, '⚠️');
         document.getElementById('expressCustPhone').focus();
         return;
       }
@@ -1925,6 +2434,8 @@
       const deliveryFee = p.deliveryType === 'paid' ? (p.deliveryFee || 1000) : 0;
       const total = Math.max(0, p.promoPrice - expressCurrentDiscount) + deliveryFee;
 
+      // SAVE TO BACKUP ORDER LIST
+      state.orders = state.orders || [];
       const orderRecord = {
         id: 'CMD-' + Math.floor(100000 + Math.random() * 900000),
         date: new Date().toLocaleDateString('fr-FR') + ' à ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5),
@@ -1938,9 +2449,14 @@
         couponCode: expressCurrentCouponCode,
         secToken: secToken
       };
+      state.orders.unshift(orderRecord);
+      saveState();
+      if (supabaseClient) {
+        supabaseClient.from('orders').insert([orderRecord]).catch(e => console.warn('Cloud order error:', e));
+      }
 
       const waMsg = encodeURIComponent(
-        `*NOUVELLE COMMANDE DIRECTE - NOCWISE BF*\n` +
+        `*NOUVELLE COMMANDE DIRECTE - ${state.brandName}*\n` +
         `--------------------------------\n` +
         `📦 *Article :* ${p.title}\n` +
         `💵 *Prix :* ${formatMoney(p.promoPrice)}\n` +
@@ -1955,9 +2471,13 @@
       );
 
       if (expressCurrentCouponCode) markCouponAsUsed(expressCurrentCouponCode);
+
+      const raw = state.whatsappPhone.replace(/[^0-9]/g, '');
+      const full = raw.startsWith('226') ? raw : `226${raw}`;
       document.getElementById('productDetailModal').classList.add('hidden');
       document.getElementById('expressOrderForm').reset();
-      triggerOrderWhatsApp(waMsg, orderRecord);
+      window.open(`https://wa.me/${full}?text=${waMsg}`, '_blank');
+      showToast('Commande enregistrée et transmise sur WhatsApp !', '✅');
     });
 
     document.getElementById('cartCheckoutForm').addEventListener('submit', (e) => {
@@ -1968,9 +2488,10 @@
       const city = document.getElementById('cartCustCity').value.trim();
       const secToken = document.getElementById('cartClientSecurityToken').textContent;
 
+      // VALIDATE PHONE
       const phoneValidation = validateBurkinaPhone(rawPhone);
       if (!phoneValidation.valid) {
-        showToast(phoneValidation.message, '⚠️');
+        showToast(`Numéro invalide : ${phoneValidation.message}`, '⚠️');
         document.getElementById('cartCustPhone').focus();
         return;
       }
@@ -1991,6 +2512,8 @@
       const usedCode = state.activeCoupon ? state.activeCoupon.code : '';
       const total = Math.max(0, subtotal - discount) + maxDel;
 
+      // SAVE TO BACKUP ORDER LIST
+      state.orders = state.orders || [];
       const orderRecord = {
         id: 'CMD-' + Math.floor(100000 + Math.random() * 900000),
         date: new Date().toLocaleDateString('fr-FR') + ' à ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5),
@@ -2004,9 +2527,14 @@
         couponCode: usedCode,
         secToken: secToken
       };
+      state.orders.unshift(orderRecord);
+      saveState();
+      if (supabaseClient) {
+        supabaseClient.from('orders').insert([orderRecord]).catch(e => console.warn('Cloud order error:', e));
+      }
 
       const waMsg = encodeURIComponent(
-        `*NOUVELLE COMMANDE PANIER - NOCWISE BF*\n` +
+        `*NOUVELLE COMMANDE PANIER - ${state.brandName}*\n` +
         `--------------------------------\n` +
         `🛒 *ARTICLES :*\n${itemsStr}` +
         `--------------------------------\n` +
@@ -2021,29 +2549,35 @@
       );
 
       if (usedCode) markCouponAsUsed(usedCode);
+
+      const raw = state.whatsappPhone.replace(/[^0-9]/g, '');
+      const full = raw.startsWith('226') ? raw : `226${raw}`;
       state.cart = [];
       state.activeCoupon = null;
       saveState();
       updateCartBadge();
       document.getElementById('cartModal').classList.add('hidden');
-      triggerOrderWhatsApp(waMsg, orderRecord);
+      window.open(`https://wa.me/${full}?text=${waMsg}`, '_blank');
+      showToast('Panier sauvegardé et envoyé sur WhatsApp !', '✅');
     });
 
+    // Image Upload with Automatic Compression
     let currentUploadedImageDataUrl = '';
 
     document.getElementById('inpProdFileInput').addEventListener('change', async (e) => {
       const file = e.target.files[0];
       if (file) {
         try {
-          showToast('Compression en cours...', '⏳');
+          showToast('Compression de l\'image en cours...', '⏳');
           const result = await compressImageFile(file, 800, 0.72);
           currentUploadedImageDataUrl = result.dataUrl;
           document.getElementById('imagePreviewImg').src = currentUploadedImageDataUrl;
           document.getElementById('imagePreviewContainer').classList.remove('hidden');
           document.getElementById('inpProdUrlInput').value = '';
-          showToast(`Photo compressée (~${result.approxKb} Ko) !`, '📸');
+          showToast(`Photo compressée avec succès (~${result.approxKb} Ko) !`, '📸');
         } catch (err) {
-          showToast('Erreur compression image', '⚠️');
+          console.error(err);
+          showToast('Erreur lors de la compression de l\'image', '⚠️');
         }
       }
     });
@@ -2090,6 +2624,7 @@
       renderProducts();
 
       if (supabaseClient) {
+        // Send payload supporting both lower-case and camelCase
         const cloudPayload = {
           id: newP.id,
           title: newP.title,
@@ -2103,32 +2638,58 @@
           rating: newP.rating,
           description: newP.description
         };
-        supabaseClient.from('products').insert([cloudPayload]).then(() => {
-          syncWithCloud();
-        }).catch(() => {});
+
+        supabaseClient.from('products').insert([cloudPayload]).then(({ error }) => {
+          if (error) {
+            console.error('Erreur insertion Supabase:', error);
+            showToast('Erreur Cloud : ' + (error.message || 'échec de publication'), '⚠️');
+          } else {
+            showToast('Article synchronisé sur le Cloud pour tous les clients !', '☁️');
+            // Refresh to ensure global consistency
+            syncWithCloud();
+          }
+        });
+      } else {
+        showToast('Enregistré en local uniquement (Cloud non connecté)', '⚠️');
       }
-      showToast('Article ajouté avec succès !', '🎉');
     });
 
     function renderAdminCatalog() {
       const container = document.getElementById('adminProductCatalogList');
+      if (!container) return;
       container.innerHTML = '';
       state.products.forEach(p => {
         const row = document.createElement('div');
-        row.className = 'flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-xl';
+        row.className = 'flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-xl gap-2';
         row.innerHTML = `
-          <div class="flex items-center space-x-2.5">
-            <img src="${p.image}" class="w-10 h-10 object-contain rounded bg-white p-0.5 border border-slate-200">
-            <div>
+          <div class="flex items-center space-x-2.5 flex-1 min-w-0">
+            <img src="${p.image}" class="w-11 h-11 object-contain rounded-lg bg-white p-0.5 border border-slate-200 flex-shrink-0">
+            <div class="min-w-0">
               <p class="font-bold text-slate-800 text-xs line-clamp-1">${p.title}</p>
-              <span class="text-emerald-700 font-mono text-[11px] font-bold">${formatMoney(p.promoPrice)}</span>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-emerald-700 font-mono text-xs font-black">${formatMoney(p.promoPrice)}</span>
+                <span class="text-slate-400 font-mono text-[10px] line-through">${formatMoney(p.oldPrice)}</span>
+              </div>
             </div>
           </div>
-          <button data-id="${p.id}" class="btn-admin-del text-red-600 hover:text-white hover:bg-red-600 px-3 py-1 bg-red-50 rounded-lg text-xs font-bold border border-red-200 transition">
-            Supprimer
-          </button>
+          <div class="flex items-center space-x-1.5 flex-shrink-0">
+            <button data-id="${p.id}" class="btn-admin-edit text-emerald-800 hover:bg-emerald-700 hover:text-white px-2.5 py-1 bg-emerald-50 rounded-lg text-xs font-bold border border-emerald-300 transition flex items-center gap-1 shadow-sm">
+              <i class="fa-solid fa-pen-to-square"></i> <span>Modifier Prix</span>
+            </button>
+            <button data-id="${p.id}" class="btn-admin-del text-red-600 hover:text-white hover:bg-red-600 px-2.5 py-1 bg-red-50 rounded-lg text-xs font-bold border border-red-200 transition">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
         `;
         container.appendChild(row);
+      });
+
+      document.querySelectorAll('.btn-admin-edit').forEach(b => {
+        b.addEventListener('click', () => {
+          const id = b.getAttribute('data-id');
+          const p = state.products.find(x => x.id === id);
+          if (p) openEditProductModal(p);
+        });
       });
 
       document.querySelectorAll('.btn-admin-del').forEach(b => {
@@ -2138,6 +2699,75 @@
       });
     }
 
+    function openEditProductModal(p) {
+      document.getElementById('editProdId').value = p.id;
+      document.getElementById('editProdTitle').value = p.title;
+      document.getElementById('editProdCurrentTitle').textContent = p.title;
+      document.getElementById('editProdPromoPrice').value = p.promoPrice;
+      document.getElementById('editProdOldPrice').value = p.oldPrice;
+      document.getElementById('editProdCat').value = p.category;
+      document.getElementById('editProdBadgeCat').textContent = p.category;
+      document.getElementById('editProdBadge').value = p.badge || '';
+      document.getElementById('editProdDesc').value = p.description || '';
+      document.getElementById('editProdPreviewImg').src = p.image || '';
+      document.getElementById('adminEditProductModal').classList.remove('hidden');
+    }
+
+    document.getElementById('btnCloseEditProdModal').addEventListener('click', () => {
+      document.getElementById('adminEditProductModal').classList.add('hidden');
+    });
+
+    document.getElementById('btnCancelEditProd').addEventListener('click', () => {
+      document.getElementById('adminEditProductModal').classList.add('hidden');
+    });
+
+    document.getElementById('adminEditProductForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('editProdId').value;
+      const p = state.products.find(x => x.id === id);
+      if (!p) return;
+
+      p.title = document.getElementById('editProdTitle').value.trim();
+      p.promoPrice = Number(document.getElementById('editProdPromoPrice').value);
+      p.oldPrice = Number(document.getElementById('editProdOldPrice').value);
+      p.category = document.getElementById('editProdCat').value;
+      p.badge = document.getElementById('editProdBadge').value.trim() || 'PROMO';
+      p.description = document.getElementById('editProdDesc').value.trim();
+
+      saveState();
+      renderProducts();
+      renderAdminCatalog();
+      document.getElementById('adminEditProductModal').classList.add('hidden');
+
+      // Mise à jour instantanée sur Supabase pour tous les utilisateurs
+      if (supabaseClient) {
+        showToast('Mise à jour en cours sur le Cloud...', '⏳');
+        const cloudPayload = {
+          id: p.id,
+          title: p.title,
+          category: p.category,
+          oldprice: p.oldPrice,
+          promoprice: p.promoPrice,
+          deliverytype: p.deliveryType,
+          deliveryfee: p.deliveryFee,
+          image: p.image,
+          badge: p.badge,
+          rating: p.rating,
+          description: p.description
+        };
+
+        const { error } = await supabaseClient.from('products').upsert([cloudPayload], { onConflict: 'id' });
+        if (error) {
+          console.warn('Erreur mise à jour Cloud:', error);
+          showToast('Erreur Supabase : ' + error.message, '⚠️');
+        } else {
+          showToast('Prix et article modifiés avec succès sur tous les téléphones !', '☁️');
+        }
+      } else {
+        showToast('Prix modifié localement (connectez Supabase pour le cloud)', '⚠️');
+      }
+    });
+
     function renderAdminOrders() {
       const container = document.getElementById('adminOrdersList');
       if (!container) return;
@@ -2145,7 +2775,7 @@
       state.orders = state.orders || [];
 
       if (state.orders.length === 0) {
-        container.innerHTML = '<p class="text-xs text-slate-400 italic py-2">Aucune commande enregistrée pour l\'instant. Les commandes arrivent directement sur votre WhatsApp.</p>';
+        container.innerHTML = '<p class="text-xs text-slate-400 italic py-2">Aucune commande enregistrée pour l\'instant.</p>';
         return;
       }
 
@@ -2162,7 +2792,7 @@
           <div class="flex justify-between items-center pt-1 border-t border-slate-200 font-bold">
             <span class="text-emerald-800">Total : ${formatMoney(ord.total)} ${ord.discount > 0 ? `(Bon -${formatMoney(ord.discount)})` : ''}</span>
             <a href="https://wa.me/226${ord.phone.replace(/[^0-9]/g, '')}?text=Bonjour%20${encodeURIComponent(ord.name)},%20Nocwise%20BF%20confirme%20votre%20commande%20${ord.id}" target="_blank" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[10px] flex items-center gap-1">
-              <i class="fa-brands fa-whatsapp"></i> Répondre Client
+              <i class="fa-brands fa-whatsapp"></i> Relancer Client
             </a>
           </div>
         `;
@@ -2170,21 +2800,30 @@
       });
     }
 
-    const btnRefreshOrders = document.getElementById('btnRefreshOrdersCloud');
-    if (btnRefreshOrders) {
-      btnRefreshOrders.addEventListener('click', () => {
-        syncOrdersFromCloud();
-        showToast('Commandes actualisées !', '🔄');
-      });
-    }
-
     const btnClearOrders = document.getElementById('btnClearOrdersHistory');
+    let clearConfirmArmed = false;
+    let clearConfirmTimer = null;
     if (btnClearOrders) {
       btnClearOrders.addEventListener('click', () => {
-        state.orders = [];
-        saveState();
-        renderAdminOrders();
-        showToast('Historique vidé !', '🗑️');
+        if (!clearConfirmArmed) {
+          clearConfirmArmed = true;
+          btnClearOrders.textContent = "Confirmer la suppression ?";
+          btnClearOrders.className = "text-[10px] text-red-700 font-black bg-red-100 px-2 py-0.5 rounded animate-pulse";
+          clearConfirmTimer = setTimeout(() => {
+            clearConfirmArmed = false;
+            btnClearOrders.textContent = "Vider l'historique";
+            btnClearOrders.className = "text-[10px] text-red-600 hover:underline font-bold";
+          }, 3500);
+        } else {
+          clearTimeout(clearConfirmTimer);
+          clearConfirmArmed = false;
+          btnClearOrders.textContent = "Vider l'historique";
+          btnClearOrders.className = "text-[10px] text-red-600 hover:underline font-bold";
+          state.orders = [];
+          saveState();
+          renderAdminOrders();
+          showToast('Historique des commandes vidé !', '🗑️');
+        }
       });
     }
 
@@ -2207,14 +2846,14 @@
         t.btn.className = 'py-2 px-3 border-b-2 border-emerald-600 text-emerald-800 font-bold';
         t.view.classList.remove('hidden');
         if (t.view.id === 'viewAdmGenerator') renderGeneratedCodes();
-        if (t.view.id === 'viewAdmOrders') { renderAdminOrders(); syncOrdersFromCloud(); }
+        if (t.view.id === 'viewAdmOrders') renderAdminOrders();
       });
     });
 
     document.getElementById('adminConfigForm').addEventListener('submit', (e) => {
       e.preventDefault();
       state.brandName = document.getElementById('inpConfigBrandName').value.trim();
-      state.whatsappPhone = '22652627240';
+      state.whatsappPhone = document.getElementById('inpConfigPhone').value.trim();
       const newPin = document.getElementById('inpConfigAdminPin').value.trim();
       if (newPin) state.adminPin = newPin;
 
@@ -2225,31 +2864,33 @@
       applyUI();
       initSupabase();
       document.getElementById('adminMasterModal').classList.add('hidden');
-      showToast('Paramètres enregistrés !', '💾');
+      showToast('Paramètres et connexion Cloud enregistrés !', '💾');
     });
 
     document.getElementById('btnTestSupabaseConn').addEventListener('click', async () => {
       const url = document.getElementById('inpConfigSupabaseUrl').value.trim();
       const key = document.getElementById('inpConfigSupabaseKey').value.trim();
       if (!url || !key) {
-        showToast('Saisissez URL et Clé Supabase.', '⚠️');
+        showToast('Veuillez saisir votre URL et votre clé Anon Supabase.', '⚠️');
         return;
       }
       try {
-        showToast('Connexion Supabase en cours...', '⏳');
+        showToast('Test de connexion Supabase en cours...', '⏳');
         const testClient = window.supabase.createClient(url, key);
-        const { error } = await testClient.from('products').select('count', { count: 'exact', head: true });
+        const { data, error } = await testClient.from('products').select('count', { count: 'exact', head: true });
         if (error) throw error;
         state.supabaseUrl = url;
         state.supabaseKey = key;
         saveState();
         initSupabase();
-        showToast('Connexion réussie avec le Cloud !', '☁️');
+        showToast('Connexion réussie ! Vos données sont désormais connectées au Cloud.', '☁️');
       } catch (err) {
-        showToast('Vérifiez vos clés Supabase ou la table products.', '❌');
+        console.error(err);
+        showToast('Échec de la connexion Supabase. Vérifiez les clés ou la table products.', '❌');
       }
     });
 
+    // Environment Switcher
     const secStore = document.getElementById('section-store');
     const secGames = document.getElementById('section-games');
     const navBtnStore = document.getElementById('nav-btn-store');
@@ -2276,6 +2917,7 @@
       document.getElementById('btnTabVouchers').click();
     });
 
+    // Games Tabs
     const gameTabs = [
       { btn: document.getElementById('btnTabWheel'), view: document.getElementById('gameViewWheel') },
       { btn: document.getElementById('btnTabCrash'), view: document.getElementById('gameViewCrash') },
@@ -2295,6 +2937,7 @@
       });
     });
 
+    // Wheel game
     const wheelCanvas = document.getElementById('wheelCanvas');
     const WHEEL_SEGMENTS = [
       { label: 'x2', mult: 2, color: '#059669', textClr: '#ffffff' },
@@ -2359,12 +3002,18 @@
       state.points -= 150;
       saveState();
       applyUI();
+
       isWheelSpinning = true;
       const btn = document.getElementById('btnSpinWheelAction');
       btn.disabled = true;
 
       const rand = Math.random();
-      let winIdx = rand < 0.15 ? 3 : rand < 0.35 ? 1 : rand < 0.65 ? 0 : rand < 0.90 ? 2 : 11;
+      let winIdx = 0;
+      if (rand < 0.15) winIdx = 3;
+      else if (rand < 0.35) winIdx = 1;
+      else if (rand < 0.65) winIdx = 0;
+      else if (rand < 0.90) winIdx = 2;
+      else winIdx = 11;
 
       const numSegments = WHEEL_SEGMENTS.length;
       const arc = (2 * Math.PI) / numSegments;
@@ -2405,6 +3054,7 @@
       requestAnimationFrame(animateWheel);
     });
 
+    // Crash Continuous Game
     let crashMult = 1.00;
     let crashTarget = 1.00;
     let crashHistory = [1.85, 2.40, 1.15, 3.80, 5.20];
@@ -2492,7 +3142,7 @@
       userHasCashedOutCrash = false;
       document.getElementById('crashPlayerBadge').textContent = 'Pari 200 PTS en vol ✓';
       document.getElementById('crashPlayerBadge').className = 'text-emerald-400 font-bold';
-      showToast('Pari de 200 PTS placé !', '✈️');
+      showToast('Pari de 200 PTS placé pour ce vol !', '✈️');
     });
 
     document.getElementById('btnCrashCashoutAction').addEventListener('click', () => {
@@ -2504,29 +3154,34 @@
       applyUI();
       document.getElementById('btnCrashCashoutAction').classList.add('hidden');
       document.getElementById('crashSpectateBanner').classList.remove('hidden');
-      document.getElementById('crashSpectateBanner').textContent = `Gagné +${win} PTS !`;
+      document.getElementById('crashSpectateBanner').textContent = `Gagné +${win} PTS ! L'avion continue...`;
       showToast(`Bravo ! Retiré à ${crashMult.toFixed(2)}x (+${win} PTS) !`, '💰');
     });
 
+    // Conversion to vouchers with minimum order info
     document.querySelectorAll('.btn-redeem-voucher').forEach(btn => {
       btn.addEventListener('click', () => {
         const amt = parseInt(btn.getAttribute('data-amount'), 10);
         const cost = parseInt(btn.getAttribute('data-pts'), 10);
 
         if (state.points < cost) {
-          showToast(`Points insuffisants (${cost} PTS requis).`, '⚠️');
+          showToast(`Points insuffisants (${cost} PTS requis). Continuez à jouer !`, '⚠️');
           return;
         }
 
         state.points -= cost;
         const code = `NOCWISE-${amt}-${Math.floor(1000 + Math.random() * 9000)}`;
-        const voucher = { code: code, amount: amt, date: new Date().toLocaleDateString('fr-FR') };
+        const voucher = {
+          code: code,
+          amount: amt,
+          date: new Date().toLocaleDateString('fr-FR')
+        };
         state.userVouchers.unshift(voucher);
         saveState();
         applyUI();
         renderUserVouchersVault();
-        const minReq = MIN_ORDER_TIERS[amt] || 1500;
-        showToast(`Bon de ${formatMoney(amt)} débloqué (${code}) !`, '🎟️');
+        const minReq = MIN_ORDER_TIERS[amt] || (amt * 4);
+        showToast(`Félicitations ! Bon de ${formatMoney(amt)} débloqué (${code}) ! Utilisable dès ${formatMoney(minReq)}.`, '🎟️');
       });
     });
 
@@ -2534,12 +3189,12 @@
       const v = document.getElementById('userVouchersVault');
       v.innerHTML = '';
       if (state.userVouchers.length === 0) {
-        v.innerHTML = '<p class="text-xs text-slate-400 italic">Aucun bon débloqué. Jouez pour convertir vos points !</p>';
+        v.innerHTML = '<p class="text-xs text-slate-400 italic">Aucun bon débloqué pour le moment. Jouez pour convertir vos points !</p>';
         return;
       }
 
       state.userVouchers.forEach(item => {
-        const minReq = MIN_ORDER_TIERS[item.amount] || 1500;
+        const minReq = MIN_ORDER_TIERS[item.amount] || (item.amount * 4);
         const card = document.createElement('div');
         card.className = 'flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-emerald-300';
         card.innerHTML = `
@@ -2551,7 +3206,7 @@
             <span class="text-[10px] text-slate-500 font-medium block mt-0.5">Valable dès ${formatMoney(minReq)} d\'achat</span>
           </div>
           <button data-code="${item.code}" class="btn-use-voucher-shop px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition">
-            Utiliser
+            Utiliser en Boutique
           </button>
         `;
         v.appendChild(card);
@@ -2569,6 +3224,7 @@
       });
     }
 
+    // Buy vouchers via Mobile Money
     let currentVoucherToBuy = null;
     document.querySelectorAll('.btn-buy-mm-action').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -2589,115 +3245,75 @@
       const rawPhone = document.getElementById('mmSenderPhone').value.trim();
       const phoneValidation = validateBurkinaPhone(rawPhone);
       if (!phoneValidation.valid) {
-        showToast(phoneValidation.message, '⚠️');
+        showToast(`Numéro Mobile Money invalide : ${phoneValidation.message}`, '⚠️');
         document.getElementById('mmSenderPhone').focus();
         return;
       }
 
       const provider = document.querySelector('input[name="mm_provider"]:checked').value;
       const waMsg = encodeURIComponent(
-        `*ACHAT DE BON DE RÉDUCTION - NOCWISE BF*\n` +
+        `*ACHAT DE BON DE RÉDUCTION - ${state.brandName}*\n` +
         `--------------------------------\n` +
         `🎟️ *Bon demandé :* ${formatMoney(currentVoucherToBuy.val)}\n` +
         `💵 *Montant à payer :* ${formatMoney(currentVoucherToBuy.cost)}\n` +
         `📱 *Opérateur :* ${provider}\n` +
         `📞 *Numéro Client :* ${phoneValidation.formatted} (${phoneValidation.operator})\n` +
         `--------------------------------\n` +
-        `Merci de m'envoyer les coordonnées de dépôt !`
+        `Merci de m'envoyer les coordonnées de dépôt pour finaliser la transaction !`
       );
 
+      const raw = state.whatsappPhone.replace(/[^0-9]/g, '');
+      const full = raw.startsWith('226') ? raw : `226${raw}`;
       document.getElementById('mobileMoneyModal').classList.add('hidden');
-      window.open(`https://wa.me/22652627240?text=${waMsg}`, '_blank');
-      showToast('Demande transmise sur WhatsApp !', '💳');
+      window.open(`https://wa.me/${full}?text=${waMsg}`, '_blank');
+      showToast('Demande envoyée ! Le code vous sera délivré après confirmation.', '💳');
     });
 
-    // LECTEUR VIDÉO RÉMUNÉRÉ HD
-    let videoTimerInterval = null;
-
+    // Rewarded Video Ads
     function launchAdVideo() {
       if (state.dailyVideosWatched >= 5) {
-        showToast('Quota journalier atteint (5/5). Revenez demain !', '⛔');
+        showToast('Quota journalier atteint (5/5). Revenez demain pour de nouveaux points !', '⛔');
         return;
       }
 
-      const modal = document.getElementById('videoModal');
-      const vid = document.getElementById('rewardedVideoElement');
-      const overlay = document.getElementById('videoPlayOverlay');
+      document.getElementById('videoModal').classList.remove('hidden');
+      document.getElementById('videoProgressBar').style.width = '0%';
+      let sec = 5;
+      document.getElementById('videoTimerText').textContent = `Temps restant : ${sec}s`;
       const claimBtn = document.getElementById('btnClaimVideoReward');
-      const pBar = document.getElementById('videoProgressBar');
-      const timerSec = document.getElementById('videoTimerSec');
-      const timerText = document.getElementById('videoTimerText');
-
-      modal.classList.remove('hidden');
-      pBar.style.width = '0%';
-      let totalSec = 15;
-      let elapsed = 0;
-      timerSec.textContent = totalSec;
-      timerText.textContent = `${totalSec} secondes restantes`;
       claimBtn.disabled = true;
-      claimBtn.className = 'w-full py-3 bg-slate-800 text-slate-500 font-bold text-xs rounded-xl cursor-not-allowed';
-      claimBtn.textContent = 'Regardez la vidéo (15s) pour débloquer (+120 PTS)...';
+      claimBtn.className = 'w-full py-3 bg-slate-100 text-slate-400 font-bold text-xs rounded-xl cursor-not-allowed';
+      claimBtn.textContent = 'Visionnage en cours...';
 
-      vid.muted = true;
-      vid.currentTime = 0;
-      const soundBtn = document.getElementById('btnToggleVideoSound');
-      if (soundBtn) {
-        document.getElementById('soundVolIcon').textContent = '🔇';
-        document.getElementById('soundVolText').textContent = 'Activer le Son';
-        soundBtn.onclick = (e) => {
-          e.stopPropagation();
-          vid.muted = !vid.muted;
-          document.getElementById('soundVolIcon').textContent = vid.muted ? '🔇' : '🔊';
-          document.getElementById('soundVolText').textContent = vid.muted ? 'Activer le Son' : 'Couper le Son';
-        };
-      }
-
-      try {
-        const p = vid.play();
-        if (p !== undefined) {
-          p.then(() => { overlay.classList.add('hidden'); }).catch(() => { overlay.classList.remove('hidden'); });
+      let w = 0;
+      const timer = setInterval(() => {
+        w += 2;
+        document.getElementById('videoProgressBar').style.width = w + '%';
+        if (w % 20 === 0 && sec > 0) {
+          sec--;
+          document.getElementById('videoTimerText').textContent = `Temps restant : ${sec}s`;
         }
-      } catch(e) { overlay.classList.remove('hidden'); }
-
-      overlay.onclick = () => {
-        vid.muted = false;
-        vid.play();
-        overlay.classList.add('hidden');
-      };
-
-      if (videoTimerInterval) clearInterval(videoTimerInterval);
-      videoTimerInterval = setInterval(() => {
-        elapsed++;
-        const rem = Math.max(0, totalSec - elapsed);
-        const pct = Math.min(100, Math.round((elapsed / totalSec) * 100));
-        pBar.style.width = pct + '%';
-        timerSec.textContent = rem;
-        timerText.textContent = `${rem} secondes restantes`;
-
-        if (elapsed >= totalSec) {
-          clearInterval(videoTimerInterval);
+        if (w >= 100) {
+          clearInterval(timer);
           claimBtn.disabled = false;
           claimBtn.className = 'w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-xl shadow cursor-pointer';
           claimBtn.textContent = 'Réclamer mes +120 Points ✓';
-          timerText.textContent = 'Vidéo terminée ! Réclamez vos points.';
         }
-      }, 1000);
+      }, 70);
     }
 
     document.getElementById('btnWatchRewardedAdAction').addEventListener('click', launchAdVideo);
 
     document.getElementById('btnClaimVideoReward').addEventListener('click', () => {
-      const vid = document.getElementById('rewardedVideoElement');
-      try { vid.pause(); } catch(e) {}
-      if (videoTimerInterval) clearInterval(videoTimerInterval);
       document.getElementById('videoModal').classList.add('hidden');
       state.points += 120;
       state.dailyVideosWatched++;
       saveState();
       applyUI();
-      showToast(`Bravo ! +120 Points ajoutés (${state.dailyVideosWatched}/5)`, '📺');
+      showToast(`Bravo ! +120 Points ajoutés (${state.dailyVideosWatched}/5 vidéos aujourd'hui)`, '📺');
     });
 
+    // Search input & Category filters
     const storeSearch = document.getElementById('product-search');
     storeSearch.addEventListener('input', renderProducts);
     document.getElementById('btn-clear-search').addEventListener('click', () => {
@@ -2717,6 +3333,7 @@
       });
     });
 
+    // Setup live phone feedback listeners
     setupPhoneLiveFeedback('expressCustPhone', 'expressPhoneFeedback');
     setupPhoneLiveFeedback('cartCustPhone', 'cartPhoneFeedback');
     setupPhoneLiveFeedback('mmSenderPhone', 'mmPhoneFeedback');
