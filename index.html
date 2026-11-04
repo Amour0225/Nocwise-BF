@@ -38,36 +38,30 @@
 <body id="app-body" class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white pb-24 md:pb-8">
 
   <!-- TOP PROMO BANNER -->
-  <div class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white text-center py-2 px-3 text-xs font-bold shadow-sm">
+  <div class="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 text-white text-center py-2.5 px-3 text-xs font-bold shadow-sm">
     <div class="max-w-6xl mx-auto w-full flex items-center justify-between flex-wrap gap-2 text-[11px]">
       <div class="flex items-center space-x-2">
         <span class="animate-pulse">🔥</span>
-        <span id="banner-text">NOCWISE BF • EXPLOREZ, JOUEZ, ÉCONOMISEZ • LIVRAISON RAPIDE & PAIEMENT SUR PLACE</span>
+        <span id="banner-text">NOCWISE BF • LE CHOIX MALIN POUR VOTRE CONFORT • LIVRAISON RAPIDE & PAIEMENT À LA LIVRAISON</span>
         <span class="animate-pulse">🔥</span>
       </div>
 
-      <!-- Quick loyalty points bar -->
-      <div class="flex items-center space-x-2 font-mono">
-        <div class="bg-emerald-950/80 border border-emerald-500/40 px-2.5 py-0.5 rounded-lg flex items-center space-x-1.5">
-          <span class="text-amber-300">🪙</span>
-          <span class="text-slate-300 text-[10px] uppercase font-bold">Points Jeu :</span>
-          <span id="topPointsDisplay" class="text-amber-300 font-black">1 200 PTS</span>
-        </div>
-        <button id="btnQuickRedeemHeader" class="px-2 py-0.5 bg-amber-400 hover:bg-amber-300 text-emerald-950 rounded-lg text-[10px] font-black uppercase transition shadow">
-          Convertir en Bon
-        </button>
+      <div class="flex items-center space-x-2 font-mono text-[11px]">
+        <span class="bg-emerald-950/80 border border-emerald-500/40 px-3 py-1 rounded-lg text-amber-300 font-bold flex items-center gap-1.5">
+          <i class="fa-solid fa-truck-fast text-emerald-400"></i> Expédition Partout au Burkina Faso 🇧🇫
+        </span>
       </div>
     </div>
   </div>
 
-  <!-- SPONSORED ADSENSE / NETWORK BANNER (Monétisation réelle) -->
+  <!-- BANDEAU OFFICIEL NOCWISE BF -->
   <div class="max-w-6xl mx-auto w-full px-4 pt-2">
-    <div class="bg-white border border-slate-200 rounded-2xl p-2 text-center text-[10px] text-slate-500 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-1.5">
-      <span class="text-slate-700 font-bold uppercase tracking-wider flex items-center gap-1.5">
-        <i class="fa-solid fa-rectangle-ad text-amber-500"></i> Espace Publicitaire Partenaire
+    <div class="bg-white border border-slate-200 rounded-2xl p-2.5 text-center text-[10px] text-slate-600 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-1.5">
+      <span class="text-slate-800 font-black uppercase tracking-wider flex items-center gap-1.5">
+        <i class="fa-solid fa-shield-check text-emerald-600 text-sm"></i> Boutique Officielle Nocwise BF
       </span>
-      <span class="text-slate-600 font-medium">🎯 Jouez à la Roue & au Crash, regardez vos 5 vidéos du jour et obtenez vos bons d'achat !</span>
-      <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono text-[9px] font-bold">Partenaires Officiels</span>
+      <span class="text-slate-600 font-bold">⭐ Produits 100% Neufs & Testés • Commandez directement sur WhatsApp avec paiement sécurisé à la réception</span>
+      <span class="bg-emerald-50 text-emerald-800 px-2.5 py-0.5 rounded font-mono text-[9px] font-black border border-emerald-200">Garantie & Sérénité</span>
     </div>
   </div>
 
@@ -86,17 +80,17 @@
         </div>
       </div>
 
-      <!-- ENVIRONMENT SWITCHER (BOUTIQUE vs JEUX) -->
-      <div class="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-300 shadow-inner">
-        <button id="nav-btn-store" class="nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md">
-          <i class="fa-solid fa-shop"></i>
-          <span>Boutique</span>
+      <!-- ACTION ACHAT DE BONS PRIVILÈGES & BADGE -->
+      <div class="flex items-center space-x-2">
+        <button id="btnOpenBuyVouchersHeader" class="px-3.5 py-1.5 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 text-xs font-black rounded-xl shadow transition flex items-center space-x-1.5 border border-amber-500/30 active:scale-95">
+          <span>🎟️</span>
+          <span class="hidden sm:inline">Acheter un Bon Réduction</span>
+          <span class="sm:hidden">Bons Promo</span>
         </button>
-        <button id="nav-btn-games" class="nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 text-slate-600 hover:text-slate-900">
-          <i class="fa-solid fa-gamepad text-amber-500"></i>
-          <span>Jeux (Roue & Crash)</span>
-          <span class="w-2 h-2 rounded-full bg-red-500 live-dot-anim"></span>
-        </button>
+        <div class="hidden lg:flex items-center space-x-1.5 bg-emerald-50 text-emerald-900 px-3 py-1.5 rounded-2xl border border-emerald-200 text-[11px] font-extrabold">
+          <i class="fa-solid fa-store text-emerald-700"></i>
+          <span>Catalogue Officiel</span>
+        </div>
       </div>
 
       <!-- Quick Customer Actions (Cart & Direct WhatsApp Help) -->
@@ -159,6 +153,93 @@
       </div>
     </div>
 
+    <!-- BANDEAU VIP : ACHAT DE BONS DE RÉDUCTION SÉCURISÉS MOBILE MONEY -->
+    <div class="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 rounded-3xl p-5 sm:p-6 text-white border border-emerald-500/30 shadow-xl space-y-4">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 border-b border-emerald-800/60 pb-3">
+        <div>
+          <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">
+            ⭐ Privilège Client Nocwise BF
+          </span>
+          <h3 class="text-base sm:text-lg font-black mt-1">Achetez vos Bons de Réduction moins cher par Mobile Money !</h3>
+          <p class="text-xs text-emerald-200">
+            Payez par Moov, Orange, Wave ou Sank Money et bénéficiez immédiatement d'une réduction déductible sur vos commandes.
+          </p>
+        </div>
+        <div class="text-[11px] font-mono text-amber-300 font-bold bg-white/10 px-3 py-1.5 rounded-xl border border-white/10">
+          ⚡ Réduction Immédiate • 100% Garanti
+        </div>
+      </div>
+
+      <!-- Grille des 4 Paliers Rentables & Attractifs -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <!-- Palier 1: Bon de 1 000 FCFA à 750 FCFA -->
+        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 hover:border-amber-400 transition flex flex-col justify-between space-y-2">
+          <div>
+            <div class="flex justify-between items-center">
+              <span class="text-[9px] font-black bg-emerald-500 text-slate-950 px-2 py-0.5 rounded">Économisez 250 F</span>
+              <span class="text-xs font-mono font-bold text-amber-300">750 F</span>
+            </div>
+            <h4 class="font-black text-white text-xs sm:text-sm mt-1.5">Bon de 1 000 FCFA</h4>
+            <p class="text-[10px] text-slate-300 mt-0.5">Payez 750 F par Mobile Money pour déduire 1 000 F.</p>
+            <span class="text-[9px] text-amber-300/90 font-mono font-bold block mt-1">Panier min : 8 000 F</span>
+          </div>
+          <button class="btn-buy-mm-action w-full py-2 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow active:scale-95" data-val="1000" data-cost="750">
+            Acheter à 750 F
+          </button>
+        </div>
+
+        <!-- Palier 2: Bon de 2 000 FCFA à 1 500 FCFA -->
+        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-amber-400/50 hover:border-amber-400 transition flex flex-col justify-between space-y-2 relative overflow-hidden">
+          <span class="absolute top-1.5 right-1.5 bg-amber-400 text-emerald-950 text-[8px] font-black uppercase px-1.5 py-0.2 rounded">TOP CHOIX</span>
+          <div>
+            <div class="flex justify-between items-center">
+              <span class="text-[9px] font-black bg-emerald-500 text-slate-950 px-2 py-0.5 rounded">Économisez 500 F</span>
+              <span class="text-xs font-mono font-bold text-amber-300">1 500 F</span>
+            </div>
+            <h4 class="font-black text-white text-xs sm:text-sm mt-1.5">Bon de 2 000 FCFA</h4>
+            <p class="text-[10px] text-slate-300 mt-0.5">Payez 1 500 F par Mobile Money pour déduire 2 000 F.</p>
+            <span class="text-[9px] text-amber-300/90 font-mono font-bold block mt-1">Panier min : 18 000 F</span>
+          </div>
+          <button class="btn-buy-mm-action w-full py-2 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow active:scale-95" data-val="2000" data-cost="1500">
+            Acheter à 1 500 F
+          </button>
+        </div>
+
+        <!-- Palier 3: Bon de 5 000 FCFA à 3 800 FCFA -->
+        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 hover:border-amber-400 transition flex flex-col justify-between space-y-2">
+          <div>
+            <div class="flex justify-between items-center">
+              <span class="text-[9px] font-black bg-emerald-500 text-slate-950 px-2 py-0.5 rounded">Économisez 1 200 F</span>
+              <span class="text-xs font-mono font-bold text-amber-300">3 800 F</span>
+            </div>
+            <h4 class="font-black text-white text-xs sm:text-sm mt-1.5">Bon de 5 000 FCFA</h4>
+            <p class="text-[10px] text-slate-300 mt-0.5">Payez 3 800 F par Mobile Money pour déduire 5 000 F.</p>
+            <span class="text-[9px] text-amber-300/90 font-mono font-bold block mt-1">Panier min : 40 000 F</span>
+          </div>
+          <button class="btn-buy-mm-action w-full py-2 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow active:scale-95" data-val="5000" data-cost="3800">
+            Acheter à 3 800 F
+          </button>
+        </div>
+
+        <!-- Palier 4: Bon de 10 000 FCFA à 7 500 FCFA -->
+        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-purple-400/40 hover:border-purple-400 transition flex flex-col justify-between space-y-2">
+          <div>
+            <div class="flex justify-between items-center">
+              <span class="text-[9px] font-black bg-purple-400 text-slate-950 px-2 py-0.5 rounded">Économisez 2 500 F</span>
+              <span class="text-xs font-mono font-bold text-amber-300">7 500 F</span>
+            </div>
+            <h4 class="font-black text-white text-xs sm:text-sm mt-1.5">Bon de 10 000 FCFA</h4>
+            <p class="text-[10px] text-slate-300 mt-0.5">Payez 7 500 F par Mobile Money pour déduire 10 000 F.</p>
+            <span class="text-[9px] text-purple-300 font-mono font-bold block mt-1">Panier min : 75 000 F</span>
+          </div>
+          <button class="btn-buy-mm-action w-full py-2 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow active:scale-95" data-val="10000" data-cost="7500">
+            Acheter à 7 500 F
+          </button>
+        </div>
+      </div>
+    </div>
+
+
     <!-- Product Header -->
     <div class="flex items-center justify-between pb-1 border-b border-slate-200">
       <div>
@@ -191,337 +272,32 @@
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 2. SECTION JEUX : LA ROUE & LE CRASH (2 JEUX EXCLUSIFS CALIBRÉS)          -->
+  <!-- MODAL : LECTEUR VIDÉO SPOT PUBLICITAIRE DU PRODUIT (CLIC EN VITRINE)      -->
   <!-- ========================================================================= -->
-  <section id="section-games" class="hidden max-w-6xl mx-auto px-4 py-6 w-full flex-1 space-y-6">
-    
-    <!-- Games Hero & 5-Videos-per-day Quota -->
-    <div class="bg-gradient-to-r from-emerald-900 via-teal-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden shadow-xl border border-emerald-600/40">
-      <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div>
-          <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">Loisirs & Fidélité Nocwise BF</span>
-          <h2 class="text-2xl sm:text-3xl font-black mt-1">Entrez dans l'Espace Jeu et Gagnez vos Bons d'Achat !</h2>
-          <p class="text-xs sm:text-sm text-emerald-100 max-w-xl">
-            Cumulez des points sur la Roue ou le Crash et convertissez-les en <strong class="text-amber-300">Bons de Réduction de 200 F à 5 000 FCFA</strong> utilisables sur la boutique.
-          </p>
-        </div>
-
-        <!-- Daily Video Quota Widget (5 vidéos = 600 pts = 30%) -->
-        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-3.5 rounded-2xl text-right min-w-[200px]">
-          <div class="text-[10px] text-amber-300 uppercase font-bold">Vidéos Partenaires Quotidiennes</div>
-          <div class="text-base font-black text-white font-mono mt-0.5" id="videoQuotaDisplay">
-            5 / 5 Disponibles
-          </div>
-          <button id="btnWatchRewardedAdAction" class="mt-2 w-full py-1.5 bg-amber-400 hover:bg-amber-300 text-emerald-950 font-black rounded-xl text-xs transition shadow flex items-center justify-center space-x-1.5">
-            <i class="fa-solid fa-play text-[10px]"></i>
-            <span>Regarder (+120 PTS)</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2 Games Switcher (Roue vs Crash) + Passerelle Bons -->
-    <div class="flex items-center space-x-2 overflow-x-auto pb-1 text-xs font-bold scrollbar-none">
-      <button id="btnTabWheel" class="game-selector-tab px-4 py-2 rounded-xl bg-amber-500 text-black font-extrabold transition flex items-center space-x-1.5 shadow">
-        <span>🎡</span> <span>Roue de la Fortune (x32)</span>
-      </button>
-      <button id="btnTabCrash" class="game-selector-tab px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-200 transition flex items-center space-x-1.5 border border-slate-300">
-        <span>🚀</span> <span>Crash Live 24/7 (Vol Continu)</span>
-        <span class="w-2 h-2 rounded-full bg-red-500 live-dot-anim"></span>
-      </button>
-      <button id="btnTabVouchers" class="game-selector-tab px-4 py-2 rounded-xl bg-emerald-700 text-white font-black transition flex items-center space-x-1.5 shadow">
-        <span>🎟️</span> <span>Convertir mes Points en Bons</span>
-      </button>
-      <button id="btnTabBuyVouchers" class="game-selector-tab px-4 py-2 rounded-xl bg-white text-emerald-800 hover:bg-slate-200 transition flex items-center space-x-1.5 border border-emerald-300">
-        <span>💳</span> <span>Acheter des Bons (Mobile Money)</span>
-      </button>
-    </div>
-
-    <!-- 1. JEU : LA ROUE DE LA FORTUNE -->
-    <div id="gameViewWheel" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-      <div class="lg:col-span-8 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col items-center justify-center min-h-[420px] relative overflow-hidden">
-        <div class="flex items-center justify-between w-full pb-3 border-b border-slate-100 text-xs">
-          <span class="text-emerald-700 font-bold uppercase tracking-wider flex items-center gap-1.5">
-            <span>🎡</span> Roue de la Fortune • Multiplicateurs jusqu'à x32
-          </span>
-          <span class="text-slate-400 font-mono text-[11px]">Mise : 150 Points</span>
-        </div>
-
-        <div class="relative my-4 flex items-center justify-center">
-          <div class="absolute -top-3 z-20 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[20px] border-t-amber-500 drop-shadow-md"></div>
-          <canvas id="wheelCanvas" width="340" height="340" class="rounded-full shadow-xl border-4 border-slate-800 bg-slate-900"></canvas>
-          <div class="absolute z-10 w-14 h-14 rounded-full bg-gradient-to-tr from-amber-400 to-amber-300 border-2 border-slate-900 shadow-xl flex items-center justify-center text-xs font-black text-black">
-            NOCWISE
-          </div>
-        </div>
-
-        <div id="wheelStatusMessage" class="text-xs font-semibold text-slate-600 text-center mt-1">
-          Tournez la roue de la fortune et décrochez le multiplicateur x32 !
-        </div>
-      </div>
-
-      <div class="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-4 shadow-sm space-y-4">
-        <h4 class="text-xs font-bold uppercase text-slate-400 tracking-wider">Commandes du Tour</h4>
-        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200">
-          <div class="text-[10px] text-slate-500 uppercase font-bold">Mise Fixe</div>
-          <div class="text-2xl font-black text-slate-800 font-mono mt-0.5">150 Points</div>
-        </div>
-
-        <button id="btnSpinWheelAction" class="w-full py-4 rounded-2xl font-extrabold text-sm tracking-wide uppercase transition bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 shadow-lg shadow-amber-400/20 active:scale-95 cursor-pointer">
-          🎡 TOURNER LA ROUE (150 PTS)
-        </button>
-
-        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 text-xs space-y-1.5 font-mono">
-          <div class="text-[10px] text-slate-400 uppercase font-bold mb-1">Paliers Équitables :</div>
-          <div class="flex justify-between text-red-500 font-semibold"><span>2x Segments x0</span> <span>Perdu</span></div>
-          <div class="flex justify-between text-slate-600"><span>3x Segments x1</span> <span>Remboursé (150 P)</span></div>
-          <div class="flex justify-between text-emerald-700 font-bold"><span>4x Segments x2</span> <span>Gain (+300 P)</span></div>
-          <div class="flex justify-between text-emerald-700 font-bold"><span>2x Segments x4</span> <span>Gain (+600 P)</span></div>
-          <div class="flex justify-between text-amber-600 font-black"><span>1x Segment x32</span> <span>JACKPOT (+4 800 P)</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. JEU : LE CRASH 24/7 EN DIRECT CONTINU -->
-    <div id="gameViewCrash" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-      <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-xl flex flex-col justify-between min-h-[420px] relative overflow-hidden text-white">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-800 z-20 text-xs">
-          <div class="flex items-center space-x-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-red-500 live-dot-anim"></span>
-            <span class="font-bold uppercase text-[11px]">Crash Live en Direct • Suivez le Vol Continu</span>
-          </div>
-          <div id="crashHistoryBadges" class="flex items-center space-x-1.5 overflow-x-auto text-[10px] font-mono font-bold">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
-
-        <div class="my-auto py-10 text-center relative z-10 flex flex-col items-center justify-center">
-          <div id="crashCountdownBox" class="flex flex-col items-center">
-            <div class="text-xs uppercase font-bold text-slate-400 tracking-wider mb-2">Prochain décollage dans</div>
-            <div id="crashCountdownSec" class="text-5xl font-black text-amber-400 font-mono tracking-tight mb-3">5s</div>
-            <div class="w-48 bg-slate-800 rounded-full h-2 overflow-hidden border border-slate-700">
-              <div id="crashCountdownBar" class="bg-gradient-to-r from-amber-500 to-emerald-500 h-full w-full transition-all duration-100"></div>
-            </div>
-            <p class="text-[11px] text-slate-400 mt-2">Placez votre mise avant la fin du décompte !</p>
-          </div>
-
-          <div id="crashFlightBox" class="hidden flex flex-col items-center">
-            <div class="text-6xl mb-3 plane-bob">✈️</div>
-            <div id="crashMultiplierText" class="text-6xl sm:text-7xl font-black text-amber-400 font-mono tracking-tight">1.00x</div>
-            <div class="text-xs font-semibold text-emerald-400 mt-2">L'avion vole en direct...</div>
-          </div>
-
-          <div id="crashExplodedBox" class="hidden flex flex-col items-center">
-            <div class="text-6xl mb-2 animate-bounce">💥</div>
-            <div id="crashFinalMultiplierText" class="text-5xl font-black text-red-500 font-mono tracking-tight">CRASHÉ À 2.45x</div>
-            <p class="text-xs text-slate-400 mt-1">Préparation du vol suivant...</p>
-          </div>
-        </div>
-
-        <div class="border-t border-slate-800 pt-2 flex items-center justify-between text-[11px] text-slate-400 font-mono z-10">
-          <span>Vol officiel synchronisé en continu</span>
-          <span id="crashPlayerBadge" class="text-slate-400 font-bold">Spectateur (Pas de mise)</span>
-        </div>
-      </div>
-
-      <div class="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-4 shadow-sm space-y-4">
-        <h4 class="text-xs font-bold uppercase text-slate-400 tracking-wider">Commandes de Vol</h4>
-        <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200">
-          <div class="text-[10px] text-slate-500 uppercase font-bold">Mise Tournoi</div>
-          <div class="text-2xl font-black text-slate-800 font-mono mt-0.5">200 Points</div>
-        </div>
-
-        <button id="btnCrashBetAction" class="w-full py-4 rounded-2xl font-extrabold text-sm tracking-wide uppercase transition bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 text-white shadow-lg active:scale-95 cursor-pointer">
-          🟢 PLACER LE PARI (200 PTS)
-        </button>
-
-        <button id="btnCrashCashoutAction" class="hidden w-full py-4 rounded-2xl font-extrabold text-sm tracking-wide uppercase transition bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 text-black shadow-lg active:scale-95 cursor-pointer animate-pulse">
-          💰 SAUTER ET ENCAISSER
-        </button>
-
-        <div id="crashSpectateBanner" class="hidden w-full py-3.5 rounded-2xl text-center bg-slate-100 text-slate-500 font-bold text-xs border border-slate-200">
-          👀 Vol en cours... Vous observez le vol
-        </div>
-      </div>
-    </div>
-
-    <!-- 3. PASSERELLE BONS DE RÉDUCTION (200 F à 5 000 FCFA) -->
-    <div id="gameViewVouchers" class="hidden space-y-5">
-      <div class="bg-gradient-to-r from-emerald-800 to-teal-800 rounded-3xl p-5 sm:p-6 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-lg">
-        <div>
-          <span class="bg-amber-400 text-emerald-950 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full">Convertisseur Réel Nocwise BF</span>
-          <h3 class="text-xl font-black mt-1">Échangez vos Points contre de Vrais Bons d'Achat</h3>
-          <p class="text-xs text-emerald-100">Chaque bon débloqué est un vrai code coupon déductible immédiatement lors de votre commande !</p>
-        </div>
-        <div class="bg-white/10 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/20 text-center">
-          <span class="text-[10px] text-amber-300 font-bold uppercase block">Votre Solde Actuel</span>
-          <span id="exchangeBalanceDisplay" class="text-xl font-black text-white font-mono">1 200 PTS</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- 200 F -->
-        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <span class="text-xs font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">BON 200 FCFA</span>
-              <span class="text-xs font-mono font-bold text-slate-600">200 PTS</span>
-            </div>
-            <h4 class="font-bold text-slate-800 text-sm mt-1">Coupon Découverte</h4>
-            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Déductible dès 2 000 FCFA d'achat.</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full mb-3">⚡ Panier min : 2 000 FCFA</span>
-          </div>
-          <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-800 font-bold rounded-xl text-xs transition" data-amount="200" data-pts="200">
-            Obtenir pour 200 PTS
-          </button>
-        </div>
-
-        <!-- 500 F -->
-        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <span class="text-xs font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">BON 500 FCFA</span>
-              <span class="text-xs font-mono font-bold text-slate-600">500 PTS</span>
-            </div>
-            <h4 class="font-bold text-slate-800 text-sm mt-1">Coupon Privilège</h4>
-            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Idéal pour les accessoires et diffuseurs.</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full mb-3">⚡ Panier min : 5 000 FCFA</span>
-          </div>
-          <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-800 font-bold rounded-xl text-xs transition" data-amount="500" data-pts="500">
-            Obtenir pour 500 PTS
-          </button>
-        </div>
-
-        <!-- 1000 F -->
-        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <span class="text-xs font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">BON 1 000 FCFA</span>
-              <span class="text-xs font-mono font-bold text-slate-600">1 000 PTS</span>
-            </div>
-            <h4 class="font-bold text-slate-800 text-sm mt-1">Frais de Port Offerts</h4>
-            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Compense les frais de livraison à domicile.</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 px-2 py-0.5 rounded-full mb-3">⚡ Panier min : 10 000 FCFA</span>
-          </div>
-          <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-emerald-800 font-bold rounded-xl text-xs transition" data-amount="1000" data-pts="1000">
-            Obtenir pour 1 000 PTS
-          </button>
-        </div>
-
-        <!-- 2000 F (OBJECTIF MAJEUR CALIBRÉ À +50% SUCCÈS) -->
-        <div class="bg-white border-2 border-amber-400 p-4 rounded-3xl shadow-md flex flex-col justify-between relative overflow-hidden">
-          <span class="absolute top-2 right-2 bg-amber-400 text-emerald-950 text-[9px] font-black uppercase px-2 py-0.5 rounded-full">
-            ⭐ OBJECTIF CLÉ (+50% RÉUSSITE)
-          </span>
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <span class="text-xs font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded">BON 2 000 FCFA</span>
-              <span class="text-xs font-mono font-bold text-amber-700">2 000 PTS</span>
-            </div>
-            <h4 class="font-bold text-slate-900 text-sm mt-1">Super Bon de Réduction VIP</h4>
-            <p class="text-xs text-slate-600 mt-0.5 mb-1.5">L'objectif principal calibré pour être atteint par la majorité des joueurs réguliers !</p><span class="inline-block text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-300 px-2 py-0.5 rounded-full mb-3">⭐ Panier min : 18 000 FCFA</span>
-          </div>
-          <button class="btn-redeem-voucher w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow" data-amount="2000" data-pts="2000">
-            Obtenir pour 2 000 PTS (Recommandé)
-          </button>
-        </div>
-
-        <!-- 5000 F (RARE JACKPOT) -->
-        <div class="bg-white border border-purple-300 p-4 rounded-3xl shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <span class="text-xs font-black text-purple-700 bg-purple-50 px-2 py-0.5 rounded">JACKPOT 5 000 FCFA</span>
-              <span class="text-xs font-mono font-bold text-purple-700">5 000 PTS</span>
-            </div>
-            <h4 class="font-bold text-slate-800 text-sm mt-1">Bon Suprême Légendaire</h4>
-            <p class="text-xs text-slate-500 mt-0.5 mb-1.5">Réduction rare réservée aux gagnants du x32 à la Roue !</p><span class="inline-block text-[10px] font-bold bg-purple-50 text-purple-800 border border-purple-200 px-2 py-0.5 rounded-full mb-3">👑 Panier min : 40 000 FCFA</span>
-          </div>
-          <button class="btn-redeem-voucher w-full py-2 bg-slate-100 hover:bg-purple-600 hover:text-white text-purple-800 font-bold rounded-xl text-xs transition" data-amount="5000" data-pts="5000">
-            Obtenir pour 5 000 PTS (Rare)
-          </button>
-        </div>
-      </div>
-
-      <!-- Active Coupons List -->
-      <div class="bg-white border border-slate-200 p-5 rounded-3xl shadow-sm space-y-3">
-        <h4 class="text-sm font-bold text-slate-900 flex items-center gap-2">
-          <span>🎟️</span> Vos Bons Débloqués Disponibles
+  <div id="productAdModal" class="hidden fixed inset-0 bg-slate-900/90 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-slate-900 rounded-3xl border border-slate-700 max-w-lg w-full overflow-hidden shadow-2xl flex flex-col text-white">
+      <div class="p-4 bg-slate-800 flex items-center justify-between border-b border-slate-700">
+        <h4 id="productAdModalTitle" class="font-black text-sm flex items-center gap-2 text-amber-300">
+          <i class="fa-solid fa-play text-red-500"></i> Démo Publicitaire de l'Article
         </h4>
-        <div id="userVouchersVault" class="space-y-2">
-          <!-- Populated by JS -->
-        </div>
+        <button id="btnCloseProductAdModal" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
       </div>
-    </div>
-
-    <!-- 4. ACHAT DE BONS VIA MOBILE MONEY (Orange, Moov, Wave, Sank Money) -->
-    <div id="gameViewBuyVouchers" class="hidden space-y-5">
-      <div class="bg-gradient-to-r from-amber-500 to-amber-600 rounded-3xl p-5 sm:p-6 text-black shadow-md">
-        <span class="bg-black text-white text-[10px] font-black uppercase px-2 py-0.5 rounded-full">Achat de Bons Réduction</span>
-        <h3 class="text-xl font-black mt-1">Achetez vos Bons moins cher avec Mobile Money</h3>
-        <p class="text-xs text-black/80 font-medium">Bénéficiez immédiatement d'une valeur supérieure dans votre panier Nocwise BF en réglant via Moov, Orange, Wave ou Sank Money.</p>
+      <div id="productAdModalPlayerContainer" class="w-full bg-black min-h-[260px] sm:min-h-[320px] flex items-center justify-center">
+        <!-- Video or Iframe player -->
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between space-y-3">
-          <div>
-            <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded">Économisez 500 F</span>
-            <h4 class="text-base font-black text-slate-900 mt-1">Bon de 2 000 FCFA</h4>
-            <p class="text-xs text-slate-500">Payez seulement 1 500 FCFA via Mobile Money pour obtenir un bon de 2 000 FCFA.</p>
-          </div>
-          <button class="btn-buy-mm-action w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow" data-val="2000" data-cost="1500">
-            Acheter à 1 500 FCFA
-          </button>
-        </div>
-
-        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between space-y-3">
-          <div>
-            <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded">Économisez 1 200 F</span>
-            <h4 class="text-base font-black text-slate-900 mt-1">Bon de 5 000 FCFA</h4>
-            <p class="text-xs text-slate-500">Payez seulement 3 800 FCFA via Mobile Money pour obtenir un bon de 5 000 FCFA.</p>
-          </div>
-          <button class="btn-buy-mm-action w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow" data-val="5000" data-cost="3800">
-            Acheter à 3 800 FCFA
-          </button>
-        </div>
-
-        <div class="bg-white border border-slate-200 p-4 rounded-3xl shadow-sm flex flex-col justify-between space-y-3">
-          <div>
-            <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded">Économisez 2 500 F</span>
-            <h4 class="text-base font-black text-slate-900 mt-1">Bon de 10 000 FCFA</h4>
-            <p class="text-xs text-slate-500">Payez seulement 7 500 FCFA via Mobile Money pour débloquer un bon de 10 000 FCFA.</p>
-          </div>
-          <button class="btn-buy-mm-action w-full py-2.5 bg-gradient-to-r from-amber-400 to-amber-300 text-emerald-950 font-black rounded-xl text-xs uppercase tracking-wider transition shadow" data-val="10000" data-cost="7500">
-            Acheter à 7 500 FCFA
-          </button>
-        </div>
+      <div class="p-3.5 bg-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-300 font-medium">Convaincu par la démonstration ?</span>
+        <button id="btnOrderFromAdModal" class="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 text-white font-black rounded-xl text-xs shadow transition flex items-center gap-1.5 active:scale-95">
+          <i class="fa-solid fa-bolt text-amber-300"></i> Commander cet Article
+        </button>
       </div>
-    </div>
-
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- MODAL : REWARDED VIDEO AD (5 PAR JOUR MAX = 600 PTS = 30%)                -->
-  <!-- ========================================================================= -->
-  <div id="videoModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-6 text-center shadow-2xl relative">
-      <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-3 text-2xl animate-pulse">
-        ▶️
-      </div>
-      <h3 class="text-base font-bold text-slate-900 mb-1">Clip Publicitaire Partenaire</h3>
-      <p class="text-xs text-slate-500 mb-4">Gagnez +120 points tout en générant des revenus publicitaires pour Nocwise BF.</p>
-      
-      <div class="w-full bg-slate-100 rounded-full h-3 mb-2 overflow-hidden border border-slate-200">
-        <div id="videoProgressBar" class="bg-gradient-to-r from-amber-400 to-emerald-500 h-full w-0 transition-all duration-100"></div>
-      </div>
-      <div id="videoTimerText" class="text-xs font-mono text-slate-700 font-bold mb-4">Temps restant : 5s</div>
-
-      <button id="btnClaimVideoReward" disabled class="w-full py-3 bg-slate-100 text-slate-400 font-bold text-xs rounded-xl cursor-not-allowed transition">
-        Veuillez patienter...
-      </button>
     </div>
   </div>
 
   <!-- ========================================================================= -->
-  <!-- MODAL : ACHAT DE BON VIA MOBILE MONEY                                     -->
+  <!-- MODAL : ACHAT DE BON VIA MOBILE MONEY (Moov, Orange, Wave, Sank Money)     -->
   <!-- ========================================================================= -->
-  <div id="mobileMoneyModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+  <div id="mobileMoneyModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
     <div class="bg-white rounded-3xl border border-slate-200 max-w-sm w-full p-5 shadow-2xl">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
         <h4 class="text-sm font-bold text-slate-900 flex items-center gap-2">
@@ -562,32 +338,10 @@
         </div>
       </div>
 
-      <button id="btnConfirmBuyVoucherMM" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black rounded-xl text-xs uppercase tracking-wider transition shadow-md">
-        Confirmer le transfert et recevoir le code
+      <button id="btnConfirmBuyVoucherMM" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-black rounded-xl text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-1.5">
+        <i class="fa-brands fa-whatsapp text-sm"></i>
+        <span>Envoyer la demande sur WhatsApp</span>
       </button>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- MODAL : LECTEUR VIDÉO SPOT PUBLICITAIRE DU PRODUIT (CLIC EN VITRINE)      -->
-  <!-- ========================================================================= -->
-  <div id="productAdModal" class="hidden fixed inset-0 bg-slate-900/90 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-slate-900 rounded-3xl border border-slate-700 max-w-lg w-full overflow-hidden shadow-2xl flex flex-col text-white">
-      <div class="p-4 bg-slate-800 flex items-center justify-between border-b border-slate-700">
-        <h4 id="productAdModalTitle" class="font-black text-sm flex items-center gap-2 text-amber-300">
-          <i class="fa-solid fa-play text-red-500"></i> Démo Publicitaire de l'Article
-        </h4>
-        <button id="btnCloseProductAdModal" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
-      </div>
-      <div id="productAdModalPlayerContainer" class="w-full bg-black min-h-[260px] sm:min-h-[320px] flex items-center justify-center">
-        <!-- Video or Iframe player -->
-      </div>
-      <div class="p-3.5 bg-slate-800 flex items-center justify-between">
-        <span class="text-xs text-slate-300 font-medium">Convaincu par la démonstration ?</span>
-        <button id="btnOrderFromAdModal" class="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 text-white font-black rounded-xl text-xs shadow transition flex items-center gap-1.5 active:scale-95">
-          <i class="fa-solid fa-bolt text-amber-300"></i> Commander cet Article
-        </button>
-      </div>
     </div>
   </div>
 
@@ -959,6 +713,9 @@
         <button id="tabAdmSettings" class="py-2 px-3 text-slate-500 hover:text-slate-800">
           <i class="fa-solid fa-sliders mr-1"></i> Paramètres
         </button>
+        <button id="tabAdmAnalytics" class="py-2 px-3 text-slate-500 hover:text-slate-800 flex items-center gap-1 font-bold">
+          <i class="fa-solid fa-chart-line text-emerald-600"></i> <span>Visiteurs & Trafic</span>
+        </button>
         <button id="tabAdmRoadmap" class="py-2 px-3 text-amber-600 hover:text-amber-800 font-extrabold flex items-center gap-1">
           <i class="fa-solid fa-bullseye text-amber-500 animate-pulse"></i> <span>Cap 500 000 F (Mondial)</span>
         </button>
@@ -1062,7 +819,7 @@
           <div class="p-3.5 bg-amber-50 rounded-2xl border border-amber-200 text-amber-950 space-y-1">
             <span class="font-extrabold text-xs flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i> Générateur de 10 Bons à Usage Unique (Partage Universel)</span>
             <p class="text-[11px] text-amber-900 leading-relaxed">
-              Lorsqu'un client paie par Mobile Money pour acheter un bon, copiez un code ci-dessous et envoyez-lui sur WhatsApp. Ces codes sont <strong>identiques et synchronisés sur tous vos téléphones</strong>. Dès qu'un client l'utilise sur n'importe quel appareil, il est marqué <strong>UTILISÉ</strong> partout !
+              <strong>Contrôle 100% Propriétaire (Zéro fuite de marge) :</strong> Les clients ne peuvent plus générer de bons gratuits. Seul vous, le propriétaire de la boutique, pouvez générer et accorder ces bons de réduction (par exemple à un client VIP ou après un paiement Mobile Money). Les bons sont à <strong>usage unique strict</strong> et verrouillés en ligne sur votre serveur Supabase.
             </p>
           </div>
 
@@ -1079,11 +836,12 @@
           <div class="flex items-center justify-between">
             <label class="font-bold text-slate-700">Sélectionnez la valeur du bon :</label>
             <select id="selectVoucherGenTier" class="p-2 bg-slate-50 border border-slate-200 rounded-xl font-black text-xs text-emerald-800">
-              <option value="200">Bon de 200 FCFA</option>
+              <option value="1000">Bon de 1 000 FCFA (Vendu 750 F)</option>
+              <option value="2000" selected>Bon de 2 000 FCFA (Vendu 1 500 F)</option>
+              <option value="5000">Bon de 5 000 FCFA (Vendu 3 800 F)</option>
+              <option value="10000">Bon de 10 000 FCFA (Vendu 7 500 F)</option>
               <option value="500">Bon de 500 FCFA</option>
-              <option value="1000">Bon de 1 000 FCFA</option>
-              <option value="2000" selected>Bon de 2 000 FCFA (Standard)</option>
-              <option value="5000">Bon de 5 000 FCFA (Jackpot)</option>
+              <option value="200">Bon de 200 FCFA</option>
             </select>
           </div>
 
@@ -1107,9 +865,17 @@
 
         <!-- 5. HISTORIQUE & SAUVEGARDE DES COMMANDES -->
         <div id="viewAdmOrders" class="hidden space-y-3">
-          <div class="flex items-center justify-between pb-1">
-            <h4 class="font-bold text-slate-800 text-xs">Commandes initiées (Sauvegarde de sécurité anti-perte) :</h4>
-            <button id="btnClearOrdersHistory" class="text-[10px] text-red-600 hover:underline font-bold">Vider l'historique</button>
+          <div class="flex items-center justify-between pb-1 flex-wrap gap-2">
+            <h4 class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 live-dot-anim"></span>
+              <span>Commandes Reçues (Enregistrées en Direct sur le Cloud) :</span>
+            </h4>
+            <div class="flex items-center space-x-2">
+              <button type="button" id="btnRefreshOrdersCloud" class="px-2.5 py-1 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow-sm active:scale-95">
+                <i class="fa-solid fa-arrows-rotate"></i> Actualiser en direct
+              </button>
+              <button id="btnClearOrdersHistory" class="text-[10px] text-red-600 hover:underline font-bold">Vider</button>
+            </div>
           </div>
           <div id="adminOrdersList" class="space-y-2 max-h-80 overflow-y-auto">
             <!-- Dynamically populated -->
@@ -1170,6 +936,11 @@
                 Copiez et exécutez ce script SQL dans l'onglet <strong>SQL Editor</strong> de Supabase. Il configure <strong>toutes vos tables en direct</strong> pour que tout ajout, modification de prix, bon ou commande soit <strong>enregistré et synchronisé en temps réel sur tous les téléphones</strong> :
               </p>
               <div class="bg-slate-900 text-emerald-400 p-3 rounded-xl font-mono text-[9px] overflow-x-auto select-all leading-relaxed max-h-48 border border-slate-700">
+-- =========================================================================
+-- CODE SQL COMPLET & DÉFINITIF POUR LA BOUTIQUE NOCWISE BF (SUPABASE)
+-- Intègre toutes les tables : Produits & Prix, Bons, Commandes, Paramètres, Visites
+-- =========================================================================
+
 -- 1. TABLE DES PRODUITS, PRIX & VIDÉOS PUBLICITAIRES
 CREATE TABLE IF NOT EXISTS products (
   id TEXT PRIMARY KEY,
@@ -1191,7 +962,7 @@ ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public products access" ON products;
 CREATE POLICY "Public products access" ON products FOR ALL USING (true) WITH CHECK (true);
 
--- 2. TABLE DES BONS DE RÉDUCTION (USAGE UNIQUE & VÉRIFICATION DU PROPRIÉTAIRE)
+-- 2. TABLE DES BONS DE RÉDUCTION (GÉRÉS UNIQUEMENT PAR LE PROPRIÉTAIRE)
 CREATE TABLE IF NOT EXISTS coupons (
   id TEXT PRIMARY KEY,
   code TEXT UNIQUE NOT NULL,
@@ -1208,7 +979,7 @@ ALTER TABLE coupons ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public coupons access" ON coupons;
 CREATE POLICY "Public coupons access" ON coupons FOR ALL USING (true) WITH CHECK (true);
 
--- 3. TABLE DES COMMANDES (SYNCHRONISATION EN DIRECT SUR VOTRE TÉLÉPHONE)
+-- 3. TABLE DES COMMANDES (SYNCHRONISÉES EN DIRECT SUR VOTRE TÉLÉPHONE)
 CREATE TABLE IF NOT EXISTS orders (
   id TEXT PRIMARY KEY,
   date TEXT,
@@ -1219,10 +990,12 @@ CREATE TABLE IF NOT EXISTS orders (
   items TEXT,
   total NUMERIC,
   discount NUMERIC DEFAULT 0,
-  couponCode TEXT,
-  secToken TEXT,
+  couponcode TEXT,
+  sectoken TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS couponcode TEXT;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS sectoken TEXT;
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public orders access" ON orders;
 CREATE POLICY "Public orders access" ON orders FOR ALL USING (true) WITH CHECK (true);
@@ -1238,20 +1011,31 @@ ALTER TABLE store_settings ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public settings access" ON store_settings;
 CREATE POLICY "Public settings access" ON store_settings FOR ALL USING (true) WITH CHECK (true);
 
--- Insertion de la configuration initiale par défaut
 INSERT INTO store_settings (id, brand_name, whatsapp_phone)
 VALUES ('global', 'Nocwise BF', '22670000000')
 ON CONFLICT (id) DO NOTHING;
 
--- 5. ACTIVATION DU TEMPS RÉEL SUR TOUTES LES TABLES
+-- 5. TABLE DES VISITES & VISITEURS EN DIRECT (SUIVI DU TRAFIC)
+CREATE TABLE IF NOT EXISTS store_visits (
+  id TEXT PRIMARY KEY,
+  device_type TEXT DEFAULT 'Mobile',
+  last_seen TIMESTAMPTZ DEFAULT NOW(),
+  visit_count INTEGER DEFAULT 1,
+  last_page TEXT DEFAULT 'Boutique'
+);
+ALTER TABLE store_visits ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public visits access" ON store_visits;
+CREATE POLICY "Public visits access" ON store_visits FOR ALL USING (true) WITH CHECK (true);
+
+-- 6. ACTIVATION DU TEMPS RÉEL SUR TOUTES LES TABLES
 DO $$
 BEGIN
   BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE products; EXCEPTION WHEN duplicate_object THEN NULL; END;
   BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE coupons; EXCEPTION WHEN duplicate_object THEN NULL; END;
   BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE orders; EXCEPTION WHEN duplicate_object THEN NULL; END;
   BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE store_settings; EXCEPTION WHEN duplicate_object THEN NULL; END;
-END $$;
-              </div>
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE store_visits; EXCEPTION WHEN duplicate_object THEN NULL; END;
+END $$;</div>
               <button type="button" id="btnCopyCouponsSql" class="w-full py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5 active:scale-95">
                 <i class="fa-solid fa-copy"></i> Copier Tout le Script SQL Supabase (Produits + Bons + Commandes)
               </button>
@@ -1263,7 +1047,72 @@ END $$;
           </form>
         </div>
 
-        <!-- 6. OBJECTIF MAJEUR : CAP 500 000 FCFA & DÉPLOIEMENT DES 5 PILIERS MONDIAUX -->
+        <!-- 7. TABLEAU DE BORD STATISTIQUES & VISITEURS EN DIRECT -->
+        <div id="viewAdmAnalytics" class="hidden space-y-4">
+          <div class="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 rounded-3xl p-5 text-white shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border border-emerald-500/30">
+            <div>
+              <span class="bg-emerald-500 text-slate-950 text-[10px] font-black uppercase px-2 py-0.5 rounded-full shadow">
+                Audience & Trafic Boutique
+              </span>
+              <h3 class="text-base sm:text-lg font-black mt-1">Visiteurs Connectés & Activité en Direct</h3>
+              <p class="text-xs text-emerald-200">Suivez en temps réel le nombre de personnes qui visitent votre boutique Nocwise BF.</p>
+            </div>
+            <button type="button" id="btnRefreshAnalytics" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-black shadow transition flex items-center gap-1.5 flex-shrink-0">
+              <i class="fa-solid fa-arrows-rotate"></i> Actualiser les Visites
+            </button>
+          </div>
+
+          <!-- 4 Cartes KPI Principales -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="text-[10px] font-extrabold text-slate-400 uppercase block">Visiteurs Uniques</span>
+              <span id="statUniqueVisitors" class="text-xl font-black text-slate-900 font-mono mt-0.5 block">0</span>
+              <span class="text-[9px] text-emerald-700 font-bold block mt-0.5">Appareils distincts</span>
+            </div>
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="text-[10px] font-extrabold text-slate-400 uppercase block">Visites Aujourd'hui</span>
+              <span id="statTodayVisits" class="text-xl font-black text-emerald-700 font-mono mt-0.5 block">0</span>
+              <span class="text-[9px] text-slate-500 font-medium block mt-0.5">Connexions du jour</span>
+            </div>
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="text-[10px] font-extrabold text-slate-400 uppercase block">Commandes Passées</span>
+              <span id="statTotalOrders" class="text-xl font-black text-amber-600 font-mono mt-0.5 block">0</span>
+              <span class="text-[9px] text-slate-500 font-medium block mt-0.5">Achats WhatsApp</span>
+            </div>
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
+              <span class="text-[10px] font-extrabold text-slate-400 uppercase block">Taux Conversion</span>
+              <span id="statConversionRate" class="text-xl font-black text-emerald-800 font-mono mt-0.5 block">0%</span>
+              <span class="text-[9px] text-slate-500 font-medium block mt-0.5">Visiteurs → Acheteurs</span>
+            </div>
+          </div>
+
+          <!-- Répartition Appareils -->
+          <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 flex items-center justify-between text-xs">
+            <span class="font-bold text-slate-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-mobile-screen text-slate-500"></i> Répartition des Appareils :
+            </span>
+            <div class="flex items-center space-x-3 font-mono font-bold text-[11px]">
+              <span class="text-emerald-800">📱 Mobile : <strong id="statMobilePercent">0%</strong></span>
+              <span class="text-blue-800">💻 Ordinateur : <strong id="statDesktopPercent">0%</strong></span>
+            </div>
+          </div>
+
+          <!-- Journal des Visites Récentes -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-clock-rotate-left text-slate-500"></i> Dernières Connexions Enregistrées :
+              </h4>
+              <span id="cloudVisitsSyncBadge" class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">En direct</span>
+            </div>
+            <div id="analyticsVisitorsLog" class="space-y-1.5 max-h-60 overflow-y-auto">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+
+                <!-- 6. OBJECTIF MAJEUR : CAP 500 000 FCFA & DÉPLOIEMENT DES 5 PILIERS MONDIAUX -->
         <div id="viewAdmRoadmap" class="hidden space-y-4">
           <!-- Hero Box -->
           <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 rounded-3xl p-5 text-slate-950 shadow-md space-y-2">
@@ -1391,6 +1240,146 @@ END $$;
     const STORAGE_KEY = 'nocwise_refined_v4_secure';
 
     // Identifiant Unique de l'Appareil (Device Fingerprint) pour lier chaque bon à son échangeur
+        // =========================================================================
+    // SYSTÈME DE SUIVI DU TRAFIC & DES VISITEURS EN DIRECT (CONFIDENTIEL)
+    // =========================================================================
+    function getDeviceType() {
+      return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ? 'Mobile' : 'Ordinateur';
+    }
+
+    async function recordStoreVisit() {
+      const devId = getDeviceIdentifier();
+      const devType = getDeviceType();
+      const today = new Date().toISOString().split('T')[0];
+      const nowStr = new Date().toLocaleDateString('fr-FR') + ' à ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5);
+
+      state.analytics = state.analytics || {
+        totalVisits: 0,
+        uniqueVisitors: {},
+        dailyVisits: {}
+      };
+
+      state.analytics.totalVisits = (state.analytics.totalVisits || 0) + 1;
+      state.analytics.dailyVisits[today] = (state.analytics.dailyVisits[today] || 0) + 1;
+
+      if (!state.analytics.uniqueVisitors[devId]) {
+        state.analytics.uniqueVisitors[devId] = {
+          id: devId,
+          deviceType: devType,
+          firstSeen: nowStr,
+          lastSeen: nowStr,
+          visitCount: 1
+        };
+      } else {
+        state.analytics.uniqueVisitors[devId].lastSeen = nowStr;
+        state.analytics.uniqueVisitors[devId].visitCount = (state.analytics.uniqueVisitors[devId].visitCount || 1) + 1;
+      }
+      saveState();
+
+      // Enregistre également la visite en direct sur Supabase
+      if (supabaseClient) {
+        try {
+          const payload = {
+            id: devId,
+            device_type: devType,
+            last_seen: new Date().toISOString(),
+            visit_count: state.analytics.uniqueVisitors[devId].visitCount,
+            last_page: 'Boutique Nocwise BF'
+          };
+          await supabaseClient.from('store_visits').upsert([payload], { onConflict: 'id' });
+        } catch(e) {
+          console.warn('Visite non enregistrée sur Supabase (table store_visits à créer):', e);
+        }
+      }
+    }
+
+    async function renderAnalyticsDashboard() {
+      const statUnique = document.getElementById('statUniqueVisitors');
+      const statToday = document.getElementById('statTodayVisits');
+      const statOrders = document.getElementById('statTotalOrders');
+      const statConv = document.getElementById('statConversionRate');
+      const statMobile = document.getElementById('statMobilePercent');
+      const statDesktop = document.getElementById('statDesktopPercent');
+      const logContainer = document.getElementById('analyticsVisitorsLog');
+      const syncBadge = document.getElementById('cloudVisitsSyncBadge');
+
+      state.analytics = state.analytics || { totalVisits: 0, uniqueVisitors: {}, dailyVisits: {} };
+      const today = new Date().toISOString().split('T')[0];
+      let visitorsList = Object.values(state.analytics.uniqueVisitors || {});
+      let todayCount = state.analytics.dailyVisits[today] || visitorsList.length;
+
+      // Tente de récupérer les visites de tous les appareils sur Supabase
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.from('store_visits').select('*').order('last_seen', { ascending: false }).limit(50);
+          if (!error && data && data.length > 0) {
+            visitorsList = data.map(v => ({
+              id: v.id,
+              deviceType: v.device_type || 'Mobile',
+              lastSeen: v.last_seen ? (new Date(v.last_seen).toLocaleDateString('fr-FR') + ' à ' + new Date(v.last_seen).toLocaleTimeString('fr-FR').slice(0, 5)) : 'Récemment',
+              visitCount: v.visit_count || 1
+            }));
+            if (syncBadge) {
+              syncBadge.className = 'text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow-sm';
+              syncBadge.innerHTML = '<i class="fa-solid fa-cloud"></i> Connecté Cloud';
+            }
+          }
+        } catch(err) {
+          console.warn('Erreur lecture visites Cloud:', err);
+        }
+      }
+
+      const totalUnique = visitorsList.length;
+      const totalOrders = (state.orders || []).length;
+      const convRate = totalUnique > 0 ? ((totalOrders / totalUnique) * 100).toFixed(1) + '%' : '0%';
+
+      let mobileCount = 0;
+      let desktopCount = 0;
+      visitorsList.forEach(v => {
+        if ((v.deviceType || '').toLowerCase().includes('mobile')) mobileCount++;
+        else desktopCount++;
+      });
+      const mobilePct = totalUnique > 0 ? Math.round((mobileCount / totalUnique) * 100) + '%' : '100%';
+      const desktopPct = totalUnique > 0 ? Math.round((desktopCount / totalUnique) * 100) + '%' : '0%';
+
+      if (statUnique) statUnique.textContent = totalUnique.toLocaleString('fr-FR');
+      if (statToday) statToday.textContent = todayCount.toLocaleString('fr-FR');
+      if (statOrders) statOrders.textContent = totalOrders.toLocaleString('fr-FR');
+      if (statConv) statConv.textContent = convRate;
+      if (statMobile) statMobile.textContent = mobilePct;
+      if (statDesktop) statDesktop.textContent = desktopPct;
+
+      if (logContainer) {
+        logContainer.innerHTML = '';
+        if (visitorsList.length === 0) {
+          logContainer.innerHTML = '<p class="text-xs text-slate-400 italic py-2">Aucune visite enregistrée pour le moment.</p>';
+          return;
+        }
+
+        visitorsList.slice(0, 25).forEach(v => {
+          const isMob = (v.deviceType || '').toLowerCase().includes('mobile');
+          const row = document.createElement('div');
+          row.className = 'flex items-center justify-between p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs';
+          row.innerHTML = `
+            <div class="flex items-center space-x-2">
+              <span class="p-1.5 rounded-lg ${isMob ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'} text-xs">
+                <i class="fa-solid ${isMob ? 'fa-mobile-screen' : 'fa-laptop'}"></i>
+              </span>
+              <div>
+                <span class="font-mono font-bold text-slate-800 text-[11px]">${v.id}</span>
+                <span class="text-[9px] text-slate-500 block">Dernière visite : ${v.lastSeen}</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] bg-slate-200 text-slate-800 font-bold px-2 py-0.5 rounded-full font-mono">${v.visitCount || 1} visite${(v.visitCount || 1) > 1 ? 's' : ''}</span>
+              <span class="text-[9px] text-emerald-600 font-bold block mt-0.5">● Actif</span>
+            </div>
+          `;
+          logContainer.appendChild(row);
+        });
+      }
+    }
+
     function getDeviceIdentifier() {
       let devId = localStorage.getItem('nocwise_dev_token');
       if (!devId) {
@@ -1398,6 +1387,89 @@ END $$;
         try { localStorage.setItem('nocwise_dev_token', devId); } catch(e){}
       }
       return devId;
+    }
+
+        // =========================================================================
+    // GESTION ACHAT DE BONS PRIVILÈGES MOBILE MONEY (ORANGE, MOOV, WAVE, SANK)
+    // =========================================================================
+    let currentVoucherToBuy = { val: 2000, cost: 1500 };
+
+    function setupBuyVouchersListeners() {
+      // Bouton en-tête
+      const headerBtn = document.getElementById('btnOpenBuyVouchersHeader');
+      if (headerBtn) {
+        headerBtn.addEventListener('click', () => {
+          const firstCardBtn = document.querySelector('.btn-buy-mm-action');
+          if (firstCardBtn) {
+            firstCardBtn.click();
+          } else {
+            openBuyVoucherModal(2000, 1500);
+          }
+        });
+      }
+
+      // Boutons des cartes de bons
+      document.querySelectorAll('.btn-buy-mm-action').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = Number(btn.getAttribute('data-val')) || 2000;
+          const cost = Number(btn.getAttribute('data-cost')) || 1500;
+          openBuyVoucherModal(val, cost);
+        });
+      });
+
+      // Bouton fermer modal
+      const closeBtn = document.getElementById('btnCloseMmModal');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          document.getElementById('mobileMoneyModal').classList.add('hidden');
+        });
+      }
+
+      // Bouton confirmation d'achat
+      const confirmBtn = document.getElementById('btnConfirmBuyVoucherMM');
+      if (confirmBtn) {
+        confirmBtn.addEventListener('click', () => {
+          const rawPhone = (document.getElementById('mmSenderPhone').value || '').trim();
+          const phoneValidation = validateBurkinaPhone(rawPhone);
+          if (!phoneValidation.valid) {
+            showToast(`Numéro Mobile Money invalide : ${phoneValidation.message}`, '⚠️');
+            document.getElementById('mmSenderPhone').focus();
+            return;
+          }
+
+          const providerEl = document.querySelector('input[name="mm_provider"]:checked');
+          const provider = providerEl ? providerEl.value : 'Mobile Money';
+          const cleanPhone = (state.whatsappPhone || '22670000000').replace(/[^0-9]/g, '');
+          const fullPhone = cleanPhone.startsWith('226') ? cleanPhone : `226${cleanPhone}`;
+
+          const minReq = MIN_ORDER_TIERS[currentVoucherToBuy.val] || (currentVoucherToBuy.val * 4);
+
+          const waMsg = encodeURIComponent(
+            `*DEMANDE D'ACHAT DE BON DE RÉDUCTION - ${state.brandName}*\n` +
+            `--------------------------------\n` +
+            `🎟️ *Bon souhaité :* ${formatMoney(currentVoucherToBuy.val)}\n` +
+            `💵 *Montant à régler :* ${formatMoney(currentVoucherToBuy.cost)}\n` +
+            `📱 *Opérateur :* ${provider}\n` +
+            `📞 *Numéro Client :* ${phoneValidation.formatted} (${phoneValidation.operator})\n` +
+            `🛒 *Panier minimum applicable :* ${formatMoney(minReq)}\n` +
+            `--------------------------------\n` +
+            `Bonjour Nocwise BF, je souhaite payer ce bon par Mobile Money. Merci de m'envoyer le numéro de dépôt pour recevoir mon code promo unique !`
+          );
+
+          document.getElementById('mobileMoneyModal').classList.add('hidden');
+          window.open(`https://wa.me/${fullPhone}?text=${waMsg}`, '_blank');
+          showToast('Demande envoyée ! Le code vous sera délivré après confirmation du dépôt.', '💳');
+        });
+      }
+    }
+
+    function openBuyVoucherModal(val, cost) {
+      currentVoucherToBuy = { val: val, cost: cost };
+      const nameEl = document.getElementById('mmVoucherName');
+      const priceEl = document.getElementById('mmVoucherPrice');
+      if (nameEl) nameEl.textContent = `Bon d'achat de ${formatMoney(val)}`;
+      if (priceEl) priceEl.textContent = `Montant à régler par Mobile Money : ${formatMoney(cost)} (Gain : +${formatMoney(val - cost)})`;
+      document.getElementById('mobileMoneyModal').classList.remove('hidden');
     }
 
     // Helper Intelligent pour afficher les Vidéos Démo & Publicités (TikTok, YouTube, Shorts, MP4, Instagram)
@@ -1497,9 +1569,10 @@ END $$;
     const MIN_ORDER_TIERS = {
       200: 2000,
       500: 5000,
-      1000: 10000,
+      1000: 8000,
       2000: 18000,
-      5000: 40000
+      5000: 40000,
+      10000: 75000
     };
 
     const defaultProducts = [
@@ -1561,8 +1634,6 @@ END $$;
 
     let state = {
       products: defaultProducts,
-      points: 1200,
-      userVouchers: [],
       generatedOneTimeCoupons: [],
       orders: [],
       activeCoupon: null,
@@ -1574,8 +1645,11 @@ END $$;
       adminPin: '4493@wise#',
       supabaseUrl: 'https://vepkimahkaotcnjzsatg.supabase.co',
       supabaseKey: 'sb_publishable_AszIu6FP-FPAVGDJGVVSnQ_nUm9TOee',
-      dailyVideosWatched: 0,
-      dailyVideoDate: new Date().toISOString().split('T')[0]
+      analytics: {
+        totalVisits: 0,
+        uniqueVisitors: {},
+        dailyVisits: {}
+      }
     };
 
     let supabaseClient = null;
@@ -1716,8 +1790,16 @@ END $$;
     async function syncOrdersWithCloud() {
       if (!supabaseClient) return;
       try {
-        const { data, error } = await supabaseClient.from('orders').select('*').order('created_at', { ascending: false });
-        if (!error && data && data.length > 0) {
+        // Sélectionne toutes les commandes enregistrées sur Supabase par n'importe quel téléphone
+        const { data, error } = await supabaseClient.from('orders').select('*');
+        if (!error && data) {
+          // Tri décroissant côté client garanti même si created_at n'est pas renseigné
+          data.sort((a, b) => {
+            const da = new Date(b.created_at || b.date || 0);
+            const db = new Date(a.created_at || a.date || 0);
+            return da - db;
+          });
+
           state.orders = data.map(ord => ({
             id: ord.id,
             date: ord.date || '',
@@ -1734,6 +1816,9 @@ END $$;
           }));
           saveState();
           renderAdminOrders();
+          updateGoalRoadmapProgress();
+        } else if (error) {
+          console.warn('Erreur lecture commandes Supabase:', error.message);
         }
       } catch (err) {
         console.warn('Sync orders warning:', err);
@@ -1896,11 +1981,7 @@ END $$;
         console.warn('LocalStorage access warning', e);
       }
 
-      const today = new Date().toISOString().split('T')[0];
-      if (state.dailyVideoDate !== today) {
-        state.dailyVideoDate = today;
-        state.dailyVideosWatched = 0;
-      }
+
 
       if (!state.supabaseUrl || state.supabaseUrl.trim() === '') {
         state.supabaseUrl = 'https://vepkimahkaotcnjzsatg.supabase.co';
@@ -1948,15 +2029,16 @@ END $$;
     }
 
     function applyUI() {
-      document.getElementById('topPointsDisplay').textContent = state.points.toLocaleString('fr-FR') + ' PTS';
-      document.getElementById('exchangeBalanceDisplay').textContent = state.points.toLocaleString('fr-FR') + ' PTS';
-      
-      const left = Math.max(0, 5 - state.dailyVideosWatched);
-      document.getElementById('videoQuotaDisplay').textContent = `${left} / 5 Disponibles`;
-
-      const cleanPhone = state.whatsappPhone.replace(/[^0-9]/g, '');
+      const brandEl = document.getElementById('brand-name');
+      if (brandEl) {
+        brandEl.textContent = state.brandName || 'Nocwise BF';
+      }
+      const cleanPhone = (state.whatsappPhone || '22670000000').replace(/[^0-9]/g, '');
       const fullPhone = cleanPhone.startsWith('226') ? cleanPhone : `226${cleanPhone}`;
-      document.getElementById('btn-header-whatsapp').href = `https://wa.me/${fullPhone}?text=Bonjour%20Nocwise%20BF,%20j'ai%20une%20question`;
+      const headerBtn = document.getElementById('btn-header-whatsapp');
+      if (headerBtn) {
+        headerBtn.href = `https://wa.me/${fullPhone}?text=Bonjour%20Nocwise%20BF,%20j'ai%20une%20question`;
+      }
     }
 
     // Secret Admin Access (Triple click, #admin, Ctrl+Shift+A)
@@ -2054,7 +2136,7 @@ END $$;
       if (!match) return null;
       const amount = parseInt(match[1], 10);
       const dateShort = match[2];
-      if (![200, 500, 1000, 2000, 5000].includes(amount)) return null;
+      if (![200, 500, 1000, 2000, 5000, 10000].includes(amount)) return null;
 
       // Vérifie les index 1 à 100 pour ce montant et cette date
       for (let i = 1; i <= 100; i++) {
@@ -2204,8 +2286,8 @@ END $$;
     if (btnCopyCouponsSql) {
       btnCopyCouponsSql.addEventListener('click', () => {
         const sql = `-- =========================================================================
--- CONFIGURATION SUPRÊME DE LA BASE DE DONNÉES CLOUD POUR NOCWISE BF
--- Copiez et collez tout ce script dans Supabase -> SQL Editor -> Run
+-- CODE SQL COMPLET & DÉFINITIF POUR LA BOUTIQUE NOCWISE BF (SUPABASE)
+-- Intègre toutes les tables : Produits & Prix, Bons, Commandes, Paramètres, Visites
 -- =========================================================================
 
 -- 1. TABLE DES PRODUITS, PRIX & VIDÉOS PUBLICITAIRES
@@ -2229,7 +2311,7 @@ ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public products access" ON products;
 CREATE POLICY "Public products access" ON products FOR ALL USING (true) WITH CHECK (true);
 
--- 2. TABLE DES BONS DE RÉDUCTION (USAGE UNIQUE & VÉRIFICATION DU PROPRIÉTAIRE)
+-- 2. TABLE DES BONS DE RÉDUCTION (GÉRÉS UNIQUEMENT PAR LE PROPRIÉTAIRE)
 CREATE TABLE IF NOT EXISTS coupons (
   id TEXT PRIMARY KEY,
   code TEXT UNIQUE NOT NULL,
@@ -2246,7 +2328,7 @@ ALTER TABLE coupons ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public coupons access" ON coupons;
 CREATE POLICY "Public coupons access" ON coupons FOR ALL USING (true) WITH CHECK (true);
 
--- 3. TABLE DES COMMANDES (SYNCHRONISATION EN DIRECT SUR VOTRE TÉLÉPHONE)
+-- 3. TABLE DES COMMANDES (SYNCHRONISÉES EN DIRECT SUR VOTRE TÉLÉPHONE)
 CREATE TABLE IF NOT EXISTS orders (
   id TEXT PRIMARY KEY,
   date TEXT,
@@ -2257,10 +2339,12 @@ CREATE TABLE IF NOT EXISTS orders (
   items TEXT,
   total NUMERIC,
   discount NUMERIC DEFAULT 0,
-  couponCode TEXT,
-  secToken TEXT,
+  couponcode TEXT,
+  sectoken TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS couponcode TEXT;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS sectoken TEXT;
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public orders access" ON orders;
 CREATE POLICY "Public orders access" ON orders FOR ALL USING (true) WITH CHECK (true);
@@ -2280,13 +2364,26 @@ INSERT INTO store_settings (id, brand_name, whatsapp_phone)
 VALUES ('global', 'Nocwise BF', '22670000000')
 ON CONFLICT (id) DO NOTHING;
 
--- 5. ACTIVATION DU TEMPS RÉEL SUR TOUTES LES TABLES
+-- 5. TABLE DES VISITES & VISITEURS EN DIRECT (SUIVI DU TRAFIC)
+CREATE TABLE IF NOT EXISTS store_visits (
+  id TEXT PRIMARY KEY,
+  device_type TEXT DEFAULT 'Mobile',
+  last_seen TIMESTAMPTZ DEFAULT NOW(),
+  visit_count INTEGER DEFAULT 1,
+  last_page TEXT DEFAULT 'Boutique'
+);
+ALTER TABLE store_visits ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public visits access" ON store_visits;
+CREATE POLICY "Public visits access" ON store_visits FOR ALL USING (true) WITH CHECK (true);
+
+-- 6. ACTIVATION DU TEMPS RÉEL SUR TOUTES LES TABLES
 DO $$
 BEGIN
   BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE products; EXCEPTION WHEN duplicate_object THEN NULL; END;
   BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE coupons; EXCEPTION WHEN duplicate_object THEN NULL; END;
   BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE orders; EXCEPTION WHEN duplicate_object THEN NULL; END;
   BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE store_settings; EXCEPTION WHEN duplicate_object THEN NULL; END;
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE store_visits; EXCEPTION WHEN duplicate_object THEN NULL; END;
 END $$;`;
         navigator.clipboard.writeText(sql).then(() => {
           showToast('Script SQL Global copié ! Collez-le dans SQL Editor sur Supabase.', '📋');
@@ -2916,7 +3013,7 @@ END $$;`;
     });
 
     // Orders submission with Burkina Faso Phone verification & Order Backup
-    document.getElementById('expressOrderForm').addEventListener('submit', (e) => {
+    document.getElementById('expressOrderForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!state.selectedProduct) return;
       const p = state.selectedProduct;
@@ -2953,7 +3050,10 @@ END $$;`;
       };
       state.orders.unshift(orderRecord);
       saveState();
+
+      // Enregistrement garanti et attendu sur Supabase avant redirection WhatsApp
       if (supabaseClient) {
+        showToast('Enregistrement de la commande sur le serveur Cloud...', '⏳');
         const cloudOrder = {
           id: orderRecord.id,
           date: orderRecord.date,
@@ -2964,13 +3064,29 @@ END $$;`;
           items: orderRecord.items,
           total: orderRecord.total,
           discount: orderRecord.discount,
-          couponCode: orderRecord.couponCode,
-          secToken: orderRecord.secToken
+          couponcode: orderRecord.couponCode || '',
+          sectoken: orderRecord.secToken || ''
         };
-        supabaseClient.from('orders').insert([cloudOrder]).then(({ error }) => {
-          if (!error) console.log('Commande Cloud synchronisée avec succès !');
-          else console.warn('Erreur commande cloud:', error);
-        });
+        try {
+          const { error } = await supabaseClient.from('orders').insert([cloudOrder]);
+          if (error) {
+            console.warn('Essai insert orders étendu échoué, essai payload standard:', error.message);
+            await supabaseClient.from('orders').insert([{
+              id: cloudOrder.id,
+              date: cloudOrder.date,
+              name: cloudOrder.name,
+              phone: cloudOrder.phone,
+              operator: cloudOrder.operator,
+              city: cloudOrder.city,
+              items: cloudOrder.items,
+              total: cloudOrder.total,
+              discount: cloudOrder.discount
+            }]);
+          }
+          console.log('Commande Cloud validée et inscrite dans la base !');
+        } catch(err) {
+          console.warn('Erreur insertion commande cloud:', err);
+        }
       }
 
       const waMsg = encodeURIComponent(
@@ -2998,7 +3114,7 @@ END $$;`;
       showToast('Commande enregistrée et transmise sur WhatsApp !', '✅');
     });
 
-    document.getElementById('cartCheckoutForm').addEventListener('submit', (e) => {
+    document.getElementById('cartCheckoutForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       if (state.cart.length === 0) return;
       const name = document.getElementById('cartCustName').value.trim();
@@ -3047,7 +3163,10 @@ END $$;`;
       };
       state.orders.unshift(orderRecord);
       saveState();
+
+      // Enregistrement garanti et attendu sur Supabase avant redirection WhatsApp
       if (supabaseClient) {
+        showToast('Enregistrement du panier sur le serveur Cloud...', '⏳');
         const cloudOrder = {
           id: orderRecord.id,
           date: orderRecord.date,
@@ -3058,13 +3177,29 @@ END $$;`;
           items: orderRecord.items,
           total: orderRecord.total,
           discount: orderRecord.discount,
-          couponCode: orderRecord.couponCode,
-          secToken: orderRecord.secToken
+          couponcode: orderRecord.couponCode || '',
+          sectoken: orderRecord.secToken || ''
         };
-        supabaseClient.from('orders').insert([cloudOrder]).then(({ error }) => {
-          if (!error) console.log('Commande Cloud synchronisée avec succès !');
-          else console.warn('Erreur commande cloud:', error);
-        });
+        try {
+          const { error } = await supabaseClient.from('orders').insert([cloudOrder]);
+          if (error) {
+            console.warn('Essai insert orders étendu échoué, essai payload standard:', error.message);
+            await supabaseClient.from('orders').insert([{
+              id: cloudOrder.id,
+              date: cloudOrder.date,
+              name: cloudOrder.name,
+              phone: cloudOrder.phone,
+              operator: cloudOrder.operator,
+              city: cloudOrder.city,
+              items: cloudOrder.items,
+              total: cloudOrder.total,
+              discount: cloudOrder.discount
+            }]);
+          }
+          console.log('Commande Panier Cloud validée et inscrite dans la base !');
+        } catch(err) {
+          console.warn('Erreur insertion commande cloud:', err);
+        }
       }
 
       const waMsg = encodeURIComponent(
@@ -3408,12 +3543,13 @@ END $$;`;
       { btn: document.getElementById('tabAdmGenerator'), view: document.getElementById('viewAdmGenerator') },
       { btn: document.getElementById('tabAdmManageProducts'), view: document.getElementById('viewAdmManageProducts') },
       { btn: document.getElementById('tabAdmOrders'), view: document.getElementById('viewAdmOrders') },
+      { btn: document.getElementById('tabAdmAnalytics'), view: document.getElementById('viewAdmAnalytics') },
       { btn: document.getElementById('tabAdmSettings'), view: document.getElementById('viewAdmSettings') },
       { btn: document.getElementById('tabAdmRoadmap'), view: document.getElementById('viewAdmRoadmap') }
     ];
     admTabs.forEach(t => {
       if (!t.btn || !t.view) return;
-      t.btn.addEventListener('click', () => {
+      t.btn.addEventListener('click', async () => {
         admTabs.forEach(x => {
           if (x.btn && x.view) {
             x.btn.className = 'py-2 px-3 text-slate-500 hover:text-slate-800';
@@ -3423,9 +3559,34 @@ END $$;`;
         t.btn.className = 'py-2 px-3 border-b-2 border-emerald-600 text-emerald-800 font-bold';
         t.view.classList.remove('hidden');
         if (t.view.id === 'viewAdmGenerator') renderGeneratedCodes();
-        if (t.view.id === 'viewAdmOrders') renderAdminOrders();
+        if (t.view.id === 'viewAdmOrders') {
+          await syncOrdersWithCloud();
+          renderAdminOrders();
+        }
+        if (t.view.id === 'viewAdmAnalytics') {
+          renderAnalyticsDashboard();
+        }
       });
     });
+
+    // Boutons de rafraîchissement manuel
+    const btnRefOrders = document.getElementById('btnRefreshOrdersCloud');
+    if (btnRefOrders) {
+      btnRefOrders.addEventListener('click', async () => {
+        showToast('Synchronisation des commandes Cloud...', '⏳');
+        await syncOrdersWithCloud();
+        showToast('Commandes Cloud synchronisées !', '✅');
+      });
+    }
+
+    const btnRefAnalytics = document.getElementById('btnRefreshAnalytics');
+    if (btnRefAnalytics) {
+      btnRefAnalytics.addEventListener('click', async () => {
+        showToast('Actualisation des visites Cloud...', '⏳');
+        await renderAnalyticsDashboard();
+        showToast('Visites actualisées !', '📊');
+      });
+    }
 
     document.getElementById('adminConfigForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -3484,464 +3645,6 @@ END $$;`;
       }
     });
 
-    // Environment Switcher
-    const secStore = document.getElementById('section-store');
-    const secGames = document.getElementById('section-games');
-    const navBtnStore = document.getElementById('nav-btn-store');
-    const navBtnGames = document.getElementById('nav-btn-games');
-
-    function switchEnvironment(toGames) {
-      if (toGames) {
-        secStore.classList.add('hidden');
-        secGames.classList.remove('hidden');
-        navBtnStore.className = 'nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 text-slate-600 hover:text-slate-900';
-        navBtnGames.className = 'nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md';
-      } else {
-        secGames.classList.add('hidden');
-        secStore.classList.remove('hidden');
-        navBtnGames.className = 'nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 text-slate-600 hover:text-slate-900';
-        navBtnStore.className = 'nav-env-btn px-3.5 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md';
-      }
-    }
-
-    navBtnStore.addEventListener('click', () => switchEnvironment(false));
-    navBtnGames.addEventListener('click', () => switchEnvironment(true));
-    document.getElementById('btnQuickRedeemHeader').addEventListener('click', () => {
-      switchEnvironment(true);
-      document.getElementById('btnTabVouchers').click();
-    });
-
-    // Games Tabs
-    const gameTabs = [
-      { btn: document.getElementById('btnTabWheel'), view: document.getElementById('gameViewWheel') },
-      { btn: document.getElementById('btnTabCrash'), view: document.getElementById('gameViewCrash') },
-      { btn: document.getElementById('btnTabVouchers'), view: document.getElementById('gameViewVouchers') },
-      { btn: document.getElementById('btnTabBuyVouchers'), view: document.getElementById('gameViewBuyVouchers') }
-    ];
-
-    gameTabs.forEach(t => {
-      t.btn.addEventListener('click', () => {
-        gameTabs.forEach(x => {
-          x.btn.className = 'game-selector-tab px-4 py-2 rounded-xl bg-white text-slate-700 hover:bg-slate-200 transition flex items-center space-x-1.5 border border-slate-300';
-          x.view.classList.add('hidden');
-        });
-        t.btn.className = 'game-selector-tab px-4 py-2 rounded-xl bg-amber-500 text-black font-extrabold transition flex items-center space-x-1.5 shadow';
-        t.view.classList.remove('hidden');
-        if (t.view.id === 'gameViewVouchers') renderUserVouchersVault();
-      });
-    });
-
-    // Wheel game
-    const wheelCanvas = document.getElementById('wheelCanvas');
-    const WHEEL_SEGMENTS = [
-      { label: 'x2', mult: 2, color: '#059669', textClr: '#ffffff' },
-      { label: 'x1', mult: 1, color: '#334155', textClr: '#ffffff' },
-      { label: 'x4', mult: 4, color: '#0d9488', textClr: '#ffffff' },
-      { label: 'x0', mult: 0, color: '#b91c1c', textClr: '#ffffff' },
-      { label: 'x2', mult: 2, color: '#059669', textClr: '#ffffff' },
-      { label: 'x1', mult: 1, color: '#475569', textClr: '#ffffff' },
-      { label: 'x4', mult: 4, color: '#0d9488', textClr: '#ffffff' },
-      { label: 'x2', mult: 2, color: '#059669', textClr: '#ffffff' },
-      { label: 'x0', mult: 0, color: '#991b1b', textClr: '#ffffff' },
-      { label: 'x1', mult: 1, color: '#334155', textClr: '#ffffff' },
-      { label: 'x2', mult: 2, color: '#059669', textClr: '#ffffff' },
-      { label: 'x32', mult: 32, color: '#f59e0b', textClr: '#000000' }
-    ];
-
-    let wheelCurrentAngle = 0;
-    let isWheelSpinning = false;
-
-    function drawWheel() {
-      if (!wheelCanvas) return;
-      const ctx = wheelCanvas.getContext('2d');
-      const numSegments = WHEEL_SEGMENTS.length;
-      const arc = (2 * Math.PI) / numSegments;
-      const radius = wheelCanvas.width / 2;
-
-      ctx.clearRect(0, 0, wheelCanvas.width, wheelCanvas.height);
-      ctx.save();
-      ctx.translate(radius, radius);
-      ctx.rotate(wheelCurrentAngle);
-
-      for (let i = 0; i < numSegments; i++) {
-        const angle = i * arc;
-        const seg = WHEEL_SEGMENTS[i];
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.arc(0, 0, radius - 6, angle, angle + arc);
-        ctx.fillStyle = seg.color;
-        ctx.fill();
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = '#070b14';
-        ctx.stroke();
-
-        ctx.save();
-        ctx.rotate(angle + arc / 2);
-        ctx.textAlign = 'right';
-        ctx.fillStyle = seg.textClr;
-        ctx.font = 'bold 16px Inter, sans-serif';
-        ctx.fillText(seg.label, radius - 22, 6);
-        ctx.restore();
-      }
-      ctx.restore();
-    }
-
-    document.getElementById('btnSpinWheelAction').addEventListener('click', () => {
-      if (isWheelSpinning) return;
-      if (state.points < 150) {
-        showToast('Points insuffisants (150 requis). Regardez une vidéo !', '⚠️');
-        return;
-      }
-
-      state.points -= 150;
-      saveState();
-      applyUI();
-
-      isWheelSpinning = true;
-      const btn = document.getElementById('btnSpinWheelAction');
-      btn.disabled = true;
-
-      const rand = Math.random();
-      let winIdx = 0;
-      if (rand < 0.15) winIdx = 3;
-      else if (rand < 0.35) winIdx = 1;
-      else if (rand < 0.65) winIdx = 0;
-      else if (rand < 0.90) winIdx = 2;
-      else winIdx = 11;
-
-      const numSegments = WHEEL_SEGMENTS.length;
-      const arc = (2 * Math.PI) / numSegments;
-      const targetAngleAtPointer = (3 * Math.PI) / 2 - (winIdx * arc + arc / 2);
-      const extraSpins = 5 * (2 * Math.PI);
-      const totalRotation = extraSpins + (targetAngleAtPointer - (wheelCurrentAngle % (2 * Math.PI)));
-
-      const startAngle = wheelCurrentAngle;
-      const finalAngle = startAngle + totalRotation;
-      const duration = 3500;
-      const startTime = performance.now();
-
-      function animateWheel(now) {
-        const elapsed = now - startTime;
-        const progress = Math.min(1, elapsed / duration);
-        const easeOut = 1 - Math.pow(1 - progress, 3);
-        wheelCurrentAngle = startAngle + (finalAngle - startAngle) * easeOut;
-        drawWheel();
-
-        if (progress < 1) {
-          requestAnimationFrame(animateWheel);
-        } else {
-          isWheelSpinning = false;
-          btn.disabled = false;
-          const winningSeg = WHEEL_SEGMENTS[winIdx];
-          const wonPts = Math.floor(150 * winningSeg.mult);
-
-          if (winningSeg.mult === 0) {
-            showToast('Pas de chance ! 0 point gagné.', '💀');
-          } else {
-            state.points += wonPts;
-            saveState();
-            applyUI();
-            showToast(`Gagné ! Multiplicateur ${winningSeg.label} (+${wonPts} PTS) !`, '🎉');
-          }
-        }
-      }
-      requestAnimationFrame(animateWheel);
-    });
-
-    // Crash Continuous Game
-    let crashMult = 1.00;
-    let crashTarget = 1.00;
-    let crashHistory = [1.85, 2.40, 1.15, 3.80, 5.20];
-    let userHasBetCrash = false;
-    let userHasCashedOutCrash = false;
-
-    function updateCrashBadges() {
-      const c = document.getElementById('crashHistoryBadges');
-      c.innerHTML = '';
-      crashHistory.slice(-5).forEach(v => {
-        const b = document.createElement('span');
-        b.className = `px-2 py-0.5 rounded ${v >= 3 ? 'bg-amber-500/20 text-amber-400' : 'bg-emerald-500/20 text-emerald-400'}`;
-        b.textContent = v.toFixed(2) + 'x';
-        c.appendChild(b);
-      });
-    }
-
-    function runCrashCycle() {
-      document.getElementById('crashCountdownBox').classList.remove('hidden');
-      document.getElementById('crashFlightBox').classList.add('hidden');
-      document.getElementById('crashExplodedBox').classList.add('hidden');
-      document.getElementById('btnCrashBetAction').classList.remove('hidden');
-      document.getElementById('btnCrashCashoutAction').classList.add('hidden');
-      document.getElementById('crashSpectateBanner').classList.add('hidden');
-
-      let cd = 5;
-      document.getElementById('crashCountdownSec').textContent = cd + 's';
-      const cdTimer = setInterval(() => {
-        cd--;
-        document.getElementById('crashCountdownSec').textContent = cd + 's';
-        if (cd <= 0) {
-          clearInterval(cdTimer);
-          startCrashFlight();
-        }
-      }, 1000);
-    }
-
-    function startCrashFlight() {
-      document.getElementById('crashCountdownBox').classList.add('hidden');
-      document.getElementById('crashFlightBox').classList.remove('hidden');
-      crashMult = 1.00;
-      crashTarget = 1.1 + Math.random() * 3.5;
-
-      document.getElementById('btnCrashBetAction').classList.add('hidden');
-      if (userHasBetCrash && !userHasCashedOutCrash) {
-        document.getElementById('btnCrashCashoutAction').classList.remove('hidden');
-      } else {
-        document.getElementById('crashSpectateBanner').classList.remove('hidden');
-      }
-
-      const flight = setInterval(() => {
-        crashMult += 0.03 * (1 + crashMult * 0.05);
-        document.getElementById('crashMultiplierText').textContent = crashMult.toFixed(2) + 'x';
-        if (userHasBetCrash && !userHasCashedOutCrash) {
-          document.getElementById('btnCrashCashoutAction').textContent = `💰 SAUTER : +${Math.floor(200 * crashMult)} PTS`;
-        }
-
-        if (crashMult >= crashTarget) {
-          clearInterval(flight);
-          document.getElementById('crashFlightBox').classList.add('hidden');
-          document.getElementById('crashExplodedBox').classList.remove('hidden');
-          document.getElementById('crashFinalMultiplierText').textContent = `CRASHÉ À ${crashTarget.toFixed(2)}x`;
-          crashHistory.push(crashTarget);
-          updateCrashBadges();
-
-          if (userHasBetCrash && !userHasCashedOutCrash) {
-            showToast(`Crash à ${crashTarget.toFixed(2)}x ! 200 PTS perdus.`, '💥');
-          }
-          userHasBetCrash = false;
-          userHasCashedOutCrash = false;
-          setTimeout(runCrashCycle, 3000);
-        }
-      }, 70);
-    }
-
-    document.getElementById('btnCrashBetAction').addEventListener('click', () => {
-      if (state.points < 200) {
-        showToast('Points insuffisants (200 requis) !', '⚠️');
-        return;
-      }
-      state.points -= 200;
-      saveState();
-      applyUI();
-      userHasBetCrash = true;
-      userHasCashedOutCrash = false;
-      document.getElementById('crashPlayerBadge').textContent = 'Pari 200 PTS en vol ✓';
-      document.getElementById('crashPlayerBadge').className = 'text-emerald-400 font-bold';
-      showToast('Pari de 200 PTS placé pour ce vol !', '✈️');
-    });
-
-    document.getElementById('btnCrashCashoutAction').addEventListener('click', () => {
-      if (!userHasBetCrash || userHasCashedOutCrash) return;
-      userHasCashedOutCrash = true;
-      const win = Math.floor(200 * crashMult);
-      state.points += win;
-      saveState();
-      applyUI();
-      document.getElementById('btnCrashCashoutAction').classList.add('hidden');
-      document.getElementById('crashSpectateBanner').classList.remove('hidden');
-      document.getElementById('crashSpectateBanner').textContent = `Gagné +${win} PTS ! L'avion continue...`;
-      showToast(`Bravo ! Retiré à ${crashMult.toFixed(2)}x (+${win} PTS) !`, '💰');
-    });
-
-    // Conversion des points en bon : STRICTEMENT LIÉ À CET APPAREIL & USAGE UNIQUE (ANTI-ARNAQUE)
-    document.querySelectorAll('.btn-redeem-voucher').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const amt = parseInt(btn.getAttribute('data-amount'), 10);
-        const cost = parseInt(btn.getAttribute('data-pts'), 10);
-
-        if (state.points < cost) {
-          showToast(`Points insuffisants (${cost} PTS requis). Continuez à jouer !`, '⚠️');
-          return;
-        }
-
-        const devId = getDeviceIdentifier();
-        state.points -= cost;
-        const uniqueRand = Math.floor(1000 + Math.random() * 9000);
-        const code = `NOCWISE-${amt}-${uniqueRand}`;
-        const todayStr = new Date().toLocaleDateString('fr-FR');
-
-        const voucher = {
-          code: code,
-          amount: amt,
-          date: todayStr,
-          used: false,
-          ownerDevice: devId
-        };
-        state.userVouchers.unshift(voucher);
-
-        // Enregistre également dans state.generatedOneTimeCoupons pour synchronisation
-        state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
-        state.generatedOneTimeCoupons.unshift({
-          code: code,
-          amount: amt,
-          dateCreated: new Date().toISOString().split('T')[0],
-          used: false,
-          usedAt: null,
-          ownerDevice: devId
-        });
-
-        saveState();
-        applyUI();
-        renderUserVouchersVault();
-
-        // Enregistre sur Supabase avec l'empreinte de l'échangeur
-        if (supabaseClient) {
-          const payload = {
-            id: code,
-            code: code,
-            amount: amt,
-            date_created: new Date().toISOString().split('T')[0],
-            used: false,
-            used_at: null,
-            min_order: MIN_ORDER_TIERS[amt] || (amt * 4),
-            owner_device: devId
-          };
-          supabaseClient.from('coupons').upsert([payload], { onConflict: 'code' })
-            .catch(e => console.warn('Erreur enregistrement bon échange:', e));
-        }
-
-        const minReq = MIN_ORDER_TIERS[amt] || (amt * 4);
-        showToast(`Bon de ${formatMoney(amt)} débloqué ! Réservé exclusivement à votre appareil (Panier min : ${formatMoney(minReq)}).`, '🎟️');
-      });
-    });
-
-    function renderUserVouchersVault() {
-      const v = document.getElementById('userVouchersVault');
-      v.innerHTML = '';
-      if (state.userVouchers.length === 0) {
-        v.innerHTML = '<p class="text-xs text-slate-400 italic">Aucun bon débloqué pour le moment. Jouez pour convertir vos points !</p>';
-        return;
-      }
-
-      state.userVouchers.forEach(item => {
-        const minReq = MIN_ORDER_TIERS[item.amount] || (item.amount * 4);
-        const card = document.createElement('div');
-        card.className = 'flex items-center justify-between p-3 rounded-2xl bg-slate-50 border border-emerald-300';
-        card.innerHTML = `
-          <div>
-            <div class="flex items-center space-x-2">
-              <span class="font-mono font-black text-amber-700 text-xs sm:text-sm tracking-wider bg-amber-100 px-2 py-0.5 rounded border border-amber-300">${item.code}</span>
-              <span class="text-emerald-800 font-bold">Valeur : ${formatMoney(item.amount)}</span>
-            </div>
-            <span class="text-[10px] text-slate-500 font-medium block mt-0.5">Valable dès ${formatMoney(minReq)} d\'achat</span>
-          </div>
-          <button data-code="${item.code}" class="btn-use-voucher-shop px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold transition">
-            Utiliser en Boutique
-          </button>
-        `;
-        v.appendChild(card);
-      });
-
-      document.querySelectorAll('.btn-use-voucher-shop').forEach(b => {
-        b.addEventListener('click', () => {
-          const c = b.getAttribute('data-code');
-          switchEnvironment(false);
-          document.getElementById('btn-open-cart').click();
-          document.getElementById('cartCouponInput').value = c;
-          document.getElementById('btnApplyCartCoupon').click();
-          showToast(`Bon ${c} sélectionné dans votre panier !`, '🛍️');
-        });
-      });
-    }
-
-    // Buy vouchers via Mobile Money
-    let currentVoucherToBuy = null;
-    document.querySelectorAll('.btn-buy-mm-action').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const val = btn.getAttribute('data-val');
-        const cost = btn.getAttribute('data-cost');
-        currentVoucherToBuy = { val, cost };
-        document.getElementById('mmVoucherName').textContent = `Bon d'achat de ${formatMoney(val)}`;
-        document.getElementById('mmVoucherPrice').textContent = `Montant à régler : ${formatMoney(cost)}`;
-        document.getElementById('mobileMoneyModal').classList.remove('hidden');
-      });
-    });
-
-    document.getElementById('btnCloseMmModal').addEventListener('click', () => {
-      document.getElementById('mobileMoneyModal').classList.add('hidden');
-    });
-
-    document.getElementById('btnConfirmBuyVoucherMM').addEventListener('click', () => {
-      const rawPhone = document.getElementById('mmSenderPhone').value.trim();
-      const phoneValidation = validateBurkinaPhone(rawPhone);
-      if (!phoneValidation.valid) {
-        showToast(`Numéro Mobile Money invalide : ${phoneValidation.message}`, '⚠️');
-        document.getElementById('mmSenderPhone').focus();
-        return;
-      }
-
-      const provider = document.querySelector('input[name="mm_provider"]:checked').value;
-      const waMsg = encodeURIComponent(
-        `*ACHAT DE BON DE RÉDUCTION - ${state.brandName}*\n` +
-        `--------------------------------\n` +
-        `🎟️ *Bon demandé :* ${formatMoney(currentVoucherToBuy.val)}\n` +
-        `💵 *Montant à payer :* ${formatMoney(currentVoucherToBuy.cost)}\n` +
-        `📱 *Opérateur :* ${provider}\n` +
-        `📞 *Numéro Client :* ${phoneValidation.formatted} (${phoneValidation.operator})\n` +
-        `--------------------------------\n` +
-        `Merci de m'envoyer les coordonnées de dépôt pour finaliser la transaction !`
-      );
-
-      const raw = state.whatsappPhone.replace(/[^0-9]/g, '');
-      const full = raw.startsWith('226') ? raw : `226${raw}`;
-      document.getElementById('mobileMoneyModal').classList.add('hidden');
-      window.open(`https://wa.me/${full}?text=${waMsg}`, '_blank');
-      showToast('Demande envoyée ! Le code vous sera délivré après confirmation.', '💳');
-    });
-
-    // Rewarded Video Ads
-    function launchAdVideo() {
-      if (state.dailyVideosWatched >= 5) {
-        showToast('Quota journalier atteint (5/5). Revenez demain pour de nouveaux points !', '⛔');
-        return;
-      }
-
-      document.getElementById('videoModal').classList.remove('hidden');
-      document.getElementById('videoProgressBar').style.width = '0%';
-      let sec = 5;
-      document.getElementById('videoTimerText').textContent = `Temps restant : ${sec}s`;
-      const claimBtn = document.getElementById('btnClaimVideoReward');
-      claimBtn.disabled = true;
-      claimBtn.className = 'w-full py-3 bg-slate-100 text-slate-400 font-bold text-xs rounded-xl cursor-not-allowed';
-      claimBtn.textContent = 'Visionnage en cours...';
-
-      let w = 0;
-      const timer = setInterval(() => {
-        w += 2;
-        document.getElementById('videoProgressBar').style.width = w + '%';
-        if (w % 20 === 0 && sec > 0) {
-          sec--;
-          document.getElementById('videoTimerText').textContent = `Temps restant : ${sec}s`;
-        }
-        if (w >= 100) {
-          clearInterval(timer);
-          claimBtn.disabled = false;
-          claimBtn.className = 'w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs rounded-xl shadow cursor-pointer';
-          claimBtn.textContent = 'Réclamer mes +120 Points ✓';
-        }
-      }, 70);
-    }
-
-    document.getElementById('btnWatchRewardedAdAction').addEventListener('click', launchAdVideo);
-
-    document.getElementById('btnClaimVideoReward').addEventListener('click', () => {
-      document.getElementById('videoModal').classList.add('hidden');
-      state.points += 120;
-      state.dailyVideosWatched++;
-      saveState();
-      applyUI();
-      showToast(`Bravo ! +120 Points ajoutés (${state.dailyVideosWatched}/5 vidéos aujourd'hui)`, '📺');
-    });
-
     // Search input & Category filters
     const storeSearch = document.getElementById('product-search');
     storeSearch.addEventListener('input', renderProducts);
@@ -3969,10 +3672,9 @@ END $$;`;
 
     window.onload = () => {
       loadState();
+      recordStoreVisit();
       renderProducts();
-      drawWheel();
-      updateCrashBadges();
-      runCrashCycle();
+      setupBuyVouchersListeners();
     };
   </script>
 </body>
