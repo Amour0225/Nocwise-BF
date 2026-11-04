@@ -918,6 +918,31 @@
         <button id="btnCloseAdminMaster" class="text-slate-400 hover:text-white text-lg">&times;</button>
       </div>
 
+      <!-- BANNIÈRE ÉPINGLÉE : CAP STRATÉGIQUE DES 500 000 FCFA & PASSAGE MONDIAL -->
+      <div class="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 p-3.5 px-5 text-slate-950 border-b border-amber-600 shadow-inner flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div class="space-y-0.5">
+          <div class="flex items-center gap-2">
+            <span class="bg-black text-amber-300 text-[10px] font-black uppercase px-2 py-0.5 rounded-full flex items-center gap-1 shadow">
+              <i class="fa-solid fa-thumbtack text-amber-400"></i> OBJECTIF ÉPINGLÉ N°1
+            </span>
+            <span class="text-xs font-black tracking-tight uppercase">Cap : 500 000 FCFA de Profits Nocwise</span>
+          </div>
+          <p class="text-[11px] font-bold text-slate-900 leading-tight">
+            🎯 Dès l'atteinte de nos premiers 500 000 F, nous déployons les 5 Piliers d'Envergure Mondiale (Stripe, DHL Tracking, Nocwise.com, PWA & Support IA) !
+          </p>
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
+          <div class="bg-white/80 backdrop-blur-sm border border-amber-600/40 px-3 py-1 rounded-xl text-right">
+            <span class="text-[9px] font-extrabold uppercase text-slate-700 block">Progression</span>
+            <span id="goalProgressAmountDisplay" class="text-xs font-black font-mono text-emerald-900">0 / 500 000 F</span>
+          </div>
+          <button type="button" id="btnQuickViewGoalRoadmap" class="px-3 py-1.5 bg-black hover:bg-slate-900 text-amber-300 rounded-xl text-[10px] font-black uppercase transition shadow flex items-center gap-1 flex-shrink-0">
+            <i class="fa-solid fa-earth-africa"></i> Roadmap
+          </button>
+        </div>
+      </div>
+
+
       <div class="flex border-b border-slate-200 bg-slate-50 px-4 pt-2 space-x-2 text-xs font-bold">
         <button id="tabAdmAddProduct" class="py-2 px-3 border-b-2 border-emerald-600 text-emerald-800">
           <i class="fa-solid fa-plus-circle mr-1"></i> Ajouter Article (Photo)
@@ -933,6 +958,9 @@
         </button>
         <button id="tabAdmSettings" class="py-2 px-3 text-slate-500 hover:text-slate-800">
           <i class="fa-solid fa-sliders mr-1"></i> Paramètres
+        </button>
+        <button id="tabAdmRoadmap" class="py-2 px-3 text-amber-600 hover:text-amber-800 font-extrabold flex items-center gap-1">
+          <i class="fa-solid fa-bullseye text-amber-500 animate-pulse"></i> <span>Cap 500 000 F (Mondial)</span>
         </button>
       </div>
 
@@ -1235,6 +1263,125 @@ END $$;
           </form>
         </div>
 
+        <!-- 6. OBJECTIF MAJEUR : CAP 500 000 FCFA & DÉPLOIEMENT DES 5 PILIERS MONDIAUX -->
+        <div id="viewAdmRoadmap" class="hidden space-y-4">
+          <!-- Hero Box -->
+          <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 rounded-3xl p-5 text-slate-950 shadow-md space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="bg-black text-amber-300 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full shadow">
+                Feuille de Route Fondatrice
+              </span>
+              <span class="text-[11px] font-black font-mono bg-white/70 px-2.5 py-0.5 rounded-lg border border-amber-600/30">
+                Plafond d'amorçage : 500 000 FCFA
+              </span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-black tracking-tight leading-snug">
+              Notre Objectif Épinglé : La Transition vers l'Envergure Mondiale
+            </h3>
+            <p class="text-xs text-slate-900 font-medium leading-relaxed">
+              Dès que notre boutique Nocwise génère ses <strong>premiers 500 000 FCFA de profits cumulés</strong>, nous franchissons le cap et quittons le modèle local pour déployer les <strong>5 piliers stratégiques internationaux</strong> ci-dessous.
+            </p>
+            <!-- Barre de progression dynamique -->
+            <div class="pt-2">
+              <div class="flex justify-between text-[11px] font-bold text-slate-950 mb-1">
+                <span>Total Commandes Validées : <strong id="roadmapTotalOrdersCount">0 commande</strong></span>
+                <span id="roadmapProgressPercent">0% Atteint</span>
+              </div>
+              <div class="w-full bg-black/30 rounded-full h-3.5 p-0.5 overflow-hidden border border-black/40">
+                <div id="roadmapProgressBar" class="bg-gradient-to-r from-emerald-950 to-emerald-800 h-full rounded-full transition-all duration-500" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Les 5 Piliers Fondamentaux Épinglés -->
+          <div class="space-y-3">
+            <h4 class="font-black text-slate-900 text-xs uppercase tracking-wider flex items-center gap-1.5">
+              <i class="fa-solid fa-list-check text-emerald-700"></i> Les 5 Piliers Débloqués à 500 000 FCFA :
+            </h4>
+
+            <!-- Pilier 1 -->
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 flex items-start gap-3 hover:border-emerald-500 transition">
+              <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-base flex-shrink-0">
+                1
+              </div>
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <h5 class="font-bold text-slate-900 text-xs">Paiements Internationaux Automatisés (Stripe / Paystack / Cartes Visa & Master)</h5>
+                  <span class="text-[9px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.2 rounded">Encaissement Immédiat</span>
+                </div>
+                <p class="text-[11px] text-slate-600 leading-relaxed">
+                  Encaissement sans intervention humaine par carte bancaire internationale et passerelles multi-devises (XOF, EUR, USD, GHS). Zéro refus à la livraison, trésorerie encaissée dès la seconde où le client clique.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pilier 2 -->
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 flex items-start gap-3 hover:border-emerald-500 transition">
+              <div class="w-9 h-9 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center font-black text-base flex-shrink-0">
+                2
+              </div>
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <h5 class="font-bold text-slate-900 text-xs">Nom de Domaine Pro Officiel (.com) & Vitesse Mondiale CDN Cloudflare</h5>
+                  <span class="text-[9px] bg-blue-100 text-blue-800 font-bold px-1.5 py-0.2 rounded">Infrastructure Rapide</span>
+                </div>
+                <p class="text-[11px] text-slate-600 leading-relaxed">
+                  Dépôt de la marque officielle (ex: <code>nocwise.com</code>) sous protocole sécurisé SSL avec hébergement distribué ultra-rapide (Vercel / Cloudflare) chargeant en moins de 0.8s partout sur Terre.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pilier 3 -->
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 flex items-start gap-3 hover:border-emerald-500 transition">
+              <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center font-black text-base flex-shrink-0">
+                3
+              </div>
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <h5 class="font-bold text-slate-900 text-xs">Logistique Internationale & Suivi de Colis en Temps Réel (Live Tracking)</h5>
+                  <span class="text-[9px] bg-purple-100 text-purple-800 font-bold px-1.5 py-0.2 rounded">DHL / Relais UEMOA</span>
+                </div>
+                <p class="text-[11px] text-slate-600 leading-relaxed">
+                  Interconnexion avec les transporteurs express et interface de suivi de colis en direct sur la boutique (*Préparé, En transit, Livreur en route*), éliminant toute anxiété chez le client étranger.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pilier 4 -->
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 flex items-start gap-3 hover:border-emerald-500 transition">
+              <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-black text-base flex-shrink-0">
+                4
+              </div>
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <h5 class="font-bold text-slate-900 text-xs">Facturation PDF Automatique & Chatbot IA Service Client 24h/24</h5>
+                  <span class="text-[9px] bg-amber-100 text-amber-800 font-bold px-1.5 py-0.2 rounded">Automatisation 100%</span>
+                </div>
+                <p class="text-[11px] text-slate-600 leading-relaxed">
+                  Génération instantanée de factures avec QR code de traçabilité dès validation, couplé à un assistant IA répondant 24h/24 aux clients sur les délais et garanties sans saturer votre téléphone.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pilier 5 -->
+            <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 flex items-start gap-3 hover:border-emerald-500 transition">
+              <div class="w-9 h-9 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center font-black text-base flex-shrink-0">
+                5
+              </div>
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <h5 class="font-bold text-slate-900 text-xs">Preuve Sociale Mondiale & Avis Clients Certifiés avec Photos Réelles</h5>
+                  <span class="text-[9px] bg-rose-100 text-rose-800 font-bold px-1.5 py-0.2 rounded">Confiance Maximale</span>
+                </div>
+                <p class="text-[11px] text-slate-600 leading-relaxed">
+                  Système de notation et photos d'acheteurs vérifiés, avec emballages et packaging personnalisés griffés Nocwise, créant un puissant effet viral sur les réseaux sociaux.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
@@ -1253,21 +1400,96 @@ END $$;
       return devId;
     }
 
-    // Helper pour générer un lecteur vidéo adapté (YouTube, TikTok, MP4)
+    // Helper Intelligent pour afficher les Vidéos Démo & Publicités (TikTok, YouTube, Shorts, MP4, Instagram)
+    // Résout le blocage "www.tiktok.com n'autorise pas la connexion" grâce aux formats officiels d'intégration
     function buildVideoEmbedHtml(url) {
       if (!url) return '';
       const clean = url.trim();
-      // YouTube check
-      const ytMatch = clean.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+
+      // 1. YouTube (standard, shorts, share, watch)
+      const ytMatch = clean.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
       if (ytMatch) {
-        return `<iframe class="w-full h-56 sm:h-72 rounded-xl" src="https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        const ytId = ytMatch[1];
+        return `
+          <div class="w-full space-y-2">
+            <iframe class="w-full h-56 sm:h-72 rounded-xl border border-slate-700 bg-black" src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <a href="${clean}" target="_blank" rel="noopener noreferrer" class="w-full py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 shadow transition active:scale-95">
+              <i class="fa-brands fa-youtube text-sm"></i> Ouvrir en Plein Écran sur YouTube
+            </a>
+          </div>
+        `;
       }
-      // Direct MP4 / WebM check
+
+      // 2. Fichiers Vidéo Directs (MP4, WebM, OGG)
       if (clean.match(/\.(mp4|webm|ogg)($|\?)/i)) {
-        return `<video controls autoplay class="w-full max-h-72 rounded-xl object-contain bg-black"><source src="${clean}" type="video/mp4">Votre navigateur ne supporte pas la lecture vidéo.</video>`;
+        return `
+          <div class="w-full flex justify-center bg-black rounded-xl p-1">
+            <video controls autoplay playsinline class="w-full max-h-72 sm:max-h-80 rounded-xl object-contain bg-black shadow-lg">
+              <source src="${clean}" type="video/mp4">
+              Votre navigateur ne supporte pas la lecture vidéo directe.
+            </video>
+          </div>
+        `;
       }
-      // Generic Web link / Iframe fallback
-      return `<iframe class="w-full h-56 sm:h-72 rounded-xl" src="${clean}" frameborder="0" allowfullscreen></iframe>`;
+
+      // 3. TikTok avec Identifiant de Vidéo (ex: tiktok.com/@user/video/7348912389123456789)
+      const ttMatch = clean.match(/tiktok\.com\/(?:@[\w.-]+\/video\/|v\/)(\d+)/);
+      if (ttMatch) {
+        const ttId = ttMatch[1];
+        return `
+          <div class="w-full flex flex-col items-center space-y-2.5">
+            <iframe class="w-full h-80 sm:h-96 rounded-xl border border-slate-700 bg-black" src="https://www.tiktok.com/embed/v2/${ttId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <a href="${clean}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 bg-gradient-to-r from-pink-600 via-rose-600 to-red-600 hover:from-pink-500 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 shadow-lg transition active:scale-95">
+              <i class="fa-brands fa-tiktok text-sm"></i> Regarder en Direct sur TikTok
+            </a>
+          </div>
+        `;
+      }
+
+      // 4. Liens Courts TikTok (vm.tiktok.com / vt.tiktok.com)
+      // TikTok bloque ces liens dans les iframes simples (X-Frame-Options) -> Carte de lecture immersive garantie sans erreur !
+      if (clean.includes('tiktok.com')) {
+        return `
+          <div class="p-6 text-center space-y-3 bg-gradient-to-b from-slate-900 to-black rounded-2xl border border-pink-500/30 w-full shadow-2xl">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-pink-600 to-rose-500 text-white flex items-center justify-center mx-auto text-3xl shadow-xl shadow-pink-500/20 animate-pulse">
+              <i class="fa-brands fa-tiktok"></i>
+            </div>
+            <div>
+              <h5 class="text-sm font-black text-white">Spot Publicitaire Officiel TikTok</h5>
+              <p class="text-xs text-slate-300 max-w-xs mx-auto mt-1 leading-relaxed">
+                Cette démonstration est hébergée sur TikTok. Cliquez sur le bouton ci-dessous pour lancer la vidéo immédiatement dans l'application TikTok !
+              </p>
+            </div>
+            <a href="${clean}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-600 via-rose-600 to-red-600 hover:from-pink-500 text-white font-black text-xs uppercase tracking-wider rounded-xl shadow-xl hover:scale-105 transition active:scale-95">
+              <i class="fa-solid fa-play"></i> Lancer la Vidéo sur TikTok
+            </a>
+          </div>
+        `;
+      }
+
+      // 5. Instagram Reels (instagram.com/reel/... ou /p/...)
+      const igMatch = clean.match(/instagram\.com\/(?:reel|p)\/([\w-]+)/);
+      if (igMatch) {
+        const igId = igMatch[1];
+        return `
+          <div class="w-full flex flex-col items-center space-y-2">
+            <iframe class="w-full h-80 sm:h-96 rounded-xl border border-slate-700 bg-black" src="https://www.instagram.com/reel/${igId}/embed/" frameborder="0" allowfullscreen></iframe>
+            <a href="${clean}" target="_blank" rel="noopener noreferrer" class="w-full py-2 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white rounded-xl text-xs font-black flex items-center justify-center gap-2 shadow transition active:scale-95">
+              <i class="fa-brands fa-instagram"></i> Regarder sur Instagram
+            </a>
+          </div>
+        `;
+      }
+
+      // 6. Autres Liens Web (Fallback Sécurisé avec bouton externe)
+      return `
+        <div class="w-full space-y-2">
+          <iframe class="w-full h-60 sm:h-72 rounded-xl border border-slate-700 bg-black" src="${clean}" frameborder="0" allowfullscreen></iframe>
+          <a href="${clean}" target="_blank" rel="noopener noreferrer" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold flex items-center justify-center gap-2 border border-slate-600 transition active:scale-95">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Ouvrir la vidéo dans un nouvel onglet
+          </a>
+        </div>
+      `;
     }
 
 
@@ -3089,11 +3311,44 @@ END $$;`;
       }
     });
 
+        function updateGoalRoadmapProgress() {
+      const orders = state.orders || [];
+      const totalRevenue = orders.reduce((sum, ord) => sum + (Number(ord.total) || 0), 0);
+      const targetGoal = 500000;
+      const pct = Math.min(100, Math.round((totalRevenue / targetGoal) * 100));
+
+      const displayEl = document.getElementById('goalProgressAmountDisplay');
+      if (displayEl) {
+        displayEl.textContent = `${totalRevenue.toLocaleString('fr-FR')} / ${targetGoal.toLocaleString('fr-FR')} F`;
+      }
+      const countEl = document.getElementById('roadmapTotalOrdersCount');
+      if (countEl) {
+        countEl.textContent = `${orders.length} commande${orders.length > 1 ? 's' : ''} (${totalRevenue.toLocaleString('fr-FR')} FCFA)`;
+      }
+      const pctEl = document.getElementById('roadmapProgressPercent');
+      if (pctEl) {
+        pctEl.textContent = `${pct}% Atteint`;
+      }
+      const barEl = document.getElementById('roadmapProgressBar');
+      if (barEl) {
+        barEl.style.width = `${pct}%`;
+      }
+    }
+
+    const btnQuickRoadmap = document.getElementById('btnQuickViewGoalRoadmap');
+    if (btnQuickRoadmap) {
+      btnQuickRoadmap.addEventListener('click', () => {
+        const tab = document.getElementById('tabAdmRoadmap');
+        if (tab) tab.click();
+      });
+    }
+
     function renderAdminOrders() {
       const container = document.getElementById('adminOrdersList');
       if (!container) return;
       container.innerHTML = '';
       state.orders = state.orders || [];
+      updateGoalRoadmapProgress();
 
       if (state.orders.length === 0) {
         container.innerHTML = '<p class="text-xs text-slate-400 italic py-2">Aucune commande enregistrée pour l\'instant.</p>';
@@ -3153,7 +3408,8 @@ END $$;`;
       { btn: document.getElementById('tabAdmGenerator'), view: document.getElementById('viewAdmGenerator') },
       { btn: document.getElementById('tabAdmManageProducts'), view: document.getElementById('viewAdmManageProducts') },
       { btn: document.getElementById('tabAdmOrders'), view: document.getElementById('viewAdmOrders') },
-      { btn: document.getElementById('tabAdmSettings'), view: document.getElementById('viewAdmSettings') }
+      { btn: document.getElementById('tabAdmSettings'), view: document.getElementById('viewAdmSettings') },
+      { btn: document.getElementById('tabAdmRoadmap'), view: document.getElementById('viewAdmRoadmap') }
     ];
     admTabs.forEach(t => {
       if (!t.btn || !t.view) return;
