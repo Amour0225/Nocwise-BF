@@ -80,17 +80,17 @@
         </div>
       </div>
 
-      <!-- ACTION ACHAT DE BONS PRIVILÈGES & BADGE -->
-      <div class="flex items-center space-x-2">
-        <button id="btnOpenBuyVouchersHeader" class="px-3.5 py-1.5 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 text-emerald-950 text-xs font-black rounded-xl shadow transition flex items-center space-x-1.5 border border-amber-500/30 active:scale-95">
-          <span>🎟️</span>
-          <span class="hidden sm:inline">Acheter un Bon Réduction</span>
+      <!-- SÉLECTEUR D'ONGLETS SÉPARÉS (BOUTIQUE vs ACHAT DE BONS RÉDUCTION) -->
+      <div class="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-300 shadow-inner">
+        <button id="nav-btn-store" class="nav-env-btn px-3 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md">
+          <i class="fa-solid fa-shop"></i>
+          <span>Boutique</span>
+        </button>
+        <button id="nav-btn-vouchers" class="nav-env-btn px-3 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 text-slate-600 hover:text-slate-900">
+          <i class="fa-solid fa-ticket text-amber-500"></i>
+          <span class="hidden sm:inline">Achat Bons Réduction</span>
           <span class="sm:hidden">Bons Promo</span>
         </button>
-        <div class="hidden lg:flex items-center space-x-1.5 bg-emerald-50 text-emerald-900 px-3 py-1.5 rounded-2xl border border-emerald-200 text-[11px] font-extrabold">
-          <i class="fa-solid fa-store text-emerald-700"></i>
-          <span>Catalogue Officiel</span>
-        </div>
       </div>
 
       <!-- Quick Customer Actions (Cart & Direct WhatsApp Help) -->
@@ -152,6 +152,42 @@
         </button>
       </div>
     </div>
+
+    <!-- Product Header -->
+    <div class="flex items-center justify-between pb-1 border-b border-slate-200">
+      <div>
+        <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center space-x-2">
+          <span>Articles en Vitrine</span>
+          <span id="product-count-badge" class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-0.5 rounded-full font-bold">0 article</span>
+          <span id="cloudSyncIndicator" class="hidden text-[10px] bg-emerald-500 text-white px-2 py-0.5 rounded-full font-bold flex items-center gap-1 shadow-sm"><i class="fa-solid fa-cloud"></i> En ligne</span>
+        </h3>
+        <p class="text-xs text-slate-500">Paiement après test et vérification devant votre porte à Ouagadougou</p>
+      </div>
+      <div class="text-xs text-slate-400 font-semibold hidden sm:flex items-center gap-1">
+        <i class="fa-solid fa-shield-check text-emerald-600"></i> Transactions 100% Sécurisées
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID (Cases réelles) -->
+    <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+      <!-- Populated via JS -->
+    </div>
+
+    <!-- Empty search notice -->
+    <div id="empty-search-state" class="hidden p-12 text-center space-y-3 bg-white rounded-3xl border border-slate-200">
+      <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <h4 class="text-sm font-bold text-slate-800">Aucun produit trouvé</h4>
+      <p class="text-xs text-slate-500 max-w-sm mx-auto">Vérifiez la saisie ou changez de rayon pour afficher d'autres articles.</p>
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 2. SECTION COMPLÈTEMENT SÉPARÉE : ACHAT DE BONS DE RÉDUCTION MOBILE MONEY  -->
+  <!-- ========================================================================= -->
+  <section id="section-vouchers" class="hidden max-w-6xl mx-auto px-4 py-6 w-full flex-1 space-y-6">
 
     <!-- BANDEAU VIP : ACHAT DE BONS DE RÉDUCTION SÉCURISÉS MOBILE MONEY -->
     <div class="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 rounded-3xl p-5 sm:p-6 text-white border border-emerald-500/30 shadow-xl space-y-4">
@@ -240,36 +276,47 @@
     </div>
 
 
-    <!-- Product Header -->
-    <div class="flex items-center justify-between pb-1 border-b border-slate-200">
-      <div>
-        <h3 class="font-black text-slate-900 text-base sm:text-lg flex items-center space-x-2">
-          <span>Articles en Vitrine</span>
-          <span id="product-count-badge" class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-0.5 rounded-full font-bold">0 article</span>
-          <span id="cloudSyncIndicator" class="hidden text-[10px] bg-emerald-500 text-white px-2 py-0.5 rounded-full font-bold flex items-center gap-1 shadow-sm"><i class="fa-solid fa-cloud"></i> En ligne</span>
-        </h3>
-        <p class="text-xs text-slate-500">Paiement après test et vérification devant votre porte à Ouagadougou</p>
+
+
+    <!-- Guide Pratique & Réassurance -->
+    <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
+      <h4 class="font-black text-slate-900 text-sm flex items-center gap-2">
+        <i class="fa-solid fa-circle-info text-emerald-600"></i>
+        <span>Comment fonctionne l'achat de bons de réduction ?</span>
+      </h4>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+          <span class="font-bold text-emerald-800 flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-emerald-700 text-white flex items-center justify-center text-[10px]">1</span>
+            <span>Choisissez votre bon</span>
+          </span>
+          <p class="text-slate-600">Sélectionnez la valeur souhaitée et réglez le montant remisé par Orange Money, Moov, Wave ou Sank.</p>
+        </div>
+        <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+          <span class="font-bold text-emerald-800 flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-emerald-700 text-white flex items-center justify-center text-[10px]">2</span>
+            <span>Recevez votre code unique</span>
+          </span>
+          <p class="text-slate-600">Le créateur de Nocwise BF vous transmet immédiatement votre code promo officiel sur WhatsApp.</p>
+        </div>
+        <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-1">
+          <span class="font-bold text-emerald-800 flex items-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-emerald-700 text-white flex items-center justify-center text-[10px]">3</span>
+            <span>Déduisez lors de la commande</span>
+          </span>
+          <p class="text-slate-600">Collez le code dans votre panier ou commande express pour déduire instantanément le montant !</p>
+        </div>
       </div>
-      <div class="text-xs text-slate-400 font-semibold hidden sm:flex items-center gap-1">
-        <i class="fa-solid fa-shield-check text-emerald-600"></i> Transactions 100% Sécurisées
+
+      <div class="pt-2 text-center">
+        <button id="btnSwitchToStoreFromVouchers" class="px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl text-xs uppercase tracking-wider transition shadow flex items-center justify-center gap-2 mx-auto active:scale-95">
+          <i class="fa-solid fa-shop"></i>
+          <span>Retourner à la Boutique pour Choisir mes Articles</span>
+        </button>
       </div>
     </div>
-
-    <!-- PRODUCT GRID (Cases réelles) -->
-    <div id="products-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-      <!-- Populated via JS -->
-    </div>
-
-    <!-- Empty search notice -->
-    <div id="empty-search-state" class="hidden p-12 text-center space-y-3 bg-white rounded-3xl border border-slate-200">
-      <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto text-2xl">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
-      <h4 class="text-sm font-bold text-slate-800">Aucun produit trouvé</h4>
-      <p class="text-xs text-slate-500 max-w-sm mx-auto">Vérifiez la saisie ou changez de rayon pour afficher d'autres articles.</p>
-    </div>
-
   </section>
+
 
   <!-- ========================================================================= -->
   <!-- MODAL : LECTEUR VIDÉO SPOT PUBLICITAIRE DU PRODUIT (CLIC EN VITRINE)      -->
@@ -1394,18 +1441,46 @@ END $$;</div>
     // =========================================================================
     let currentVoucherToBuy = { val: 2000, cost: 1500 };
 
+        // =========================================================================
+    // NAVIGATION PRINCIPALE : ONGLETS COMPLÈTEMENT SÉPARÉS (BOUTIQUE vs BONS)
+    // =========================================================================
+    function switchMainView(toVouchers) {
+      const secStore = document.getElementById('section-store');
+      const secVouchers = document.getElementById('section-vouchers');
+      const navBtnStore = document.getElementById('nav-btn-store');
+      const navBtnVouchers = document.getElementById('nav-btn-vouchers');
+
+      if (!secStore || !secVouchers) return;
+
+      if (toVouchers) {
+        secStore.classList.add('hidden');
+        secVouchers.classList.remove('hidden');
+        if (navBtnStore) navBtnStore.className = 'nav-env-btn px-3 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 text-slate-600 hover:text-slate-900';
+        if (navBtnVouchers) navBtnVouchers.className = 'nav-env-btn px-3 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        secVouchers.classList.add('hidden');
+        secStore.classList.remove('hidden');
+        if (navBtnVouchers) navBtnVouchers.className = 'nav-env-btn px-3 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 text-slate-600 hover:text-slate-900';
+        if (navBtnStore) navBtnStore.className = 'nav-env-btn px-3 sm:px-4 py-1.5 rounded-xl text-xs font-black transition flex items-center space-x-1.5 bg-emerald-700 text-white shadow-md';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
     function setupBuyVouchersListeners() {
-      // Bouton en-tête
-      const headerBtn = document.getElementById('btnOpenBuyVouchersHeader');
-      if (headerBtn) {
-        headerBtn.addEventListener('click', () => {
-          const firstCardBtn = document.querySelector('.btn-buy-mm-action');
-          if (firstCardBtn) {
-            firstCardBtn.click();
-          } else {
-            openBuyVoucherModal(2000, 1500);
-          }
-        });
+      // Onglets de navigation principale
+      const btnStore = document.getElementById('nav-btn-store');
+      const btnVouchers = document.getElementById('nav-btn-vouchers');
+      const btnBackToStore = document.getElementById('btnSwitchToStoreFromVouchers');
+
+      if (btnStore) {
+        btnStore.addEventListener('click', () => switchMainView(false));
+      }
+      if (btnVouchers) {
+        btnVouchers.addEventListener('click', () => switchMainView(true));
+      }
+      if (btnBackToStore) {
+        btnBackToStore.addEventListener('click', () => switchMainView(false));
       }
 
       // Boutons des cartes de bons
