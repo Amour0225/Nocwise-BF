@@ -569,6 +569,29 @@
   </div>
 
   <!-- ========================================================================= -->
+  <!-- MODAL : LECTEUR VIDÉO SPOT PUBLICITAIRE DU PRODUIT (CLIC EN VITRINE)      -->
+  <!-- ========================================================================= -->
+  <div id="productAdModal" class="hidden fixed inset-0 bg-slate-900/90 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-slate-900 rounded-3xl border border-slate-700 max-w-lg w-full overflow-hidden shadow-2xl flex flex-col text-white">
+      <div class="p-4 bg-slate-800 flex items-center justify-between border-b border-slate-700">
+        <h4 id="productAdModalTitle" class="font-black text-sm flex items-center gap-2 text-amber-300">
+          <i class="fa-solid fa-play text-red-500"></i> Démo Publicitaire de l'Article
+        </h4>
+        <button id="btnCloseProductAdModal" class="text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+      </div>
+      <div id="productAdModalPlayerContainer" class="w-full bg-black min-h-[260px] sm:min-h-[320px] flex items-center justify-center">
+        <!-- Video or Iframe player -->
+      </div>
+      <div class="p-3.5 bg-slate-800 flex items-center justify-between">
+        <span class="text-xs text-slate-300 font-medium">Convaincu par la démonstration ?</span>
+        <button id="btnOrderFromAdModal" class="px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 text-white font-black rounded-xl text-xs shadow transition flex items-center gap-1.5 active:scale-95">
+          <i class="fa-solid fa-bolt text-amber-300"></i> Commander cet Article
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
   <!-- MODAL : PANIER MULTI-ARTICLES (AVEC OPTION CODE PROMO DÉDUCTIBLE)         -->
   <!-- ========================================================================= -->
   <div id="cartModal" class="hidden fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4">
@@ -674,6 +697,19 @@
               <span id="detailModalPromoPrice" class="text-lg font-black text-emerald-700 font-mono">0 FCFA</span>
               <span id="detailModalOldPrice" class="text-xs text-slate-400 line-through font-mono">0 FCFA</span>
             </div>
+          </div>
+        </div>
+
+                <!-- SPOT PUBLICITAIRE / DÉMO DU PRODUIT -->
+        <div id="detailModalVideoWrapper" class="hidden p-3 bg-gradient-to-r from-slate-900 to-emerald-950 rounded-2xl border border-emerald-500/40 text-white space-y-2">
+          <div class="flex items-center justify-between text-xs font-bold">
+            <span class="flex items-center gap-1.5 text-amber-300">
+              <i class="fa-solid fa-circle-play text-red-500 animate-pulse text-sm"></i> Spot Publicitaire & Démonstration
+            </span>
+            <span class="text-[9px] bg-white/10 px-2 py-0.5 rounded text-emerald-200 uppercase font-mono">Vidéo Officielle</span>
+          </div>
+          <div id="detailModalVideoContainer" class="rounded-xl overflow-hidden bg-black flex items-center justify-center min-h-[160px]">
+            <!-- Embedded iframe or video player populated by JS -->
           </div>
         </div>
 
@@ -844,6 +880,13 @@
           </div>
         </div>
 
+                <div>
+          <label class="block font-semibold text-slate-700 mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-film text-amber-600"></i> Lien Vidéo Démo / Publicité (Optionnel) :
+          </label>
+          <input type="url" id="editProdVideo" placeholder="https://youtube.com/watch?v=... ou lien MP4" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-medium text-slate-800 focus:outline-none">
+        </div>
+
         <div>
           <label class="block font-semibold text-slate-700 mb-1">Description / Points forts :</label>
           <textarea id="editProdDesc" rows="2" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:border-emerald-500"></textarea>
@@ -948,6 +991,15 @@
               </div>
 
               <!-- Preview -->
+                            <!-- VIDÉO / PUBLICITÉ DU PRODUIT (SPOT PUBLICITAIRE) -->
+              <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 space-y-1">
+                <label class="block text-slate-800 text-[10px] font-bold flex items-center gap-1.5">
+                  <i class="fa-solid fa-film text-amber-600"></i> Vidéo Publicitaire / Démo de l'Article (Optionnel) :
+                </label>
+                <input type="url" id="inpProdVideoInput" placeholder="Ex: Lien vidéo YouTube, TikTok ou MP4 direct (https://...)" class="w-full p-2 bg-white border border-amber-300 rounded-lg text-slate-800 text-xs focus:outline-none">
+                <span class="text-[9px] text-amber-800 block">Les clients pourront cliquer sur « Voir la Pub / Démo » directement dans la vitrine et sur la fiche produit !</span>
+              </div>
+
               <div id="imagePreviewContainer" class="hidden flex items-center space-x-3 p-2 bg-emerald-50 rounded-xl border border-emerald-200">
                 <img id="imagePreviewImg" src="" alt="Aperçu" class="w-12 h-12 rounded-lg object-contain bg-white border border-slate-200">
                 <span class="text-xs text-emerald-800 font-bold">Photo prête à être publiée !</span>
@@ -1090,7 +1142,7 @@
                 Copiez et exécutez ce script SQL dans l'onglet <strong>SQL Editor</strong> de Supabase. Il configure <strong>toutes vos tables en direct</strong> pour que tout ajout, modification de prix, bon ou commande soit <strong>enregistré et synchronisé en temps réel sur tous les téléphones</strong> :
               </p>
               <div class="bg-slate-900 text-emerald-400 p-3 rounded-xl font-mono text-[9px] overflow-x-auto select-all leading-relaxed max-h-48 border border-slate-700">
--- 1. TABLE DES PRODUITS & PRIX (Visible et modifiable sur tous les appareils)
+-- 1. TABLE DES PRODUITS, PRIX & VIDÉOS PUBLICITAIRES
 CREATE TABLE IF NOT EXISTS products (
   id TEXT PRIMARY KEY,
   title TEXT NOT NULL,
@@ -1100,16 +1152,18 @@ CREATE TABLE IF NOT EXISTS products (
   deliverytype TEXT DEFAULT 'free',
   deliveryfee NUMERIC DEFAULT 0,
   image TEXT,
+  video TEXT,
   badge TEXT DEFAULT 'PROMO',
   rating TEXT DEFAULT '4.9',
   description TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE products ADD COLUMN IF NOT EXISTS video TEXT;
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public products access" ON products;
 CREATE POLICY "Public products access" ON products FOR ALL USING (true) WITH CHECK (true);
 
--- 2. TABLE DES BONS DE RÉDUCTION & COUPONS
+-- 2. TABLE DES BONS DE RÉDUCTION (USAGE UNIQUE & VÉRIFICATION DU PROPRIÉTAIRE)
 CREATE TABLE IF NOT EXISTS coupons (
   id TEXT PRIMARY KEY,
   code TEXT UNIQUE NOT NULL,
@@ -1118,13 +1172,15 @@ CREATE TABLE IF NOT EXISTS coupons (
   used BOOLEAN DEFAULT FALSE,
   used_at TEXT,
   min_order NUMERIC DEFAULT 0,
+  owner_device TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE coupons ADD COLUMN IF NOT EXISTS owner_device TEXT;
 ALTER TABLE coupons ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public coupons access" ON coupons;
 CREATE POLICY "Public coupons access" ON coupons FOR ALL USING (true) WITH CHECK (true);
 
--- 3. TABLE DES COMMANDES (Sauvegarde anti-perte)
+-- 3. TABLE DES COMMANDES (SYNCHRONISATION EN DIRECT SUR VOTRE TÉLÉPHONE)
 CREATE TABLE IF NOT EXISTS orders (
   id TEXT PRIMARY KEY,
   date TEXT,
@@ -1143,11 +1199,30 @@ ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public orders access" ON orders;
 CREATE POLICY "Public orders access" ON orders FOR ALL USING (true) WITH CHECK (true);
 
--- 4. POLITIQUES DE MISE À JOUR (Permet de modifier les prix et valider les bons)
-DROP POLICY IF EXISTS "Public update products" ON products;
-CREATE POLICY "Public update products" ON products FOR UPDATE USING (true) WITH CHECK (true);
-DROP POLICY IF EXISTS "Public update coupons" ON coupons;
-CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CHECK (true);
+-- 4. TABLE DES PARAMÈTRES BOUTIQUE (NUMÉRO WHATSAPP UNIVERSEL PARTOUT)
+CREATE TABLE IF NOT EXISTS store_settings (
+  id TEXT PRIMARY KEY,
+  brand_name TEXT DEFAULT 'Nocwise BF',
+  whatsapp_phone TEXT DEFAULT '22670000000',
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE store_settings ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public settings access" ON store_settings;
+CREATE POLICY "Public settings access" ON store_settings FOR ALL USING (true) WITH CHECK (true);
+
+-- Insertion de la configuration initiale par défaut
+INSERT INTO store_settings (id, brand_name, whatsapp_phone)
+VALUES ('global', 'Nocwise BF', '22670000000')
+ON CONFLICT (id) DO NOTHING;
+
+-- 5. ACTIVATION DU TEMPS RÉEL SUR TOUTES LES TABLES
+DO $$
+BEGIN
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE products; EXCEPTION WHEN duplicate_object THEN NULL; END;
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE coupons; EXCEPTION WHEN duplicate_object THEN NULL; END;
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE orders; EXCEPTION WHEN duplicate_object THEN NULL; END;
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE store_settings; EXCEPTION WHEN duplicate_object THEN NULL; END;
+END $$;
               </div>
               <button type="button" id="btnCopyCouponsSql" class="w-full py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-black rounded-xl text-xs transition shadow flex items-center justify-center gap-1.5 active:scale-95">
                 <i class="fa-solid fa-copy"></i> Copier Tout le Script SQL Supabase (Produits + Bons + Commandes)
@@ -1168,6 +1243,34 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
   <script>
     const STORAGE_KEY = 'nocwise_refined_v4_secure';
 
+    // Identifiant Unique de l'Appareil (Device Fingerprint) pour lier chaque bon à son échangeur
+    function getDeviceIdentifier() {
+      let devId = localStorage.getItem('nocwise_dev_token');
+      if (!devId) {
+        devId = 'DEV-' + Math.random().toString(36).substring(2, 9).toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
+        try { localStorage.setItem('nocwise_dev_token', devId); } catch(e){}
+      }
+      return devId;
+    }
+
+    // Helper pour générer un lecteur vidéo adapté (YouTube, TikTok, MP4)
+    function buildVideoEmbedHtml(url) {
+      if (!url) return '';
+      const clean = url.trim();
+      // YouTube check
+      const ytMatch = clean.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+      if (ytMatch) {
+        return `<iframe class="w-full h-56 sm:h-72 rounded-xl" src="https://www.youtube.com/embed/${ytMatch[1]}?autoplay=1&mute=0&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      }
+      // Direct MP4 / WebM check
+      if (clean.match(/\.(mp4|webm|ogg)($|\?)/i)) {
+        return `<video controls autoplay class="w-full max-h-72 rounded-xl object-contain bg-black"><source src="${clean}" type="video/mp4">Votre navigateur ne supporte pas la lecture vidéo.</video>`;
+      }
+      // Generic Web link / Iframe fallback
+      return `<iframe class="w-full h-56 sm:h-72 rounded-xl" src="${clean}" frameborder="0" allowfullscreen></iframe>`;
+    }
+
+
     // Minimum order tiers to guarantee merchant profitability
     const MIN_ORDER_TIERS = {
       200: 2000,
@@ -1187,6 +1290,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
         deliveryType: "free",
         deliveryFee: 0,
         image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80",
+        video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
         badge: "-35% PROMO",
         rating: "4.9",
         description: "Batterie Lithium longue durée (8 à 12h d'autonomie). Panneau solaire inclus pour recharge gratuite. Port USB pour charger vos téléphones pendant les coupures."
@@ -1200,6 +1304,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
         deliveryType: "free",
         deliveryFee: 0,
         image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
+        video: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
         badge: "TOP TENDANCE",
         rating: "4.9",
         description: "Vapeur éclairée par LED créant l'effet chaleureux d'un feu de bois. Humidifie l'air sec de l'harmattan et parfume durablement toute la pièce."
@@ -1272,19 +1377,25 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       }
     }
 
-    // Écoute en direct des changements (produits, prix, bons) faits sur un autre téléphone
+    // Écoute en direct des changements (produits, prix, bons, commandes, téléphone) sur tous les téléphones
     function setupCloudRealtimeListeners() {
       if (!supabaseClient) return;
       try {
         supabaseClient
           .channel('public:db-changes')
           .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, () => {
-            // Un article ou un prix a changé sur un autre appareil -> mise à jour immédiate
             syncWithCloud();
           })
           .on('postgres_changes', { event: '*', schema: 'public', table: 'coupons' }, () => {
-            // Un bon a été utilisé ou créé sur un autre appareil
             syncCouponsWithCloud();
+          })
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
+            // Nouvelle commande passée sur n'importe quel téléphone -> apparaît immédiatement dans l'espace créateur
+            syncOrdersWithCloud();
+          })
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'store_settings' }, () => {
+            // Numéro WhatsApp mis à jour -> diffusé immédiatement partout
+            syncStoreSettingsWithCloud();
           })
           .subscribe();
       } catch (err) {
@@ -1320,6 +1431,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
             deliveryType: item.deliveryType ?? item.deliverytype ?? item.delivery_type ?? 'free',
             deliveryFee: Number(item.deliveryFee ?? item.deliveryfee ?? item.delivery_fee ?? 0),
             image: item.image || 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+            video: item.video || item.videourl || item.video_url || '',
             badge: item.badge || 'PROMO',
             rating: item.rating || '4.9',
             description: item.description || ''
@@ -1338,6 +1450,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
               deliverytype: p.deliveryType,
               deliveryfee: p.deliveryFee,
               image: p.image,
+              video: p.video || '',
               badge: p.badge,
               rating: p.rating,
               description: p.description
@@ -1349,8 +1462,60 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
         console.warn('Cloud sync products error:', err);
       }
 
-      // 2. Synchronisation des Bons de réduction sur tous les téléphones
+      // 2. Synchronisation des Paramètres Boutique Globaux (Numéro WhatsApp Universel)
+      await syncStoreSettingsWithCloud();
+
+      // 3. Synchronisation des Bons de réduction sur tous les téléphones
       await syncCouponsWithCloud();
+
+      // 4. Synchronisation des Commandes en direct pour l'espace créateur
+      await syncOrdersWithCloud();
+    }
+
+    async function syncStoreSettingsWithCloud() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient.from('store_settings').select('*').eq('id', 'global').maybeSingle();
+        if (!error && data) {
+          if (data.whatsapp_phone) {
+            state.whatsappPhone = data.whatsapp_phone;
+          }
+          if (data.brand_name) {
+            state.brandName = data.brand_name;
+          }
+          saveState();
+          applyUI();
+        }
+      } catch (err) {
+        console.warn('Sync store settings warning:', err);
+      }
+    }
+
+    async function syncOrdersWithCloud() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient.from('orders').select('*').order('created_at', { ascending: false });
+        if (!error && data && data.length > 0) {
+          state.orders = data.map(ord => ({
+            id: ord.id,
+            date: ord.date || '',
+            name: ord.name || '',
+            phone: ord.phone || '',
+            operator: ord.operator || '',
+            city: ord.city || '',
+            items: ord.items || '',
+            total: Number(ord.total || 0),
+            discount: Number(ord.discount || 0),
+            couponCode: ord.couponcode ?? ord.couponCode ?? '',
+            secToken: ord.sectoken ?? ord.secToken ?? '',
+            createdAt: ord.created_at || ''
+          }));
+          saveState();
+          renderAdminOrders();
+        }
+      } catch (err) {
+        console.warn('Sync orders warning:', err);
+      }
     }
 
     async function syncCouponsWithCloud() {
@@ -1368,18 +1533,21 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
             const clean = (cc.code || '').trim().toUpperCase();
             if (!clean) return;
             const existing = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === clean);
+            const ownerDev = cc.owner_device || cc.ownerdevice || null;
             if (existing) {
               if (cc.used) {
                 existing.used = true;
                 existing.usedAt = cc.used_at || cc.usedAt || existing.usedAt;
               }
+              if (ownerDev) existing.ownerDevice = ownerDev;
             } else {
               state.generatedOneTimeCoupons.push({
                 code: clean,
                 amount: Number(cc.amount || 0),
                 dateCreated: cc.date_created || cc.datecreated || new Date().toISOString().split('T')[0],
                 used: Boolean(cc.used),
-                usedAt: cc.used_at || cc.usedat || null
+                usedAt: cc.used_at || cc.usedat || null,
+                ownerDevice: ownerDev
               });
             }
           });
@@ -1814,11 +1982,11 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
     if (btnCopyCouponsSql) {
       btnCopyCouponsSql.addEventListener('click', () => {
         const sql = `-- =========================================================================
--- CONFIGURATION COMPLÈTE DE LA BASE DE DONNÉES CLOUD POUR NOCWISE BF
+-- CONFIGURATION SUPRÊME DE LA BASE DE DONNÉES CLOUD POUR NOCWISE BF
 -- Copiez et collez tout ce script dans Supabase -> SQL Editor -> Run
 -- =========================================================================
 
--- 1. TABLE DES PRODUITS & PRIX (Visible et modifiable sur tous les appareils)
+-- 1. TABLE DES PRODUITS, PRIX & VIDÉOS PUBLICITAIRES
 CREATE TABLE IF NOT EXISTS products (
   id TEXT PRIMARY KEY,
   title TEXT NOT NULL,
@@ -1828,16 +1996,18 @@ CREATE TABLE IF NOT EXISTS products (
   deliverytype TEXT DEFAULT 'free',
   deliveryfee NUMERIC DEFAULT 0,
   image TEXT,
+  video TEXT,
   badge TEXT DEFAULT 'PROMO',
   rating TEXT DEFAULT '4.9',
   description TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE products ADD COLUMN IF NOT EXISTS video TEXT;
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public products access" ON products;
 CREATE POLICY "Public products access" ON products FOR ALL USING (true) WITH CHECK (true);
 
--- 2. TABLE DES BONS DE RÉDUCTION & COUPONS (Synchronisation globale)
+-- 2. TABLE DES BONS DE RÉDUCTION (USAGE UNIQUE & VÉRIFICATION DU PROPRIÉTAIRE)
 CREATE TABLE IF NOT EXISTS coupons (
   id TEXT PRIMARY KEY,
   code TEXT UNIQUE NOT NULL,
@@ -1846,13 +2016,15 @@ CREATE TABLE IF NOT EXISTS coupons (
   used BOOLEAN DEFAULT FALSE,
   used_at TEXT,
   min_order NUMERIC DEFAULT 0,
+  owner_device TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
+ALTER TABLE coupons ADD COLUMN IF NOT EXISTS owner_device TEXT;
 ALTER TABLE coupons ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public coupons access" ON coupons;
 CREATE POLICY "Public coupons access" ON coupons FOR ALL USING (true) WITH CHECK (true);
 
--- 3. TABLE DES COMMANDES (Sauvegarde anti-perte de toutes les commandes)
+-- 3. TABLE DES COMMANDES (SYNCHRONISATION EN DIRECT SUR VOTRE TÉLÉPHONE)
 CREATE TABLE IF NOT EXISTS orders (
   id TEXT PRIMARY KEY,
   date TEXT,
@@ -1871,11 +2043,29 @@ ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Public orders access" ON orders;
 CREATE POLICY "Public orders access" ON orders FOR ALL USING (true) WITH CHECK (true);
 
--- 4. POLITIQUES DE MISE À JOUR (Permet de modifier les prix et valider les bons)
-DROP POLICY IF EXISTS "Public update products" ON products;
-CREATE POLICY "Public update products" ON products FOR UPDATE USING (true) WITH CHECK (true);
-DROP POLICY IF EXISTS "Public update coupons" ON coupons;
-CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CHECK (true);`;
+-- 4. TABLE DES PARAMÈTRES BOUTIQUE (NUMÉRO WHATSAPP UNIVERSEL PARTOUT)
+CREATE TABLE IF NOT EXISTS store_settings (
+  id TEXT PRIMARY KEY,
+  brand_name TEXT DEFAULT 'Nocwise BF',
+  whatsapp_phone TEXT DEFAULT '22670000000',
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE store_settings ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public settings access" ON store_settings;
+CREATE POLICY "Public settings access" ON store_settings FOR ALL USING (true) WITH CHECK (true);
+
+INSERT INTO store_settings (id, brand_name, whatsapp_phone)
+VALUES ('global', 'Nocwise BF', '22670000000')
+ON CONFLICT (id) DO NOTHING;
+
+-- 5. ACTIVATION DU TEMPS RÉEL SUR TOUTES LES TABLES
+DO $$
+BEGIN
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE products; EXCEPTION WHEN duplicate_object THEN NULL; END;
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE coupons; EXCEPTION WHEN duplicate_object THEN NULL; END;
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE orders; EXCEPTION WHEN duplicate_object THEN NULL; END;
+  BEGIN ALTER PUBLICATION supabase_realtime ADD TABLE store_settings; EXCEPTION WHEN duplicate_object THEN NULL; END;
+END $$;`;
         navigator.clipboard.writeText(sql).then(() => {
           showToast('Script SQL Global copié ! Collez-le dans SQL Editor sur Supabase.', '📋');
         }).catch(() => {
@@ -1933,20 +2123,39 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       let matchedAmount = null;
       let isOneTime = false;
 
+      // Vérification stricte anti-fraude d'appartenance de l'échangeur
+      const currentDevId = getDeviceIdentifier();
+
       if (oneTimeMatch) {
         if (oneTimeMatch.used) {
           feedback.className = 'text-[11px] font-bold text-red-600';
-          feedback.textContent = `❌ Ce bon de réduction a DÉJÀ ÉTÉ UTILISÉ${oneTimeMatch.usedAt ? ' (' + oneTimeMatch.usedAt + ')' : ''} et n\'est plus valable !`;
+          feedback.textContent = `❌ Ce bon a DÉJÀ ÉTÉ UTILISÉ${oneTimeMatch.usedAt ? ' (' + oneTimeMatch.usedAt + ')' : ''} et est DÉFINITIVEMENT DÉSACTIVÉ !`;
+          return null;
+        }
+        // Si le bon est issu d'un échange de points et lié à un appareil spécifique
+        if (oneTimeMatch.ownerDevice && oneTimeMatch.ownerDevice !== currentDevId) {
+          feedback.className = 'text-[11px] font-bold text-red-600';
+          feedback.textContent = `⛔ ACCÈS REFUSÉ : Ce bon de réduction appartient exclusivement à l'appareil qui a échangé ses points. Vous ne pouvez pas utiliser le bon d'un autre joueur !`;
           return null;
         }
         matchedAmount = oneTimeMatch.amount;
         isOneTime = true;
       } else {
-        // 3. Vérification des bons débloqués dans l'espace jeu
+        // 3. Vérification des bons débloqués dans l'espace jeu local
         const earnedMatch = state.userVouchers.find(v => v.code.toUpperCase() === cleanCode);
         if (earnedMatch) {
+          if (earnedMatch.used) {
+            feedback.className = 'text-[11px] font-bold text-red-600';
+            feedback.textContent = `❌ Ce bon de fidélité a déjà été utilisé pour une précédente commande !`;
+            return null;
+          }
+          if (earnedMatch.ownerDevice && earnedMatch.ownerDevice !== currentDevId) {
+            feedback.className = 'text-[11px] font-bold text-red-600';
+            feedback.textContent = `⛔ ACCÈS REFUSÉ : Ce bon est strictement réservé à son détenteur initial !`;
+            return null;
+          }
           matchedAmount = earnedMatch.amount;
-          isOneTime = false;
+          isOneTime = true;
         } else {
           // 4. Formule universelle mathématique (reconnue instantanément sur n'importe quel autre téléphone)
           const algoValid = verifyAlgorithmicCoupon(cleanCode);
@@ -2000,6 +2209,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
     function markCouponAsUsed(codeStr) {
       const cleanCode = (codeStr || '').trim().toUpperCase();
       const dateStr = new Date().toLocaleDateString('fr-FR') + ' à ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5);
+      const currentDevId = getDeviceIdentifier();
 
       state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
       let match = state.generatedOneTimeCoupons.find(c => c.code.toUpperCase() === cleanCode);
@@ -2018,16 +2228,25 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
             amount: algo.amount,
             dateCreated: new Date().toISOString().split('T')[0],
             used: true,
-            usedAt: dateStr
+            usedAt: dateStr,
+            ownerDevice: currentDevId
           };
           state.generatedOneTimeCoupons.unshift(match);
         }
       }
 
+      // Marquer définitivement comme utilisé dans userVouchers de l'utilisateur
+      state.userVouchers = (state.userVouchers || []).map(v => {
+        if (v.code.toUpperCase() === cleanCode) {
+          return { ...v, used: true, usedAt: dateStr };
+        }
+        return v;
+      });
+      // Retirer des bons disponibles pour qu'il ne puisse plus jamais le réutiliser
       state.userVouchers = state.userVouchers.filter(v => v.code.toUpperCase() !== cleanCode);
       saveState();
 
-      // Mise à jour sur Supabase pour que TOUS les téléphones sachent qu'il est utilisé
+      // Mise à jour immédiate sur Supabase : verrouillage universel anti-réutilisation
       if (supabaseClient) {
         const payload = {
           id: cleanCode,
@@ -2036,7 +2255,8 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
           used: true,
           used_at: dateStr,
           date_created: match ? match.dateCreated : new Date().toISOString().split('T')[0],
-          min_order: MIN_ORDER_TIERS[amount] || (amount * 4)
+          min_order: MIN_ORDER_TIERS[amount] || (amount * 4),
+          owner_device: match ? (match.ownerDevice || currentDevId) : currentDevId
         };
         supabaseClient.from('coupons').upsert([payload], { onConflict: 'code' })
           .then(({ error }) => {
@@ -2112,6 +2332,8 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
 
         const card = document.createElement('div');
         card.className = 'bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1';
+        const hasVideo = Boolean(p.video && p.video.trim() !== '');
+
         card.innerHTML = `
           <div>
             <div class="relative h-44 sm:h-52 bg-slate-50 p-3 flex items-center justify-center overflow-hidden border-b border-slate-100 cursor-pointer prod-trigger" data-id="${p.id}">
@@ -2122,6 +2344,12 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
               <span class="absolute bottom-2.5 left-2.5 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm ${delClass}">
                 <i class="fa-solid fa-truck-fast mr-0.5"></i> ${delText}
               </span>
+              ${hasVideo ? `
+                <button data-id="${p.id}" class="btn-watch-ad-card absolute top-2.5 right-2.5 bg-amber-400 hover:bg-amber-300 text-emerald-950 text-[10px] font-black px-2.5 py-1 rounded-full shadow-md flex items-center gap-1 transition animate-pulse z-10">
+                  <i class="fa-solid fa-circle-play text-red-600"></i>
+                  <span>Voir la Pub</span>
+                </button>
+              ` : ''}
             </div>
 
             <div class="p-3.5 sm:p-4 space-y-1.5">
@@ -2145,14 +2373,22 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
             </div>
           </div>
 
-          <div class="p-3 sm:p-4 pt-0 grid grid-cols-2 gap-1.5">
-            <button data-id="${p.id}" class="btn-add-cart-card py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs transition flex items-center justify-center space-x-1 border border-slate-200">
-              <i class="fa-solid fa-cart-plus text-emerald-700"></i>
-              <span>Panier</span>
-            </button>
-            <button data-id="${p.id}" class="btn-order-card py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-xs shadow-md transition flex items-center justify-center space-x-1 active:scale-95">
-              <span>Commander</span>
-            </button>
+          <div class="p-3 sm:p-4 pt-0 space-y-1.5">
+            ${hasVideo ? `
+              <button data-id="${p.id}" class="btn-watch-ad-card w-full py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-900 rounded-xl font-extrabold text-[11px] transition flex items-center justify-center gap-1.5 border border-amber-300">
+                <i class="fa-solid fa-play text-red-600 text-[10px]"></i>
+                <span>Regarder la Vidéo Publicitaire</span>
+              </button>
+            ` : ''}
+            <div class="grid grid-cols-2 gap-1.5">
+              <button data-id="${p.id}" class="btn-add-cart-card py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl font-bold text-xs transition flex items-center justify-center space-x-1 border border-slate-200">
+                <i class="fa-solid fa-cart-plus text-emerald-700"></i>
+                <span>Panier</span>
+              </button>
+              <button data-id="${p.id}" class="btn-order-card py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-bold text-xs shadow-md transition flex items-center justify-center space-x-1 active:scale-95">
+                <span>Commander</span>
+              </button>
+            </div>
           </div>
         `;
         grid.appendChild(card);
@@ -2173,6 +2409,16 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
           if (p) {
             addToCart(p);
             showToast(`Ajouté au panier : ${p.title.split(' ')[0]}...`, '🛒');
+          }
+        });
+      });
+
+      document.querySelectorAll('.btn-watch-ad-card').forEach(b => {
+        b.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const p = state.products.find(x => x.id === b.getAttribute('data-id'));
+          if (p && p.video) {
+            openProductAdModal(p);
           }
         });
       });
@@ -2201,6 +2447,30 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
     let expressCurrentDiscount = 0;
     let expressCurrentCouponCode = '';
 
+        let currentAdProduct = null;
+    function openProductAdModal(p) {
+      currentAdProduct = p;
+      document.getElementById('productAdModalTitle').innerHTML = `<i class="fa-solid fa-play text-red-500"></i> Démo : ${p.title}`;
+      document.getElementById('productAdModalPlayerContainer').innerHTML = buildVideoEmbedHtml(p.video);
+      document.getElementById('productAdModal').classList.remove('hidden');
+    }
+
+    document.getElementById('btnCloseProductAdModal').addEventListener('click', () => {
+      document.getElementById('productAdModalPlayerContainer').innerHTML = '';
+      document.getElementById('productAdModal').classList.add('hidden');
+    });
+
+    document.getElementById('btnOrderFromAdModal').addEventListener('click', () => {
+      document.getElementById('productAdModalPlayerContainer').innerHTML = '';
+      document.getElementById('productAdModal').classList.add('hidden');
+      if (currentAdProduct) {
+        openProductModal(currentAdProduct);
+        setTimeout(() => {
+          document.getElementById('expressOrderForm').scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      }
+    });
+
     function openProductModal(p) {
       state.selectedProduct = p;
       document.getElementById('detailModalImg').src = p.image;
@@ -2209,6 +2479,16 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       document.getElementById('detailModalPromoPrice').textContent = formatMoney(p.promoPrice);
       document.getElementById('detailModalOldPrice').textContent = formatMoney(p.oldPrice);
       document.getElementById('detailModalDesc').textContent = p.description;
+
+      const videoWrapper = document.getElementById('detailModalVideoWrapper');
+      const videoContainer = document.getElementById('detailModalVideoContainer');
+      if (p.video && p.video.trim() !== '') {
+        videoContainer.innerHTML = buildVideoEmbedHtml(p.video);
+        videoWrapper.classList.remove('hidden');
+      } else {
+        videoContainer.innerHTML = '';
+        videoWrapper.classList.add('hidden');
+      }
 
       const isFree = p.deliveryType === 'free' || !p.deliveryFee;
       const b = document.getElementById('detailModalDeliveryBadge');
@@ -2452,7 +2732,23 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       state.orders.unshift(orderRecord);
       saveState();
       if (supabaseClient) {
-        supabaseClient.from('orders').insert([orderRecord]).catch(e => console.warn('Cloud order error:', e));
+        const cloudOrder = {
+          id: orderRecord.id,
+          date: orderRecord.date,
+          name: orderRecord.name,
+          phone: orderRecord.phone,
+          operator: orderRecord.operator,
+          city: orderRecord.city,
+          items: orderRecord.items,
+          total: orderRecord.total,
+          discount: orderRecord.discount,
+          couponCode: orderRecord.couponCode,
+          secToken: orderRecord.secToken
+        };
+        supabaseClient.from('orders').insert([cloudOrder]).then(({ error }) => {
+          if (!error) console.log('Commande Cloud synchronisée avec succès !');
+          else console.warn('Erreur commande cloud:', error);
+        });
       }
 
       const waMsg = encodeURIComponent(
@@ -2530,7 +2826,23 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       state.orders.unshift(orderRecord);
       saveState();
       if (supabaseClient) {
-        supabaseClient.from('orders').insert([orderRecord]).catch(e => console.warn('Cloud order error:', e));
+        const cloudOrder = {
+          id: orderRecord.id,
+          date: orderRecord.date,
+          name: orderRecord.name,
+          phone: orderRecord.phone,
+          operator: orderRecord.operator,
+          city: orderRecord.city,
+          items: orderRecord.items,
+          total: orderRecord.total,
+          discount: orderRecord.discount,
+          couponCode: orderRecord.couponCode,
+          secToken: orderRecord.secToken
+        };
+        supabaseClient.from('orders').insert([cloudOrder]).then(({ error }) => {
+          if (!error) console.log('Commande Cloud synchronisée avec succès !');
+          else console.warn('Erreur commande cloud:', error);
+        });
       }
 
       const waMsg = encodeURIComponent(
@@ -2601,6 +2913,8 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       const isPaid = document.getElementById('inpProdDeliveryType').value === 'paid';
       const fee = isPaid ? (Number(document.getElementById('inpProdDeliveryFee').value) || 1000) : 0;
 
+      const videoUrl = document.getElementById('inpProdVideoInput') ? document.getElementById('inpProdVideoInput').value.trim() : '';
+
       const newP = {
         id: 'p-' + Date.now(),
         title: document.getElementById('inpProdTitle').value.trim(),
@@ -2610,6 +2924,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
         deliveryType: isPaid ? 'paid' : 'free',
         deliveryFee: fee,
         image: finalImage,
+        video: videoUrl,
         badge: 'NOUVEAU',
         rating: '5.0',
         description: document.getElementById('inpProdDesc').value.trim()
@@ -2634,6 +2949,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
           deliverytype: newP.deliveryType,
           deliveryfee: newP.deliveryFee,
           image: newP.image,
+          video: newP.video || '',
           badge: newP.badge,
           rating: newP.rating,
           description: newP.description
@@ -2709,6 +3025,9 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       document.getElementById('editProdBadgeCat').textContent = p.category;
       document.getElementById('editProdBadge').value = p.badge || '';
       document.getElementById('editProdDesc').value = p.description || '';
+      if (document.getElementById('editProdVideo')) {
+        document.getElementById('editProdVideo').value = p.video || '';
+      }
       document.getElementById('editProdPreviewImg').src = p.image || '';
       document.getElementById('adminEditProductModal').classList.remove('hidden');
     }
@@ -2733,6 +3052,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       p.category = document.getElementById('editProdCat').value;
       p.badge = document.getElementById('editProdBadge').value.trim() || 'PROMO';
       p.description = document.getElementById('editProdDesc').value.trim();
+      p.video = document.getElementById('editProdVideo') ? document.getElementById('editProdVideo').value.trim() : (p.video || '');
 
       saveState();
       renderProducts();
@@ -2751,6 +3071,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
           deliverytype: p.deliveryType,
           deliveryfee: p.deliveryFee,
           image: p.image,
+          video: p.video || '',
           badge: p.badge,
           rating: p.rating,
           description: p.description
@@ -2850,7 +3171,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       });
     });
 
-    document.getElementById('adminConfigForm').addEventListener('submit', (e) => {
+    document.getElementById('adminConfigForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       state.brandName = document.getElementById('inpConfigBrandName').value.trim();
       state.whatsappPhone = document.getElementById('inpConfigPhone').value.trim();
@@ -2863,8 +3184,25 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       saveState();
       applyUI();
       initSupabase();
+
+      // Enregistre et diffuse le numéro WhatsApp universel sur Supabase
+      if (supabaseClient) {
+        try {
+          const settingsPayload = {
+            id: 'global',
+            brand_name: state.brandName,
+            whatsapp_phone: state.whatsappPhone,
+            updated_at: new Date().toISOString()
+          };
+          await supabaseClient.from('store_settings').upsert([settingsPayload], { onConflict: 'id' });
+          showToast('Numéro WhatsApp universel synchronisé sur le Cloud pour tous les clients !', '📞');
+        } catch(err) {
+          console.warn('Erreur synchronisation numéro cloud:', err);
+        }
+      }
+
       document.getElementById('adminMasterModal').classList.add('hidden');
-      showToast('Paramètres et connexion Cloud enregistrés !', '💾');
+      showToast('Paramètres universels enregistrés !', '💾');
     });
 
     document.getElementById('btnTestSupabaseConn').addEventListener('click', async () => {
@@ -3158,7 +3496,7 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
       showToast(`Bravo ! Retiré à ${crashMult.toFixed(2)}x (+${win} PTS) !`, '💰');
     });
 
-    // Conversion to vouchers with minimum order info
+    // Conversion des points en bon : STRICTEMENT LIÉ À CET APPAREIL & USAGE UNIQUE (ANTI-ARNAQUE)
     document.querySelectorAll('.btn-redeem-voucher').forEach(btn => {
       btn.addEventListener('click', () => {
         const amt = parseInt(btn.getAttribute('data-amount'), 10);
@@ -3169,19 +3507,54 @@ CREATE POLICY "Public update coupons" ON coupons FOR UPDATE USING (true) WITH CH
           return;
         }
 
+        const devId = getDeviceIdentifier();
         state.points -= cost;
-        const code = `NOCWISE-${amt}-${Math.floor(1000 + Math.random() * 9000)}`;
+        const uniqueRand = Math.floor(1000 + Math.random() * 9000);
+        const code = `NOCWISE-${amt}-${uniqueRand}`;
+        const todayStr = new Date().toLocaleDateString('fr-FR');
+
         const voucher = {
           code: code,
           amount: amt,
-          date: new Date().toLocaleDateString('fr-FR')
+          date: todayStr,
+          used: false,
+          ownerDevice: devId
         };
         state.userVouchers.unshift(voucher);
+
+        // Enregistre également dans state.generatedOneTimeCoupons pour synchronisation
+        state.generatedOneTimeCoupons = state.generatedOneTimeCoupons || [];
+        state.generatedOneTimeCoupons.unshift({
+          code: code,
+          amount: amt,
+          dateCreated: new Date().toISOString().split('T')[0],
+          used: false,
+          usedAt: null,
+          ownerDevice: devId
+        });
+
         saveState();
         applyUI();
         renderUserVouchersVault();
+
+        // Enregistre sur Supabase avec l'empreinte de l'échangeur
+        if (supabaseClient) {
+          const payload = {
+            id: code,
+            code: code,
+            amount: amt,
+            date_created: new Date().toISOString().split('T')[0],
+            used: false,
+            used_at: null,
+            min_order: MIN_ORDER_TIERS[amt] || (amt * 4),
+            owner_device: devId
+          };
+          supabaseClient.from('coupons').upsert([payload], { onConflict: 'code' })
+            .catch(e => console.warn('Erreur enregistrement bon échange:', e));
+        }
+
         const minReq = MIN_ORDER_TIERS[amt] || (amt * 4);
-        showToast(`Félicitations ! Bon de ${formatMoney(amt)} débloqué (${code}) ! Utilisable dès ${formatMoney(minReq)}.`, '🎟️');
+        showToast(`Bon de ${formatMoney(amt)} débloqué ! Réservé exclusivement à votre appareil (Panier min : ${formatMoney(minReq)}).`, '🎟️');
       });
     });
 
